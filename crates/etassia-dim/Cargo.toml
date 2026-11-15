@@ -6,6 +6,6 @@ description = "Diagram Interchange Model (DIM) 0.1 support for Etassia: parse DI
 publish = false
 
 [dependencies]
-elkr = { git = "https://github.com/etassia/elkr" }
+elkr = "0.1"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
