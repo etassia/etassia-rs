@@ -133,7 +133,8 @@ dependencies = [
 [[package]]
 name = "elkr"
 version = "0.1.0"
-source = "git+https://github.com/etassia/elkr#c151233a9b3627e8a86eb2afbb1d695cda0fa311"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f6c0fdf999c8bacdffa4bff7da7e4e0c8c47a507a70d8783edee90f76e80620c"
 dependencies = [
  "serde",
  "serde_json",
