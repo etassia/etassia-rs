@@ -7,6 +7,7 @@
 //! Status 0 = SVG / type name; 1 = JSON `{class,message,line,col}` (class
 //! "Unported" means the caller should use the Ruby fallback).
 use etassia::Error;
+use etassia_dim::DimError;
 use std::cell::RefCell;
 
 thread_local! {
@@ -14,6 +15,15 @@ thread_local! {
 }
 
 fn store(r: Result<String, Error>) -> i32 {
+    let (bytes, status) = match r {
+        Ok(s) => (s.into_bytes(), 0),
+        Err(e) => (e.to_json().into_bytes(), 1),
+    };
+    RESULT.with(|b| *b.borrow_mut() = bytes);
+    status
+}
+
+fn store_dim(r: Result<String, DimError>) -> i32 {
     let (bytes, status) = match r {
         Ok(s) => (s.into_bytes(), 0),
         Err(e) => (e.to_json().into_bytes(), 1),
@@ -71,6 +81,20 @@ pub unsafe extern "C" fn etassia_detect(ptr: *const u8, len: usize) -> i32 {
         etassia::detect(s)
             .ok_or_else(|| parse_err("DiagramTypeError", "cannot detect diagram type".into()))
     }))
+}
+
+/// Render a DIM 0.1 document at `ptr`/`len`. Returns the status.
+///
+/// # Safety
+/// `ptr` must point to `len` readable bytes.
+#[no_mangle]
+pub unsafe extern "C" fn etassia_render_dim(ptr: *const u8, len: usize) -> i32 {
+    if ptr.is_null() {
+        return store_dim(Err(DimError::Json("null source".into())));
+    }
+    let text = std::str::from_utf8(std::slice::from_raw_parts(ptr, len))
+        .map_err(|e| DimError::Json(e.to_string()));
+    store_dim(text.and_then(etassia_dim::render))
 }
 
 #[no_mangle]
