@@ -1,0 +1,51 @@
+<svg
+ width="551.0"
+ height="101.0"
+ viewBox="0 0 551.0 101.0"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+ overflow="hidden"
+>
+<defs>
+<marker id="arr-filled" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" orient="auto"><path fill="#000000" stroke="#000000" d="M 1 1 L 9 5 L 1 9 Z"/></marker>
+</defs>
+<g id="e1">
+  <line fill="none" stroke="#000000" stroke-width="2.0" x1="100.0" y1="20.0" x2="160.0" y2="20.0" marker-end="url(#arr-filled)"/>
+  <rect fill="#ffffff" stroke="none" x="111.6" y="10.0" width="36.8" height="20.0"/>
+  <text fill="#000000" x="130.0" y="25.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14.0">Text</text>
+</g>
+<g id="e2">
+  <line fill="none" stroke="#000000" stroke-width="2.0" x1="240.0" y1="20.0" x2="300.0" y2="20.0" marker-end="url(#arr-filled)"/>
+</g>
+<g id="e3">
+  <line fill="none" stroke="#000000" stroke-width="2.0" x1="390.0" y1="20.0" x2="450.0" y2="20.0" marker-end="url(#arr-filled)"/>
+  <rect fill="#ffffff" stroke="none" x="405.2" y="10.0" width="29.6" height="20.0"/>
+  <text fill="#000000" x="420.0" y="25.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14.0">One</text>
+</g>
+<g id="e4">
+  <line fill="none" stroke="#000000" stroke-width="2.0" x1="390.0" y1="20.0" x2="450.0" y2="80.0" marker-end="url(#arr-filled)"/>
+  <rect fill="#ffffff" stroke="none" x="405.2" y="40.0" width="29.6" height="20.0"/>
+  <text fill="#000000" x="420.0" y="55.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14.0">Two</text>
+</g>
+<g id="a">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="1.0" x="0.0" y="0.0" width="100.0" height="40.0"/>
+  <text fill="#000000" x="50.0" y="25.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14.0" font-weight="bold">Hard</text>
+</g>
+<g id="b">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="1.0" x="160.0" y="0.0" width="80.0" height="40.0"/>
+  <text fill="#000000" x="200.0" y="25.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14.0" font-weight="bold">Round</text>
+</g>
+<g id="c">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="1.0" x="300.0" y="0.0" width="90.0" height="40.0"/>
+  <text fill="#000000" x="345.0" y="25.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14.0" font-weight="bold">Decision</text>
+</g>
+<g id="d">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="1.0" x="450.0" y="0.0" width="100.0" height="40.0"/>
+  <text fill="#000000" x="500.0" y="25.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14.0" font-weight="bold">Result 1</text>
+</g>
+<g id="e">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="1.0" x="450.0" y="60.0" width="100.0" height="40.0"/>
+  <text fill="#000000" x="500.0" y="85.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14.0" font-weight="bold">Result 2</text>
+</g>
+</svg>

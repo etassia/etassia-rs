@@ -131,6 +131,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "elkr"
+version = "0.1.0"
+source = "git+https://github.com/etassia/elkr#c151233a9b3627e8a86eb2afbb1d695cda0fa311"
+dependencies = [
+ "serde",
+ "serde_json",
+ "thiserror",
+]
+
+[[package]]
 name = "equivalent"
 version = "1.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -150,10 +160,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "etassia-dim"
+version = "0.1.0"
+dependencies = [
+ "elkr",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "etassia-ffi"
 version = "0.1.0"
 dependencies = [
  "etassia",
+ "etassia-dim",
  "serde_json",
 ]
 
@@ -481,6 +501,26 @@ dependencies = [
  "proc-macro2",
  "quote",
  "unicode-ident",
+]
+
+[[package]]
+name = "thiserror"
+version = "2.0.21"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "09e52cb86a36cede5cb101bf8908837b3e4c6e5e59fe7fd85c23fb56200d189e"
+dependencies = [
+ "thiserror-impl",
+]
+
+[[package]]
+name = "thiserror-impl"
+version = "2.0.21"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fe5197923287db20a58125f0bc85c062f7f2c892de97b18c356f9efb14b28524"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 3.0.9",
 ]
 
 [[package]]
