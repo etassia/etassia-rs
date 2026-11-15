@@ -1,0 +1,11 @@
+[package]
+name = "etassia-dim"
+version.workspace = true
+edition.workspace = true
+description = "Diagram Interchange Model (DIM) 0.1 support for Etassia: parse DIM documents, lay out through elkr, render generic SVG"
+publish = false
+
+[dependencies]
+elkr = { git = "https://github.com/etassia/elkr" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
