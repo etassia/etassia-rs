@@ -1,0 +1,29 @@
+{
+  "dim": "0.1",
+  "notation": "generic",
+  "graph": {
+    "id": "root",
+    "layoutOptions": { "elk.algorithm": "layered", "elk.direction": "RIGHT" },
+    "children": [
+      { "id": "a", "width": 100, "height": 40,
+        "content": [{ "kind": "label", "text": "Hard", "role": "title" }] },
+      { "id": "b", "width": 80, "height": 40,
+        "content": [{ "kind": "label", "text": "Round", "role": "title" }] },
+      { "id": "c", "width": 90, "height": 40,
+        "content": [{ "kind": "label", "text": "Decision", "role": "title" }] },
+      { "id": "d", "width": 100, "height": 40,
+        "content": [{ "kind": "label", "text": "Result 1", "role": "title" }] },
+      { "id": "e", "width": 100, "height": 40,
+        "content": [{ "kind": "label", "text": "Result 2", "role": "title" }] }
+    ],
+    "edges": [
+      { "id": "e1", "sources": ["a"], "targets": ["b"],
+        "label": { "text": "Text" }, "style": "reference" },
+      { "id": "e2", "sources": ["b"], "targets": ["c"], "style": "reference" },
+      { "id": "e3", "sources": ["c"], "targets": ["d"],
+        "label": { "text": "One" }, "style": "reference" },
+      { "id": "e4", "sources": ["c"], "targets": ["e"],
+        "label": { "text": "Two" }, "style": "reference" }
+    ]
+  }
+}

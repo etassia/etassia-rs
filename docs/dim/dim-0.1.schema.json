@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://etassia.org/schemas/dim-0.1.json",
+  "title": "Diagram Interchange Model 0.1",
+  "description": "The interchange between model-holding tools and the Etassia engine: an ELK JSON graph extended with content, edge intent, and provenance. Positions are layout output and are ignored on input.",
+  "type": "object",
+  "required": ["dim", "notation", "graph"],
+  "additionalProperties": false,
+  "properties": {
+    "dim": { "const": "0.1" },
+    "notation": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]*$",
+      "description": "The family the view expresses, e.g. uml-class, express-g, xsd, json-schema, generic."
+    },
+    "graph": { "$ref": "#/definitions/graph" }
+  },
+  "definitions": {
+    "point": {
+      "type": "object",
+      "required": ["x", "y"],
+      "additionalProperties": false,
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" }
+      }
+    },
+    "contentBlock": {
+      "type": "object",
+      "required": ["kind", "text"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "const": "label" },
+        "text": { "type": "string" },
+        "role": {
+          "enum": ["title", "member", "stereotype", "note"],
+          "default": "member"
+        }
+      }
+    },
+    "node": {
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "x": { "type": "number", "description": "layout output; ignored on input" },
+        "y": { "type": "number", "description": "layout output; ignored on input" },
+        "width": { "type": "number" },
+        "height": { "type": "number" },
+        "content": { "type": "array", "items": { "$ref": "#/definitions/contentBlock" } },
+        "children": { "type": "array", "items": { "$ref": "#/definitions/node" } }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "required": ["id", "sources", "targets"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "sources": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "targets": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "label": {
+          "type": "object",
+          "required": ["text"],
+          "additionalProperties": false,
+          "properties": { "text": { "type": "string" } }
+        },
+        "style": {
+          "enum": ["association", "generalization", "composition", "dependency", "reference"]
+        },
+        "sections": {
+          "type": "array",
+          "description": "layout output; ignored on input",
+          "items": {
+            "type": "object",
+            "required": ["id", "startPoint", "endPoint"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "type": "string" },
+              "startPoint": { "$ref": "#/definitions/point" },
+              "endPoint": { "$ref": "#/definitions/point" },
+              "bendPoints": { "type": "array", "items": { "$ref": "#/definitions/point" } },
+              "incomingShape": { "type": "string" },
+              "outgoingShape": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "graph": {
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "children": { "type": "array", "items": { "$ref": "#/definitions/node" } },
+        "edges": { "type": "array", "items": { "$ref": "#/definitions/edge" } },
+        "layoutOptions": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        }
+      }
+    }
+  }
+}
