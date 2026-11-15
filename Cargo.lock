@@ -182,6 +182,7 @@ name = "etassia-wasm"
 version = "0.1.0"
 dependencies = [
  "etassia",
+ "etassia-dim",
 ]
 
 [[package]]
