@@ -58,6 +58,7 @@ module Etassia
 
           ffi_lib path
           attach_function :etassia_render, %i[pointer size_t pointer], buf.by_value
+          attach_function :etassia_render_dim, %i[pointer size_t], buf.by_value
           attach_function :etassia_detect, %i[pointer size_t], buf.by_value
           attach_function :etassia_free, [buf.by_value], :void
         end
@@ -66,6 +67,11 @@ module Etassia
       def render(source)
         ptr, len = input(source)
         take(@lib.etassia_render(ptr, len, nil))
+      end
+
+      def render_dim(source)
+        ptr, len = input(source)
+        take(@lib.etassia_render_dim(ptr, len))
       end
 
       def detect(source)
@@ -137,6 +143,16 @@ module Etassia
                                "#{LIBRARY_ENV} not set and no #{library_filename} in the gem or under target/"
 
         lib.detect(source)
+      end
+
+      # SVG for a DIM document. Native only: DIM has no pure-Ruby
+      # implementation, so there is no fallback path; without a library
+      # this raises Unavailable.
+      def render_dim(source)
+        lib = library or raise Unavailable,
+                               "#{LIBRARY_ENV} not set and no #{library_filename} in the gem or under target/"
+
+        lib.render_dim(source)
       end
 
       def library

@@ -9,6 +9,7 @@ module NativeSpecSupport
   REPO_ROOT = File.expand_path("../../..", __dir__)
   PIE_SOURCE = File.join(REPO_ROOT, "golden", "pie", "pie_spec-0b1f3197.mmd")
   PIE_SVG = File.join(REPO_ROOT, "golden", "pie", "pie_spec-0b1f3197.svg")
+  DIM_DOCUMENT = File.join(REPO_ROOT, "docs", "dim", "examples", "flowchart-as-dim.json")
   UNPORTED_SOURCE = "sankey-beta\na,b,1\n"
   MISSING_LIB = "/nonexistent/etassia-native-spec/libetassia_ffi.dylib"
 
@@ -55,6 +56,23 @@ class NativeLoadedLibTest < Minitest::Test
 
   def test_detect_reports_diagram_type
     assert_equal "pie", Etassia::Native.detect(File.read(NativeSpecSupport::PIE_SOURCE))
+  end
+
+  def test_render_dim_renders_a_dim_document_to_svg
+    svg = Etassia::Native.render_dim(File.read(NativeSpecSupport::DIM_DOCUMENT))
+
+    assert svg.start_with?("<svg")
+    assert svg.include?("Hard")
+  end
+
+  def test_render_dim_rejects_a_wrong_version_with_render_error
+    wrong = JSON.parse(File.read(NativeSpecSupport::DIM_DOCUMENT))
+    wrong["dim"] = "9.9"
+
+    error = assert_raises(Etassia::Native::RenderError) do
+      Etassia::Native.render_dim(JSON.generate(wrong))
+    end
+    assert_equal "Unsupported", error.error_class
   end
 
   def test_non_unported_error_raises_render_error_without_fallback
@@ -104,6 +122,12 @@ class NativeMissingLibTest < Minitest::Test
 
   def test_detect_without_library_raises_unavailable
     assert_raises(Etassia::Native::Unavailable) { Etassia::Native.detect("pie") }
+  end
+
+  def test_render_dim_without_library_raises_unavailable
+    assert_raises(Etassia::Native::Unavailable) do
+      Etassia::Native.render_dim(File.read(NativeSpecSupport::DIM_DOCUMENT))
+    end
   end
 
   def test_default_fallback_reports_missing_pure_ruby_gem
