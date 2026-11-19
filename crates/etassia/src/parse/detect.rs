@@ -62,6 +62,24 @@ pub fn detect_git(source: &str) -> bool {
     git_re().is_match(source)
 }
 
+/// The PlantUML wrapper lane for ditaa: a source opening (after a BOM and
+/// blank or quote-comment lines) with @startditaa claims the ditaa type.
+fn ditaa_re() -> &'static Regex {
+    static CELL: OnceLock<Regex> = OnceLock::new();
+    CELL.get_or_init(|| {
+        Regex::new(r"\A(?:ï»¿)?(?:[ 	]*(?:'[^
+]*)?(?:
+|
+|
+))*[ 	]*@startditaa").expect("ditaa detect pattern")
+    })
+}
+
+/// Whether the raw source opens with the ditaa wrapper.
+pub fn detect_ditaa(source: &str) -> bool {
+    ditaa_re().is_match(source)
+}
+
 /// First type whose pattern matches the (preamble-free) body.
 pub fn detect_body(body: &str) -> Option<&'static str> {
     table().iter().find(|(_, re)| re.is_match(body)).map(|(name, _)| *name)

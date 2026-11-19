@@ -32,6 +32,8 @@ fn plantuml() -> &'static PargArtifact {
 fn entry_for(diagram_type: &str) -> String {
     if diagram_type == "git" {
         "git_diagram".to_string()
+    } else if diagram_type == "ditaa" {
+        "ditaa_diagram".to_string()
     } else {
         diagram_type.to_string()
     }
@@ -52,6 +54,9 @@ fn artifact_for(entry: &str) -> Option<&'static PargArtifact> {
 /// PlantUML wrappers carry their own @start keyword, checked on the raw
 /// source before the mermaid body stripping runs.
 pub fn detect(source: &str) -> Option<String> {
+    if detect::detect_ditaa(source) {
+        return Some("ditaa".to_string());
+    }
     if detect::detect_git(source) {
         return Some("git".to_string());
     }
