@@ -12,6 +12,7 @@ pub mod user_journey;
 pub mod kanban;
 pub mod mindmap;
 pub mod gantt;
+pub mod ditaa;
 pub mod git_log;
 pub mod gitgraph;
 pub mod er_diagram;
@@ -33,6 +34,7 @@ pub fn render(source: &str) -> Result<String, Error> {
     let source = normalized.as_str();
     let ty = crate::detect(source).ok_or_else(|| Error::Unported("unknown".into()))?;
     match ty.as_str() {
+        "ditaa" => ditaa::render(source),
         "git" => git_log::render(source),
         "info" => info::render(source),
         "pie" => pie::render(source),
