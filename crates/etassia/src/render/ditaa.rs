@@ -43,8 +43,89 @@ fn options_from(start_line: &str) -> Options {
 }
 
 /// Ruby `String#to_f`: the longest numeric prefix, 0.0 when none.
-fn to_f(s: &str) -> f64 {
-    let t = s.trim_start();
+/// A Ruby number: the builder's arithmetic keeps Ruby's Integer/Float
+/// distinction, because the two print differently (`"95"` vs `"95.0"`)
+/// and `Integer#/` floors.
+#[derive(Clone, Copy, PartialEq, Debug)]
+enum RuNum {
+    Int(i64),
+    Float(f64),
+}
+
+impl RuNum {
+    fn int(v: i64) -> RuNum { RuNum::Int(v) }
+    fn float(v: f64) -> RuNum { RuNum::Float(v) }
+
+    fn to_f64(self) -> f64 {
+        match self {
+            RuNum::Int(v) => v as f64,
+            RuNum::Float(v) => v,
+        }
+    }
+
+    /// Ruby `#to_i`: truncates toward zero.
+    fn to_i(self) -> i64 {
+        match self {
+            RuNum::Int(v) => v,
+            RuNum::Float(v) => v.trunc() as i64,
+        }
+    }
+
+    /// Ruby `Integer#floor` / `Float#floor`: rounds toward negative
+    /// infinity, always an Integer.
+    fn floor(self) -> RuNum {
+        match self {
+            RuNum::Int(v) => RuNum::Int(v),
+            RuNum::Float(v) => RuNum::Int(v.floor() as i64),
+        }
+    }
+
+    fn add(self, other: RuNum) -> RuNum {
+        match (self, other) {
+            (RuNum::Int(a), RuNum::Int(b)) => RuNum::Int(a + b),
+            (a, b) => RuNum::Float(a.to_f64() + b.to_f64()),
+        }
+    }
+
+    fn sub(self, other: RuNum) -> RuNum {
+        match (self, other) {
+            (RuNum::Int(a), RuNum::Int(b)) => RuNum::Int(a - b),
+            (a, b) => RuNum::Float(a.to_f64() - b.to_f64()),
+        }
+    }
+
+    fn mul_i64(self, other: i64) -> RuNum {
+        match self {
+            RuNum::Int(a) => RuNum::Int(a * other),
+            RuNum::Float(a) => RuNum::Float(a * other as f64),
+        }
+    }
+
+    /// Ruby `#/`: floor division between Integers, exact otherwise.
+    fn div(self, other: RuNum) -> RuNum {
+        match (self, other) {
+            (RuNum::Int(a), RuNum::Int(b)) => RuNum::Int(a.div_euclid(b)),
+            (a, b) => RuNum::Float(a.to_f64() / b.to_f64()),
+        }
+    }
+
+    fn lt(self, other: RuNum) -> bool { self.to_f64() < other.to_f64() }
+    fn gt(self, other: RuNum) -> bool { self.to_f64() > other.to_f64() }
+    fn le(self, other: RuNum) -> bool { self.to_f64() <= other.to_f64() }
+    fn ge(self, other: RuNum) -> bool { self.to_f64() >= other.to_f64() }
+    fn eq_num(self, other: RuNum) -> bool { self.to_f64() == other.to_f64() }
+}
+
+impl std::fmt::Display for RuNum {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            RuNum::Int(v) => write!(f, "{v}"),
+            RuNum::Float(v) => write!(f, "{}", ruby_float(*v)),
+        }
+    }
+}
+
+fn to_f(s: &str) -> f64 {    let t = s.trim_start();
     let b = t.as_bytes();
     let mut i = 0;
     if i < b.len() && (b[i] == b'+' || b[i] == b'-') { i += 1; }
@@ -1292,8 +1373,8 @@ fn matches_any_multi(grid: &Grid, col: i64, row: i64, group: &LazyLock<Vec<Patte
 
 // ---- Builder ----
 
-const CELL_WIDTH: f64 = 10.0;
-const CELL_HEIGHT: f64 = 14.0;
+const CELL_WIDTH: i64 = 10;
+const CELL_HEIGHT: i64 = 14;
 const ASCENT_RATIO: f64 = 0.78;
 const WIDTH_RATIO: f64 = 0.55;
 
@@ -1305,8 +1386,8 @@ enum PointType {
 
 #[derive(Clone, Debug, PartialEq)]
 struct Point {
-    x: f64,
-    y: f64,
+    x: RuNum,
+    y: RuNum,
     kind: PointType,
     locked: bool,
 }
@@ -1337,12 +1418,18 @@ struct Shape {
 }
 
 impl Shape {
-    fn bounds(&self) -> (f64, f64, f64, f64) {
-        let mut xs: Vec<f64> = self.points.iter().map(|p| p.x).collect();
-        let mut ys: Vec<f64> = self.points.iter().map(|p| p.y).collect();
-        xs.sort_by(|a, b| a.partial_cmp(b).unwrap());
-        ys.sort_by(|a, b| a.partial_cmp(b).unwrap());
-        (xs[0], ys[0], xs[xs.len() - 1], ys[ys.len() - 1])
+    fn bounds(&self) -> (RuNum, RuNum, RuNum, RuNum) {
+        let mut min_x = self.points[0].x;
+        let mut min_y = self.points[0].y;
+        let mut max_x = self.points[0].x;
+        let mut max_y = self.points[0].y;
+        for point in &self.points[1..] {
+            if point.x.lt(min_x) { min_x = point.x; }
+            if point.y.lt(min_y) { min_y = point.y; }
+            if point.x.gt(max_x) { max_x = point.x; }
+            if point.y.gt(max_y) { max_y = point.y; }
+        }
+        (min_x, min_y, max_x, max_y)
     }
 
     fn calculate_area(&self) -> f64 {
@@ -1350,7 +1437,7 @@ impl Shape {
         let n = self.points.len();
         for (index, point) in self.points.iter().enumerate() {
             let other = &self.points[(index + 1) % n];
-            sum += (point.x * other.y) - (other.x * point.y);
+            sum += (point.x.to_f64() * other.y.to_f64()) - (other.x.to_f64() * point.y.to_f64());
         }
         sum
     }
@@ -1379,8 +1466,8 @@ impl Shape {
 
 #[derive(Clone, Debug)]
 struct TextRun {
-    x: f64,
-    y: f64,
+    x: RuNum,
+    y: RuNum,
     string: String,
     font_size: f64,
     anchor: &'static str,
@@ -1391,22 +1478,22 @@ struct Built {
     shapes: Vec<Shape>,
     composites: Vec<Vec<Shape>>,
     texts: Vec<TextRun>,
-    width: f64,
-    height: f64,
+    width: RuNum,
+    height: RuNum,
     #[allow(dead_code)]
     transparent: bool,
     #[allow(dead_code)]
     shadows: bool,
-    cell_width: f64,
-    cell_height: f64,
+    cell_width: i64,
+    cell_height: i64,
 }
 
 #[derive(Clone, Copy)]
 struct BuilderOptions {
     separation: bool,
     round_corners: bool,
-    cell_width: f64,
-    cell_height: f64,
+    cell_width: i64,
+    cell_height: i64,
 }
 
 struct Builder {
@@ -1419,8 +1506,8 @@ impl Builder {
             options: BuilderOptions {
                 separation: o.separation,
                 round_corners: o.round_corners,
-                cell_width: (CELL_WIDTH * o.scale).round(),
-                cell_height: (CELL_HEIGHT * o.scale).round(),
+                cell_width: ((CELL_WIDTH as f64) * o.scale).round() as i64,
+                cell_height: ((CELL_HEIGHT as f64) * o.scale).round() as i64,
             },
         }
     }
@@ -1429,8 +1516,8 @@ impl Builder {
         Options { separation: false, shadows: false, round_corners: false, transparent: false, scale: 1.0 }
     }
 
-    fn cell_left(&self, col: i64) -> f64 { col as f64 * self.options.cell_width }
-    fn cell_top(&self, row: i64) -> f64 { row as f64 * self.options.cell_height }
+    fn cell_left(&self, col: i64) -> RuNum { RuNum::int(col).mul_i64(self.options.cell_width) }
+    fn cell_top(&self, row: i64) -> RuNum { RuNum::int(row).mul_i64(self.options.cell_height) }
 
 
 
@@ -1460,7 +1547,9 @@ impl Builder {
             .collect()
     }
 
-    /// Ruby `closed_shape`: the set is CLOSED, a single cycle; trace it.
+    /// Ruby `closed_shape`: the set is CLOSED, a single cycle; trace it on
+    /// a blank grid holding only the set's cells, so the walk cannot leak
+    /// into a neighbouring shape.
     fn closed_shape(&self, work: &Grid, set: &CellSet) -> Option<Shape> {
         let mut shape = Shape {
             points: vec![],
@@ -1470,10 +1559,12 @@ impl Builder {
             fill: None,
             stroke: Some("#000000".into()),
         };
+        let mut isolated = Grid::blank_like_grid(work);
+        work.copy_cells_to(set, &mut isolated);
         let start = set.first();
-        self.add_corner_point(work, &mut shape, start);
-        let next = work.follow_cell(start.0, start.1, None)?;
-        self.walk_closed(work, &mut shape, start, next.cells[0], start);
+        self.add_corner_point(&isolated, &mut shape, start);
+        let next = isolated.follow_cell(start.0, start.1, None)?;
+        self.walk_closed(&isolated, &mut shape, start, next.cells[0], start);
         Some(shape)
     }
 
@@ -1652,21 +1743,25 @@ impl Builder {
     }
 
     fn add_horizontal_points(&self, shape: &mut Shape, col: i64, row: i64) {
-        let mid_y = self.cell_top(row) + self.options.cell_height / 2.0;
+        let mid_y = self.cell_top(row).add(RuNum::int(self.options.cell_height / 2));
         shape.points.push(self.cell_point(self.cell_left(col), mid_y));
         shape.points.push(self.cell_point(self.line_end_x(col), mid_y));
     }
 
     fn add_vertical_points(&self, shape: &mut Shape, col: i64, row: i64) {
-        let mid_x = self.cell_left(col) + self.options.cell_width / 2.0;
+        let mid_x = self.cell_left(col).add(RuNum::int(self.options.cell_width / 2));
         shape.points.push(self.cell_point(mid_x, self.cell_top(row)));
         shape.points.push(self.cell_point(mid_x, self.line_end_y(row)));
     }
 
-    fn line_end_x(&self, col: i64) -> f64 { self.cell_left(col) + self.options.cell_width - 1.0 }
-    fn line_end_y(&self, row: i64) -> f64 { self.cell_top(row) + self.options.cell_height - 1.0 }
+    fn line_end_x(&self, col: i64) -> RuNum {
+        self.cell_left(col).add(RuNum::int(self.options.cell_width - 1))
+    }
+    fn line_end_y(&self, row: i64) -> RuNum {
+        self.cell_top(row).add(RuNum::int(self.options.cell_height - 1))
+    }
 
-    fn cell_point(&self, x: f64, y: f64) -> Point {
+    fn cell_point(&self, x: RuNum, y: RuNum) -> Point {
         Point { x, y, kind: PointType::Normal, locked: false }
     }
 
@@ -1749,45 +1844,44 @@ impl Builder {
     fn connect_ends_to_anchors(&self, grid: &Grid, shape: &mut Shape) {
         if shape.points.len() < 2 { return; }
         let last = shape.points.len() - 1;
-        let (next_x, next_y) = (shape.points[1].x, shape.points[1].y);
-        let next = Point { x: next_x, y: next_y, kind: PointType::Normal, locked: false };
+        let next = shape.points[1].clone();
         self.anchor_end_to(grid, &next, &mut shape.points[0]);
-        let (prev_x, prev_y) = (shape.points[last - 1].x, shape.points[last - 1].y);
-        let prev = Point { x: prev_x, y: prev_y, kind: PointType::Normal, locked: false };
+        let prev = shape.points[last - 1].clone();
         self.anchor_end_to(grid, &prev, &mut shape.points[last]);
     }
 
     fn anchor_end_to(&self, grid: &Grid, next_point: &Point, lines_end: &mut Point) {
         let anchor_cell = self.possible_anchor_cell(next_point, lines_end);
         if !self.anchor(grid, anchor_cell) { return; }
-        lines_end.x = px_mid(anchor_cell.0 as i64, self.options.cell_width);
-        lines_end.y = px_mid(anchor_cell.1 as i64, self.options.cell_height);
+        lines_end.x = px_mid(anchor_cell.0, self.options.cell_width);
+        lines_end.y = px_mid(anchor_cell.1, self.options.cell_height);
         lines_end.locked = true;
     }
 
-    fn anchor(&self, grid: &Grid, cell: (f64, f64)) -> bool {
-        grid.arrowhead(cell.0 as i64, cell.1 as i64)
-            || grid.corner(cell.0 as i64, cell.1 as i64)
-            || grid.intersection(cell.0 as i64, cell.1 as i64)
+    fn anchor(&self, grid: &Grid, cell: (RuNum, RuNum)) -> bool {
+        let (col, row) = (cell.0.to_i(), cell.1.to_i());
+        grid.arrowhead(col, row)
+            || grid.corner(col, row)
+            || grid.intersection(col, row)
     }
 
-    fn possible_anchor_cell(&self, next_point: &Point, lines_end: &Point) -> (f64, f64) {
+    fn possible_anchor_cell(&self, next_point: &Point, lines_end: &Point) -> (RuNum, RuNum) {
         let (dx, dy) = self.anchor_shift(next_point, lines_end);
         (
-            (lines_end.x + dx) / self.options.cell_width,
-            (lines_end.y + dy) / self.options.cell_height,
+            lines_end.x.add(dx).div(RuNum::int(self.options.cell_width)),
+            lines_end.y.add(dy).div(RuNum::int(self.options.cell_height)),
         )
     }
 
-    fn anchor_shift(&self, next_point: &Point, lines_end: &Point) -> (f64, f64) {
-        if next_point.y < lines_end.y {
-            (0.0, self.options.cell_height)
-        } else if next_point.y > lines_end.y {
-            (0.0, -self.options.cell_height)
-        } else if next_point.x < lines_end.x {
-            (self.options.cell_width, 0.0)
+    fn anchor_shift(&self, next_point: &Point, lines_end: &Point) -> (RuNum, RuNum) {
+        if next_point.y.lt(lines_end.y) {
+            (RuNum::int(0), RuNum::int(self.options.cell_height))
+        } else if next_point.y.gt(lines_end.y) {
+            (RuNum::int(0), RuNum::int(-self.options.cell_height))
+        } else if next_point.x.lt(lines_end.x) {
+            (RuNum::int(self.options.cell_width), RuNum::int(0))
         } else {
-            (-self.options.cell_width, 0.0)
+            (RuNum::int(-self.options.cell_width), RuNum::int(0))
         }
     }
 
@@ -1797,8 +1891,8 @@ impl Builder {
         let kind = self.point_type(grid, col, row)
             .unwrap_or_else(|| panic!("cannot make point for cell {},{}", col, row));
         Point {
-            x: px_mid(col, self.options.cell_width),
-            y: px_mid(row, self.options.cell_height),
+            x: px_mid(RuNum::int(col), self.options.cell_width),
+            y: px_mid(RuNum::int(row), self.options.cell_height),
             kind,
             locked: false,
         }
@@ -1822,7 +1916,7 @@ impl Builder {
     // ---- separation ----
 
     fn separate_common_edges(&self, shapes: &mut Vec<Shape>) {
-        let offset = self.options.cell_width.min(self.options.cell_height) / 5.0;
+        let offset = self.options.cell_width.min(self.options.cell_height) as f64 / 5.0;
         // (shape index, start point index, end point index)
         let mut edges: Vec<(usize, usize, usize)> = vec![];
         for (si, shape) in shapes.iter().enumerate() {
@@ -1839,7 +1933,7 @@ impl Builder {
                     .iter()
                     .enumerate()
                     .filter(|(_, other)| self.edges_touch(shapes, edge, other))
-                    .map(move |(other_offset, other)| (index, index + 1 + other_offset))
+                    .map(move |(other_offset, _other)| (index, index + 1 + other_offset))
                     .collect::<Vec<_>>()
             })
             .collect();
@@ -1851,47 +1945,49 @@ impl Builder {
     }
 
     fn edges_touch(&self, shapes: &[Shape], a: &(usize, usize, usize), b: &(usize, usize, usize)) -> bool {
-        if a == b { return true; }
         let (a1, a2) = edge_pair(shapes, *a);
         let (b1, b2) = edge_pair(shapes, *b);
-        let horizontal_a = a1.y == a2.y;
-        let vertical_a = a1.x == a2.x;
-        let horizontal_b = b1.y == b2.y;
-        let vertical_b = b1.x == b2.x;
+        let horizontal_a = a1.y.eq_num(a2.y);
+        let vertical_a = a1.x.eq_num(a2.x);
+        let horizontal_b = b1.y.eq_num(b2.y);
+        let vertical_b = b1.x.eq_num(b2.x);
         if (horizontal_a && vertical_b) || (horizontal_b && vertical_a) { return false; }
         let dist_a = if horizontal_a { a1.y } else { a1.x };
         let dist_b = if horizontal_b { b1.y } else { b1.x };
-        if dist_a != dist_b { return false; }
+        if !dist_a.eq_num(dist_b) { return false; }
         self.overlapping(shapes, *a, *b)
     }
 
     fn overlapping(&self, shapes: &[Shape], a: (usize, usize, usize), b: (usize, usize, usize)) -> bool {
         let (a1, a2) = edge_pair(shapes, a);
         let (b1, b2) = edge_pair(shapes, b);
-        let a_horizontal = a1.y == a2.y;
+        let a_horizontal = a1.y.eq_num(a2.y);
         let (a_first, a_last) = ordered_points(a1, a2, a_horizontal);
         let (b_first, b_last) = ordered_points(b1, b2, a_horizontal);
-        let a_starts_first = if a_horizontal { a_first.x <= b_first.x } else { a_first.y <= b_first.y };
-        let ((f_start, f_end), (s_start, s_end)) = if a_starts_first {
-            ((a_first, a_last), (b_first, b_last))
-        } else {
+        // Ruby compares start_point.x for both orientations; two vertical
+        // edges of a pair share the same x, so they never swap.
+        let ((f_start, f_end), (s_start, _s_end)) = if a_first.x.gt(b_first.x) {
             ((b_first, b_last), (a_first, a_last))
+        } else {
+            ((a_first, a_last), (b_first, b_last))
         };
         if f_end == s_start { return false; }
-        self.within_any(shapes, a, s_start, s_end) || self.within_any(shapes, b, f_start, f_end)
+        // Ruby `between?` keeps the given order, so only an edge traced
+        // start-to-end along its axis contains its own endpoints; a
+        // reversed closing edge never qualifies.
+        self.within_any(a1, a2) || self.within_any(b1, b2)
     }
 
-    fn within_any(&self, shapes: &[Shape], e: (usize, usize, usize), start: &Point, end: &Point) -> bool {
-        let (s, t) = edge_pair(shapes, e);
-        self.within_edge(s, start, end) || self.within_edge(t, start, end)
-    }
-
-    fn within_edge(&self, point: &Point, start: &Point, end: &Point) -> bool {
-        if start.y == end.y {
-            point.y == start.y && point.x >= start.x.min(end.x) && point.x <= start.x.max(end.x)
-        } else {
-            point.x == start.x && point.y >= start.y.min(end.y) && point.y <= start.y.max(end.y)
-        }
+    fn within_any(&self, start: &Point, end: &Point) -> bool {
+        let horizontal = start.y.eq_num(end.y);
+        let on = |p: &Point| {
+            if horizontal {
+                p.y.eq_num(start.y) && p.x.ge(start.x) && p.x.le(end.x)
+            } else {
+                p.x.eq_num(start.x) && p.y.ge(start.y) && p.y.le(end.y)
+            }
+        };
+        on(start) || on(end)
     }
 
     fn move_inwards(&self, shapes: &mut [Shape], e: (usize, usize, usize), offset: f64) {
@@ -1899,37 +1995,37 @@ impl Builder {
         let (si, pi, ti) = e;
         let n = shapes[si].points.len();
         for index in [pi % n, ti % n] {
-            shapes[si].points[index].x += shift.0;
-            shapes[si].points[index].y += shift.1;
+            shapes[si].points[index].x = shapes[si].points[index].x.add(shift.0);
+            shapes[si].points[index].y = shapes[si].points[index].y.add(shift.1);
         }
     }
 
-    fn inward_shift(&self, shapes: &[Shape], e: (usize, usize, usize), offset: f64) -> Option<(f64, f64)> {
+    fn inward_shift(&self, shapes: &[Shape], e: (usize, usize, usize), offset: f64) -> Option<(RuNum, RuNum)> {
         let (start, end) = edge_pair(shapes, e);
-        let horizontal = start.y == end.y;
-        let vertical = start.x == end.x;
-        let mid = ((start.x + end.x) / 2.0, (start.y + end.y) / 2.0);
+        let horizontal = start.y.eq_num(end.y);
+        let vertical = start.x.eq_num(end.x);
+        let mid = (start.x.add(end.x).div(RuNum::int(2)), start.y.add(end.y).div(RuNum::int(2)));
         if horizontal {
-            Some((0.0, self.probe_shift(shapes, e, offset, Some(mid.0), None)))
+            Some((RuNum::int(0), self.probe_shift(shapes, e, offset, Some(mid.0), None)))
         } else if vertical {
-            Some((self.probe_shift(shapes, e, offset, None, Some(mid.1)), 0.0))
+            Some((self.probe_shift(shapes, e, offset, None, Some(mid.1)), RuNum::int(0)))
         } else {
             None
         }
     }
 
-    fn probe_shift(&self, shapes: &[Shape], e: (usize, usize, usize), offset: f64, probe_x: Option<f64>, probe_y: Option<f64>) -> f64 {
-        if self.inside_probe(shapes, e, probe_x, probe_y, -0.05) { return -offset; }
-        if self.inside_probe(shapes, e, probe_x, probe_y, 0.05) { return offset; }
-        0.0
+    fn probe_shift(&self, shapes: &[Shape], e: (usize, usize, usize), offset: f64, probe_x: Option<RuNum>, probe_y: Option<RuNum>) -> RuNum {
+        if self.inside_probe(shapes, e, probe_x, probe_y, -0.05) { return RuNum::float(-offset); }
+        if self.inside_probe(shapes, e, probe_x, probe_y, 0.05) { return RuNum::float(offset); }
+        RuNum::int(0)
     }
 
-    fn inside_probe(&self, shapes: &[Shape], e: (usize, usize, usize), probe_x: Option<f64>, probe_y: Option<f64>, delta: f64) -> bool {
+    fn inside_probe(&self, shapes: &[Shape], e: (usize, usize, usize), probe_x: Option<RuNum>, probe_y: Option<RuNum>, delta: f64) -> bool {
         let (start, end) = edge_pair(shapes, e);
         let si = e.0;
-        let point_x = probe_x.map(|x| x + delta).unwrap_or((start.x + end.x) / 2.0);
-        let point_y = probe_y.map(|y| y + delta).unwrap_or((start.y + end.y) / 2.0);
-        polygon_contains(&shapes[si], point_x, point_y)
+        let point_x = probe_x.map(|x| x.add(RuNum::float(delta))).unwrap_or(start.x.add(end.x).div(RuNum::int(2)));
+        let point_y = probe_y.map(|y| y.add(RuNum::float(delta))).unwrap_or(start.y.add(end.y).div(RuNum::int(2)));
+        polygon_contains(&shapes[si], point_x.to_f64(), point_y.to_f64())
     }
 
     // ---- decorate ----
@@ -1943,8 +2039,8 @@ impl Builder {
 
     fn assign_colors(&self, grid: &Grid, shapes: &mut Vec<Shape>) {
         for (cell, color) in grid.color_codes() {
-            let mid = (px_mid(cell.0, self.options.cell_width), px_mid(cell.1, self.options.cell_height));
-            if let Some(i) = self.smallest_shape_containing(shapes, mid.0, mid.1) {
+            let mid = (px_mid(RuNum::int(cell.0), self.options.cell_width), px_mid(RuNum::int(cell.1), self.options.cell_height));
+            if let Some(i) = self.smallest_shape_containing(shapes, mid.0.to_f64(), mid.1.to_f64()) {
                 shapes[i].fill = Some(color);
             }
         }
@@ -1952,8 +2048,8 @@ impl Builder {
 
     fn assign_markup(&self, grid: &Grid, shapes: &mut Vec<Shape>) {
         for (cell, tag) in grid.markup_tags() {
-            let mid = (px_mid(cell.0, self.options.cell_width), px_mid(cell.1, self.options.cell_height));
-            let Some(i) = self.smallest_shape_containing(shapes, mid.0, mid.1) else { continue; };
+            let mid = (px_mid(RuNum::int(cell.0), self.options.cell_width), px_mid(RuNum::int(cell.1), self.options.cell_height));
+            let Some(i) = self.smallest_shape_containing(shapes, mid.0.to_f64(), mid.1.to_f64()) else { continue; };
             shapes[i].kind = markup_type(&tag);
         }
     }
@@ -1989,13 +2085,13 @@ impl Builder {
         }
     }
 
-    fn arrowhead_points(&self, grid: &Grid, cell: (i64, i64)) -> Vec<(f64, f64)> {
-        let left = cell.0 as f64 * self.options.cell_width;
-        let top = cell.1 as f64 * self.options.cell_height;
-        let mid_x = px_mid(cell.0, self.options.cell_width);
-        let mid_y = px_mid(cell.1, self.options.cell_height);
-        let right = left + self.options.cell_width;
-        let bottom = top + self.options.cell_height;
+    fn arrowhead_points(&self, grid: &Grid, cell: (i64, i64)) -> Vec<(RuNum, RuNum)> {
+        let left = self.cell_left(cell.0);
+        let top = self.cell_top(cell.1);
+        let mid_x = px_mid(RuNum::int(cell.0), self.options.cell_width);
+        let mid_y = px_mid(RuNum::int(cell.1), self.options.cell_height);
+        let right = left.add(RuNum::int(self.options.cell_width));
+        let bottom = top.add(RuNum::int(self.options.cell_height));
         if grid.north_arrowhead(cell.0, cell.1) {
             vec![(mid_x, top), (left, bottom), (right, bottom)]
         } else if grid.south_arrowhead(cell.0, cell.1) {
@@ -2011,8 +2107,8 @@ impl Builder {
         for cell in grid.point_markers_on_line().cells {
             shapes.push(Shape {
                 points: vec![Point {
-                    x: px_mid(cell.0, self.options.cell_width),
-                    y: px_mid(cell.1, self.options.cell_height),
+                    x: px_mid(RuNum::int(cell.0), self.options.cell_width),
+                    y: px_mid(RuNum::int(cell.1), self.options.cell_height),
                     kind: PointType::Normal,
                     locked: false,
                 }],
@@ -2031,8 +2127,8 @@ impl Builder {
         let shapes = dedupe_shapes(shapes);
         let texts = self.extract_texts(grid, &shapes);
         Built {
-            width: grid.width() as f64 * self.options.cell_width,
-            height: grid.height() as f64 * self.options.cell_height,
+            width: RuNum::int(grid.width() as i64 * self.options.cell_width),
+            height: RuNum::int(grid.height() as i64 * self.options.cell_height),
             shapes,
             composites,
             texts,
@@ -2046,7 +2142,7 @@ impl Builder {
     fn extract_texts(&self, grid: &Grid, shapes: &[Shape]) -> Vec<TextRun> {
         let mut work = grid.clone();
         work.remove_non_text();
-        let base = font_for(self.options.cell_height);
+        let base = font_for(self.options.cell_height as f64);
         let mut runs = self.text_runs(&work, base);
         self.color_text_runs(&mut runs, shapes);
         runs
@@ -2091,21 +2187,21 @@ impl Builder {
         }
     }
 
-    fn run_span(&self, cell: (i64, i64), string: &str) -> (f64, f64) {
+    fn run_span(&self, cell: (i64, i64), string: &str) -> (RuNum, RuNum) {
         let col = cell.0;
         let last_col = col + string.chars().count() as i64 - 1;
         (
-            col as f64 * self.options.cell_width,
-            (last_col + 1) as f64 * self.options.cell_width,
+            self.cell_left(col),
+            self.cell_left(last_col + 1),
         )
     }
 
-    fn anchor_for(&self, isolation: &Grid, cell: (i64, i64), string: &str, span: &(f64, f64)) -> (&'static str, f64) {
+    fn anchor_for(&self, isolation: &Grid, cell: (i64, i64), string: &str, span: &(RuNum, RuNum)) -> (&'static str, RuNum) {
         let last_col = cell.0 + string.chars().count() as i64 - 1;
         let starts = self.other_strings_starting_at(isolation, cell.0, cell.1);
         let ends = self.other_strings_ending_at(isolation, last_col, cell.1);
         let anchor = text_anchor(starts, ends);
-        let position = if anchor == "end" { span.1 } else { (span.0 + span.1) / 2.0 };
+        let position = if anchor == "end" { span.1 } else { span.0.add(span.1).div(RuNum::int(2)) };
         (anchor, position)
     }
 
@@ -2129,12 +2225,12 @@ impl Builder {
             .count()
     }
 
-    fn baseline(&self, row: i64, size: f64) -> f64 {
-        let top = row as f64 * self.options.cell_height;
-        let bottom = top + self.options.cell_height;
-        let center = (bottom - top) / 2.0;
+    fn baseline(&self, row: i64, size: f64) -> RuNum {
+        let top = self.cell_top(row);
+        let bottom = top.add(RuNum::int(self.options.cell_height));
+        let center = bottom.sub(top).div(RuNum::int(2));
         let z_height = 0.72 * size;
-        bottom - (center - (z_height / 2.0)).abs()
+        bottom.sub(RuNum::float((center.to_f64() - (z_height / 2.0)).abs()))
     }
 
     fn color_text_runs(&self, runs: &mut [TextRun], shapes: &[Shape]) {
@@ -2158,9 +2254,13 @@ impl Builder {
 
     fn intersects_rect(&self, shape: &Shape, run: &TextRun) -> bool {
         let (min_x, min_y, max_x, max_y) = shape.bounds();
-        let right = run.x + run.string.chars().count() as f64 * run.font_size * WIDTH_RATIO;
-        if run.x > max_x || right < min_x { return false; }
-        if run.y - run.font_size > max_y || run.y + 2.0 < min_y { return false; }
+        let right = run.x.to_f64() + run.string.chars().count() as f64 * run.font_size * WIDTH_RATIO;
+        let min_x = min_x.to_f64();
+        let min_y = min_y.to_f64();
+        let max_x = max_x.to_f64();
+        let max_y = max_y.to_f64();
+        if run.x.to_f64() > max_x || right < min_x { return false; }
+        if run.y.to_f64() - run.font_size > max_y || run.y.to_f64() + 2.0 < min_y { return false; }
         true
     }
 }
@@ -2183,15 +2283,17 @@ fn edge_pair(shapes: &[Shape], e: (usize, usize, usize)) -> (&Point, &Point) {
 
 fn ordered_points<'p>(a: &'p Point, b: &'p Point, horizontal: bool) -> (&'p Point, &'p Point) {
     if horizontal {
-        if a.x <= b.x { (a, b) } else { (b, a) }
-    } else if a.y <= b.y {
+        if a.x.lt(b.x) || a.x.eq_num(b.x) { (a, b) } else { (b, a) }
+    } else if a.y.lt(b.y) || a.y.eq_num(b.y) {
         (a, b)
     } else {
         (b, a)
     }
 }
 
-fn px_mid(cell: i64, size: f64) -> f64 { cell as f64 * size + size / 2.0 }
+fn px_mid(cell: RuNum, size: i64) -> RuNum {
+    cell.mul_i64(size).add(RuNum::int(size / 2))
+}
 
 fn markup_type(tag: &str) -> ShapeKind {
     match tag {
@@ -2220,13 +2322,17 @@ fn polygon_contains(shape: &Shape, probe_x: f64, probe_y: f64) -> bool {
 }
 
 fn crosses_ray(vertex: &Point, other: &Point, probe_x: f64, probe_y: f64) -> bool {
-    if !((vertex.y > probe_y) != (other.y > probe_y)) { return false; }
-    probe_x < (((other.x - vertex.x) * (probe_y - vertex.y)) / (other.y - vertex.y)) + vertex.x
+    let vy = vertex.y.to_f64();
+    let vx = vertex.x.to_f64();
+    let oy = other.y.to_f64();
+    let ox = other.x.to_f64();
+    if !((vy > probe_y) != (oy > probe_y)) { return false; }
+    probe_x < (((ox - vx) * (probe_y - vy)) / (oy - vy)) + vx
 }
 
 fn bounds_area(shape: &Shape) -> f64 {
     let (min_x, min_y, max_x, max_y) = shape.bounds();
-    (max_x - min_x) * (max_y - min_y)
+    max_x.sub(min_x).to_f64() * max_y.sub(min_y).to_f64()
 }
 
 fn cells_equal(a: &CellSet, b: &CellSet) -> bool {
@@ -2248,8 +2354,8 @@ fn dedupe_shapes(shapes: Vec<Shape>) -> Vec<Shape> {
 
 fn same_points(shape: &Shape, other: &Shape) -> bool {
     if shape.points.len() != other.points.len() { return false; }
-    let mut a: Vec<(i64, i64)> = shape.points.iter().map(|p| (p.x as i64, p.y as i64)).collect();
-    let mut b: Vec<(i64, i64)> = other.points.iter().map(|p| (p.x as i64, p.y as i64)).collect();
+    let mut a: Vec<(i64, i64)> = shape.points.iter().map(|p| (p.x.to_i(), p.y.to_i())).collect();
+    let mut b: Vec<(i64, i64)> = other.points.iter().map(|p| (p.x.to_i(), p.y.to_i())).collect();
     a.sort();
     b.sort();
     a == b
@@ -2347,18 +2453,19 @@ fn dedent(body_lines: &[String]) -> Vec<String> {
 /// front, the rest largest area first, then markers and texts.
 fn paint(built: &Built, options: &Options) -> String {
     let min_cell = built.cell_width.min(built.cell_height);
-    let stroke_weight = min_cell / 10.0;
-    let dash_interval = min_cell / 2.0;
+    let stroke_weight = min_cell as f64 / 10.0;
+    let dash_interval = min_cell as f64 / 2.0;
     let ink = "#000000";
-    let mut doc = Document::new(built.width, built.height);
+    let mut doc = Document::new(built.width.to_f64(), built.height.to_f64());
+    doc.view_box = Some(format!("0 0 {} {}", built.width, built.height));
 
     if !options.transparent {
         doc.add(
             Elem::new("rect")
                 .num("x", 0.0)
                 .num("y", 0.0)
-                .num("width", built.width)
-                .num("height", built.height)
+                .num("width", built.width.to_f64())
+                .num("height", built.height.to_f64())
                 .attr("fill", "#ffffff")
                 .attr("stroke", "none"),
         );
@@ -2370,10 +2477,10 @@ fn paint(built: &Built, options: &Options) -> String {
     }
 
     if options.shadows {
-        let offset = min_cell / 3.333;
+        let offset = min_cell as f64 / 3.333;
         for shape in &all {
             if !(shape.closed && shape.drops_shadow() && !shape.points.is_empty()) { continue; }
-            let d = render_path(shape);
+            let d = render_path(shape, built.cell_width, built.cell_height);
             doc.add(
                 Elem::new("path")
                     .attr("d", d)
@@ -2396,7 +2503,9 @@ fn paint(built: &Built, options: &Options) -> String {
         let by = centre_y(b.1);
         by.partial_cmp(&ay).unwrap().then(a.0.cmp(&b.0))
     });
-    for (_, shape) in &storage { doc.add(paint_shape(shape, stroke_weight, dash_interval, ink)); }
+    for (_, shape) in &storage {
+        doc.add(paint_shape(shape, stroke_weight, dash_interval, ink, built.cell_width, built.cell_height));
+    }
 
     // the rest by descending area, stable on order
     let markers: Vec<(usize, &Shape)> = all
@@ -2416,15 +2525,17 @@ fn paint(built: &Built, options: &Options) -> String {
         let ab = b.1.area();
         ab.partial_cmp(&aa).unwrap().then(a.0.cmp(&b.0))
     });
-    for (_, shape) in &main { doc.add(paint_shape(shape, stroke_weight, dash_interval, ink)); }
+    for (_, shape) in &main {
+        doc.add(paint_shape(shape, stroke_weight, dash_interval, ink, built.cell_width, built.cell_height));
+    }
 
     for (_, shape) in &markers {
         let point = &shape.points[0];
-        let radius = 0.7 * min_cell / 2.0;
+        let radius = 0.7 * min_cell as f64 / 2.0;
         doc.add(
             Elem::new("circle")
-                .num("cx", point.x)
-                .num("cy", point.y)
+                .num("cx", point.x.to_f64())
+                .num("cy", point.y.to_f64())
                 .num("r", radius)
                 .attr("fill", "#ffffff")
                 .attr("stroke", ink)
@@ -2434,7 +2545,7 @@ fn paint(built: &Built, options: &Options) -> String {
 
     for run in &built.texts {
         let mut t = Elem::new("text");
-        t = t.num("x", run.x).num("y", run.y).content(&run.string);
+        t = t.num("x", run.x.to_f64()).num("y", run.y.to_f64()).content(&run.string);
         t = t.attr("text-anchor", run.anchor);
         t = t.attr("fill", &run.fill);
         t = t.attr("font-size", &write_num(run.font_size));
@@ -2448,11 +2559,11 @@ fn paint(built: &Built, options: &Options) -> String {
 
 fn centre_y(shape: &Shape) -> f64 {
     let (_, min_y, _, max_y) = shape.bounds();
-    (min_y + max_y) / 2.0
+    min_y.add(max_y).div(RuNum::int(2)).to_f64()
 }
 
-fn paint_shape(shape: &Shape, stroke_weight: f64, dash_interval: f64, ink: &str) -> Elem {
-    let d = render_path(shape);
+fn paint_shape(shape: &Shape, stroke_weight: f64, dash_interval: f64, ink: &str, cell_width: i64, cell_height: i64) -> Elem {
+    let d = render_path(shape, cell_width, cell_height);
     let mut path = Elem::new("path").attr("d", d);
     path = if shape.closed && !shape.dashed {
         path.attr("fill", shape.fill.as_deref().unwrap_or("#ffffff"))
@@ -2472,76 +2583,76 @@ fn paint_shape(shape: &Shape, stroke_weight: f64, dash_interval: f64, ink: &str)
 
 /// Ruby `render_path`: the special four-point shapes, else the traced
 /// polygon with rounded corners as quadratic curves.
-fn render_path(shape: &Shape) -> String {
+fn render_path(shape: &Shape, cell_width: i64, cell_height: i64) -> String {
     if shape.points.len() == 4 {
         let flow = match shape.kind {
             ShapeKind::Document => Some(document_path(shape)),
             ShapeKind::Decision => Some(decision_path(shape)),
-            ShapeKind::ManualOperation => Some(trapezoid_path(shape, true)),
+            ShapeKind::ManualOperation => Some(trapezoid_path(shape, true, cell_width)),
             _ => None,
         };
         if let Some(flow) = flow { return flow; }
         let flowless = match shape.kind {
-            ShapeKind::Storage => Some(storage_path(shape)),
-            ShapeKind::Io => Some(io_path(shape)),
-            ShapeKind::Trapezoid => Some(trapezoid_path(shape, false)),
+            ShapeKind::Storage => Some(storage_path(shape, cell_height)),
+            ShapeKind::Io => Some(io_path(shape, cell_width)),
+            ShapeKind::Trapezoid => Some(trapezoid_path(shape, false, cell_width)),
             ShapeKind::Ellipse => Some(ellipse_path(shape)),
             _ => None,
         };
         if let Some(flowless) = flowless { return flowless; }
     }
-    polygon_path(shape)
+    polygon_path(shape, cell_width, cell_height)
 }
 
-fn polygon_path(shape: &Shape) -> String {
+fn polygon_path(shape: &Shape, cell_width: i64, cell_height: i64) -> String {
     let points = &shape.points;
-    let mut commands = opening_commands(points);
+    let mut commands = opening_commands(points, cell_width, cell_height);
     for index in 1..points.len() {
-        commands.push_str(&point_commands(points, index));
+        commands.push_str(&point_commands(points, index, cell_width, cell_height));
     }
     if shape.closed && points.len() > 2 { commands.push('Z'); }
     commands.trim().to_string()
 }
 
-fn opening_commands(points: &[Point]) -> String {
+fn opening_commands(points: &[Point], cell_width: i64, cell_height: i64) -> String {
     let first = &points[0];
     if first.kind == PointType::Round {
-        let entry = cell_edge_point(first, points.last().unwrap());
-        let exit = cell_edge_point(first, &points[1]);
+        let entry = cell_edge_point(first, points.last().unwrap(), cell_width, cell_height);
+        let exit = cell_edge_point(first, &points[1], cell_width, cell_height);
         format!("M {} {} Q {} {} {} {} ", entry.0, entry.1, first.x, first.y, exit.0, exit.1)
     } else {
         format!("M {} {} ", first.x, first.y)
     }
 }
 
-fn point_commands(points: &[Point], index: usize) -> String {
+fn point_commands(points: &[Point], index: usize, cell_width: i64, cell_height: i64) -> String {
     let point = &points[index];
     if point.kind != PointType::Round {
         return format!("L {} {} ", point.x, point.y);
     }
     let following = if index < points.len() - 1 { &points[index + 1] } else { &points[0] };
-    let entry = cell_edge_point(point, &points[index - 1]);
-    let exit = cell_edge_point(point, following);
+    let entry = cell_edge_point(point, &points[index - 1], cell_width, cell_height);
+    let exit = cell_edge_point(point, following, cell_width, cell_height);
     let mut out = format!("L {} {} Q {} {} {} {} ", entry.0, entry.1, point.x, point.y, exit.0, exit.1);
     if following.kind == PointType::Normal {
         out.push_str(&format!("L {} {} ", following.x, following.y));
     } else {
-        let next_entry = cell_edge_point(following, point);
+        let next_entry = cell_edge_point(following, point, cell_width, cell_height);
         out.push_str(&format!("L {} {} ", next_entry.0, next_entry.1));
     }
     out
 }
 
-fn cell_edge_point(point: &Point, other: &Point) -> (f64, f64) {
-    let left = (point.x / CELL_WIDTH).floor() * CELL_WIDTH;
-    let top = (point.y / CELL_HEIGHT).floor() * CELL_HEIGHT;
-    let right = left + CELL_WIDTH;
-    let bottom = top + CELL_HEIGHT;
-    if other.y < point.y {
+fn cell_edge_point(point: &Point, other: &Point, cell_width: i64, cell_height: i64) -> (RuNum, RuNum) {
+    let left = point.x.div(RuNum::int(cell_width)).floor().mul_i64(cell_width);
+    let top = point.y.div(RuNum::int(cell_height)).floor().mul_i64(cell_height);
+    let right = left.add(RuNum::int(cell_width));
+    let bottom = top.add(RuNum::int(cell_height));
+    if other.y.lt(point.y) {
         (point.x, top)
-    } else if other.y > point.y {
+    } else if other.y.gt(point.y) {
         (point.x, bottom)
-    } else if other.x < point.x {
+    } else if other.x.lt(point.x) {
         (left, point.y)
     } else {
         (right, point.y)
@@ -2550,99 +2661,126 @@ fn cell_edge_point(point: &Point, other: &Point) -> (f64, f64) {
 
 fn document_path(shape: &Shape) -> String {
     let (min_x, min_y, max_x, max_y) = shape.bounds();
-    let mid_x = (min_x + max_x) / 2.0;
-    let control_dx = (max_x - min_x) / 6.0;
-    let control_dy = (max_y - min_y) / 8.0;
+    let mid_x = min_x.add(max_x).div(RuNum::int(2));
+    let control_dx = max_x.sub(min_x).div(RuNum::int(6));
+    let control_dy = max_y.sub(min_y).div(RuNum::int(8));
     format!(
         "M {} {} L {} {} L {} {} Q {} {} {} {} Q {} {} {} {} Z",
-        ruby_float(min_x), ruby_float(min_y),
-        ruby_float(max_x), ruby_float(min_y),
-        ruby_float(max_x), ruby_float(max_y),
-        ruby_float(mid_x + control_dx), ruby_float(max_y - control_dy),
-        ruby_float(mid_x), ruby_float(max_y),
-        ruby_float(mid_x - control_dx), ruby_float(max_y + control_dy),
-        ruby_float(min_x), ruby_float(max_y),
+        min_x, min_y,
+        max_x, min_y,
+        max_x, max_y,
+        mid_x.add(control_dx), max_y.sub(control_dy),
+        mid_x, max_y,
+        mid_x.sub(control_dx), max_y.add(control_dy),
+        min_x, max_y,
     )
 }
 
-fn storage_path(shape: &Shape) -> String {
+fn storage_path(shape: &Shape, cell_height: i64) -> String {
     let (min_x, min_y, max_x, max_y) = shape.bounds();
-    let cp_x = (max_x - min_x) / 6.0;
-    let cp_top = CELL_HEIGHT / 2.0;
-    let first = format!("C {} {} {} {} {} {}", ruby_float(min_x + cp_x), ruby_float(min_y + cp_top), ruby_float(max_x - cp_x), ruby_float(min_y + cp_top), ruby_float(max_x), ruby_float(min_y));
-    let second = format!("C {} {} {} {} {} {}", ruby_float(max_x - cp_x), ruby_float(min_y - cp_top), ruby_float(min_x + cp_x), ruby_float(min_y - cp_top), ruby_float(min_x), ruby_float(min_y));
-    format!("M {} {} {} {} ", ruby_float(min_x), ruby_float(min_y), first, second)
+    let cp_x = max_x.sub(min_x).div(RuNum::int(6));
+    let cp_top = RuNum::int(cell_height / 2);
+    let first = format!("C {} {} {} {} {} {} ", min_x.add(cp_x), min_y.add(cp_top), max_x.sub(cp_x), min_y.add(cp_top), max_x, min_y);
+    let second = format!("C {} {} {} {} {} {} ", max_x.sub(cp_x), min_y.sub(cp_top), min_x.add(cp_x), min_y.sub(cp_top), min_x, min_y);
+    let cp_bottom = RuNum::int(10 * cell_height / 14);
+    let side = format!(
+        "M {} {} L {} {} C {} {} {} {} {} {} L {} {}",
+        min_x, min_y,
+        min_x, max_y,
+        min_x.add(cp_x), max_y.add(cp_bottom),
+        max_x.sub(cp_x), max_y.add(cp_bottom),
+        max_x, max_y,
+        max_x, min_y,
+    );
+    format!("M {} {} {} {}{}", min_x, min_y, first, second, side)
 }
 
-fn io_path(shape: &Shape) -> String {
+fn io_path(shape: &Shape, cell_width: i64) -> String {
     let (min_x, min_y, max_x, max_y) = shape.bounds();
-    let offset = CELL_WIDTH * 0.5;
+    let offset = RuNum::float(cell_width as f64 * 0.5);
     format!(
         "M {} {} L {} {} L {} {} L {} {} Z",
-        ruby_float(min_x + offset), ruby_float(min_y),
-        ruby_float(max_x + offset), ruby_float(min_y),
-        ruby_float(max_x - offset), ruby_float(max_y),
-        ruby_float(min_x - offset), ruby_float(max_y),
+        min_x.add(offset), min_y,
+        max_x.add(offset), min_y,
+        max_x.sub(offset), max_y,
+        min_x.sub(offset), max_y,
     )
 }
 
 fn decision_path(shape: &Shape) -> String {
     let (min_x, min_y, max_x, max_y) = shape.bounds();
-    let mid_x = (min_x + max_x) / 2.0;
-    let mid_y = (min_y + max_y) / 2.0;
+    let mid_x = min_x.add(max_x).div(RuNum::int(2));
+    let mid_y = min_y.add(max_y).div(RuNum::int(2));
     format!(
         "M {} {} L {} {} L {} {} L {} {} Z",
-        ruby_float(min_x), ruby_float(mid_y),
-        ruby_float(mid_x), ruby_float(min_y),
-        ruby_float(max_x), ruby_float(mid_y),
-        ruby_float(mid_x), ruby_float(max_y),
+        min_x, mid_y,
+        mid_x, min_y,
+        max_x, mid_y,
+        mid_x, max_y,
     )
 }
 
-fn trapezoid_path(shape: &Shape, inverted: bool) -> String {
+fn trapezoid_path(shape: &Shape, inverted: bool, cell_width: i64) -> String {
     let (min_x, min_y, max_x, max_y) = shape.bounds();
-    let mut offset = CELL_WIDTH * 0.5;
-    if inverted { offset = -offset; }
+    let mut offset = RuNum::float(cell_width as f64 * 0.5);
+    if inverted { offset = RuNum::float(-cell_width as f64 * 0.5); }
     format!(
         "M {} {} L {} {} L {} {} L {} {} Z",
-        ruby_float(min_x + offset), ruby_float(min_y),
-        ruby_float(max_x - offset), ruby_float(min_y),
-        ruby_float(max_x + offset), ruby_float(max_y),
-        ruby_float(min_x - offset), ruby_float(max_y),
+        min_x.add(offset), min_y,
+        max_x.sub(offset), min_y,
+        max_x.add(offset), max_y,
+        min_x.sub(offset), max_y,
     )
 }
 
 fn ellipse_path(shape: &Shape) -> String {
     let (min_x, min_y, max_x, max_y) = shape.bounds();
-    let mid_x = (min_x + max_x) / 2.0;
-    let mid_y = (min_y + max_y) / 2.0;
-    let x_off = ((max_x - min_x) * 0.5 * KAPPA).round_to(6);
-    let y_off = ((max_y - min_y) * 0.5 * KAPPA).round_to(6);
+    let mid_x = min_x.add(max_x).div(RuNum::int(2));
+    let mid_y = min_y.add(max_y).div(RuNum::int(2));
+    let x_off = RuNum::float(ruby_round((max_x.sub(min_x).to_f64() * 0.5 * KAPPA), 6));
+    let y_off = RuNum::float(ruby_round((max_y.sub(min_y).to_f64() * 0.5 * KAPPA), 6));
     let arcs = [
-        (mid_x + x_off, min_y, max_x, mid_y - y_off, max_x, mid_y),
-        (max_x, mid_y + y_off, mid_x + x_off, max_y, mid_x, max_y),
-        (mid_x - x_off, max_y, min_x, mid_y + y_off, min_x, mid_y),
-        (min_x, mid_y - y_off, mid_x - x_off, min_y, mid_x, min_y),
+        (mid_x.add(x_off), min_y, max_x, mid_y.sub(y_off), max_x, mid_y),
+        (max_x, mid_y.add(y_off), mid_x.add(x_off), max_y, mid_x, max_y),
+        (mid_x.sub(x_off), max_y, min_x, mid_y.add(y_off), min_x, mid_y),
+        (min_x, mid_y.sub(y_off), mid_x.sub(x_off), min_y, mid_x, min_y),
     ];
-    let mut out = format!("M {} {} ", ruby_float(mid_x), ruby_float(min_y));
+    let mut out = format!("M {} {} ", mid_x, min_y);
     for (c1x, c1y, c2x, c2y, x, y) in arcs {
-        out.push_str(&format!("C {} {} {} {} {} {} ", ruby_float(c1x), ruby_float(c1y), ruby_float(c2x), ruby_float(c2y), ruby_float(x), ruby_float(y)));
+        out.push_str(&format!("C {} {} {} {} {} {} ", c1x, c1y, c2x, c2y, x, y));
     }
-    out.push('Z');
+    out.push_str(" Z");
     out
 }
 
 const KAPPA: f64 = 4.0 * (std::f64::consts::SQRT_2 - 1.0) / 3.0;
 
-trait RoundTo {
-    fn round_to(self, places: i32) -> f64;
-}
-
-impl RoundTo for f64 {
-    fn round_to(self, places: i32) -> f64 {
-        let factor = 10f64.powi(places);
-        (self * factor).round() / factor
+/// Ruby `Float#round(n)`: round-half-up with Ruby's correction step,
+/// unchanged when too many integer digits, flushed to zero far below the
+/// precision.
+fn ruby_round(x: f64, precision: i32) -> f64 {
+    if !x.is_finite() || x == 0.0 {
+        return x;
     }
+    let binexp = crate::js_math::binexp(x);
+    let limit = if binexp > 0 { binexp / 4 } else { binexp / 3 - 1 };
+    if precision >= 15 - limit {
+        return x;
+    }
+    let under = if binexp > 0 { binexp / 3 + 1 } else { binexp / 4 };
+    if precision < -under {
+        return 0.0;
+    }
+    let s = 10f64.powi(precision);
+    let mut f = (x * s).round();
+    if x > 0.0 {
+        if (f + 0.5) / s <= x {
+            f += 1.0;
+        }
+    } else if (f - 0.5) / s >= x {
+        f -= 1.0;
+    }
+    f / s
 }
 
 // ---- entry ----
@@ -2671,3 +2809,4 @@ pub fn render(source: &str) -> Result<String, Error> {
     let built = ditaa_parse(&lines, &options);
     Ok(paint(&built, &options))
 }
+
