@@ -1124,9 +1124,6 @@ pub fn render(source: &str) -> Result<String, Error> {
     };
     let (cw, cwi) = measure(&|n| (n.xv() + n.w, n.xi && n.wi), 800.0);
     let (ch, chi) = measure(&|n| (n.yv() + n.h, n.yi && n.hi), 600.0);
-    if !nodes.is_empty() && (cwi || chi) {
-        return Err(unported("unmeasured extent"));
-    }
     let (width, height) = (cw + 100.0, ch + 100.0);
     let fmt_dim = |v: f64, int: bool| if int { format!("{}", v as i64) } else { ruby_float(v) };
     let mut doc = Document::new(width, height);
