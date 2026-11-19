@@ -44,6 +44,24 @@ fn table() -> &'static Vec<(&'static str, Regex)> {
     })
 }
 
+/// The PlantUML wrapper lane: a source opening (after a BOM and blank or
+/// quote-comment lines) with @startgit claims the git type.
+fn git_re() -> &'static Regex {
+    static CELL: OnceLock<Regex> = OnceLock::new();
+    CELL.get_or_init(|| {
+        Regex::new(r"\A(?:ï»¿)?(?:[ 	]*(?:'[^
+]*)?(?:
+|
+|
+))*[ 	]*@startgit").expect("git detect pattern")
+    })
+}
+
+/// Whether the raw source opens with the git wrapper.
+pub fn detect_git(source: &str) -> bool {
+    git_re().is_match(source)
+}
+
 /// First type whose pattern matches the (preamble-free) body.
 pub fn detect_body(body: &str) -> Option<&'static str> {
     table().iter().find(|(_, re)| re.is_match(body)).map(|(name, _)| *name)
