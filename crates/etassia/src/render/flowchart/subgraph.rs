@@ -38,7 +38,7 @@ pub(super) struct Boxes {
 }
 
 fn id_ok(s: &str) -> bool {
-    !s.is_empty() && s.chars().all(|c| c.is_ascii_alphanumeric() || matches!(c, '_' | '-')) && !RESERVED.contains(&s)
+    !s.is_empty() && s.chars().all(|c| c.is_ascii_alphanumeric() || matches!(c, '_' | '-')) && !SUBGRAPH_RESERVED.contains(&s) && !RESERVED.contains(&s)
 }
 
 fn title_ok(s: &str) -> bool {

@@ -2,7 +2,13 @@
 use super::*;
 
 pub(super) const RESERVED: &[&str] = &[
-    "end", "graph", "flowchart", "subgraph", "style", "class", "classDef", "click", "linkStyle", "direction", "default", "interpolate", "call", "href", "accTitle", "accDescr", "swimlane",
+    "end", "graph", "flowchart", "subgraph", "style", "class", "classDef", "click", "linkStyle", "direction", "interpolate", "call", "href", "accTitle", "accDescr", "swimlane",
+];
+
+/// `default` is reserved for a SUBGRAPH id and nowhere else: `subgraph
+/// default [T]` does not render while `default-->Z` does.
+pub(super) const SUBGRAPH_RESERVED: &[&str] = &[
+    "interpolate", "_parent", "default", "_blank", "_self", "_top",
 ];
 
 
@@ -101,15 +107,23 @@ pub(super) fn label_lines(raw: &str, skewed: bool) -> Option<(Vec<String>, Vec<u
 
 fn label_lines_in(raw: &str, skewed: bool, extra: &[char]) -> Option<(Vec<String>, Vec<usize>)> {
     let raw = raw.trim();
-    let quoted = raw.len() >= 2 && raw.starts_with('"') && raw.ends_with('"');
+    // A label is quoted with `"` or wrapped in the markdown backticks; both
+    // forms drop their quoting and their markdown markers.
+    let quoted = raw.len() >= 2 && (raw.starts_with('"') || raw.starts_with('`'))
+        && raw.starts_with(raw.chars().next().unwrap()) && raw.ends_with(raw.chars().next().unwrap());
     let raw = if quoted { &raw[1..raw.len() - 1] } else { raw };
     let stripped;
-    let raw = if quoted { stripped = strip_tags(raw); stripped.as_str() } else { raw };
+    let raw = if quoted {
+        stripped = strip_markdown(&strip_tags(raw));
+        stripped.as_str()
+    } else {
+        raw
+    };
     let (mut lines, mut icons) = (vec![], vec![]);
     for part in split_breaks(raw) {
         let (n, t) = strip_icons(&part);
         let t = t.replace("\\\\", "\\");
-        if !t.chars().all(|c| c.is_alphanumeric() || extra.contains(&c) || matches!(c, ' ' | '_' | '-' | '.' | ',' | '?' | '!' | '+' | '*' | ':' | '/' | '\\')) {
+        if !t.chars().all(|c| c.is_alphanumeric() || extra.contains(&c) || matches!(c, ' ' | '_' | '-' | '.' | ',' | '?' | '!' | '+' | '*' | ':' | '/' | '|' | '\\')) {
             return None;
         }
         let t = t.split_whitespace().collect::<Vec<_>>().join(" ");
@@ -276,11 +290,33 @@ fn rank_span(close: &str) -> usize {
 
 fn edge_text(t: &str) -> Result<String, Error> {
     let t = t.trim_matches([' ', '\t']);
+    // A quoted edge label (plain or markdown-backticked) drops the quoting
+    // and the markdown markers.
+    let quoted = t.len() >= 2 && t.starts_with('"') && t.ends_with('"');
+    if quoted {
+        let inner = t[1..t.len() - 1].trim();
+        let inner = if inner.len() >= 2 && inner.starts_with('`') && inner.ends_with('`') {
+            &inner[1..inner.len() - 1]
+        } else {
+            inner
+        };
+        return Ok(strip_markdown(inner)
+            .split_whitespace()
+            .collect::<Vec<_>>()
+            .join(" "));
+    }
     let ok = !t.is_empty() && t.chars().all(|c| c.is_alphanumeric() || matches!(c, ' ' | '_' | '-' | '.' | ',' | '/' | '?' | '!' | '+' | '*' | ':' | '=') || false);
     if !ok {
         return Err(unported("edge label text"));
     }
     Ok(t.split_whitespace().collect::<Vec<_>>().join(" "))
+}
+
+/// The markdown markers the corpus labels carry (`**bold**`, `*italic*`,
+/// the backtick wrapper) render stripped, the way the Ruby label pipeline
+/// prints them.
+fn strip_markdown(s: &str) -> String {
+    s.replace("`", "").replace("**", "").replace('*', "")
 }
 
 /// A link token after a node: returns (arrow type, label, rest).
@@ -405,9 +441,13 @@ fn finish_link<'a>(token: &str, rest: &'a str, start: Option<char>) -> Result<(S
 pub(super) fn click_ok(args: &str, index: &HashMap<String, usize>) -> Result<(), Error> {
     let id = args.split([' ', '\t']).next().unwrap_or("");
     let plain = args.chars().all(|c| c.is_ascii_alphanumeric() || matches!(c, ' ' | '\t' | '"' | ':' | '/' | '.' | '(' | ')' | '<' | '>' | '_' | '-'));
+    // A click naming an unknown node draws nothing: the statement drops.
+    if !index.contains_key(id) {
+        return Ok(());
+    }
     let template = id.starts_with("${") && id.ends_with('}');
     let plain = plain || (template && args.chars().all(|c| c.is_ascii_alphanumeric() || matches!(c, ' ' | '\t' | '$' | '{' | '}')));
-    if !(index.contains_key(id) || template) || !plain || args.matches('"').count() % 2 != 0 {
+    if !plain || args.matches('"').count() % 2 != 0 {
         return Err(unported("click"));
     }
     Ok(())
@@ -450,6 +490,9 @@ pub(super) fn parse(source: &str) -> Result<Model, Error> {
     for (at, stmt) in stmts.into_iter().enumerate() {
         let stmt = stmt.trim_matches([' ', '\t']);
         if stmt.is_empty() {
+            continue;
+        }
+        if stmt.starts_with("%%") {
             continue;
         }
         if let Some(args) = keyword_args(stmt, "subgraph") {
@@ -756,7 +799,9 @@ fn style_statement(args: &str, model: &mut Model, index: &mut HashMap<String, us
     if !rest.is_empty() {
         return Err(unported("style target"));
     }
-    let decls = declarations(props.trim())?;
+    // An unparsable property list still declares the node (mermaid
+    // registers the id, then drops the styles it cannot read).
+    let decls = declarations(props.trim()).unwrap_or_default();
     let i = match index.get(id) {
         Some(&i) => i,
         None => {
