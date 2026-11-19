@@ -1,0 +1,14 @@
+<svg
+ width="132.94400000000002"
+ height="100.0"
+ viewBox="0 0 132.94400000000002 100.0"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<g id="entity-CUSTOMER">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="8.000000000000007" y="8.0" width="116.944" height="84.0"/>
+  <text fill="#000000" x="66.47200000000001" y="34.708333333333336" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold">CUSTOMER</text>
+  <line stroke="#000000" stroke-width="1" x1="8.000000000000007" y1="50.75" x2="124.94400000000002" y2="50.75"/>
+</g>
+</svg>

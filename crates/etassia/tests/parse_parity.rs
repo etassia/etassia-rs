@@ -56,7 +56,13 @@ fn report(title: &str, counts: &BTreeMap<String, Count>, failures: &[String]) {
 /// er_diagram but opens with `journey`). Ruby's detect_type agrees with Rust on
 /// all of them (see the tree-parity tests).
 fn expected_detect<'a>(dir: &'a str, stem: &str, detected: Option<&'a str>) -> Option<&'a str> {
-    if dir == "unknown" || stem == "er_diagram/journey_spec-1f8d17b6.mmd" { detected } else { Some(dir) }
+    // er_diagram files extracted from journey_spec fixtures open with
+    // , so both detectors (and Ruby's) claim user_journey.
+    if dir == "unknown" || stem.starts_with("er_diagram/journey_spec-") {
+        detected
+    } else {
+        Some(dir)
+    }
 }
 
 #[test]

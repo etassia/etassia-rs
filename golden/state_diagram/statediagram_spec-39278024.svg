@@ -1,0 +1,90 @@
+<svg
+ width="1831.0"
+ height="412.0"
+ viewBox="0 0 1831 412"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<g id="transition-start_1_to_NotShooting">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 65 65 L 1015 181"/>
+  <polygon fill="#000000" points="1015.0,181.0 1006.5742,184.0009 1007.5438,176.0598"/>
+</g>
+<g id="transition-start_2_to_Idle">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 369 85 L 591.40625 124"/>
+  <polygon fill="#000000" points="591.4063,124.0 582.8356,126.5581 584.2174,118.6784"/>
+</g>
+<g id="transition-Idle_to_Configuring">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 591.40625 124 L 1265 198"/>
+  <polygon fill="#000000" points="1265.0,198.0 1256.611,201.1025 1257.4846,193.1503"/>
+  <text fill="#000000" x="928.203125" y="153.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">EvConfig</text>
+</g>
+<g id="transition-Configuring_to_Idle">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 1265 198 L 591.40625 124"/>
+  <polygon fill="#000000" points="591.4063,124.0 599.7952,120.8975 598.9216,128.8497"/>
+  <text fill="#000000" x="928.203125" y="153.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">EvConfig</text>
+</g>
+<g id="transition-start_3_to_NewValueSelection">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 889 139 L 1166.40625 178"/>
+  <polygon fill="#000000" points="1166.4063,178.0 1157.9273,180.8473 1159.041,172.9252"/>
+</g>
+<g id="transition-NewValueSelection_to_NewValuePreview">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 1166.40625 178 L 1515 215"/>
+  <polygon fill="#000000" points="1515.0,215.0 1506.6225,218.1333 1507.4669,210.178"/>
+  <text fill="#000000" x="1340.703125" y="188.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">EvNewValue</text>
+</g>
+<g id="transition-NewValuePreview_to_NewValueSelection">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 1515 215 L 1166.40625 178"/>
+  <polygon fill="#000000" points="1166.4063,178.0 1174.7838,174.8667 1173.9394,182.822"/>
+  <text fill="#000000" x="1340.703125" y="188.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">EvNewValueRejected</text>
+</g>
+<g id="transition-NewValuePreview_to_NewValueSelection">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 1515 215 L 1166.40625 178"/>
+  <polygon fill="#000000" points="1166.4063,178.0 1174.7838,174.8667 1173.9394,182.822"/>
+  <text fill="#000000" x="1340.703125" y="188.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">EvNewValueSaved</text>
+</g>
+<g id="transition-State1_to_State2">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 1390.9453125 232 L 1640.9453125 232"/>
+  <polygon fill="#000000" points="1640.9453,232.0 1632.9453,236.0 1632.9453,228.0"/>
+</g>
+<g id="state-start_1">
+  <circle fill="#000000" stroke="none" cx="65.0" cy="65.0" r="7.0"/>
+  <text fill="#000000" x="65.0" y="69.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">[*]</text>
+</g>
+<g id="state-NotShooting">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="300.0" y="50.0" width="1431.0" height="262.0" rx="10.0" ry="10.0"/>
+  <text fill="#000000" x="1015.0" y="185.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">NotShooting</text>
+  <g id="state-start_2">
+    <circle fill="#000000" stroke="none" cx="369.0" cy="85.0" r="7.0"/>
+    <text fill="#000000" x="369.0" y="89.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">[*]</text>
+  </g>
+  <g id="state-Idle">
+    <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="570.0" y="104.0" width="42.8125" height="40.0" rx="10.0" ry="10.0"/>
+    <text fill="#000000" x="591.40625" y="128.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Idle</text>
+  </g>
+  <g id="state-Configuring">
+    <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="820.0" y="104.0" width="891.0" height="188.0" rx="10.0" ry="10.0"/>
+    <text fill="#000000" x="1265.0" y="202.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Configuring</text>
+    <g id="state-start_3">
+      <circle fill="#000000" stroke="none" cx="889.0" cy="139.0" r="7.0"/>
+      <text fill="#000000" x="889.0" y="143.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">[*]</text>
+    </g>
+    <g id="state-NewValueSelection">
+      <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="1090.0" y="158.0" width="152.8125" height="40.0" rx="10.0" ry="10.0"/>
+      <text fill="#000000" x="1166.40625" y="182.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">NewValueSelection</text>
+    </g>
+    <g id="state-NewValuePreview">
+      <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="1340.0" y="158.0" width="351.0" height="114.0" rx="10.0" ry="10.0"/>
+      <text fill="#000000" x="1515.0" y="219.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">NewValuePreview</text>
+      <g id="state-State1">
+        <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="1360.0" y="212.0" width="61.890625" height="40.0" rx="10.0" ry="10.0"/>
+        <text fill="#000000" x="1390.9453125" y="236.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">State1</text>
+      </g>
+      <g id="state-State2">
+        <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="1610.0" y="212.0" width="61.890625" height="40.0" rx="10.0" ry="10.0"/>
+        <text fill="#000000" x="1640.9453125" y="236.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">State2</text>
+      </g>
+    </g>
+  </g>
+</g>
+</svg>

@@ -1,0 +1,44 @@
+<svg
+ width="399.515625"
+ height="493.0"
+ viewBox="0 0 399.515625 493.0"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<g id="transition-start_1_to_NewValueSelection">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 174.7578125 94.5 L 174.7578125 196.5"/>
+  <polygon fill="#000000" points="174.7578,196.5 170.7578,188.5 178.7578,188.5"/>
+</g>
+<g id="transition-NewValueSelection_to_NewValuePreview">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 174.7578125 196.5 L 174.7578125 335.5"/>
+  <polygon fill="#000000" points="174.7578,335.5 170.7578,327.5 178.7578,327.5"/>
+  <text fill="#000000" x="174.7578125" y="258.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">EvNewValue</text>
+</g>
+<g id="transition-NewValuePreview_to_NewValueSelection">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 174.7578125 335.5 L 174.7578125 196.5"/>
+  <polygon fill="#000000" points="174.7578,196.5 178.7578,204.5 170.7578,204.5"/>
+  <text fill="#000000" x="174.7578125" y="258.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">EvNewValueRejected</text>
+</g>
+<g id="transition-NewValuePreview_to_NewValueSelection">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 174.7578125 335.5 L 174.7578125 196.5"/>
+  <polygon fill="#000000" points="174.7578,196.5 178.7578,204.5 170.7578,204.5"/>
+  <text fill="#000000" x="174.7578125" y="258.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">EvNewValueSaved1</text>
+</g>
+<g id="state-Configuring">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="50.0" y="50.0" width="249.515625" height="343.0" rx="10.0" ry="10.0"/>
+  <text fill="#000000" x="174.7578125" y="226.4" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Configuring</text>
+  <g id="state-start_1">
+    <circle fill="#000000" stroke="none" cx="174.7578125" cy="94.5" r="7.0"/>
+    <text fill="#000000" x="174.7578125" y="99.4" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">[*]</text>
+  </g>
+  <g id="state-NewValueSelection">
+    <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="98.3515625" y="176.5" width="152.8125" height="40.0" rx="10.0" ry="10.0"/>
+    <text fill="#000000" x="174.7578125" y="201.4" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">NewValueSelection</text>
+  </g>
+  <g id="state-NewValuePreview">
+    <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="102.8984375" y="315.5" width="143.71875" height="40.0" rx="10.0" ry="10.0"/>
+    <text fill="#000000" x="174.7578125" y="340.4" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">NewValuePreview</text>
+  </g>
+</g>
+</svg>

@@ -7,10 +7,41 @@
  xmlns="http://www.w3.org/2000/svg"
 >
 <rect fill="#ffffff" stroke="#000000" stroke-width="1" x="200.0" y="80.0" width="800.0" height="40.0"/>
-<text fill="#000000" x="600.5" y="149.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12.0">2014-01-01</text>
-<line stroke="#000000" stroke-width="1" x1="600.5" y1="120.0" x2="600.5" y2="144.0" stroke-dasharray="2,2"/>
+<text fill="#000000" x="200.5" y="149.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12.0">2014-01-01</text>
+<text fill="#000000" x="242.5" y="149.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12.0">2014-01-03</text>
+<text fill="#000000" x="285.5" y="149.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12.0">2014-01-05</text>
+<text fill="#000000" x="327.5" y="149.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12.0">2014-01-07</text>
+<text fill="#000000" x="369.5" y="149.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12.0">2014-01-09</text>
+<text fill="#000000" x="411.5" y="149.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12.0">2014-01-11</text>
+<text fill="#000000" x="454.5" y="149.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12.0">2014-01-13</text>
+<text fill="#000000" x="496.5" y="149.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12.0">2014-01-15</text>
+<text fill="#000000" x="538.5" y="149.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12.0">2014-01-17</text>
+<text fill="#000000" x="580.5" y="149.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12.0">2014-01-19</text>
+<text fill="#000000" x="623.5" y="149.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12.0">2014-01-21</text>
+<text fill="#000000" x="665.5" y="149.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12.0">2014-01-23</text>
+<text fill="#000000" x="707.5" y="149.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12.0">2014-01-25</text>
+<text fill="#000000" x="749.5" y="149.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12.0">2014-01-27</text>
+<text fill="#000000" x="792.5" y="149.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12.0">2014-01-29</text>
+<text fill="#000000" x="834.5" y="149.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12.0">2014-01-31</text>
+<line stroke="#000000" stroke-width="1" x1="200.5" y1="120.0" x2="200.5" y2="144.0" stroke-dasharray="2,2"/>
+<line stroke="#000000" stroke-width="1" x1="242.5" y1="120.0" x2="242.5" y2="144.0" stroke-dasharray="2,2"/>
+<line stroke="#000000" stroke-width="1" x1="285.5" y1="120.0" x2="285.5" y2="144.0" stroke-dasharray="2,2"/>
+<line stroke="#000000" stroke-width="1" x1="327.5" y1="120.0" x2="327.5" y2="144.0" stroke-dasharray="2,2"/>
+<line stroke="#000000" stroke-width="1" x1="369.5" y1="120.0" x2="369.5" y2="144.0" stroke-dasharray="2,2"/>
+<line stroke="#000000" stroke-width="1" x1="411.5" y1="120.0" x2="411.5" y2="144.0" stroke-dasharray="2,2"/>
+<line stroke="#000000" stroke-width="1" x1="454.5" y1="120.0" x2="454.5" y2="144.0" stroke-dasharray="2,2"/>
+<line stroke="#000000" stroke-width="1" x1="496.5" y1="120.0" x2="496.5" y2="144.0" stroke-dasharray="2,2"/>
+<line stroke="#000000" stroke-width="1" x1="538.5" y1="120.0" x2="538.5" y2="144.0" stroke-dasharray="2,2"/>
+<line stroke="#000000" stroke-width="1" x1="580.5" y1="120.0" x2="580.5" y2="144.0" stroke-dasharray="2,2"/>
+<line stroke="#000000" stroke-width="1" x1="623.5" y1="120.0" x2="623.5" y2="144.0" stroke-dasharray="2,2"/>
+<line stroke="#000000" stroke-width="1" x1="665.5" y1="120.0" x2="665.5" y2="144.0" stroke-dasharray="2,2"/>
+<line stroke="#000000" stroke-width="1" x1="707.5" y1="120.0" x2="707.5" y2="144.0" stroke-dasharray="2,2"/>
+<line stroke="#000000" stroke-width="1" x1="749.5" y1="120.0" x2="749.5" y2="144.0" stroke-dasharray="2,2"/>
+<line stroke="#000000" stroke-width="1" x1="792.5" y1="120.0" x2="792.5" y2="144.0" stroke-dasharray="2,2"/>
+<line stroke="#000000" stroke-width="1" x1="834.5" y1="120.0" x2="834.5" y2="144.0" stroke-dasharray="2,2"/>
 <rect fill="#f0f0f0" stroke="none" x="0.0" y="120.0" width="1050.0" height="24.0"/>
 <text fill="#000000" x="10.0" y="136.9" font-family="Arial, Helvetica, sans-serif" font-size="14.0" font-weight="bold">Section</text>
 <text fill="#000000" x="10.0" y="136.2" font-family="Arial, Helvetica, sans-serif" font-size="12.0">A task</text>
-<rect fill="#007bff" stroke="#000000" stroke-width="1" x="600.0" y="122.0" width="0.0" height="20.0" rx="3.0" ry="3.0"/>
+<rect fill="#007bff" stroke="#000000" stroke-width="1" x="200.0" y="122.0" width="634.0" height="20.0" rx="3.0" ry="3.0"/>
+<text fill="#ffffff" x="517.0" y="136.2" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12.0">a1</text>
 </svg>

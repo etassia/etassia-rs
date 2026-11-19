@@ -1,0 +1,22 @@
+<svg
+ width="85.29599999999999"
+ height="174.0"
+ viewBox="0 0 85.29599999999999 174.0"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+ overflow="hidden"
+>
+<g id="edge-S_to_T">
+  <path fill="none" stroke="#000000" stroke-width="2.0" d="M 42.6 62.0 L 42.6 112.0"/>
+  <polygon fill="#000000" stroke="#000000" points="42.6,112.0 46.6,104.0 38.6,104.0"/>
+</g>
+<g id="node-S">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2.0" x="8.799999999999997" y="8.0" width="67.696" height="54.0"/>
+  <text fill="#000000" x="42.647999999999996" y="40.6" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16.0">S</text>
+</g>
+<g id="node-T">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2.0" x="8.0" y="112.0" width="69.29599999999999" height="54.0"/>
+  <text fill="#000000" x="42.647999999999996" y="144.6" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16.0">T</text>
+</g>
+</svg>

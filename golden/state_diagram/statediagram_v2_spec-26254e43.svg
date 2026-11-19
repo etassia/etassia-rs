@@ -1,0 +1,97 @@
+<svg
+ width="1133.890625"
+ height="490.0"
+ viewBox="0 0 1133.890625 490"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<g id="transition-start_1_to_State1">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 65 65 L 330.9453125 70"/>
+  <polygon fill="#000000" points="330.9453,70.0 322.8715,73.8489 323.0219,65.8503"/>
+</g>
+<g id="transition-State1_to_State2">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 330.9453125 70 L 1002.9453125 70"/>
+  <polygon fill="#000000" points="1002.9453,70.0 994.9453,74.0 994.9453,66.0"/>
+  <text fill="#000000" x="666.9453125" y="62.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">Succeeded</text>
+</g>
+<g id="transition-State1_to_end_2">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 330.9453125 70 L 265 65"/>
+  <polygon fill="#000000" points="265.0,65.0 273.2795,61.6163 272.6747,69.5934"/>
+  <text fill="#000000" x="297.97265625" y="59.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">Aborted</text>
+</g>
+<g id="transition-State2_to_State3">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 1002.9453125 70 L 621 320"/>
+  <polygon fill="#000000" points="621.0,320.0 625.503,312.2719 629.8842,318.9655"/>
+  <text fill="#000000" x="811.97265625" y="187.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">Succeeded</text>
+</g>
+<g id="transition-State2_to_end_2">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 1002.9453125 70 L 265 65"/>
+  <polygon fill="#000000" points="265.0,65.0 273.0269,61.0543 272.9727,69.0541"/>
+  <text fill="#000000" x="633.97265625" y="59.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">Aborted</text>
+</g>
+<g id="transition-start_3_to_long1">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 369 535 L 475.793 337"/>
+  <polygon fill="#000000" points="475.793,337.0 475.5159,345.94 468.4747,342.1423"/>
+</g>
+<g id="transition-long1_to_long1">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 475.793 337 L 475.793 337"/>
+  <text fill="#000000" x="475.793" y="329.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">New Data</text>
+</g>
+<g id="transition-long1_to_ProcessData">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 475.793 337 L 871.1484375 324"/>
+  <polygon fill="#000000" points="871.1484,324.0 863.2842,328.2608 863.0213,320.2651"/>
+  <text fill="#000000" x="673.4707187500001" y="322.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">Enough Data</text>
+</g>
+<g id="transition-State3_to_State3">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 621 320 L 621 320"/>
+  <text fill="#000000" x="621.0" y="312.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">Failed</text>
+</g>
+<g id="transition-State3_to_end_2">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 621 320 L 265 65"/>
+  <polygon fill="#000000" points="265.0,65.0 273.833,66.4067 269.1744,72.9104"/>
+  <text fill="#000000" x="443.0" y="184.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">Succeeded / Save Result</text>
+</g>
+<g id="transition-State3_to_end_2">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 621 320 L 265 65"/>
+  <polygon fill="#000000" points="265.0,65.0 273.833,66.4067 269.1744,72.9104"/>
+  <text fill="#000000" x="443.0" y="184.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">Aborted</text>
+</g>
+<g id="state-start_1">
+  <circle fill="#000000" stroke="none" cx="65.0" cy="65.0" r="7.0"/>
+  <text fill="#000000" x="65.0" y="69.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">[*]</text>
+</g>
+<g id="state-State1">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="300.0" y="50.0" width="61.890625" height="40.0" rx="10.0" ry="10.0"/>
+  <text fill="#000000" x="330.9453125" y="74.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">State1</text>
+</g>
+<g id="state-State2">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="972.0" y="50.0" width="61.890625" height="40.0" rx="10.0" ry="10.0"/>
+  <text fill="#000000" x="1002.9453125" y="74.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">State2</text>
+</g>
+<g id="state-end_2">
+  <g>
+    <circle fill="none" stroke="#000000" stroke-width="2" cx="265.0" cy="65.0" r="7.0"/>
+    <circle fill="#000000" stroke="none" cx="265.0" cy="65.0" r="2.0"/>
+  </g>
+  <text fill="#000000" x="265.0" y="69.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">[*]</text>
+</g>
+<g id="state-State3">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="300.0" y="250.0" width="642.0" height="140.0" rx="10.0" ry="10.0"/>
+  <text fill="#000000" x="621.0" y="324.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">State3</text>
+  <g id="state-long1">
+    <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="320.0" y="304.0" width="311.586" height="66.0" rx="10.0" ry="10.0"/>
+    <text fill="#000000" x="475.793" y="331.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Accumulate Enough Data
+Long State Name</text>
+    <text fill="#000000" x="475.793" y="351.2" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">Just a test</text>
+  </g>
+  <g id="state-start_3">
+    <circle fill="#000000" stroke="none" cx="369.0" cy="535.0" r="7.0"/>
+    <text fill="#000000" x="369.0" y="539.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">[*]</text>
+  </g>
+  <g id="state-ProcessData">
+    <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="820.0" y="304.0" width="102.296875" height="40.0" rx="10.0" ry="10.0"/>
+    <text fill="#000000" x="871.1484375" y="328.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">ProcessData</text>
+  </g>
+</g>
+</svg>

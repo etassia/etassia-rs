@@ -1,0 +1,14 @@
+<svg
+ width="150.0"
+ height="112.0"
+ viewBox="0 0 150 112"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="#ffffff" stroke="none" x="0.0" y="0.0" width="150.0" height="112.0"/>
+<path transform="translate(3.0003000300030003,3.0003000300030003)" fill="#969696" stroke="none" d="M 25 35 L 25 77 L 125 77 L 125 35 Z"/>
+<path transform="translate(3.0003000300030003,3.0003000300030003)" fill="#969696" stroke="none" d="M 45 49 L 45 63 L 105 63 L 105 49 Z"/>
+<path fill="#ffffff" stroke="#000000" stroke-width="1.0" d="M 25 35 L 25 77 L 125 77 L 125 35 Z" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill="#ffffff" stroke="#000000" stroke-width="1.0" d="M 45 49 L 45 63 L 105 63 L 105 49 Z" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

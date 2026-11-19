@@ -1,0 +1,25 @@
+<svg
+ width="152.0"
+ height="461.0"
+ viewBox="0 0 152.0 461.0"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<path fill="none" stroke="#181818" stroke-width="1" d="M32.0,34.0 C32.0,82.62 32.0,206.38 32.0,255.0"/>
+<rect fill="none" stroke="#181818" stroke-width="1.5" x="19.0" y="10.0" width="26.0" height="24.0" rx="4.0" ry="4.0"/>
+<text fill="#000000" x="23.0" y="27.2" font-family="monospace" font-size="15" font-weight="700">e5d4c3b</text>
+<path fill="none" stroke="#181818" stroke-width="1" d="M120.0,132.0 C120.0,137.5 120.0,151.5 120.0,157.0"/>
+<rect fill="none" stroke="#181818" stroke-width="1.5" x="107.0" y="108.0" width="26.0" height="24.0" rx="4.0" ry="4.0"/>
+<text fill="#000000" x="111.0" y="125.2" font-family="monospace" font-size="15" font-weight="700">4a3b2c1</text>
+<path fill="none" stroke="#181818" stroke-width="1" d="M120.0,181.0 C120.0,208.06 120.0,276.94 120.0,304.0"/>
+<rect fill="none" stroke="#181818" stroke-width="1.5" x="107.0" y="157.0" width="26.0" height="24.0" rx="4.0" ry="4.0"/>
+<text fill="#000000" x="111.0" y="174.2" font-family="monospace" font-size="15" font-weight="700">3c2b1a0</text>
+<path fill="none" stroke="#181818" stroke-width="1" d="M32.0,279.0 C32.0,306.06 32.0,374.94 32.0,402.0"/>
+<rect fill="none" stroke="#181818" stroke-width="1.5" x="19.0" y="255.0" width="26.0" height="24.0" rx="4.0" ry="4.0"/>
+<text fill="#000000" x="23.0" y="272.2" font-family="monospace" font-size="15" font-weight="700">2b1a099</text>
+<rect fill="none" stroke="#181818" stroke-width="1.5" x="107.0" y="304.0" width="26.0" height="24.0" rx="4.0" ry="4.0"/>
+<text fill="#000000" x="111.0" y="321.2" font-family="monospace" font-size="15" font-weight="700">9988776</text>
+<rect fill="none" stroke="#181818" stroke-width="1.5" x="19.0" y="402.0" width="26.0" height="24.0" rx="4.0" ry="4.0"/>
+<text fill="#000000" x="23.0" y="419.2" font-family="monospace" font-size="15" font-weight="700">1100aabb</text>
+</svg>
