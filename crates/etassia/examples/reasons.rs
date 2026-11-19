@@ -1,12 +1,14 @@
 use std::collections::BTreeMap;
 fn main() {
     let ty = std::env::args().nth(1).unwrap();
-    let dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../golden");
+    let dir = std::env::var_os("ETASSIA_GOLDEN_DIR").map(std::path::PathBuf::from).unwrap_or_else(|| std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../golden"));
     let m: serde_json::Value = serde_json::from_slice(&std::fs::read(dir.join("manifest.json")).unwrap()).unwrap();
     let mut h: BTreeMap<String, Vec<String>> = BTreeMap::new();
+    let filter = std::env::args().nth(2);
     for c in m["cases"].as_array().unwrap() {
         if c["type"].as_str().unwrap() != ty { continue; }
         let case = c["case"].as_str().unwrap();
+        if let Some(f) = &filter { if !case.contains(f) { continue; } }
         let src = std::fs::read_to_string(dir.join(case)).unwrap();
         if let Err(e) = etassia::render(&src) { h.entry(e.to_string()).or_default().push(case.to_string()); }
     }

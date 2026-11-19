@@ -41,8 +41,8 @@ const CR_HEIGHT: f64 = 140.0;
 const CR_CHILD_TOP: f64 = 50.0;
 const CR_GAP: f64 = 50.0;
 
-fn unported() -> Error {
-    Error::Unported("state_diagram".into())
+fn unported(why: &str) -> Error {
+    Error::Unported(format!("state_diagram: {why}"))
 }
 
 // ---- model (builder) ----
@@ -363,7 +363,7 @@ fn parse_label(label: Option<&Value>) -> Result<(Option<String>, Option<String>)
         return Ok((None, None));
     }
     if text.contains('\n') {
-        return Err(unported());
+        return Err(unported("multiline transition label"));
     }
     let re = Regex::new(r"^(.+?)\s*\[(.+?)\]\s*$").unwrap();
     Ok(match re.captures(&text) {
@@ -1029,7 +1029,7 @@ pub fn render(source: &str) -> Result<String, Error> {
     let body = crate::parse::body(source);
     let preamble = source.rfind(body.as_str()).map_or(source, |i| &source[..i]);
     if ["layout", "theme", "init", "---", "config"].iter().any(|k| preamble.contains(k)) {
-        return Err(unported());
+        return Err(unported("preamble directives"));
     }
     let tree = crate::parse::parse(source, "state_diagram")?;
     let mut model = Model::default();
@@ -1069,7 +1069,7 @@ pub fn render(source: &str) -> Result<String, Error> {
     let mut top = shown;
     for n in &model.notes {
         if !shown_ids.contains(&n.target) {
-            return Err(unported());
+            return Err(unported("note on an unshown state"));
         }
         let lines = split_note(&n.text);
         top.push(St {
@@ -1125,7 +1125,7 @@ pub fn render(source: &str) -> Result<String, Error> {
     let (cw, cwi) = measure(&|n| (n.xv() + n.w, n.xi && n.wi), 800.0);
     let (ch, chi) = measure(&|n| (n.yv() + n.h, n.yi && n.hi), 600.0);
     if !nodes.is_empty() && (cwi || chi) {
-        return Err(unported());
+        return Err(unported("unmeasured extent"));
     }
     let (width, height) = (cw + 100.0, ch + 100.0);
     let fmt_dim = |v: f64, int: bool| if int { format!("{}", v as i64) } else { ruby_float(v) };
