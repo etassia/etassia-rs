@@ -22,9 +22,20 @@ require "etassia"
 require "etassia/notation/plantuml"
 
 OUT = ENV.fetch("GOLDEN_OUT", File.expand_path("../golden", __dir__))
-CORPORA = ENV.fetch("ETASSIA_CORPORA", "#{Dir.pwd}/spec/mermaid:*/*.mmd")
-      .split(";")
-      .map { |pair| pair.split(":", 2) }
+# ETASSIA_CORPUS (a bare corpus directory, the CRLF test's contract)
+# widens to the default glob; ETASSIA_CORPORA overrides both.
+corpora_env = ENV.fetch("ETASSIA_CORPORA", nil)
+unless corpora_env
+  corpora_env = if (corpus = ENV.fetch("ETASSIA_CORPUS", nil))
+                  File.join(corpus, "*/*.mmd")
+                else
+                  "#{Dir.pwd}/spec/mermaid:*/*.mmd"
+                end
+end
+CORPORA = corpora_env.split(";").map do |pair|
+  dir, glob = pair.split(":", 2)
+  [dir, glob || "*/*.mmd"]
+end
 TODAY = Date.new(2026, 1, 1)
 
 FileUtils.rm_rf(OUT)

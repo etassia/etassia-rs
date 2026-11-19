@@ -914,14 +914,25 @@ struct Abs {
     y: f64,
     w: f64,
     h: f64,
+    /// Ruby Integer-vs-Float typing, carried from the node so the edge
+    /// arithmetic divides the way Ruby divides.
+    wi: bool,
+    hi: bool,
 }
 
 fn collect(nodes: &[Ln], px: f64, py: f64, out: &mut HashMap<String, Abs>) {
     for n in nodes {
         let (x, y) = (n.xv() + px, n.yv() + py);
-        out.insert(n.id.clone(), Abs { x, y, w: n.w, h: n.h });
+        out.insert(n.id.clone(), Abs { x, y, w: n.w, h: n.h, wi: n.wi, hi: n.hi });
         collect(&n.children, x, y, out);
     }
+}
+
+/// Ruby Integer#/ floors; Float#/ halves exactly. The flags carry the
+/// graph world's typing (composites and start/end are integers,
+/// text-measured states are floats).
+fn half(v: f64, int: bool) -> f64 {
+    if int { (v / 2.0).floor() } else { v / 2.0 }
 }
 
 fn coord(v: f64) -> String {
@@ -952,7 +963,7 @@ struct Style {
 
 fn render_state(n: &Ln, px: f64, py: f64, lay: &Layout, st: &Style) -> Elem {
     let (x, y) = (n.xv() + px, n.yv() + py);
-    let (cx, cy) = (x + n.w / 2.0, y + n.h / 2.0);
+    let (cx, cy) = (x + half(n.w, n.wi), y + half(n.h, n.hi));
     let mut g = Elem::new("g").attr("id", format!("state-{}", n.id));
     let rect = |x: f64, y: f64, w: f64, h: f64| Elem::new("rect").num("x", x).num("y", y).num("width", w).num("height", h);
     let normal = |x, y, w, h| {
@@ -1133,8 +1144,8 @@ pub fn render(source: &str) -> Result<String, Error> {
     collect(&nodes, 0.0, 0.0, &mut abs);
     for e in &lay.edges {
         let (Some(s), Some(t)) = (abs.get(&e.source), abs.get(&e.target)) else { continue };
-        let (sx, sy) = (s.x + s.w / 2.0, s.y + s.h / 2.0);
-        let (tx, ty) = (t.x + t.w / 2.0, t.y + t.h / 2.0);
+        let (sx, sy) = (s.x + half(s.w, s.wi), s.y + half(s.h, s.hi));
+        let (tx, ty) = (t.x + half(t.w, t.wi), t.y + half(t.h, t.hi));
         let d = format!("M {} {} L {} {}", coord(sx), coord(sy), coord(tx), coord(ty));
         let mut g = Elem::new("g").attr("id", format!("transition-{}", e.id));
         g.push(
