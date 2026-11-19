@@ -1,0 +1,17 @@
+<svg
+ width="64.0"
+ height="167.0"
+ viewBox="0 0 64.0 167.0"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<path fill="none" stroke="#181818" stroke-width="1" d="M32.0,34.0 C32.0,39.5 32.0,53.5 32.0,59.0"/>
+<rect fill="none" stroke="#181818" stroke-width="1.5" x="19.0" y="10.0" width="26.0" height="24.0" rx="4.0" ry="4.0"/>
+<text fill="#000000" x="23.0" y="27.2" font-family="monospace" font-size="15" font-weight="700">9f3e2a1</text>
+<path fill="none" stroke="#181818" stroke-width="1" d="M32.0,83.0 C32.0,88.5 32.0,102.5 32.0,108.0"/>
+<rect fill="none" stroke="#181818" stroke-width="1.5" x="19.0" y="59.0" width="26.0" height="24.0" rx="4.0" ry="4.0"/>
+<text fill="#000000" x="23.0" y="76.2" font-family="monospace" font-size="15" font-weight="700">77cc001</text>
+<rect fill="none" stroke="#181818" stroke-width="1.5" x="19.0" y="108.0" width="26.0" height="24.0" rx="4.0" ry="4.0"/>
+<text fill="#000000" x="23.0" y="125.2" font-family="monospace" font-size="15" font-weight="700">d41d8cd</text>
+</svg>

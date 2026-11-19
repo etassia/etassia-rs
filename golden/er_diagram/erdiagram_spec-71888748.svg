@@ -1,0 +1,23 @@
+<svg
+ width="116.0"
+ height="100.0"
+ viewBox="0 0 116.0 100.0"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<g id="rel-NODE_to_NODE">
+  <line stroke="#000000" stroke-width="2" x1="58.0" y1="50.0" x2="58.0" y2="50.0" stroke-dasharray="5,5"/>
+  <line stroke="#000000" stroke-width="2" x1="58.0" y1="57.0" x2="58.0" y2="43.0"/>
+  <circle fill="none" stroke="#000000" stroke-width="2" cx="65.0" cy="50.0" r="5.0"/>
+  <line stroke="#000000" stroke-width="2" x1="73.0" y1="50.0" x2="62.39339828220179" y2="60.60660171779821"/>
+  <line stroke="#000000" stroke-width="2" x1="73.0" y1="50.0" x2="58.0" y2="50.0"/>
+  <line stroke="#000000" stroke-width="2" x1="73.0" y1="50.0" x2="62.39339828220179" y2="39.39339828220179"/>
+  <text fill="#000000" x="58.0" y="45.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">"leads to"</text>
+</g>
+<g id="entity-NODE">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="8.0" y="8.0" width="100.0" height="84.0"/>
+  <text fill="#000000" x="58.0" y="34.708333333333336" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold">NODE</text>
+  <line stroke="#000000" stroke-width="1" x1="8.0" y1="50.75" x2="108.0" y2="50.75"/>
+</g>
+</svg>

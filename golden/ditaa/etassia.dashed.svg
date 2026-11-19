@@ -1,0 +1,17 @@
+<svg
+ width="300.0"
+ height="126.0"
+ viewBox="0 0 300 126"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="#ffffff" stroke="none" x="0.0" y="0.0" width="300.0" height="126.0"/>
+<path transform="translate(3.0003000300030003,3.0003000300030003)" fill="#969696" stroke="none" d="M 205 35 L 205 91 L 275 91 L 275 35 Z"/>
+<path fill="none" stroke="#000000" stroke-width="1.0" d="M 25 35 L 25 91 L 95 91 L 95 35 Z" stroke-dasharray="5.0"/>
+<path fill="#ffffff" stroke="#000000" stroke-width="1.0" d="M 205 35 L 205 91 L 275 91 L 275 35 Z" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill="none" stroke="#000000" stroke-width="1.0" d="M 95 63 L 205 63" stroke-linecap="round" stroke-linejoin="round"/>
+<text fill="#000000" x="60.0" y="69.3" text-anchor="middle" font-family="sans-serif" font-size="17.5" font-weight="bold">A </text>
+<text fill="#000000" x="240.0" y="69.3" text-anchor="middle" font-family="sans-serif" font-size="17.5" font-weight="bold">B </text>
+<text fill="#000000" x="150.0" y="83.3" text-anchor="middle" font-family="sans-serif" font-size="17.5" font-weight="bold">........</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg
+ width="150.0"
+ height="98.0"
+ viewBox="0 0 150 98"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="#ffffff" stroke="none" x="0.0" y="0.0" width="150.0" height="98.0"/>
+<path transform="translate(3.0003000300030003,3.0003000300030003)" fill="#969696" stroke="none" d="M 30 35 Q 25 35 25 42 L 25 56 Q 25 63 30 63 L 120 63 L 120 63 Q 125 63 125 56 L 125 42 L 125 42 Q 125 35 120 35 L 30 35 Z"/>
+<path fill="#ffffff" stroke="#000000" stroke-width="1.0" d="M 30 35 Q 25 35 25 42 L 25 56 Q 25 63 30 63 L 120 63 L 120 63 Q 125 63 125 56 L 125 42 L 125 42 Q 125 35 120 35 L 30 35 Z" stroke-linecap="round" stroke-linejoin="round"/>
+<text fill="#000000" x="65.0" y="55.3" text-anchor="middle" font-family="sans-serif" font-size="17.5" font-weight="bold">Round</text>
+</svg>

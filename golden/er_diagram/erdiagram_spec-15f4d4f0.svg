@@ -1,0 +1,18 @@
+<svg
+ width="249.696"
+ height="229.75"
+ viewBox="0 0 249.696 229.75"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<g id="entity-BOOK">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="8.0" y="8.0" width="233.696" height="213.75"/>
+  <text fill="#000000" x="124.848" y="34.708333333333336" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold">BOOK</text>
+  <line stroke="#000000" stroke-width="1" x1="8.0" y1="50.75" x2="241.696" y2="50.75"/>
+  <text fill="#000000" x="18.0" y="76.125" font-family="monospace" font-size="12">string title</text>
+  <text fill="#000000" x="18.0" y="118.875" font-family="monospace" font-size="12">string author</text>
+  <text fill="#000000" x="18.0" y="161.625" font-family="monospace" font-size="12">float price</text>
+  <text fill="#000000" x="18.0" y="204.375" font-family="monospace" font-size="12">string customer_firstname</text>
+</g>
+</svg>

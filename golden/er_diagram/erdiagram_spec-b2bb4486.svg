@@ -1,0 +1,16 @@
+<svg
+ width="145.504"
+ height="144.25"
+ viewBox="0 0 145.504 144.25"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<g id="entity-2.5">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="8.0" y="8.0" width="129.504" height="128.25"/>
+  <text fill="#000000" x="72.752" y="34.708333333333336" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold">2.5</text>
+  <line stroke="#000000" stroke-width="1" x1="8.0" y1="50.75" x2="137.504" y2="50.75"/>
+  <text fill="#000000" x="18.0" y="76.125" font-family="monospace" font-size="12">string name</text>
+  <text fill="#000000" x="18.0" y="118.875" font-family="monospace" font-size="12">int id</text>
+</g>
+</svg>

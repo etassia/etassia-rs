@@ -1,0 +1,66 @@
+<svg
+ width="711.890625"
+ height="430.0"
+ viewBox="0 0 711.890625 430"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<g id="transition-start_1_to_fork_state">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 65 315 L 100 55"/>
+  <polygon fill="#000000" points="100.0,55.0 102.8969,63.4621 94.9685,62.3948"/>
+</g>
+<g id="transition-fork_state_to_State2">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 100 55 L 580.9453125 70"/>
+  <polygon fill="#000000" points="580.9453,70.0 572.8245,73.7487 573.0739,65.7526"/>
+</g>
+<g id="transition-fork_state_to_State3">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 100 55 L 80.9453125 270"/>
+  <polygon fill="#000000" points="80.9453,270.0 77.6672,261.6781 85.6359,262.3844"/>
+</g>
+<g id="transition-State2_to_join_state">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 580.9453125 70 L 350 255"/>
+  <polygon fill="#000000" points="350.0,255.0 353.7429,246.8766 358.7445,253.1203"/>
+</g>
+<g id="transition-State3_to_join_state">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 80.9453125 270 L 350 255"/>
+  <polygon fill="#000000" points="350.0,255.0 342.2351,259.4391 341.7897,251.4515"/>
+</g>
+<g id="transition-join_state_to_State4">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 350 255 L 580.9453125 270"/>
+  <polygon fill="#000000" points="580.9453,270.0 572.7029,273.4731 573.2214,265.4899"/>
+</g>
+<g id="transition-State4_to_end_2">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 580.9453125 270 L 465 65"/>
+  <polygon fill="#000000" points="465.0,65.0 472.4201,69.9942 465.4567,73.9326"/>
+</g>
+<g id="state-fork_state">
+  <rect fill="#000000" stroke="none" x="50.0" y="50.0" width="100.0" height="10.0"/>
+</g>
+<g id="state-start_1">
+  <circle fill="#000000" stroke="none" cx="65.0" cy="315.0" r="7.0"/>
+  <text fill="#000000" x="65.0" y="319.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">[*]</text>
+</g>
+<g id="state-State2">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="550.0" y="50.0" width="61.890625" height="40.0" rx="10.0" ry="10.0"/>
+  <text fill="#000000" x="580.9453125" y="74.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">State2</text>
+</g>
+<g id="state-State3">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="50.0" y="250.0" width="61.890625" height="40.0" rx="10.0" ry="10.0"/>
+  <text fill="#000000" x="80.9453125" y="274.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">State3</text>
+</g>
+<g id="state-join_state">
+  <rect fill="#000000" stroke="none" x="300.0" y="250.0" width="100.0" height="10.0"/>
+</g>
+<g id="state-State4">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="550.0" y="250.0" width="61.890625" height="40.0" rx="10.0" ry="10.0"/>
+  <text fill="#000000" x="580.9453125" y="274.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">State4</text>
+</g>
+<g id="state-end_2">
+  <g>
+    <circle fill="none" stroke="#000000" stroke-width="2" cx="465.0" cy="65.0" r="7.0"/>
+    <circle fill="#000000" stroke="none" cx="465.0" cy="65.0" r="2.0"/>
+  </g>
+  <text fill="#000000" x="465.0" y="69.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">[*]</text>
+</g>
+</svg>

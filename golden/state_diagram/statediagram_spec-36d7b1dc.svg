@@ -1,0 +1,108 @@
+<svg
+ width="2429.0"
+ height="324.0"
+ viewBox="0 0 2429 324"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<g id="transition-start_1_to_Active">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 65 65 L 1314 137"/>
+  <polygon fill="#000000" points="1314.0,137.0 1305.7831,140.533 1306.2435,132.5462"/>
+</g>
+<g id="transition-start_2_to_NumLockOff">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 375 139 L 641.765625 164"/>
+  <polygon fill="#000000" points="641.7656,164.0 633.4273,167.2361 634.1738,159.271"/>
+</g>
+<g id="transition-NumLockOff_to_NumLockOn">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 641.765625 164 L 890.21875 164"/>
+  <polygon fill="#000000" points="890.2188,164.0 882.2188,168.0 882.2188,160.0"/>
+  <text fill="#000000" x="765.9921875" y="156.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">EvNumLockPressed</text>
+</g>
+<g id="transition-NumLockOn_to_NumLockOff">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 890.21875 164 L 641.765625 164"/>
+  <polygon fill="#000000" points="641.7656,164.0 649.7656,160.0 649.7656,168.0"/>
+  <text fill="#000000" x="765.9921875" y="156.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">EvNumLockPressed</text>
+</g>
+<g id="transition-start_3_to_CapsLockOff">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 1045 139 L 1312.3359375 164"/>
+  <polygon fill="#000000" points="1312.3359,164.0 1303.9983,167.2378 1304.7431,159.2725"/>
+</g>
+<g id="transition-CapsLockOff_to_CapsLockOn">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 1312.3359375 164 L 1560.78125 164"/>
+  <polygon fill="#000000" points="1560.7813,164.0 1552.7813,168.0 1552.7813,160.0"/>
+  <text fill="#000000" x="1436.55859375" y="156.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">EvCapsLockPressed</text>
+</g>
+<g id="transition-CapsLockOn_to_CapsLockOff">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 1560.78125 164 L 1312.3359375 164"/>
+  <polygon fill="#000000" points="1312.3359,164.0 1320.3359,160.0 1320.3359,168.0"/>
+  <text fill="#000000" x="1436.55859375" y="156.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">EvCapsLockPressed</text>
+</g>
+<g id="transition-start_4_to_ScrollLockOff">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 1716 139 L 1986.59375 164"/>
+  <polygon fill="#000000" points="1986.5938,164.0 1978.2597,167.2471 1978.9957,159.281"/>
+</g>
+<g id="transition-ScrollLockOff_to_ScrollLockOn">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 1986.59375 164 L 2235.0390625 164"/>
+  <polygon fill="#000000" points="2235.0391,164.0 2227.0391,168.0 2227.0391,160.0"/>
+  <text fill="#000000" x="2110.81640625" y="156.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">EvCapsLockPressed</text>
+</g>
+<g id="transition-ScrollLockOn_to_ScrollLockOff">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 2235.0390625 164 L 1986.59375 164"/>
+  <polygon fill="#000000" points="1986.5938,164.0 1994.5938,160.0 1994.5938,168.0"/>
+  <text fill="#000000" x="2110.81640625" y="156.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">EvCapsLockPressed</text>
+</g>
+<g id="state-start_1">
+  <circle fill="#000000" stroke="none" cx="65.0" cy="65.0" r="7.0"/>
+  <text fill="#000000" x="65.0" y="69.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">[*]</text>
+</g>
+<g id="state-Active">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="300.0" y="50.0" width="2029.0" height="174.0" rx="10.0" ry="10.0"/>
+  <text fill="#000000" x="1314.0" y="141.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Active</text>
+  <g id="state-concurrent_region_1">
+    <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="320.0" y="104.0" width="640.0" height="100.0" rx="10.0" ry="10.0"/>
+    <g id="state-start_2">
+      <circle fill="#000000" stroke="none" cx="375.0" cy="139.0" r="7.0"/>
+      <text fill="#000000" x="375.0" y="143.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">[*]</text>
+    </g>
+    <g id="state-NumLockOff">
+      <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="590.0" y="144.0" width="103.53125" height="40.0" rx="10.0" ry="10.0"/>
+      <text fill="#000000" x="641.765625" y="168.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">NumLockOff</text>
+    </g>
+    <g id="state-NumLockOn">
+      <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="840.0" y="144.0" width="100.4375" height="40.0" rx="10.0" ry="10.0"/>
+      <text fill="#000000" x="890.21875" y="168.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">NumLockOn</text>
+    </g>
+  </g>
+  <g id="state-concurrent_region_2">
+    <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="990.0" y="104.0" width="641.0" height="100.0" rx="10.0" ry="10.0"/>
+    <g id="state-start_3">
+      <circle fill="#000000" stroke="none" cx="1045.0" cy="139.0" r="7.0"/>
+      <text fill="#000000" x="1045.0" y="143.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">[*]</text>
+    </g>
+    <g id="state-CapsLockOff">
+      <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="1260.0" y="144.0" width="104.671875" height="40.0" rx="10.0" ry="10.0"/>
+      <text fill="#000000" x="1312.3359375" y="168.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">CapsLockOff</text>
+    </g>
+    <g id="state-CapsLockOn">
+      <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="1510.0" y="144.0" width="101.5625" height="40.0" rx="10.0" ry="10.0"/>
+      <text fill="#000000" x="1560.78125" y="168.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">CapsLockOn</text>
+    </g>
+  </g>
+  <g id="state-concurrent_region_3">
+    <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="1661.0" y="104.0" width="648.0" height="100.0" rx="10.0" ry="10.0"/>
+    <g id="state-start_4">
+      <circle fill="#000000" stroke="none" cx="1716.0" cy="139.0" r="7.0"/>
+      <text fill="#000000" x="1716.0" y="143.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">[*]</text>
+    </g>
+    <g id="state-ScrollLockOff">
+      <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="1931.0" y="144.0" width="111.1875" height="40.0" rx="10.0" ry="10.0"/>
+      <text fill="#000000" x="1986.59375" y="168.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">ScrollLockOff</text>
+    </g>
+    <g id="state-ScrollLockOn">
+      <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="2181.0" y="144.0" width="108.078125" height="40.0" rx="10.0" ry="10.0"/>
+      <text fill="#000000" x="2235.0390625" y="168.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">ScrollLockOn</text>
+    </g>
+  </g>
+</g>
+</svg>

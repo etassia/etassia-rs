@@ -1,0 +1,28 @@
+<svg
+ width="140.512"
+ height="285.0"
+ viewBox="0 0 140.512 285.0"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<g id="rel-PERSON_to_POSSESSION">
+  <line stroke="#000000" stroke-width="2" x1="70.256" y1="92.0" x2="70.256" y2="193.0" stroke-dasharray="5,5"/>
+  <line stroke="#000000" stroke-width="2" x1="63.256" y1="92.0" x2="77.256" y2="92.0"/>
+  <circle fill="none" stroke="#000000" stroke-width="2" cx="70.256" cy="186.0" r="5.0"/>
+  <line stroke="#000000" stroke-width="2" x1="70.256" y1="178.0" x2="80.86260171779821" y2="188.6066017177982"/>
+  <line stroke="#000000" stroke-width="2" x1="70.256" y1="178.0" x2="70.256" y2="193.0"/>
+  <line stroke="#000000" stroke-width="2" x1="70.256" y1="178.0" x2="59.64939828220179" y2="188.6066017177982"/>
+  <text fill="#000000" x="70.256" y="137.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">owns</text>
+</g>
+<g id="entity-PERSON">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="20.256" y="8.0" width="100.0" height="84.0"/>
+  <text fill="#000000" x="70.256" y="34.708333333333336" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold">PERSON</text>
+  <line stroke="#000000" stroke-width="1" x1="20.256" y1="50.75" x2="120.256" y2="50.75"/>
+</g>
+<g id="entity-POSSESSION">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="8.0" y="193.0" width="124.512" height="84.0"/>
+  <text fill="#000000" x="70.256" y="219.70833333333334" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold">POSSESSION</text>
+  <line stroke="#000000" stroke-width="1" x1="8.0" y1="235.75" x2="132.512" y2="235.75"/>
+</g>
+</svg>

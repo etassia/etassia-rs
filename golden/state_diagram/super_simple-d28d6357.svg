@@ -1,0 +1,32 @@
+<svg
+ width="263.734375"
+ height="284.0"
+ viewBox="0 0 263.734375 284.0"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<g id="transition-start_1_to_State1">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 81.8671875 15 L 81.8671875 92"/>
+  <polygon fill="#000000" points="81.8672,92.0 77.8672,84.0 85.8672,84.0"/>
+</g>
+<g id="transition-State1_to_end_2">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 81.8671875 92 L 81.8671875 169"/>
+  <polygon fill="#000000" points="81.8672,169.0 77.8672,161.0 85.8672,161.0"/>
+</g>
+<g id="state-State1">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="0.0" y="72.0" width="163.734375" height="40.0" rx="10.0" ry="10.0"/>
+  <text fill="#000000" x="81.8671875" y="96.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">this is another string</text>
+</g>
+<g id="state-start_1">
+  <circle fill="#000000" stroke="none" cx="81.8671875" cy="15.0" r="7.0"/>
+  <text fill="#000000" x="81.8671875" y="19.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">[*]</text>
+</g>
+<g id="state-end_2">
+  <g>
+    <circle fill="none" stroke="#000000" stroke-width="2" cx="81.8671875" cy="169.0" r="7.0"/>
+    <circle fill="#000000" stroke="none" cx="81.8671875" cy="169.0" r="2.0"/>
+  </g>
+  <text fill="#000000" x="81.8671875" y="173.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">[*]</text>
+</g>
+</svg>

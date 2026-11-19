@@ -1,0 +1,16 @@
+<svg
+ width="220.0"
+ height="140.0"
+ viewBox="0 0 220 140"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="#ffffff" stroke="none" x="0.0" y="0.0" width="220.0" height="140.0"/>
+<path transform="translate(3.0003000300030003,3.0003000300030003)" fill="#969696" stroke="none" d="M 25 35 L 25 105 L 195 105 L 195 35 Z"/>
+<path transform="translate(3.0003000300030003,3.0003000300030003)" fill="#969696" stroke="none" d="M 55 63 L 55 91 L 165 91 L 165 63 Z"/>
+<path fill="#ffffff" stroke="#000000" stroke-width="1.0" d="M 25 35 L 25 105 L 195 105 L 195 35 Z" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill="#ffffff" stroke="#000000" stroke-width="1.0" d="M 55 63 L 55 91 L 165 91 L 165 63 Z" stroke-linecap="round" stroke-linejoin="round"/>
+<text fill="#000000" x="65.0" y="55.3" text-anchor="middle" font-family="sans-serif" font-size="17.5" font-weight="bold">Outer</text>
+<text fill="#000000" x="95.0" y="83.3" text-anchor="middle" font-family="sans-serif" font-size="17.5" font-weight="bold">Inner</text>
+</svg>

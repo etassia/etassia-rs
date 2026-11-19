@@ -1,0 +1,36 @@
+<svg
+ width="563.734375"
+ height="680.0"
+ viewBox="0 0 563.734375 680"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<g id="transition-start_1_to_State1">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 65 565 L 381.8671875 70"/>
+  <polygon fill="#000000" points="381.8672,70.0 380.923,78.8943 374.1852,74.5812"/>
+</g>
+<g id="transition-State1_to_end_2">
+  <path fill="none" stroke="#000000" stroke-width="2" d="M 381.8671875 70 L 265 65"/>
+  <polygon fill="#000000" points="265.0,65.0 273.1637,61.3456 272.8217,69.3383"/>
+</g>
+<g id="state-accTitle">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="50.0" y="50.0" width="221.953125" height="40.0" rx="10.0" ry="10.0"/>
+  <text fill="#000000" x="160.9765625" y="74.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">a simple title of the diagram</text>
+</g>
+<g id="state-State1">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="300.0" y="50.0" width="163.734375" height="40.0" rx="10.0" ry="10.0"/>
+  <text fill="#000000" x="381.8671875" y="74.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">this is another string</text>
+</g>
+<g id="state-start_1">
+  <circle fill="#000000" stroke="none" cx="65.0" cy="565.0" r="7.0"/>
+  <text fill="#000000" x="65.0" y="569.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">[*]</text>
+</g>
+<g id="state-end_2">
+  <g>
+    <circle fill="none" stroke="#000000" stroke-width="2" cx="265.0" cy="65.0" r="7.0"/>
+    <circle fill="#000000" stroke="none" cx="265.0" cy="65.0" r="2.0"/>
+  </g>
+  <text fill="#000000" x="265.0" y="69.9" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">[*]</text>
+</g>
+</svg>

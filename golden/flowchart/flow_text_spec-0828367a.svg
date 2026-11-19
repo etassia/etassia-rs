@@ -1,0 +1,22 @@
+<svg
+ width="373.296"
+ height="174.0"
+ viewBox="0 0 373.296 174.0"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+ overflow="hidden"
+>
+<g id="edge-A_graph_node_to_B">
+  <path fill="none" stroke="#000000" stroke-width="2.0" d="M 186.6 62.0 L 186.6 112.0"/>
+  <polygon fill="#000000" stroke="#000000" points="186.6,112.0 190.6,104.0 182.6,104.0"/>
+</g>
+<g id="node-A_graph_node">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2.0" x="105.912" y="8.0" width="161.47199999999998" height="54.0"/>
+  <text fill="#000000" x="186.648" y="40.6" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16.0">A_graph_node</text>
+</g>
+<g id="node-B">
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2.0" x="8.0" y="112.0" width="357.296" height="54.0"/>
+  <text fill="#000000" x="186.648" y="144.6" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16.0">|borders:lt|This node has a graph as text</text>
+</g>
+</svg>

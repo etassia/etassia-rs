@@ -42,12 +42,18 @@ FileUtils.rm_rf(OUT)
 FileUtils.mkdir_p(OUT)
 cases = []
 errors = []
+# A flat corpus (no type subdirectory in the glob) takes the corpus
+# directory's own name as the type.
 corpora = CORPORA.flat_map do |(dir, glob)|
-  Dir.glob(File.join(dir, glob)).sort.map { |path| [path, dir] }
+  kind = glob.include?("/") ? nil : File.basename(dir)
+  Dir.glob(File.join(dir, glob)).sort.map { |path| [path, dir, kind] }
 end
-corpora.each do |path, corpus|
+corpora.each do |path, corpus, kind|
   rel = path.delete_prefix("#{corpus}/")
   stem = rel.sub(/\.[^.]+\z/, "")
+  type = kind || stem.split("/").first
+  # Flat corpora land in their type directory like every other corpus.
+  stem = "#{type}/#{stem}" if kind
   source = File.binread(path)
   begin
     svg = Timeout.timeout(10) { Etassia::Engine.new.render(source, today: TODAY) }
@@ -61,7 +67,7 @@ corpora.each do |path, corpus|
   FileUtils.mkdir_p(File.dirname(dest))
   File.binwrite(dest, svg)
   File.binwrite(File.join(OUT, "#{stem}.mmd"), source)
-  cases << { "case" => "#{stem}.mmd", "type" => stem.split(/[\/.]/).first,
+  cases << { "case" => "#{stem}.mmd", "type" => type,
              "source_sha256" => Digest::SHA256.hexdigest(source),
              "svg_sha256" => Digest::SHA256.hexdigest(svg.b) }
 end
