@@ -94,7 +94,12 @@ pub fn parse(text: &str) -> Vec<Run> {
                 let name = tag.as_deref().unwrap_or("");
                 if TOGGLES.contains(&text.as_str()) {
                     if paired.contains(&index) {
+                        // A paired toggle switches the style and its
+                        // marker is gone.
                         apply_toggle(&mut state, text);
+                    } else {
+                        // Ruby keeps an unpaired marker as literal text.
+                        runs.push(Run { text: text.clone(), style: state.clone() });
                     }
                 } else if !name.is_empty() {
                     apply_tag(&mut state, name, *close, arg.as_deref());

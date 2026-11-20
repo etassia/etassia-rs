@@ -10172,6 +10172,18 @@
       "svg_sha256": "85a851c848de01d599bc7ec66cd354626f253c541f41386e725c9cc0980bf2b3"
     },
     {
+      "case": "usecase/resources.vega.tikz.tikz-scale-down--f8416a40f77a.mmd",
+      "type": "usecase",
+      "source_sha256": "4f66a6977b49ca6ee02120039de34110d0a7c33fa3916c173ea3b57c1b32460d",
+      "svg_sha256": "64d846a91078c79d5011493ce8a567b5f6d53c136959ced3fd5092059ad0a8e3"
+    },
+    {
+      "case": "usecase/resources.vega.tikz.tikz-scale-up--561bebe96654.mmd",
+      "type": "usecase",
+      "source_sha256": "99a59ed01645422d753517aebdfd42901e7d59a44775ddeec767ad53e64ddd01",
+      "svg_sha256": "534ff0949d8be9bfcd23aa0c5a96a8bbc90ce9ae20acf3f95a1f68e0e459d247"
+    },
+    {
       "case": "user_journey/diagram_orchestration_spec-39a88acd.mmd",
       "type": "user_journey",
       "source_sha256": "cde56892bbebbf6c5fe56cf3317f558aec67aeb0ba19504ca3c9e6801cb45b28",

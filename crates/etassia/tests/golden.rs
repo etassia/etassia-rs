@@ -7,7 +7,8 @@ use std::collections::BTreeMap;
 use std::path::PathBuf;
 
 /// Types that must match byte-for-byte (grows as stages land).
-const REQUIRED: &[&str] = &["component", "ditaa", "git", "info", "pie", "packet", "timeline", "treemap", "quadrant", "radar", "xychart", "user_journey", "kanban", "mindmap", "gantt", "gitgraph", "er_diagram", "requirement", "c4", "block", "architecture", "sequence", "state_diagram", "flowchart", "class_diagram"];
+const REQUIRED: &[&str] = &["component", "ditaa", "git", "info", "pie",
+    "usecase", "packet", "timeline", "treemap", "quadrant", "radar", "xychart", "user_journey", "kanban", "mindmap", "gantt", "gitgraph", "er_diagram", "requirement", "c4", "block", "architecture", "sequence", "state_diagram", "flowchart", "class_diagram"];
 
 fn golden_dir() -> PathBuf {
     match std::env::var_os("ETASSIA_GOLDEN_DIR") {

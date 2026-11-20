@@ -34,7 +34,9 @@ fn entry_for(diagram_type: &str) -> String {
         "git_diagram".to_string()
     } else if diagram_type == "ditaa" {
         "ditaa_diagram".to_string()
-    } else if diagram_type == "component" {
+    } else if diagram_type == "component" || diagram_type == "usecase" {
+        // The NodeGraph family shares one grammar entry: any @start opens
+        // the first diagram, any @end closes it.
         "component_diagram".to_string()
     } else {
         diagram_type.to_string()
@@ -62,10 +64,14 @@ pub fn detect(source: &str) -> Option<String> {
     if detect::detect_git(source) {
         return Some("git".to_string());
     }
-    // The component lane runs last: a Mermaid body claims its own type
-    // first, exactly as the Ruby notation resolution does.
+    // The component family lanes run last: a Mermaid body claims its own
+    // type first, exactly as the Ruby notation resolution does; within the
+    // family the use case query runs before the component one.
     detect::detect_body(&source::body(source))
         .map(str::to_string)
+        .or_else(|| {
+            detect::detect_usecase(source).then(|| "usecase".to_string())
+        })
         .or_else(|| {
             detect::detect_component(source).then(|| "component".to_string())
         })

@@ -732,20 +732,15 @@ fn curve_path(points: &[(f64, f64)]) -> String {
         let after = route[(index + 2).min(route.len() - 1)];
         segments.push(curve_segment(pair[0], pair[1], before, after));
     }
-    format!(
-        "M {} {} {}",
-        write_point(route[0]),
-        write_point(route[1]),
-        segments.join(" ")
-    )
+    format!("M {} {}", write_point(route[0]), segments.join(" "))
 }
 
 fn curve_segment(from: (f64, f64), to: (f64, f64), before: (f64, f64), after: (f64, f64)) -> String {
     format!(
-        "C {} {} {} ",
+        "C {} {} {}",
         write_point(curve_control(from, to, before)),
         write_point(curve_control(to, from, after)),
-        write_point(to),
+        write_point(to)
     )
 }
 
