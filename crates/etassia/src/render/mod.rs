@@ -35,7 +35,8 @@ pub fn render(source: &str) -> Result<String, Error> {
     let source = normalized.as_str();
     let ty = crate::detect(source).ok_or_else(|| Error::Unported("unknown".into()))?;
     match ty.as_str() {
-        "component" => component::render(source),
+        "component" => component::render(source, component::Family::Component),
+        "usecase" => component::render(source, component::Family::Usecase),
         "ditaa" => ditaa::render(source),
         "git" => git_log::render(source),
         "info" => info::render(source),

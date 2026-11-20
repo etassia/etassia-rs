@@ -127,8 +127,10 @@ impl Packer {
         if matches!(before, Item::Waypoint(_)) || matches!(after, Item::Waypoint(_)) {
             return WAYPOINT_GAP;
         }
-        let reach = self.reach.get(before).copied().unwrap_or(0.0)
-            + self.reach.get(after).copied().unwrap_or(0.0);
+        // Centres of two neighbours sit half of both labels' reach apart.
+        let reach = (self.reach.get(before).copied().unwrap_or(0.0)
+            + self.reach.get(after).copied().unwrap_or(0.0))
+            / 2.0;
         let half = (axis(self.size(before), self.cross) + axis(self.size(after), self.cross)) / 2.0;
         CROSS_GAP.max(REACH_SHARE * reach - half)
     }
