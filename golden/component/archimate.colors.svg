@@ -1,0 +1,21 @@
+<svg
+ width="365.2607421875"
+ height="174.9766"
+ viewBox="0 0 365.2607421875 174.9766"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="red" stroke="#181818" stroke-width="0.5" x="38.3125" y="16.0" width="94.00390625" height="36.488299999999995" rx="2.5" ry="2.5"/>
+<text fill="#000000" x="85.314453125" y="39.5352" text-anchor="middle" font-family="sans-serif" font-size="14">Customer</text>
+<rect fill="lightblue" stroke="#181818" stroke-width="0.5" x="160.31640625" y="16.0" width="66.7216796875" height="36.488299999999995" rx="2.5" ry="2.5"/>
+<text fill="#000000" x="193.67724609375" y="39.5352" text-anchor="middle" font-family="sans-serif" font-size="14">Portal</text>
+<rect fill="DarkSeaGreen" stroke="#181818" stroke-width="0.5" x="255.0380859375" y="16.0" width="71.91015625" height="36.488299999999995" rx="2.5" ry="2.5"/>
+<text fill="#000000" x="290.9931640625" y="39.5352" text-anchor="middle" font-family="sans-serif" font-size="14">Server</text>
+<rect fill="gold" stroke="#181818" stroke-width="0.5" x="16.0" y="122.4883" width="57.8828125" height="36.488299999999995" rx="2.5" ry="2.5"/>
+<text fill="#000000" x="44.94140625" y="146.02349999999998" text-anchor="middle" font-family="sans-serif" font-size="14">Goal</text>
+<rect fill="plum" stroke="#181818" stroke-width="0.5" x="101.8828125" y="122.4883" width="93.306640625" height="36.488299999999995" rx="2.5" ry="2.5"/>
+<text fill="#000000" x="148.5361328125" y="146.02349999999998" text-anchor="middle" font-family="sans-serif" font-size="14">Milestone</text>
+<rect fill="wheat" stroke="#181818" stroke-width="0.5" x="223.189453125" y="122.4883" width="126.0712890625" height="36.488299999999995" rx="2.5" ry="2.5"/>
+<text fill="#000000" x="286.22509765625" y="146.02349999999998" text-anchor="middle" font-family="sans-serif" font-size="14">Work package</text>
+</svg>

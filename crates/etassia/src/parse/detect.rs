@@ -80,6 +80,79 @@ pub fn detect_ditaa(source: &str) -> bool {
     ditaa_re().is_match(source)
 }
 
+/// The component lane: the source's significant lines (the first
+/// diagram, comments dropped) carry none of the foreign keywords and at
+/// least one component marker. Ruby `Component.component?`.
+pub fn detect_component(source: &str) -> bool {
+    let entries = significant_lines(source);
+    let foreign = [
+        "participant", "class", "abstract", "enum", "boundary", "control",
+        "entity", "collections", "queue", "autonumber", "newpage", "alt",
+        "loop", "opt", "par", "critical", "break", "ref", "fork",
+        "partition", "repeat", "while", "switch",
+    ];
+    let plain_foreign = ["state", "start", "stop"];
+    for text in &entries {
+        if text.ends_with(';') || text.starts_with("(*") {
+            return false;
+        }
+        let first_word = text
+            .split(|c: char| !c.is_ascii_alphanumeric())
+            .find(|word| !word.is_empty())
+            .unwrap_or("");
+        let lowered = first_word.to_ascii_lowercase();
+        let word_boundary = text[first_word.len()..]
+            .chars()
+            .next()
+            .map(|c| !c.is_alphanumeric())
+            .unwrap_or(true);
+        let is_foreign = foreign.contains(&lowered.as_str())
+            || (plain_foreign.contains(&lowered.as_str())
+                && text.len() == first_word.len());
+        if is_foreign && word_boundary {
+            return false;
+        }
+    }
+    entries.iter().any(|text| component_marker(text))
+}
+
+fn component_marker(text: &str) -> bool {
+    if text.starts_with('[') {
+        return text.contains(']');
+    }
+    let lowered = text.to_lowercase();
+    if lowered.starts_with("component ")
+        || lowered.starts_with("portin ")
+        || lowered.starts_with("portout ")
+        || lowered.starts_with("() ")
+    {
+        return true;
+    }
+    ["node", "cloud", "file", "folder", "frame", "storage", "artifact", "card", "rectangle", "archimate"]
+        .iter()
+        .any(|keyword| {
+            lowered.starts_with(keyword)
+                && lowered.as_bytes().get(keyword.len()) == Some(&b' ')
+        })
+}
+
+/// Ruby `Reader.entries`: the first diagram's stripped significant lines.
+fn significant_lines(source: &str) -> Vec<String> {
+    let lines: Vec<&str> = source.lines().collect();
+    let first = lines.iter().position(|line| line.trim().starts_with("@start"));
+    let body: Vec<&str> = match first {
+        Some(at) => lines[at + 1..].iter().copied().collect(),
+        None => lines.clone(),
+    };
+    body
+        .iter()
+        .map(|line| line.trim())
+        .take_while(|line| !line.starts_with("@end"))
+        .filter(|line| !line.is_empty() && !line.starts_with('\''))
+        .map(str::to_string)
+        .collect()
+}
+
 /// First type whose pattern matches the (preamble-free) body.
 pub fn detect_body(body: &str) -> Option<&'static str> {
     table().iter().find(|(_, re)| re.is_match(body)).map(|(name, _)| *name)

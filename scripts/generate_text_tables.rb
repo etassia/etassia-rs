@@ -22,6 +22,14 @@ def advances(name, table)
   "pub static #{name}: &[(u32, u16)] = &[\n#{body}\n];\n"
 end
 
+# DejaVu advances are fractional (design units of a 2048 em scaled to
+# per-mille), so they are emitted as exact f64 literals.
+def fadvances(name, table)
+  rows = table.sort.map { |cp, adv| format("(0x%04X, %s)", cp, adv.to_s) }
+  body = rows.each_slice(4).map { |r| "    #{r.join(', ')}," }.join("\n")
+  "pub static #{name}: &[(u32, f64)] = &[\n#{body}\n];\n"
+end
+
 def ranges(name, regex, pinned = [])
   cps = (0..0x10FFFF).select do |cp|
     next false if (0xD800..0xDFFF).cover?(cp)
@@ -51,6 +59,12 @@ File.write(OUT, <<~RS)
   #{advances('TREBUCHET', TM::TrebuchetAdvances::TABLE)}
   /// Times New Roman advances in per-mille em, sorted by codepoint.
   #{advances('TIMES', TM::TimesAdvances::TABLE)}
+  /// DejaVu Sans Regular advances in per-mille em (fractional, exact),
+  /// sorted by codepoint.
+  #{fadvances('DEJAVU', TM::DejaVuAdvances::REGULAR)}
+  /// DejaVu Sans Bold advances in per-mille em (fractional, exact),
+  /// sorted by codepoint.
+  #{fadvances('DEJAVU_BOLD', TM::DejaVuAdvances::BOLD)}
   /// Inclusive ranges matching Ruby's `[\\p{Mn}\\p{Me}\\p{Cf}\\p{Cc}]`.
   #{ranges('ZERO_WIDTH', TM::ZERO_WIDTH)}
   /// Inclusive ranges matching `\\p{Extended_Pictographic}` plus the pinned set.

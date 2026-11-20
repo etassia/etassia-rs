@@ -10,7 +10,8 @@
 //!
 //! * [`measure`]`(text, font_size, face)` -> [`Measure`]: mirrors
 //!   `TextMeasurement.measure` (`Face::Arial`) and `.measure_in`
-//!   (`Face::Trebuchet`, `Face::Arial`).
+//!   (`Face::Trebuchet`, `Face::DejaVu`, `Face::DejaVuBold`,
+//!   `Face::Arial`).
 //! * [`measure_monospace`] - `TextMeasurement.measure(.., monospace: true)`.
 //! * [`measure_with`] - `measure` with optional width/height overrides.
 //! * [`width`] - shorthand for `measure(..).width`.
@@ -44,6 +45,8 @@ const UNITS_PER_EM: f64 = 2048.0;
 pub enum Face {
     Arial,
     Trebuchet,
+    DejaVu,
+    DejaVuBold,
 }
 
 /// Measured text box, in the unit of `font_size`.
@@ -82,17 +85,19 @@ fn space_advance() -> i64 {
     i64::from(lookup(tables::ARIAL, 0x20).expect("arial has space"))
 }
 
-fn face_advance(face: Face, code: u32) -> Option<i64> {
+fn face_advance(face: Face, code: u32) -> Option<f64> {
     let own = match face {
-        Face::Arial => lookup(tables::ARIAL, code),
-        Face::Trebuchet => lookup(tables::TREBUCHET, code),
+        Face::Arial => lookup(tables::ARIAL, code).map(f64::from),
+        Face::Trebuchet => lookup(tables::TREBUCHET, code).map(f64::from),
+        Face::DejaVu => lookup(tables::DEJAVU, code),
+        Face::DejaVuBold => lookup(tables::DEJAVU_BOLD, code),
     };
-    own.or_else(|| lookup(tables::ARIAL, code)).map(i64::from)
+    own.or_else(|| lookup(tables::ARIAL, code).map(f64::from))
 }
 
 /// Per-mille advance of `code` in `face` (Arial fallback), `None` when no
 /// table has it. Mirrors `FACE_TABLES[face][code] || ArialAdvances::TABLE[code]`.
-pub fn advance_of(face: Face, code: u32) -> Option<i64> {
+pub fn advance_of(face: Face, code: u32) -> Option<f64> {
     face_advance(face, code)
 }
 
@@ -107,52 +112,52 @@ pub fn trebuchet_advance_of(code: u32) -> Option<i64> {
     lookup(tables::TREBUCHET, code).map(i64::from)
 }
 
-fn table_advance(table: i64, monospace: bool) -> i64 {
-    if monospace && table > 0 {
-        MONOSPACE_ADVANCE
+fn table_advance(table: f64, monospace: bool) -> f64 {
+    if monospace && table > 0.0 {
+        MONOSPACE_ADVANCE as f64
     } else {
         table
     }
 }
 
-fn whitespace_advance(monospace: bool) -> i64 {
+fn whitespace_advance(monospace: bool) -> f64 {
     if monospace {
-        MONOSPACE_ADVANCE
+        MONOSPACE_ADVANCE as f64
     } else {
-        space_advance()
+        space_advance() as f64
     }
 }
 
-fn advance(c: char, monospace: bool, face: Face) -> i64 {
+fn advance(c: char, monospace: bool, face: Face) -> f64 {
     let code = c as u32;
     if matches!(c, '\t' | '\n' | '\r') {
         return whitespace_advance(monospace);
     }
     if in_ranges(tables::ZERO_WIDTH, code) {
-        return 0;
+        return 0.0;
     }
     if let Some(table) = face_advance(face, code) {
         return table_advance(table, monospace);
     }
     if let Some(o) = lookup(tables::OUTLIERS, code) {
-        return i64::from(o);
+        return o as f64;
     }
     if is_emoji(c) {
-        return EMOJI_ADVANCE;
+        return EMOJI_ADVANCE as f64;
     }
     if monospace {
-        MONOSPACE_ADVANCE
+        MONOSPACE_ADVANCE as f64
     } else {
-        DEFAULT_ADVANCE
+        DEFAULT_ADVANCE as f64
     }
 }
 
-fn ascii_advance(code: u8, monospace: bool, face: Face) -> i64 {
+fn ascii_advance(code: u8, monospace: bool, face: Face) -> f64 {
     if matches!(code, 9 | 10 | 13) {
         return whitespace_advance(monospace);
     }
     if code < 32 || code == 127 {
-        return 0;
+        return 0.0;
     }
     table_advance(
         face_advance(face, u32::from(code)).expect("ascii glyph in table"),
@@ -160,20 +165,22 @@ fn ascii_advance(code: u8, monospace: bool, face: Face) -> i64 {
     )
 }
 
-fn total_advance(text: &str, monospace: bool, face: Face) -> i64 {
+fn total_advance(text: &str, monospace: bool, face: Face) -> f64 {
     if text.is_ascii() {
+        // fold from +0.0: the Iterator::sum for f64 starts at -0.0, and an
+        // empty text must read as Ruby's Integer 0, not -0.0.
         return text
             .bytes()
             .map(|b| ascii_advance(b, monospace, face))
-            .sum();
+            .fold(0.0, |a, b| a + b);
     }
-    let mut total = 0;
+    let mut total = 0.0;
     let mut chars = text.chars().peekable();
     while let Some(c) = chars.next() {
         // pictograph + U+FE0F is one 2-char cluster at emoji width.
         if is_emoji(c) && chars.peek() == Some(&'\u{FE0F}') {
             chars.next();
-            total += EMOJI_ADVANCE;
+            total += EMOJI_ADVANCE as f64;
         } else {
             total += advance(c, monospace, face);
         }
@@ -182,7 +189,7 @@ fn total_advance(text: &str, monospace: bool, face: Face) -> i64 {
 }
 
 fn calculate_width(text: &str, font_size: f64, monospace: bool, face: Face) -> f64 {
-    total_advance(text, monospace, face) as f64 * font_size / 1000.0
+    total_advance(text, monospace, face) * font_size / 1000.0
 }
 
 /// Measures `text` (one line) at `font_size` in `face`.

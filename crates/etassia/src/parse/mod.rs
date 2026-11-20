@@ -34,6 +34,8 @@ fn entry_for(diagram_type: &str) -> String {
         "git_diagram".to_string()
     } else if diagram_type == "ditaa" {
         "ditaa_diagram".to_string()
+    } else if diagram_type == "component" {
+        "component_diagram".to_string()
     } else {
         diagram_type.to_string()
     }
@@ -60,7 +62,13 @@ pub fn detect(source: &str) -> Option<String> {
     if detect::detect_git(source) {
         return Some("git".to_string());
     }
-    detect::detect_body(&source::body(source)).map(str::to_string)
+    // The component lane runs last: a Mermaid body claims its own type
+    // first, exactly as the Ruby notation resolution does.
+    detect::detect_body(&source::body(source))
+        .map(str::to_string)
+        .or_else(|| {
+            detect::detect_component(source).then(|| "component".to_string())
+        })
 }
 
 /// The diagram body of `source`: preamble (frontmatter, directives, comments) removed.

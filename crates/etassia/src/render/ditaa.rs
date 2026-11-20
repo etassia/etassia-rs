@@ -2758,7 +2758,7 @@ const KAPPA: f64 = 4.0 * (std::f64::consts::SQRT_2 - 1.0) / 3.0;
 /// Ruby `Float#round(n)`: round-half-up with Ruby's correction step,
 /// unchanged when too many integer digits, flushed to zero far below the
 /// precision.
-fn ruby_round(x: f64, precision: i32) -> f64 {
+pub(crate) fn ruby_round(x: f64, precision: i32) -> f64 {
     if !x.is_finite() || x == 0.0 {
         return x;
     }
