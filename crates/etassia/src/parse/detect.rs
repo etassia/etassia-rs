@@ -80,6 +80,37 @@ pub fn detect_ditaa(source: &str) -> bool {
     ditaa_re().is_match(source)
 }
 
+/// The timing lane, first of the plain-picture families (the Ruby
+/// Further group runs network, timing and ebnf ahead of State, Usecase
+/// and Component): a participant declaration. Ruby `Timing.timing?`.
+pub fn detect_timing(source: &str) -> bool {
+    let entries = significant_lines(source);
+    let kinds = ["robust", "concise", "clock", "binary", "analog"];
+    entries.iter().any(|text| {
+        let lowered = text.to_lowercase();
+        kinds.iter().any(|kind| {
+            lowered.starts_with(kind)
+                && text.as_bytes().get(kind.len()) == Some(&b' ')
+                && starts_declaration(&text[kind.len() + 1..])
+        })
+    })
+}
+
+/// `("title" as )?Identifier` — the identifier may start anywhere the
+/// blank run ends, exactly the Ruby declaration's tail.
+fn starts_declaration(text: &str) -> bool {
+    let mut rest = text.trim_start_matches([' ', '\t']);
+    if let Some(after) = rest.strip_prefix('"') {
+        let Some(close) = after.find('"') else { return false };
+        rest = after[close + 1..].trim_start_matches([' ', '\t']);
+        let Some(tail) = rest.strip_prefix("as") else { return false };
+        rest = tail.strip_prefix([' ', '\t']).unwrap_or(tail);
+    }
+    rest.chars()
+        .next()
+        .is_some_and(|c| c.is_ascii_alphabetic() || c == '_')
+}
+
 /// The use case lane, tried before component (the Ruby families run
 /// Further, State, Usecase, Component in that order): no foreign keyword,
 /// and at least one use case marker. Ruby `Usecase.usecase?`.

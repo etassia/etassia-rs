@@ -4,6 +4,7 @@ pub mod pie;
 pub mod packet;
 pub mod sankey;
 pub mod timeline;
+pub mod timing_puml;
 pub mod treemap;
 pub mod quadrant;
 pub mod radar;
@@ -37,6 +38,7 @@ pub fn render(source: &str) -> Result<String, Error> {
     match ty.as_str() {
         "component" => component::render(source, component::Family::Component),
         "usecase" => component::render(source, component::Family::Usecase),
+        "timing" => timing_puml::render(source),
         "ditaa" => ditaa::render(source),
         "git" => git_log::render(source),
         "info" => info::render(source),
