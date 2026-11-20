@@ -1,0 +1,11 @@
+<svg
+ width="89.91015625"
+ height="68.4883"
+ viewBox="0 0 89.91015625 68.4883"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="red" stroke="#181818" stroke-width="0.5" x="16.0" y="16.0" width="57.91015625" height="36.488299999999995" rx="2.5" ry="2.5"/>
+<text fill="#000000" x="44.955078125" y="39.5352" text-anchor="middle" font-family="sans-serif" font-size="14">User</text>
+</svg>

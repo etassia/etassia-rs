@@ -2804,6 +2804,156 @@
       "svg_sha256": "a2aac777545c05626a0f5b0e4b1882d91478834e49a5902bfdc84d1cb9d47d95"
     },
     {
+      "case": "component/archimate.application-component.mmd",
+      "type": "component",
+      "source_sha256": "18934a453ca7709aff8e6b34328778ed35a4fe13684392e9f243befb1b1a091a",
+      "svg_sha256": "05cb367017d69413de2c531f5bb0fe7f4d9440744530ce6cf33707b6f93e1896"
+    },
+    {
+      "case": "component/archimate.business-actor.mmd",
+      "type": "component",
+      "source_sha256": "d23c81771553aa6c7347f142f33b4108f537525a1b585763b31d76db6d61ee3c",
+      "svg_sha256": "ae10f7d9099c3cd91d8535fd9ee1f1838e37da33f2e43ff5fb7b26b3f30a5127"
+    },
+    {
+      "case": "component/archimate.code-as-display.mmd",
+      "type": "component",
+      "source_sha256": "be1c152c73c050c5c41963026bb4985a94ac02d92096e48aaef12acd6889833f",
+      "svg_sha256": "63cd04276598e305b7e7a2e43ec7b1590702669f625b9157b571523e94f2addc"
+    },
+    {
+      "case": "component/archimate.colors.mmd",
+      "type": "component",
+      "source_sha256": "75524aeea8354e602c634290d0295e76ddcd8f9bfd45a746892f8e91f244f79f",
+      "svg_sha256": "fee7184dd19b95a0d412f9633ccfae5d66f3628863bbf9370ebb48f7ea496a31"
+    },
+    {
+      "case": "component/archimate.display-quoted.mmd",
+      "type": "component",
+      "source_sha256": "4c98ed0ff7a86920e99196a27334623f4a39f772a82b33799dcf7bdeb4257010",
+      "svg_sha256": "63cd04276598e305b7e7a2e43ec7b1590702669f625b9157b571523e94f2addc"
+    },
+    {
+      "case": "component/archimate.nested.mmd",
+      "type": "component",
+      "source_sha256": "010d7b73f296559977db32d47e7f7bd0f8d6e053913be6f3900648ef4a0e16c9",
+      "svg_sha256": "0d0bb23c765e41030b9becdbb964166e027d79dae6db4ddfd5d8003cd60b8f50"
+    },
+    {
+      "case": "component/archimate.plain.mmd",
+      "type": "component",
+      "source_sha256": "335bf18acbe484418d19ea5763d5afc0e0402ca94c87942d9e07daacee3e392f",
+      "svg_sha256": "7c47cf56b2c0f4fab6126673a499893523479a6023c39ea2780388c1691309e5"
+    },
+    {
+      "case": "component/archimate.relation.mmd",
+      "type": "component",
+      "source_sha256": "88da16c7331a1905fb62bc36e08b6c521673d380710bf097e3c171bbf8c00ca0",
+      "svg_sha256": "1d514d49a49b0c5d0482b09237df47446c3222bcf2f4173686c666af10fcb407"
+    },
+    {
+      "case": "component/archimate.technology-device.mmd",
+      "type": "component",
+      "source_sha256": "edf19d345d19711ff7f83a38cfe2aed6b0fee730548cf1142d000bba9bb6b435",
+      "svg_sha256": "098240aa9110725f26c91e86a3520413f02bb42cdb6cca0e1b542379961b4009"
+    },
+    {
+      "case": "component/archimate.update.mmd",
+      "type": "component",
+      "source_sha256": "5177b3be90bc979d3b6f13950cdd44e3cae383bcaf325824ec6b30a5da21c423",
+      "svg_sha256": "46a46f04fdd27af2f9eb3190cd7d94e8ed43da73a8887af0e5f3d9cf072eb9df"
+    },
+    {
+      "case": "ditaa/etassia.arrows.mmd",
+      "type": "ditaa",
+      "source_sha256": "a5e0aa76cc576c539b256b36388945f62d52bb86efffebf15ca8c0438df684c5",
+      "svg_sha256": "c99f5efab9d3334a312d9839f2eb202e73dafdb20075aa68c2571307a983adc6"
+    },
+    {
+      "case": "ditaa/etassia.box.mmd",
+      "type": "ditaa",
+      "source_sha256": "a0c385f648f9ccf67619354c5bf161bfc8e0a6b2c91579c67657199d55645823",
+      "svg_sha256": "3a688e13f16d36ce6cfeb4835f75fd66fdfb2c184b19f290a2c3daaf5a7691be"
+    },
+    {
+      "case": "ditaa/etassia.bullets.mmd",
+      "type": "ditaa",
+      "source_sha256": "3cd56defaac2dfe9d3e64ea73fdf56fd0129f44bcc09efa0df8a400a2b07ce82",
+      "svg_sha256": "5b536fc451af52ff8d47233ba5ff4dc384e8eee3e60777d3406d9d60719c77e1"
+    },
+    {
+      "case": "ditaa/etassia.colors.mmd",
+      "type": "ditaa",
+      "source_sha256": "52768de2a3dfbd100c9edad4f697ee90d92c72a7893b5ffe3f968bfceb222b5b",
+      "svg_sha256": "f50d42fec749df3361acd9939be2eead784a3d439ac5e3504fb54d71138c9a44"
+    },
+    {
+      "case": "ditaa/etassia.dashed.mmd",
+      "type": "ditaa",
+      "source_sha256": "865903246269724b5738cdb0ec6e46877be88abb127fcb905afed93d425fd6d4",
+      "svg_sha256": "f8a980dc20ca65429f0dbc8d95c8283a0234376b66ed8c8b7eb631da6250f9d2"
+    },
+    {
+      "case": "ditaa/etassia.human-colors.mmd",
+      "type": "ditaa",
+      "source_sha256": "bec642868bd847ca9b83e7315902fe38d7efdb0d4effbcc6d62b569e22d11c53",
+      "svg_sha256": "e91991a6524f49b8530b56d8eabbd8e7e3390e62c98e1ece131f919c65ea799e"
+    },
+    {
+      "case": "ditaa/etassia.nested.mmd",
+      "type": "ditaa",
+      "source_sha256": "fee0c8ab1e29a4b361d5a1c531e3203bd0d06ac538e2626d239688a40534d60a",
+      "svg_sha256": "96cacf8620bf10a6b7edc5eba7c17c208ff68623724be8fdea1933975ac8b9ff"
+    },
+    {
+      "case": "ditaa/etassia.no-separation.mmd",
+      "type": "ditaa",
+      "source_sha256": "400f6fc3340cbcd20b5cd0a776f4c7636b2e10cba20bd34208800d21a2f033e3",
+      "svg_sha256": "0c0d9ef172967ffbaace77c02a859d03a04b11afe3d8bc60e7e9406189fb7d5c"
+    },
+    {
+      "case": "ditaa/etassia.no-shadows.mmd",
+      "type": "ditaa",
+      "source_sha256": "817db98fc5d0ad3febe86008b64a895918926f2ffa4e974b34bf605518e51de9",
+      "svg_sha256": "533017f46d70a8d9fb6f52a1cd5171940caef4af28f86af5d2dd53650e77fb53"
+    },
+    {
+      "case": "ditaa/etassia.open-lines.mmd",
+      "type": "ditaa",
+      "source_sha256": "e0c7c098b208712923fc803a18adbf36bdbca136b22742eaa03921f865367382",
+      "svg_sha256": "13c9f4b8fddca3272388cd7d1ed9abfe691015c590bb61a7a305f3d840c5c834"
+    },
+    {
+      "case": "ditaa/etassia.point-marker.mmd",
+      "type": "ditaa",
+      "source_sha256": "2586a923f1bf6761e121f4feaff4695e732133142ca4b0f6e7f308b149997f40",
+      "svg_sha256": "9b07804aa8b5eb44d759db92065860be60069e7eaa644942666d59bddb212106"
+    },
+    {
+      "case": "ditaa/etassia.round.mmd",
+      "type": "ditaa",
+      "source_sha256": "d4f41dcaabcac69ac602c031fd129b7be2a665ef8c5abb9801c5313f8e4a4f4b",
+      "svg_sha256": "42d6f0971ebd3ae0240a4096e8c7c5abd21ba453fcbe8813bdd3050eb47de0ac"
+    },
+    {
+      "case": "ditaa/etassia.scale.mmd",
+      "type": "ditaa",
+      "source_sha256": "3d0ace5be12692051a0d0a5dfb1abed3ab64a76fed8981f02c0e3da06be2b953",
+      "svg_sha256": "a0670c97fc60849aed14d2b140d6a27e0c449d59f08df1f00e0dae19f4da0e61"
+    },
+    {
+      "case": "ditaa/etassia.shapes.mmd",
+      "type": "ditaa",
+      "source_sha256": "6e21620f221faa2eb81dd572abc5943d174d40bf52446dba18b2092d65f62769",
+      "svg_sha256": "4d8547436fb07cac312c781962dfa527c4e26b91dae2a0ee5c9e62b2450f825f"
+    },
+    {
+      "case": "ditaa/etassia.transparent.mmd",
+      "type": "ditaa",
+      "source_sha256": "635c2401fff79a7f6cd60969176db71c57213c0c68d7873ad47bebe00af134e0",
+      "svg_sha256": "1f8a9c91f76161c33748d68bf14f57796316312a7738990d373fe7934d4e6a2d"
+    },
+    {
       "case": "er_diagram/can_start_with_an_underscore-cf87bd6b.mmd",
       "type": "er_diagram",
       "source_sha256": "51522e179bcf8addfb2d8fa57afc9b93879ad3d53de366b891729b21a166d860",
@@ -5472,6 +5622,66 @@
       "type": "gantt",
       "source_sha256": "915654b3b9745ec19053ddcf07f13c3bb535588f9cb1206f2288142cf5df8e57",
       "svg_sha256": "8fcd5ace207d0d9b97c3bda26b6d4e12f95d73f3dd0dd3276244361405d6880e"
+    },
+    {
+      "case": "git/git.branch-fork.mmd",
+      "type": "git",
+      "source_sha256": "7ece28082a9672cbfd695916ba360240bab1f610ad758766d470df8e691e2580",
+      "svg_sha256": "f03a430e00ee1d43a1d4cda60bd00cf23662545203cbba489b2f9b96a112f8ea"
+    },
+    {
+      "case": "git/git.branches.mmd",
+      "type": "git",
+      "source_sha256": "3f8ed75725bcf02b978006527a4881c72e381c783936d1aa7fac34ed8922898e",
+      "svg_sha256": "3daaf42beeb47293b0629859d850ee793dd3fc7a210a892b9ecb6367af944d1c"
+    },
+    {
+      "case": "git/git.empty.mmd",
+      "type": "git",
+      "source_sha256": "ede5ab4c5215fd63bba72e8e4c1bf5b465e461b3b4f540be42813e2623377b5b",
+      "svg_sha256": "3d7ddc6c437622bf921a73230b0444e421d76197c2b830abd5a1e4ce6fc96e5b"
+    },
+    {
+      "case": "git/git.linear.mmd",
+      "type": "git",
+      "source_sha256": "d70cd6fbf279872de26e849dd9dab70b775d827858a62d9a2202ede692bc9ba4",
+      "svg_sha256": "02df28910f7dc52e37fde0e523b5b9cd14ecc18c4a2103681f3cc6b4ae088c43"
+    },
+    {
+      "case": "git/git.log-graph.mmd",
+      "type": "git",
+      "source_sha256": "708e088af15af79b097a6f2c3230b941ad12d12928b05803b9c9b7ec833cfa0d",
+      "svg_sha256": "3fcce17318f920a0d67bc2a4804a55d07dc83ed4e227052628441925cdd4f60c"
+    },
+    {
+      "case": "git/git.merge.mmd",
+      "type": "git",
+      "source_sha256": "e4fbb24e33a1d3edb3bc96c2fdcbf40bb9b69fc7657c499b2e5d488b7673e8b6",
+      "svg_sha256": "4989dcbdeeff763d34c159cfc469fbdbf29a33faaf0fc7e2857a579f7a8cc3b5"
+    },
+    {
+      "case": "git/git.names.mmd",
+      "type": "git",
+      "source_sha256": "b7c42bf1718ec47aad9cd410f6bb3e6774569c8b8e6c83100df7f4cbf9b4b43f",
+      "svg_sha256": "d71719c692f24a7206e53e9d205f95e910ea4fcd491db7019b08033017dc0058"
+    },
+    {
+      "case": "git/git.rails-only.mmd",
+      "type": "git",
+      "source_sha256": "6db78602fed431eae61b74e228f83cdd335332b80bc8c2cae78e4535e502783a",
+      "svg_sha256": "f5c37912d640c59a192caec2bd0deab21e0658727fe92d4036f38985dc293692"
+    },
+    {
+      "case": "git/git.single.mmd",
+      "type": "git",
+      "source_sha256": "bdfe7272877d1db8177b092ca1bde7f844f953cfbdbfe06c0484e905e0a43d9f",
+      "svg_sha256": "910176ca77916b95c8e2cf0f9d26ef75dec78dc5770e9e62c74b9e82bafa3d95"
+    },
+    {
+      "case": "git/git.tag.mmd",
+      "type": "git",
+      "source_sha256": "56caf28ac6e044cadeafad31fc18002c0ecaba1d05b88fb311d5fbd7323bda37",
+      "svg_sha256": "c31baac5229299a7b04e0da5ca73098b7a769c0a174a5c089f9ebed0b781d88e"
     },
     {
       "case": "gitgraph/appli_spec-9896cabe.mmd",
@@ -10134,156 +10344,6 @@
       "type": "xychart",
       "source_sha256": "860e3557180957f70a29e697627d091421a47d9475747f1045a5dfde837c09d8",
       "svg_sha256": "e94c0f67264f273276cc76a836cbe7310636e5cff89f1120937e5c60e680ac76"
-    },
-    {
-      "case": "git/git.branch-fork.mmd",
-      "type": "git",
-      "source_sha256": "7ece28082a9672cbfd695916ba360240bab1f610ad758766d470df8e691e2580",
-      "svg_sha256": "f03a430e00ee1d43a1d4cda60bd00cf23662545203cbba489b2f9b96a112f8ea"
-    },
-    {
-      "case": "git/git.branches.mmd",
-      "type": "git",
-      "source_sha256": "3f8ed75725bcf02b978006527a4881c72e381c783936d1aa7fac34ed8922898e",
-      "svg_sha256": "3daaf42beeb47293b0629859d850ee793dd3fc7a210a892b9ecb6367af944d1c"
-    },
-    {
-      "case": "git/git.empty.mmd",
-      "type": "git",
-      "source_sha256": "ede5ab4c5215fd63bba72e8e4c1bf5b465e461b3b4f540be42813e2623377b5b",
-      "svg_sha256": "3d7ddc6c437622bf921a73230b0444e421d76197c2b830abd5a1e4ce6fc96e5b"
-    },
-    {
-      "case": "git/git.linear.mmd",
-      "type": "git",
-      "source_sha256": "d70cd6fbf279872de26e849dd9dab70b775d827858a62d9a2202ede692bc9ba4",
-      "svg_sha256": "02df28910f7dc52e37fde0e523b5b9cd14ecc18c4a2103681f3cc6b4ae088c43"
-    },
-    {
-      "case": "git/git.log-graph.mmd",
-      "type": "git",
-      "source_sha256": "708e088af15af79b097a6f2c3230b941ad12d12928b05803b9c9b7ec833cfa0d",
-      "svg_sha256": "3fcce17318f920a0d67bc2a4804a55d07dc83ed4e227052628441925cdd4f60c"
-    },
-    {
-      "case": "git/git.merge.mmd",
-      "type": "git",
-      "source_sha256": "e4fbb24e33a1d3edb3bc96c2fdcbf40bb9b69fc7657c499b2e5d488b7673e8b6",
-      "svg_sha256": "4989dcbdeeff763d34c159cfc469fbdbf29a33faaf0fc7e2857a579f7a8cc3b5"
-    },
-    {
-      "case": "git/git.names.mmd",
-      "type": "git",
-      "source_sha256": "b7c42bf1718ec47aad9cd410f6bb3e6774569c8b8e6c83100df7f4cbf9b4b43f",
-      "svg_sha256": "d71719c692f24a7206e53e9d205f95e910ea4fcd491db7019b08033017dc0058"
-    },
-    {
-      "case": "git/git.rails-only.mmd",
-      "type": "git",
-      "source_sha256": "6db78602fed431eae61b74e228f83cdd335332b80bc8c2cae78e4535e502783a",
-      "svg_sha256": "f5c37912d640c59a192caec2bd0deab21e0658727fe92d4036f38985dc293692"
-    },
-    {
-      "case": "git/git.single.mmd",
-      "type": "git",
-      "source_sha256": "bdfe7272877d1db8177b092ca1bde7f844f953cfbdbfe06c0484e905e0a43d9f",
-      "svg_sha256": "910176ca77916b95c8e2cf0f9d26ef75dec78dc5770e9e62c74b9e82bafa3d95"
-    },
-    {
-      "case": "git/git.tag.mmd",
-      "type": "git",
-      "source_sha256": "56caf28ac6e044cadeafad31fc18002c0ecaba1d05b88fb311d5fbd7323bda37",
-      "svg_sha256": "c31baac5229299a7b04e0da5ca73098b7a769c0a174a5c089f9ebed0b781d88e"
-    },
-    {
-      "case": "ditaa/etassia.arrows.mmd",
-      "type": "ditaa",
-      "source_sha256": "a5e0aa76cc576c539b256b36388945f62d52bb86efffebf15ca8c0438df684c5",
-      "svg_sha256": "c99f5efab9d3334a312d9839f2eb202e73dafdb20075aa68c2571307a983adc6"
-    },
-    {
-      "case": "ditaa/etassia.box.mmd",
-      "type": "ditaa",
-      "source_sha256": "a0c385f648f9ccf67619354c5bf161bfc8e0a6b2c91579c67657199d55645823",
-      "svg_sha256": "3a688e13f16d36ce6cfeb4835f75fd66fdfb2c184b19f290a2c3daaf5a7691be"
-    },
-    {
-      "case": "ditaa/etassia.bullets.mmd",
-      "type": "ditaa",
-      "source_sha256": "3cd56defaac2dfe9d3e64ea73fdf56fd0129f44bcc09efa0df8a400a2b07ce82",
-      "svg_sha256": "5b536fc451af52ff8d47233ba5ff4dc384e8eee3e60777d3406d9d60719c77e1"
-    },
-    {
-      "case": "ditaa/etassia.colors.mmd",
-      "type": "ditaa",
-      "source_sha256": "52768de2a3dfbd100c9edad4f697ee90d92c72a7893b5ffe3f968bfceb222b5b",
-      "svg_sha256": "f50d42fec749df3361acd9939be2eead784a3d439ac5e3504fb54d71138c9a44"
-    },
-    {
-      "case": "ditaa/etassia.dashed.mmd",
-      "type": "ditaa",
-      "source_sha256": "865903246269724b5738cdb0ec6e46877be88abb127fcb905afed93d425fd6d4",
-      "svg_sha256": "f8a980dc20ca65429f0dbc8d95c8283a0234376b66ed8c8b7eb631da6250f9d2"
-    },
-    {
-      "case": "ditaa/etassia.human-colors.mmd",
-      "type": "ditaa",
-      "source_sha256": "bec642868bd847ca9b83e7315902fe38d7efdb0d4effbcc6d62b569e22d11c53",
-      "svg_sha256": "e91991a6524f49b8530b56d8eabbd8e7e3390e62c98e1ece131f919c65ea799e"
-    },
-    {
-      "case": "ditaa/etassia.nested.mmd",
-      "type": "ditaa",
-      "source_sha256": "fee0c8ab1e29a4b361d5a1c531e3203bd0d06ac538e2626d239688a40534d60a",
-      "svg_sha256": "96cacf8620bf10a6b7edc5eba7c17c208ff68623724be8fdea1933975ac8b9ff"
-    },
-    {
-      "case": "ditaa/etassia.no-separation.mmd",
-      "type": "ditaa",
-      "source_sha256": "400f6fc3340cbcd20b5cd0a776f4c7636b2e10cba20bd34208800d21a2f033e3",
-      "svg_sha256": "0c0d9ef172967ffbaace77c02a859d03a04b11afe3d8bc60e7e9406189fb7d5c"
-    },
-    {
-      "case": "ditaa/etassia.no-shadows.mmd",
-      "type": "ditaa",
-      "source_sha256": "817db98fc5d0ad3febe86008b64a895918926f2ffa4e974b34bf605518e51de9",
-      "svg_sha256": "533017f46d70a8d9fb6f52a1cd5171940caef4af28f86af5d2dd53650e77fb53"
-    },
-    {
-      "case": "ditaa/etassia.open-lines.mmd",
-      "type": "ditaa",
-      "source_sha256": "e0c7c098b208712923fc803a18adbf36bdbca136b22742eaa03921f865367382",
-      "svg_sha256": "13c9f4b8fddca3272388cd7d1ed9abfe691015c590bb61a7a305f3d840c5c834"
-    },
-    {
-      "case": "ditaa/etassia.point-marker.mmd",
-      "type": "ditaa",
-      "source_sha256": "2586a923f1bf6761e121f4feaff4695e732133142ca4b0f6e7f308b149997f40",
-      "svg_sha256": "9b07804aa8b5eb44d759db92065860be60069e7eaa644942666d59bddb212106"
-    },
-    {
-      "case": "ditaa/etassia.round.mmd",
-      "type": "ditaa",
-      "source_sha256": "d4f41dcaabcac69ac602c031fd129b7be2a665ef8c5abb9801c5313f8e4a4f4b",
-      "svg_sha256": "42d6f0971ebd3ae0240a4096e8c7c5abd21ba453fcbe8813bdd3050eb47de0ac"
-    },
-    {
-      "case": "ditaa/etassia.scale.mmd",
-      "type": "ditaa",
-      "source_sha256": "3d0ace5be12692051a0d0a5dfb1abed3ab64a76fed8981f02c0e3da06be2b953",
-      "svg_sha256": "a0670c97fc60849aed14d2b140d6a27e0c449d59f08df1f00e0dae19f4da0e61"
-    },
-    {
-      "case": "ditaa/etassia.shapes.mmd",
-      "type": "ditaa",
-      "source_sha256": "6e21620f221faa2eb81dd572abc5943d174d40bf52446dba18b2092d65f62769",
-      "svg_sha256": "4d8547436fb07cac312c781962dfa527c4e26b91dae2a0ee5c9e62b2450f825f"
-    },
-    {
-      "case": "ditaa/etassia.transparent.mmd",
-      "type": "ditaa",
-      "source_sha256": "635c2401fff79a7f6cd60969176db71c57213c0c68d7873ad47bebe00af134e0",
-      "svg_sha256": "1f8a9c91f76161c33748d68bf14f57796316312a7738990d373fe7934d4e6a2d"
     }
   ],
   "errors": [
