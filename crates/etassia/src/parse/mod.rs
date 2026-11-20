@@ -34,7 +34,10 @@ fn entry_for(diagram_type: &str) -> String {
         "git_diagram".to_string()
     } else if diagram_type == "ditaa" {
         "ditaa_diagram".to_string()
-    } else if diagram_type == "component" || diagram_type == "usecase" {
+    } else if diagram_type == "component"
+        || diagram_type == "usecase"
+        || diagram_type == "timing"
+    {
         // The NodeGraph family shares one grammar entry: any @start opens
         // the first diagram, any @end closes it.
         "component_diagram".to_string()
@@ -69,6 +72,9 @@ pub fn detect(source: &str) -> Option<String> {
     // family the use case query runs before the component one.
     detect::detect_body(&source::body(source))
         .map(str::to_string)
+        .or_else(|| {
+            detect::detect_timing(source).then(|| "timing".to_string())
+        })
         .or_else(|| {
             detect::detect_usecase(source).then(|| "usecase".to_string())
         })

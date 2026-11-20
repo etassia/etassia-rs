@@ -9896,6 +9896,24 @@
       "svg_sha256": "e2e29f7bda9b95880fd91943a84fb35dd8c2eac3910d1b964dead53eccab7a3c"
     },
     {
+      "case": "timing/java.nonreg.simple.TimingMessageArrowFont_0001_Test--33abd6c86b15.mmd",
+      "type": "timing",
+      "source_sha256": "010583bd812868f97b9ffa66219d9fe1acc3028cadc722f9f5992c6d2f629f34",
+      "svg_sha256": "59972b72eee2cda231f04fcd5515bf15a3468ef959b2169890ec25d1c5b6f85f"
+    },
+    {
+      "case": "timing/java.nonreg.simple.TimingMessageArrowFont_0002_Test--6774e515bf88.mmd",
+      "type": "timing",
+      "source_sha256": "d9e3f7df3efc898a5cd7345f6689ea87f15298c186913392e0a9d60deff9fba3",
+      "svg_sha256": "59972b72eee2cda231f04fcd5515bf15a3468ef959b2169890ec25d1c5b6f85f"
+    },
+    {
+      "case": "timing/resources.vega.timing.clock-decimal-period-offset--f65f295bfc2f.mmd",
+      "type": "timing",
+      "source_sha256": "94065dabb9b734b7dfc1a7e1a269179a47c5ac0ab58f67513c0a67af8a54e7eb",
+      "svg_sha256": "7d7b3d1c4da34da9bd6a22b1e74ea044bf62eef742dfa371726a53f0e06a0cac"
+    },
+    {
       "case": "treemap/treemap-f9daf341.mmd",
       "type": "treemap",
       "source_sha256": "3dfa0edf2a121d4e2595d875fc407dc86158a496a6c8f9679c79973a8d960707",
