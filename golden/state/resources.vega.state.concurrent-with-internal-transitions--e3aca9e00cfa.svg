@@ -1,0 +1,46 @@
+<svg
+ width="234.244"
+ height="261.0"
+ viewBox="0 0 234.244 261.0"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="#FFFFFF" x="0.0" y="0.0" width="234.244" height="261.0"/>
+<g id="state-Parent">
+  <path fill="#F1F1F1" d="M44.5,32.0 L201.744,32.0 A12.5,12.5 0 0 1 214.244,44.5 L214.244,54.0 L32.0,54.0 L32.0,44.5 A12.5,12.5 0 0 1 44.5,32.0"/>
+  <rect fill="none" stroke="#181818" stroke-width="0.5" x="32.0" y="32.0" width="182.244" height="209.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="32.0" y1="54.0" x2="214.244" y2="54.0"/>
+  <text fill="#000000" x="123.122" y="47.9" text-anchor="middle" font-family="sans-serif" font-size="14">Parent</text>
+  <g id="state-A1">
+    <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="56.0" y="68.0" width="37.122" height="50.0" rx="12.5" ry="12.5"/>
+    <line stroke="#181818" stroke-width="0.5" x1="56.0" y1="94.49" x2="93.122" y2="94.49"/>
+    <text fill="#000000" x="74.561" y="86.145" text-anchor="middle" font-family="sans-serif" font-size="14">A1</text>
+  </g>
+  <g id="state-A2">
+    <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="56.0" y="178.0" width="37.122" height="50.0" rx="12.5" ry="12.5"/>
+    <line stroke="#181818" stroke-width="0.5" x1="56.0" y1="204.49" x2="93.122" y2="204.49"/>
+    <text fill="#000000" x="74.561" y="196.145" text-anchor="middle" font-family="sans-serif" font-size="14">A2</text>
+  </g>
+  <g id="state-B1">
+    <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="153.122" y="68.0" width="37.122" height="50.0" rx="12.5" ry="12.5"/>
+    <line stroke="#181818" stroke-width="0.5" x1="153.122" y1="94.49" x2="190.24400000000003" y2="94.49"/>
+    <text fill="#000000" x="171.68300000000002" y="86.145" text-anchor="middle" font-family="sans-serif" font-size="14">B1</text>
+  </g>
+  <g id="state-B2">
+    <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="153.122" y="178.0" width="37.122" height="50.0" rx="12.5" ry="12.5"/>
+    <line stroke="#181818" stroke-width="0.5" x1="153.122" y1="204.49" x2="190.24400000000003" y2="204.49"/>
+    <text fill="#000000" x="171.68300000000002" y="196.145" text-anchor="middle" font-family="sans-serif" font-size="14">B2</text>
+  </g>
+</g>
+<g id="transition-A1_to_A2">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 74.56 118.0 C 73.62 123.0 68.89 138.0 68.89 148.0 C 68.89 158.0 73.62 173.0 74.56 178.0"/>
+  <polygon fill="#181818" points="74.56,178.0 71.8554,174.4384 75.7865,173.6993"/>
+  <text fill="#000000" x="75.561" y="148.0" text-anchor="middle" font-family="sans-serif" font-size="12">go</text>
+</g>
+<g id="transition-B1_to_B2">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 171.68 118.0 C 170.74 123.0 166.01 138.0 166.01 148.0 C 166.01 158.0 170.74 173.0 171.68 178.0"/>
+  <polygon fill="#181818" points="171.68,178.0 168.9754,174.4384 172.9065,173.6993"/>
+  <text fill="#000000" x="172.683" y="148.0" text-anchor="middle" font-family="sans-serif" font-size="12">go</text>
+</g>
+</svg>

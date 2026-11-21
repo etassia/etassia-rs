@@ -1,0 +1,29 @@
+<svg
+ width="203.028"
+ height="200.0"
+ viewBox="0 0 203.028 200.0"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="#FFFFFF" x="0.0" y="0.0" width="203.028" height="200.0"/>
+<g id="state-Outer">
+  <rect fill="#F5DEB3" stroke="#181818" stroke-width="0.5" x="32.0" y="32.0" width="151.028" height="148.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="32.0" y1="54.0" x2="183.028" y2="54.0"/>
+  <text fill="#000000" x="107.514" y="47.9" text-anchor="middle" font-family="sans-serif" font-size="14">Outer</text>
+  <g id="state-Inner">
+    <rect fill="#F5DEB3" stroke="#181818" stroke-width="0.5" x="56.0" y="68.0" width="103.02799999999999" height="99.0" rx="12.5" ry="12.5"/>
+    <line stroke="#181818" stroke-width="0.5" x1="56.0" y1="90.0" x2="159.028" y2="90.0"/>
+    <text fill="#000000" x="107.514" y="83.9" text-anchor="middle" font-family="sans-serif" font-size="14">Inner</text>
+    <g id="state-Leaf1">
+      <rect fill="#F5DEB3" stroke="#181818" stroke-width="0.5" x="80.0" y="104.0" width="55.028" height="50.0" rx="12.5" ry="12.5"/>
+      <line stroke="#181818" stroke-width="0.5" x1="80.0" y1="130.49" x2="135.028" y2="130.49"/>
+      <text fill="#000000" x="107.514" y="122.145" text-anchor="middle" font-family="sans-serif" font-size="14">Leaf1</text>
+    </g>
+  </g>
+</g>
+<g id="transition-Inner_to_Leaf1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 107.51 167.0 L 107.51 104.0"/>
+  <polygon fill="#181818" points="107.51,104.0 109.51,108.0 105.51,108.0"/>
+</g>
+</svg>

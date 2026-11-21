@@ -1,0 +1,43 @@
+<svg
+ width="218.676"
+ height="313.0"
+ viewBox="0 0 218.676 313.0"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="#FFFFFF" x="0.0" y="0.0" width="218.676" height="313.0"/>
+<g id="state-root_start">
+  <circle fill="#222222" stroke="none" cx="115.338" cy="42.0" r="10.0"/>
+</g>
+<g id="state-Parent">
+  <path fill="#F1F1F1" d="M44.5,112.0 L186.176,112.0 A12.5,12.5 0 0 1 198.676,124.5 L198.676,134.0 L32.0,134.0 L32.0,124.5 A12.5,12.5 0 0 1 44.5,112.0"/>
+  <rect fill="none" stroke="#181818" stroke-width="0.5" x="32.0" y="112.0" width="166.676" height="99.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="32.0" y1="134.0" x2="198.676" y2="134.0"/>
+  <text fill="#000000" x="115.338" y="127.9" text-anchor="middle" font-family="sans-serif" font-size="14">Parent</text>
+  <g id="state-A">
+    <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="56.0" y="148.0" width="29.338" height="50.0" rx="12.5" ry="12.5"/>
+    <line stroke="#181818" stroke-width="0.5" x1="56.0" y1="174.49" x2="85.338" y2="174.49"/>
+    <text fill="#000000" x="70.669" y="166.145" text-anchor="middle" font-family="sans-serif" font-size="14">A</text>
+  </g>
+  <g id="state-B">
+    <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="145.338" y="148.0" width="29.338" height="50.0" rx="12.5" ry="12.5"/>
+    <line stroke="#181818" stroke-width="0.5" x1="145.338" y1="174.49" x2="174.676" y2="174.49"/>
+    <text fill="#000000" x="160.007" y="166.145" text-anchor="middle" font-family="sans-serif" font-size="14">B</text>
+  </g>
+</g>
+<g id="state-root_end">
+  <g>
+    <circle fill="none" stroke="#222222" stroke-width="2" cx="115.338" cy="282.0" r="11.0"/>
+    <circle fill="#222222" stroke="none" cx="115.338" cy="282.0" r="6.0"/>
+  </g>
+</g>
+<g id="transition-root_start_to_Parent">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 115.34 52.0 L 115.34 112.0"/>
+  <polygon fill="#181818" points="115.34,112.0 113.34,108.0 117.34,108.0"/>
+</g>
+<g id="transition-Parent_to_root_end">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 115.34 211.0 L 115.34 271.0"/>
+  <polygon fill="#181818" points="115.34,271.0 113.34,267.0 117.34,267.0"/>
+</g>
+</svg>
