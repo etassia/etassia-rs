@@ -5,7 +5,7 @@
 
 mod archimate;
 mod archimate_sprites;
-mod creole;
+pub(crate) mod creole;
 mod detour;
 mod frame_ports;
 mod heads;
@@ -61,7 +61,11 @@ pub fn render(source: &str, family: Family) -> Result<String, Error> {
 
 #[test]
 fn probe_dump_usecase_graph() {
-    let src = std::fs::read_to_string(concat!(env!("CARGO_MANIFEST_DIR"), "/../../golden/usecase/resources.vega.tikz.tikz-scale-down--f8416a40f77a.mmd")).unwrap();
+    let src = std::fs::read_to_string(concat!(
+        env!("CARGO_MANIFEST_DIR"),
+        "/../../golden/usecase/resources.vega.tikz.tikz-scale-down--f8416a40f77a.mmd"
+    ))
+    .unwrap();
     let tree = crate::parse::parse(&src, "usecase").unwrap();
     let entries = parser::entry_entries(&tree);
     for entry in &entries {
@@ -72,19 +76,41 @@ fn probe_dump_usecase_graph() {
         .unwrap();
     let scene = layout::Layout::new(&graph).run();
     for boxed in &scene.placed {
-        println!("placed {} x={} y={} w={} h={} d={}", graph.nodes[boxed.node].id, boxed.x, boxed.y, boxed.width, boxed.height, boxed.depth);
+        println!(
+            "placed {} x={} y={} w={} h={} d={}",
+            graph.nodes[boxed.node].id, boxed.x, boxed.y, boxed.width, boxed.height, boxed.depth
+        );
     }
     for (index, node) in graph.nodes.iter().enumerate() {
-        println!("node {} {:?} lines={:?} parent={:?}", node.id, node.kind, node.lines, node.parent.map(|p| graph.nodes[p].id.clone()));
+        println!(
+            "node {} {:?} lines={:?} parent={:?}",
+            node.id,
+            node.kind,
+            node.lines,
+            node.parent.map(|p| graph.nodes[p].id.clone())
+        );
     }
     for (index, edge) in graph.edges.iter().enumerate() {
-        println!("edge{} {} -> {} label={:?} step={:?} back={} pointer={}", index, graph.nodes[edge.from].id, graph.nodes[edge.to].id, edge.label, edge.rank_step, edge.backwards, edge.pointer);
+        println!(
+            "edge{} {} -> {} label={:?} step={:?} back={} pointer={}",
+            index,
+            graph.nodes[edge.from].id,
+            graph.nodes[edge.to].id,
+            edge.label,
+            edge.rank_step,
+            edge.backwards,
+            edge.pointer
+        );
     }
 }
 
 #[test]
 fn probe_reach() {
-    let src = std::fs::read_to_string(concat!(env!("CARGO_MANIFEST_DIR"), "/../../golden/usecase/resources.vega.tikz.tikz-scale-down--f8416a40f77a.mmd")).unwrap();
+    let src = std::fs::read_to_string(concat!(
+        env!("CARGO_MANIFEST_DIR"),
+        "/../../golden/usecase/resources.vega.tikz.tikz-scale-down--f8416a40f77a.mmd"
+    ))
+    .unwrap();
     let tree = crate::parse::parse(&src, "usecase").unwrap();
     let graph = parser::Parser::new(parser::DirectionInput::TopToBottom, NodeKind::Actor)
         .parse_entries(parser::entry_entries(&tree))

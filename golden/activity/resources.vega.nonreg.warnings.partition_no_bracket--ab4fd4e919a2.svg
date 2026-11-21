@@ -1,0 +1,25 @@
+<svg
+ width="124.13789062500001"
+ height="306.156184375"
+ viewBox="0 0 124.13789062500001 306.156184375"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="none" stroke="#181818" stroke-width="1.5" x="14.0" y="71.75898437500001" width="96.05292968750001" height="68.13240000000002"/>
+<text fill="#000000" x="22.0" y="88.75898437500001" text-anchor="start" font-family="sans-serif" font-size="14">My part</text>
+<rect fill="none" stroke="#181818" stroke-width="1.5" x="54.51687500000002" y="147.89138437500003" width="55.5477734375" height="68.13240000000002"/>
+<text fill="#000000" x="62.51687500000002" y="164.89138437500003" text-anchor="start" font-family="sans-serif" font-size="14">P2</text>
+<rect fill="none" stroke="#181818" stroke-width="1.5" x="54.51687500000002" y="224.02378437500005" width="55.621015625" height="68.13239999999999"/>
+<text fill="#000000" x="62.51687500000002" y="241.02378437500005" text-anchor="start" font-family="sans-serif" font-size="14">P3</text>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M85.95,129.89 L85.95,171.89"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="85.95,171.89 82.45,162.89 89.45,162.89"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M85.95,206.02 L85.95,248.02"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="85.95,248.02 82.45,239.02 89.45,239.02"/>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="71.84394531250001" y="95.75898437500001" width="28.208984375" height="34.132400000000004" rx="12.5"/>
+<text fill="#000000" x="85.94843750000001" y="117.36058437500003" text-anchor="middle" font-family="sans-serif" font-size="12">A</text>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="71.83222656250001" y="171.89138437500003" width="28.232421875" height="34.132400000000004" rx="12.5"/>
+<text fill="#000000" x="85.94843750000001" y="193.49298437500002" text-anchor="middle" font-family="sans-serif" font-size="12">B</text>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="71.75898437500001" y="248.02378437500002" width="28.37890625" height="34.132400000000004" rx="12.5"/>
+<text fill="#000000" x="85.94843750000001" y="269.62538437500007" text-anchor="middle" font-family="sans-serif" font-size="12">C</text>
+</svg>

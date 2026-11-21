@@ -1,0 +1,37 @@
+<svg
+ width="182.41845703125"
+ height="170.2648"
+ viewBox="0 0 182.41845703125 170.2648"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M50.17,26 L28.1,26 L28.1,48"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="28.1,48 24.6,39 31.6,39"/>
+<text fill="#000000" x="50.166748046875" y="23.68" text-anchor="end" font-family="sans-serif" font-size="11">yes</text>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M98.17,26 L120.23,26 L120.23,53.07"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="120.23,53.07 116.73,44.07 123.73,44.07"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M96.23,65.07 L86.23,65.07 L86.23,92.13"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="86.23,92.13 82.73,83.13 89.73,83.13"/>
+<text fill="#000000" x="96.22900390625" y="62.74620000000001" text-anchor="end" font-family="sans-serif" font-size="11">yes</text>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M144.23,65.07 L154.23,65.07 L154.23,92.13"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="154.23,92.13 150.73,83.13 157.73,83.13"/>
+<text fill="#000000" x="144.22900390625" y="62.74620000000001" text-anchor="start" font-family="sans-serif" font-size="11">no</text>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M28.1,82.13 L28.1,144.26 L108.23,144.26"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="108.23,144.26 99.23,147.76 99.23,140.76"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M86.23,126.26 L86.23,144.26 L108.23,144.26"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="108.23,144.26 99.23,147.76 99.23,140.76"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M154.23,126.26 L154.23,144.26 L132.23,144.26"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="132.23,144.26 141.23,140.76 141.23,147.76"/>
+<polygon fill="#F1F1F1" stroke="#181818" stroke-width="0.5" points="62.17,14 86.17,14 98.17,26 86.17,38 62.17,38 50.17,26"/>
+<text fill="#000000" x="74.166748046875" y="30.157449999999997" text-anchor="middle" font-family="sans-serif" font-size="11">c?</text>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="14.0" y="48.00000000000001" width="28.208984375" height="34.132400000000004" rx="12.5"/>
+<text fill="#000000" x="28.1044921875" y="69.6016" text-anchor="middle" font-family="sans-serif" font-size="12">A</text>
+<polygon fill="#F1F1F1" stroke="#181818" stroke-width="0.5" points="108.23,53.07 132.23,53.07 144.23,65.07 132.23,77.07 108.23,77.07 96.23,65.07"/>
+<text fill="#000000" x="120.22900390625" y="69.22365" text-anchor="middle" font-family="sans-serif" font-size="11">d?</text>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="72.11279296875" y="92.13239999999999" width="28.232421875" height="34.132400000000004" rx="12.5"/>
+<text fill="#000000" x="86.22900390625" y="113.73400000000001" text-anchor="middle" font-family="sans-serif" font-size="12">B</text>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="140.03955078125" y="92.13239999999999" width="28.37890625" height="34.132400000000004" rx="12.5"/>
+<text fill="#000000" x="154.22900390625" y="113.73400000000001" text-anchor="middle" font-family="sans-serif" font-size="12">C</text>
+<polygon fill="#F1F1F1" stroke="#181818" stroke-width="0.5" points="120.23,132.26 132.23,144.26 120.23,156.26 108.23,144.26"/>
+</svg>

@@ -21,6 +21,18 @@ pub struct Style {
     strike_colour: Option<String>,
 }
 
+impl Style {
+    /// `Creole.monospace?`: the `""` toggle or a font the name of which
+    /// says mono.
+    pub(crate) fn monospace(&self) -> bool {
+        self.mono
+            || self
+                .font
+                .as_deref()
+                .is_some_and(|font| font.to_lowercase().contains("mono"))
+    }
+}
+
 #[derive(Clone, Debug)]
 pub struct Run {
     pub text: String,
@@ -73,22 +85,42 @@ pub fn parse(text: &str) -> Vec<Run> {
     let mut runs: Vec<Run> = vec![];
     for (index, token) in tokens.iter().enumerate() {
         match token {
-            Token::Text(text) => runs.push(Run { text: text.clone(), style: state.clone() }),
-            Token::Marker { text, escaped, formula_body, image, close, tag, arg } => {
+            Token::Text(text) => runs.push(Run {
+                text: text.clone(),
+                style: state.clone(),
+            }),
+            Token::Marker {
+                text,
+                escaped,
+                formula_body,
+                image,
+                close,
+                tag,
+                arg,
+            } => {
                 if *escaped {
-                    runs.push(Run { text: text.clone(), style: state.clone() });
+                    runs.push(Run {
+                        text: text.clone(),
+                        style: state.clone(),
+                    });
                     continue;
                 }
                 if let Some(body) = formula_body {
                     let mut style = state.clone();
                     style.mono = true;
-                    runs.push(Run { text: body.clone(), style });
+                    runs.push(Run {
+                        text: body.clone(),
+                        style,
+                    });
                     continue;
                 }
                 if *image {
                     let mut style = state.clone();
                     style.mono = true;
-                    runs.push(Run { text: "(Cannot decode)".into(), style });
+                    runs.push(Run {
+                        text: "(Cannot decode)".into(),
+                        style,
+                    });
                     continue;
                 }
                 let name = tag.as_deref().unwrap_or("");
@@ -99,17 +131,26 @@ pub fn parse(text: &str) -> Vec<Run> {
                         apply_toggle(&mut state, text);
                     } else {
                         // Ruby keeps an unpaired marker as literal text.
-                        runs.push(Run { text: text.clone(), style: state.clone() });
+                        runs.push(Run {
+                            text: text.clone(),
+                            style: state.clone(),
+                        });
                     }
                 } else if !name.is_empty() {
                     apply_tag(&mut state, name, *close, arg.as_deref());
                 } else {
-                    runs.push(Run { text: text.clone(), style: state.clone() });
+                    runs.push(Run {
+                        text: text.clone(),
+                        style: state.clone(),
+                    });
                 }
             }
         }
     }
-    let runs: Vec<Run> = runs.into_iter().filter(|run| !run.text.is_empty()).collect();
+    let runs: Vec<Run> = runs
+        .into_iter()
+        .filter(|run| !run.text.is_empty())
+        .collect();
     merge(runs)
 }
 
@@ -160,9 +201,7 @@ fn marker_at(text: &str) -> Option<(Token, usize)> {
     for name in ["math", "latex"] {
         let open = format!("<{name}>");
         if text.to_lowercase().starts_with(&open) {
-            if let Some(close_at) = text.to_lowercase()[open.len()..]
-                .find(&format!("</{name}>"))
-            {
+            if let Some(close_at) = text.to_lowercase()[open.len()..].find(&format!("</{name}>")) {
                 let body = text[open.len()..open.len() + close_at].to_string();
                 return Some((
                     Token::Marker {
@@ -272,7 +311,10 @@ fn paired_toggles(tokens: &[Token]) -> Vec<usize> {
     let mut open: Vec<(String, usize)> = vec![];
     let mut found = vec![];
     for (index, token) in tokens.iter().enumerate() {
-        if let Token::Marker { text, escaped, tag, .. } = token {
+        if let Token::Marker {
+            text, escaped, tag, ..
+        } = token
+        {
             if *escaped || tag.is_some() || !TOGGLES.contains(&text.as_str()) {
                 continue;
             }
@@ -306,18 +348,32 @@ fn apply_tag(state: &mut Style, name: &str, close: bool, arg: Option<&str>) {
         return;
     }
     if name == "color" {
-        if close { state.color = None; } else { state.color = arg.map(str::to_string); }
+        if close {
+            state.color = None;
+        } else {
+            state.color = arg.map(str::to_string);
+        }
         return;
     }
     if name == "size" {
-        if close { state.size = None; } else { state.size = arg.map(str::to_string); }
+        if close {
+            state.size = None;
+        } else {
+            state.size = arg.map(str::to_string);
+        }
         return;
     }
     if name == "font" {
-        if close { state.font = None; } else { state.font = arg.map(str::to_string); }
+        if close {
+            state.font = None;
+        } else {
+            state.font = arg.map(str::to_string);
+        }
         return;
     }
-    let Some(style) = tag_style(&name) else { return };
+    let Some(style) = tag_style(&name) else {
+        return;
+    };
     let mut apply = |state: &mut Style| match style {
         "bold" => state.bold = !close,
         "italic" => state.italic = !close,
@@ -366,7 +422,7 @@ pub fn assign(element: Elem, text: &str) -> Elem {
         let joined: String = runs.into_iter().map(|run| run.text).collect();
         return element.content(&joined);
     }
-    let mut element = element;
+    let mut element = element.attr("xml:space", "preserve");
     for run in runs {
         let mut tspan = Elem::new("tspan").content(&run.text);
         if run.style.bold {

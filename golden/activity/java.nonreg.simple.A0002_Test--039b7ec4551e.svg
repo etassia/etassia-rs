@@ -1,0 +1,47 @@
+<svg
+ width="1493.26904296875"
+ height="262.26480000000004"
+ viewBox="0 0 1493.26904296875 262.26480000000004"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="none" stroke="#181818" stroke-width="0.5" x="14.0" y="28.000000000000014" width="784.93505859375" height="220.2648"/>
+<path fill="none" stroke="#000000" stroke-width="1.5" d="M14,28 L14,248.26"/>
+<path fill="none" stroke="#000000" stroke-width="1.5" d="M798.94,28 L798.94,248.26"/>
+<text fill="#000000" x="406.467529296875" y="48.0" text-anchor="middle" font-family="sans-serif" font-size="18">Actor 1</text>
+<rect fill="none" stroke="#181818" stroke-width="0.5" x="820.93505859375" y="28.000000000000014" width="658.333984375" height="220.2648"/>
+<path fill="none" stroke="#000000" stroke-width="1.5" d="M820.94,28 L820.94,248.26"/>
+<path fill="none" stroke="#000000" stroke-width="1.5" d="M1479.27,28 L1479.27,248.26"/>
+<text fill="#000000" x="1150.10205078125" y="48.0" text-anchor="middle" font-family="sans-serif" font-size="18">Actor 2</text>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M177.87,76 L177.87,96"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="177.87,96 174.37,87 181.37,87"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M177.87,130.13 L177.87,140.13 L858.21,140.13 L858.21,150.13"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="858.21,150.13 854.71,141.13 861.71,141.13"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M858.21,184.26 L858.21,204.26"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="858.21,204.26 854.71,195.26 861.71,195.26"/>
+<circle fill="#222222" stroke="#222222" stroke-width="1" cx="177.87255859375" cy="66.0" r="10.0"/>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="154.60107421875" y="96.0" width="46.54296875" height="34.132400000000004" rx="12.5"/>
+<text fill="#000000" x="177.87255859375" y="117.60160000000002" text-anchor="middle" font-family="sans-serif" font-size="12">foo1</text>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="834.93505859375" y="150.13240000000002" width="46.54296875" height="34.132400000000004" rx="12.5"/>
+<text fill="#000000" x="858.20654296875" y="171.734" text-anchor="middle" font-family="sans-serif" font-size="12">foo2</text>
+<circle fill="none" stroke="#222222" stroke-width="1" cx="858.20654296875" cy="216.2648" r="11.0"/>
+<circle fill="#222222" stroke="#222222" stroke-width="1" cx="858.20654296875" cy="216.2648" r="6.0"/>
+<polygon fill="#FEFFDD" stroke="#181818" stroke-width="0.5" points="221.14,60.14 778.94,60.14 784.94,66.14 784.94,166 221.14,166 221.14,117.07 201.14,113.07 221.14,109.07"/>
+<text fill="#000000" x="228.14404296875" y="79.7043" text-anchor="start" font-family="sans-serif" font-size="13">A Long Long Long Long Long Long Long Long Long Long Long Long Long Long note</text>
+<text fill="#000000" x="228.14404296875" y="95.01440000000001" text-anchor="start" font-family="sans-serif" font-size="13">This note is on several</text>
+<text fill="#000000" x="228.14404296875" y="110.3245" text-anchor="start" font-family="sans-serif" font-size="13" xml:space="preserve"><tspan font-style="italic">lines</tspan><tspan> and can</tspan></text>
+<text fill="#000000" x="228.14404296875" y="125.6346" text-anchor="start" font-family="sans-serif" font-size="13" xml:space="preserve"><tspan>contain </tspan><tspan font-weight="bold">HTML</tspan></text>
+<text fill="#000000" x="228.14404296875" y="140.9447" text-anchor="start" font-family="sans-serif" font-size="13">====</text>
+<text fill="#000000" x="228.14404296875" y="156.2548" text-anchor="start" font-family="sans-serif" font-size="13" xml:space="preserve"><tspan>* Calling the method </tspan><tspan font-family="monospace">foo()</tspan><tspan> is prohibited overlap</tspan></text>
+<polygon fill="#FEFFDD" stroke="#181818" stroke-width="0.5" points="28,98.41 128.6,98.41 134.6,104.41 134.6,109.07 154.6,113.07 134.6,117.07 134.6,127.72 28,127.72"/>
+<text fill="#000000" x="35.0" y="117.97955" text-anchor="start" font-family="sans-serif" font-size="13">This is a note</text>
+<polygon fill="#FEFFDD" stroke="#181818" stroke-width="0.5" points="901.48,106.61 1459.27,106.61 1465.27,112.61 1465.27,227.78 901.48,227.78 901.48,171.2 881.48,167.2 901.48,163.2"/>
+<text fill="#000000" x="908.47802734375" y="126.18165000000002" text-anchor="start" font-family="sans-serif" font-size="13"> KO for this note</text>
+<text fill="#000000" x="908.47802734375" y="141.49175000000002" text-anchor="start" font-family="sans-serif" font-size="13">A Long Long Long Long Long Long Long Long Long Long Long Long Long Long note</text>
+<text fill="#000000" x="908.47802734375" y="156.80185000000003" text-anchor="start" font-family="sans-serif" font-size="13">This note is on several</text>
+<text fill="#000000" x="908.47802734375" y="172.11195000000004" text-anchor="start" font-family="sans-serif" font-size="13" xml:space="preserve"><tspan font-style="italic">lines</tspan><tspan> and can</tspan></text>
+<text fill="#000000" x="908.47802734375" y="187.42205" text-anchor="start" font-family="sans-serif" font-size="13" xml:space="preserve"><tspan>contain </tspan><tspan font-weight="bold">HTML</tspan></text>
+<text fill="#000000" x="908.47802734375" y="202.73215000000002" text-anchor="start" font-family="sans-serif" font-size="13">====</text>
+<text fill="#000000" x="908.47802734375" y="218.04225000000002" text-anchor="start" font-family="sans-serif" font-size="13" xml:space="preserve"><tspan>* Calling the method </tspan><tspan font-family="monospace">foo()</tspan><tspan> is prohibited</tspan></text>
+</svg>
