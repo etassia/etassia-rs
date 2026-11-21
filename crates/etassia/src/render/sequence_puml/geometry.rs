@@ -318,6 +318,7 @@ pub struct FragmentShape {
     centers: Vec<f64>,
     appearance_tab_fill: Option<String>,
     appearance_tab_colour: Option<String>,
+    tab_width_value: f64,
 }
 
 impl FragmentShape {
@@ -339,7 +340,9 @@ impl FragmentShape {
         };
         let pad = BASE_PAD + NEST_PAD * record.depth as f64;
         let x = low - pad;
-        let width = (high - low + 2.0 * pad).max(minimum_width(&record, measure));
+        let tab_width_value = tab_width_of(&record, &measure);
+        let width =
+            (high - low + 2.0 * pad).max(minimum_width(&record, &measure));
         FragmentShape {
             x,
             width,
@@ -348,6 +351,7 @@ impl FragmentShape {
             centers,
             appearance_tab_fill,
             appearance_tab_colour,
+            tab_width_value,
         }
     }
 
@@ -423,8 +427,7 @@ impl FragmentShape {
     }
 
     fn tab_width(&self) -> f64 {
-        let text = tab_text(&self.record);
-        (face_width(&text, 14.0, false) * self.record.tab.scale()) + 2.0 * TAB_PAD
+        self.tab_width_value
     }
 }
 
@@ -436,7 +439,11 @@ fn tab_text(record: &BlockRecord) -> String {
     }
 }
 
-fn minimum_width(record: &BlockRecord, measure: impl Fn(&str) -> f64) -> f64 {
+fn tab_width_of(record: &BlockRecord, measure: &dyn Fn(&str) -> f64) -> f64 {
+    (measure(&tab_text(record)) * record.tab.scale()) + 2.0 * TAB_PAD
+}
+
+fn minimum_width(record: &BlockRecord, measure: &dyn Fn(&str) -> f64) -> f64 {
     let label = record.label.clone();
     let guard_width = if label.is_empty() || record.keyword == "group" {
         0.0

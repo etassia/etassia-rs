@@ -549,15 +549,16 @@ fn name_end(text: &str) -> usize {
 
 /// Finds the arrow of a message line and the two endpoint tokens either
 /// side of it: the hand parse of the Ruby MESSAGE regex, whose head and
-/// trail look-arounds the `regex` crate cannot carry.
+/// trail look-arounds the `regex` crate cannot carry. Returns
+/// (from, arrow token, to, marks, colour token, label).
 #[allow(clippy::type_complexity)]
 fn message_match(
     text: &str,
 ) -> Option<(String, String, String, Option<String>, Option<String>, Option<String>)> {
     let bytes = text.as_bytes();
-    let mut pos = 0;
 
     // FROM: QUOTED | NAME | a [ / ? glued to an arrow.
+    let mut pos = 0;
     let from;
     if bytes.first() == Some(&b'"') {
         let inner = text[1..].find('"')?;
@@ -572,23 +573,17 @@ fn message_match(
         if end > 0 {
             from = text[..end].to_string();
             pos = end;
+        } else if matches!(bytes.first(), Some(b'[') | Some(b'?'))
+            && bytes.get(1).is_some_and(|b| {
+                matches!(
+                    b,
+                    b'-' | b'<' | b'\\' | b'/' | b'o' | b'x' | b'O' | b'X'
+                )
+            }) {
+            from = text[..1].to_string();
+            pos = 1;
         } else {
-            match bytes.first() {
-                Some(b'[') | Some(b'?') => {
-                    if bytes.get(1).is_some_and(|b| {
-                        matches!(
-                            b,
-                            b'-' | b'<' | b'\\' | b'/' | b'o' | b'x' | b'O' | b'X'
-                        )
-                    }) {
-                        from = text[..1].to_string();
-                        pos = 1;
-                    } else {
-                        return None;
-                    }
-                }
-                _ => return None,
-            }
+            return None;
         }
     }
 
@@ -599,141 +594,147 @@ fn message_match(
     // The arrow: an optional o/x lead, an optional left head, one dash,
     // an optional [...] style, an optional second dash, an optional right
     // head, an optional o/x trail before a blank, `]`, `?` or the end.
-    // The Ruby regex backtracks, so each head group is tried in its
-    // alternation order with the innermost groups varying first.
+    // The Ruby regex backtracks, so the arrow ends are tried in its
+    // depth-first order - the lead outermost, then the left head, then
+    // the right head, then the trail - and the first end the rest of the
+    // line parses with wins.
     let b = rest.as_bytes();
-    let heads_l_candidates: Vec<&str> = ["<<", "<", "//", "/", "\\\\", "\\"]
-        .into_iter()
-        .filter(|token| rest.starts_with(token))
-        .chain(std::iter::once(""))
-        .collect();
     let trail_ok = |at: usize| -> bool {
-        matches!(b.get(at), Some(b'o') | Some(b'x') | Some(b'O') | Some(b'X'))
-            && matches!(
-                b.get(at + 1),
-                None | Some(b' ') | Some(b'\t') | Some(b']') | Some(b'?')
-            )
+        matches!(
+            b.get(at),
+            Some(b'o') | Some(b'x') | Some(b'O') | Some(b'X')
+        ) && matches!(
+            b.get(at + 1),
+            None | Some(b' ') | Some(b'\t') | Some(b']') | Some(b'?')
+        )
     };
-    let mut arrow_token_found: Option<(usize, String)> = None;
-    'outer: for left_head in &heads_l_candidates {
-        let mut p = left_head.len();
-        if b.get(p) != Some(&b'-') {
+    let lead_ok = |at: usize| -> bool {
+        matches!(
+            b.get(at),
+            Some(b'o') | Some(b'x') | Some(b'O') | Some(b'X')
+        )
+    };
+    let mut ends: Vec<usize> = vec![];
+    for lead in [true, false] {
+        let lead_len = if lead && lead_ok(0) { 1 } else { 0 };
+        if lead && lead_len == 0 {
             continue;
         }
-        p += 1;
-        let mut extras = String::new();
-        if b.get(p) == Some(&b'[') {
-            let Some(close) = rest[p..].find(']') else { continue };
-            extras = rest[p + 1..p + close].to_string();
-            p += close + 1;
-        }
-        let double_dash = b.get(p) == Some(&b'-');
-        if double_dash {
-            p += 1;
-        }
-        let heads_r_candidates: Vec<&str> = [">>", ">", "\\\\", "//", "/"]
+        let heads_l: Vec<&str> = ["<<", "<", "//", "/", "\\\\", "\\"]
             .into_iter()
-            .filter(|token| rest[p..].starts_with(token))
+            .filter(|token| rest[lead_len..].starts_with(token))
             .chain(std::iter::once(""))
             .collect();
-        for right_head in &heads_r_candidates {
-            let mut p = p + right_head.len();
-            let base = p;
-            for trail in [true, false] {
-                let mut p = base;
-                if trail && trail_ok(p) {
-                    p += 1;
-                } else if trail {
-                    continue;
+        for left_head in &heads_l {
+            let mut p = lead_len + left_head.len();
+            if b.get(p) != Some(&b'-') {
+                continue;
+            }
+            p += 1;
+            if b.get(p) == Some(&b'[') {
+                let Some(close) = rest[p..].find(']') else { continue };
+                p += close + 1;
+            }
+            if b.get(p) == Some(&b'-') {
+                p += 1;
+            }
+            let heads_r: Vec<&str> = [">>", ">", "\\\\", "\\", "//", "/"]
+                .into_iter()
+                .filter(|token| rest[p..].starts_with(token))
+                .chain(std::iter::once(""))
+                .collect();
+            for right_head in &heads_r {
+                let base = p + right_head.len();
+                for trail in [true, false] {
+                    if trail && !trail_ok(base) {
+                        continue;
+                    }
+                    ends.push(base + usize::from(trail));
                 }
-                arrow_token_found = Some((p, rest[..p].to_string()));
-                break 'outer;
             }
         }
     }
-    let Some((arrow_len, _arrow_text)) = arrow_token_found else {
-        return None;
-    };
-    let extras = {
-        // Recover the [...] extras of the chosen token for ArrowSyntax.
-        let token = &rest[..arrow_len];
-        match (token.find('['), token.find(']')) {
-            (Some(open), Some(close)) if open < close => {
-                token[open + 1..close].to_string()
-            }
-            _ => String::new(),
-        }
-    };
-    let _ = extras;
-    let p = arrow_len;
 
-    // TO: QUOTED | NAME | a glued ] / ?.
-    let mut after = &rest[p..];
-    let lead_blanks = after.len() - after.trim_start_matches([' ', '\t']).len();
-    after = &after[lead_blanks..];
-    let to;
-    if after.starts_with('"') {
-        let inner = after[1..].find('"')?;
-        if inner == 0 {
+    // TO: QUOTED | NAME | a glued ] / ?; then marks, colour, label.
+    let mut ends = ends.into_iter();
+    loop {
+        let Some(arrow_len) = ends.next() else {
             return None;
-        }
-        let close = inner + 1;
-        to = after[..=close].to_string();
-        after = &after[close + 1..];
-    } else {
-        let end = name_end(after);
-        if end > 0 {
-            to = after[..end].to_string();
-            after = &after[end..];
-        } else if lead_blanks == 0 && after.starts_with([']', '?']) && p >= 1 {
-            to = after[..1].to_string();
-            after = &after[1..];
+        };
+        let mut after = &rest[arrow_len..];
+        let lead_blanks = after.len() - after.trim_start_matches([' ', '\t']).len();
+        after = &after[lead_blanks..];
+        let to;
+        if after.starts_with('"') {
+            let inner = after[1..].find('"')?;
+            if inner == 0 {
+                continue;
+            }
+            let close = inner + 1;
+            to = after[..=close].to_string();
+            after = &after[close + 1..];
         } else {
-            return None;
+            let end = name_end(after);
+            if end > 0 {
+                to = after[..end].to_string();
+                after = &after[end..];
+            } else if lead_blanks == 0 && after.starts_with([']', '?']) {
+                to = after[..1].to_string();
+                after = &after[1..];
+            } else {
+                continue;
+            }
         }
-    }
 
-    // [ \t]* marks? [ \t]* colour? [ \t]* (: label)?
-    let mut rest_tail = after.trim_start_matches([' ', '\t']);
-    let mut marks = None;
-    for candidate in ["--++", "++--", "++", "--", "!!"] {
-        if let Some(rest) = rest_tail.strip_prefix(candidate) {
-            marks = Some(candidate.to_string());
-            rest_tail = rest;
-            break;
+        // [ \t]* marks? [ \t]* colour? [ \t]* (: label)?
+        let mut tail = after.trim_start_matches([' ', '\t']);
+        let mut marks = None;
+        for candidate in ["--++", "++--", "++", "--", "!!"] {
+            if let Some(rest) = tail.strip_prefix(candidate) {
+                marks = Some(candidate.to_string());
+                tail = rest;
+                break;
+            }
         }
-    }
-    let mut rest_tail = rest_tail.trim_start_matches([' ', '\t']);
-    let mut colour = None;
-    if rest_tail.starts_with('#') {
-        let end = rest_tail[1..]
-            .find(|c: char| !(c.is_ascii_hexdigit() || c.is_ascii_alphabetic()))
-            .map(|stop| stop + 1)
-            .unwrap_or(rest_tail.len());
-        let body = &rest_tail[1..end];
-        let boundary = rest_tail[end..]
-            .chars()
-            .next()
-            .is_none_or(|c| !(c.is_ascii_alphanumeric() || c == '_'));
-        let hex = (body.len() == 6 || body.len() == 3)
-            && body.bytes().all(|b| b.is_ascii_hexdigit());
-        let named = boundary
-            && !body.is_empty()
-            && body.bytes().all(|b| b.is_ascii_alphabetic())
-            && COLOUR_NAMES.contains(&body.to_lowercase().as_str());
-        if hex || named {
-            colour = Some(rest_tail[..end].to_string());
-            rest_tail = &rest_tail[end..];
+        tail = tail.trim_start_matches([' ', '\t']);
+        let mut colour = None;
+        if tail.starts_with('#') {
+            let end = tail[1..]
+                .find(|c: char| !(c.is_ascii_hexdigit() || c.is_ascii_alphabetic()))
+                .map(|stop| stop + 1)
+                .unwrap_or(tail.len());
+            let body = &tail[1..end];
+            let boundary = tail[end..]
+                .chars()
+                .next()
+                .is_none_or(|c| !(c.is_ascii_alphanumeric() || c == '_'));
+            let hex = (body.len() == 6 || body.len() == 3)
+                && body.bytes().all(|b| b.is_ascii_hexdigit());
+            let named = boundary
+                && !body.is_empty()
+                && body.bytes().all(|b| b.is_ascii_alphabetic())
+                && COLOUR_NAMES.contains(&body.to_lowercase().as_str());
+            if hex || named {
+                colour = Some(tail[..end].to_string());
+                tail = &tail[end..];
+            }
         }
+        let tail = tail.trim_start_matches([' ', '\t']);
+        let mut label = None;
+        if let Some(rest) = tail.strip_prefix(':') {
+            label = Some(rest.trim_start_matches([' ', '\t']).to_string());
+        } else if !tail.is_empty() {
+            continue;
+        }
+        break Some((
+            from,
+            rest[..arrow_len].to_string(),
+            to,
+            marks,
+            colour,
+            label,
+        ));
     }
-    let tail = rest_tail.trim_start_matches([' ', '\t']);
-    let mut label = None;
-    if let Some(rest) = tail.strip_prefix(':') {
-        label = Some(rest.trim_start_matches([' ', '\t']).to_string());
-    } else if !tail.is_empty() {
-        return None;
-    }
-    Some((from, rest[..p].to_string(), to, marks, colour, label))
 }
 
 const COLOUR_NAMES: &[&str] = &[
@@ -1474,6 +1475,7 @@ impl Parser {
             "left" => NoteSide::Left,
             "right" => NoteSide::Right,
             "across" => NoteSide::Across,
+            "over" => NoteSide::Over,
             "top" => NoteSide::Top,
             _ => NoteSide::Bottom,
         };

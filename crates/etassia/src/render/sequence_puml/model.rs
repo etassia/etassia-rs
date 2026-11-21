@@ -299,6 +299,15 @@ impl Note {
     }
 }
 
+/// Ruby `text.split("\n")`: a trailing empty line is dropped.
+pub fn ruby_split(text: &str) -> Vec<&str> {
+    let mut lines: Vec<&str> = text.split('\n').collect();
+    while lines.last().is_some_and(|last| last.is_empty()) {
+        lines.pop();
+    }
+    lines
+}
+
 /// Ruby `text.split(/\\n|\n/, -1)`.
 pub fn split_lines(text: &str) -> Vec<&str> {
     let mut out = vec![];
@@ -360,7 +369,7 @@ impl Numbering {
         // run of zeros, then text with none of them.
         let (format, bold) = match format.strip_prefix("<b>") {
             Some(rest) => (rest, true),
-            None => (format, true),
+            None => (format, false),
         };
         let bytes = format.as_bytes();
         let mut i = 0;
@@ -503,7 +512,7 @@ impl Chrome {
             "legend" => &self.legend,
             _ => return vec![],
         };
-        text.as_deref().unwrap_or("").split('\n').collect()
+        ruby_split(text.as_deref().unwrap_or(""))
     }
 }
 
