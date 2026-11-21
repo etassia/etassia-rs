@@ -1,0 +1,32 @@
+<svg
+ width="97.39999999999999"
+ height="292.0"
+ viewBox="0 0 97.39999999999999 292.0"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="#FFFFFF" x="0.0" y="0.0" width="97.39999999999999" height="292.0"/>
+<g id="state-s1">
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="32.0" y="112.0" width="34.784" height="50.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="32.0" y1="138.49" x2="66.78399999999999" y2="138.49"/>
+  <text fill="#000000" x="49.391999999999996" y="130.145" text-anchor="middle" font-family="sans-serif" font-size="14">s1</text>
+</g>
+<g id="state-s2">
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="32.0" y="222.0" width="34.784" height="50.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="32.0" y1="248.49" x2="66.78399999999999" y2="248.49"/>
+  <text fill="#000000" x="49.391999999999996" y="240.145" text-anchor="middle" font-family="sans-serif" font-size="14">s2</text>
+</g>
+<g id="state-root_start">
+  <circle fill="#222222" stroke="none" cx="49.391999999999996" cy="42.0" r="10.0"/>
+</g>
+<g id="transition-root_start_to_s1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 49.39 52.0 L 49.39 112.0"/>
+  <polygon fill="#181818" points="49.39,112.0 47.39,108.0 51.39,108.0"/>
+</g>
+<g id="transition-s1_to_s2">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 49.39 162.0 L 49.39 222.0"/>
+  <polygon fill="#181818" points="49.39,222.0 47.39,218.0 51.39,218.0"/>
+  <text fill="#000000" x="66.39599999999999" y="192.0" text-anchor="middle" font-family="sans-serif" font-size="12">play</text>
+</g>
+</svg>

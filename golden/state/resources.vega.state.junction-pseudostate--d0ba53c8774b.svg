@@ -1,0 +1,42 @@
+<svg
+ width="236.05599999999998"
+ height="292.0"
+ viewBox="0 0 236.05599999999998 292.0"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="#FFFFFF" x="0.0" y="0.0" width="236.05599999999998" height="292.0"/>
+<g id="state-junction1">
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="37.67133333333334" y="112.0" width="76.02799999999999" height="50.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="37.67133333333334" y1="138.49" x2="113.69933333333333" y2="138.49"/>
+  <text fill="#000000" x="75.68533333333333" y="130.145" text-anchor="middle" font-family="sans-serif" font-size="14">junction1</text>
+</g>
+<g id="state-root_start">
+  <circle fill="#222222" stroke="none" cx="75.68533333333333" cy="42.0" r="10.0"/>
+</g>
+<g id="state-StateA">
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="32.0" y="222.0" width="62.028" height="50.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="32.0" y1="248.49" x2="94.02799999999999" y2="248.49"/>
+  <text fill="#000000" x="63.013999999999996" y="240.145" text-anchor="middle" font-family="sans-serif" font-size="14">StateA</text>
+</g>
+<g id="state-StateB">
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="154.028" y="222.0" width="62.028" height="50.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="154.028" y1="248.49" x2="216.05599999999998" y2="248.49"/>
+  <text fill="#000000" x="185.042" y="240.145" text-anchor="middle" font-family="sans-serif" font-size="14">StateB</text>
+</g>
+<g id="transition-root_start_to_junction1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 75.69 52.0 L 75.69 112.0"/>
+  <polygon fill="#181818" points="75.69,112.0 73.69,108.0 77.69,108.0"/>
+</g>
+<g id="transition-junction1_to_StateA">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 63.01 162.0 L 63.01 222.0"/>
+  <polygon fill="#181818" points="63.01,222.0 61.01,218.0 65.01,218.0"/>
+  <text fill="#000000" x="85.526" y="192.0" text-anchor="middle" font-family="sans-serif" font-size="12">[x &gt; 0]</text>
+</g>
+<g id="transition-junction1_to_StateB">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 88.36 162.0 C 104.47 163.67 168.93 162.0 185.04 172.0 C 201.16 182.0 185.04 213.67 185.04 222.0"/>
+  <polygon fill="#181818" points="185.04,222.0 183.04,218.0 187.04,218.0"/>
+  <text fill="#000000" x="141.0308" y="160.0" text-anchor="middle" font-family="sans-serif" font-size="12">[x &lt;= 0]</text>
+</g>
+</svg>

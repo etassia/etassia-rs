@@ -84,6 +84,17 @@ impl Elem {
         self.children.push(e);
     }
 
+    /// The number of child elements.
+    pub fn children_len(&self) -> usize {
+        self.children.len()
+    }
+
+    /// Inserts a child element at `at`, shifting the rest down.
+    pub fn insert_child(&mut self, at: usize, e: Elem) {
+        let at = at.min(self.children.len());
+        self.children.insert(at, e);
+    }
+
     /// In-place [`attr`](Elem::attr).
     pub fn set(&mut self, name: &str, value: String) {
         match self.attrs.iter_mut().find(|(n, _)| n == name) {

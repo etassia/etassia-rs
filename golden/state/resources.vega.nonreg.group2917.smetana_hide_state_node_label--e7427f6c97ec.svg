@@ -1,0 +1,35 @@
+<svg
+ width="128.798"
+ height="322.0"
+ viewBox="0 0 128.798 322.0"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="#FFFFFF" x="0.0" y="0.0" width="128.798" height="322.0"/>
+<g id="state-Idle">
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="49.115" y="32.0" width="42.568" height="50.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="49.115" y1="58.489999999999995" x2="91.68299999999999" y2="58.489999999999995"/>
+  <text fill="#000000" x="70.399" y="50.145" text-anchor="middle" font-family="sans-serif" font-size="14">Idle</text>
+</g>
+<g id="state-Charging">
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="32.0" y="142.0" width="76.798" height="50.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="32.0" y1="168.49" x2="108.798" y2="168.49"/>
+  <text fill="#000000" x="70.399" y="160.145" text-anchor="middle" font-family="sans-serif" font-size="14">Charging</text>
+</g>
+<g id="state-Faulted">
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="37.054" y="252.0" width="66.69" height="50.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="37.054" y1="278.49" x2="103.744" y2="278.49"/>
+  <text fill="#000000" x="70.399" y="270.145" text-anchor="middle" font-family="sans-serif" font-size="14">Faulted</text>
+</g>
+<g id="transition-Idle_to_Charging">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 70.4 82.0 L 70.4 142.0"/>
+  <polygon fill="#181818" points="70.4,142.0 68.4,138.0 72.4,138.0"/>
+  <text fill="#000000" x="88.069" y="112.0" text-anchor="middle" font-family="sans-serif" font-size="12">start</text>
+</g>
+<g id="transition-Charging_to_Faulted">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 70.4 192.0 L 70.4 252.0"/>
+  <polygon fill="#181818" points="70.4,252.0 68.4,248.0 72.4,248.0"/>
+  <text fill="#000000" x="87.739" y="222.0" text-anchor="middle" font-family="sans-serif" font-size="12">fault</text>
+</g>
+</svg>

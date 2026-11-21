@@ -1,0 +1,30 @@
+<svg
+ width="227.356"
+ height="102.0"
+ viewBox="0 0 227.356 102.0"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="#FFFFFF" x="0.0" y="0.0" width="227.356" height="102.0"/>
+<g id="state-A">
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="32.0" y="32.0" width="29.338" height="50.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="32.0" y1="58.489999999999995" x2="61.338" y2="58.489999999999995"/>
+  <text fill="#000000" x="46.669" y="50.145" text-anchor="middle" font-family="sans-serif" font-size="14">A</text>
+</g>
+<g id="state-B">
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="121.338" y="32.0" width="29.338" height="50.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="121.338" y1="58.489999999999995" x2="150.676" y2="58.489999999999995"/>
+  <text fill="#000000" x="136.007" y="50.145" text-anchor="middle" font-family="sans-serif" font-size="14">B</text>
+</g>
+<g id="transition-A_to_A">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 61.34 49.5 C 66.0 49.5 84.67 47.0 89.34 49.5 C 94.0 52.0 94.0 62.0 89.34 64.5 C 84.67 67.0 66.0 64.5 61.34 64.5"/>
+  <polygon fill="#181818" points="61.34,64.5 65.34,62.5 65.34,66.5"/>
+  <text fill="#000000" x="106.678" y="49.900000000000006" text-anchor="middle" font-family="sans-serif" font-size="12">evt1</text>
+</g>
+<g id="transition-B_to_B">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 150.68 49.5 C 155.34 49.5 174.01 47.0 178.68 49.5 C 183.34 52.0 183.34 62.0 178.68 64.5 C 174.01 67.0 155.34 64.5 150.68 64.5"/>
+  <polygon fill="#181818" points="150.68,64.5 154.68,62.5 154.68,66.5"/>
+  <text fill="#000000" x="196.016" y="49.900000000000006" text-anchor="middle" font-family="sans-serif" font-size="12">evt2</text>
+</g>
+</svg>

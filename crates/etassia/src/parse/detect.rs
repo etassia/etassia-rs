@@ -163,6 +163,77 @@ fn starts_declaration(text: &str) -> bool {
         .is_some_and(|c| c.is_ascii_alphabetic() || c == '_')
 }
 
+// -- state (the Ruby families run Further, State, Usecase, Component) --
+
+/// The state lane, between the Further group and Usecase: no foreign
+/// keyword, and at least one state marker. Ruby `State.state?`.
+pub fn detect_state(source: &str) -> bool {
+    let entries = significant_lines(source);
+    let other = [
+        "class", "abstract", "interface", "enum", "participant", "actor",
+        "usecase", "component", "start", "partition", "fork",
+    ];
+    if entries.iter().any(|text| first_word_is(text, &other)) {
+        return false;
+    }
+    entries.iter().any(|text| state_marker(text))
+}
+
+/// Ruby `State::MARKER`: a `state` declaration whose tail carries no
+/// arrow, a transition from or to `[*]`, or a marker-ended arrow. The
+/// declaration's negative lookahead runs separately: the shared `regex`
+/// crate carries no look-around.
+fn state_marker(text: &str) -> bool {
+    if let Some(m) = state_decl().captures(text) {
+        if no_arrow_tail(&m[1]) {
+            return true;
+        }
+    }
+    state_arms().is_match(text)
+}
+
+fn state_decl() -> &'static Regex {
+    static CELL: OnceLock<Regex> = OnceLock::new();
+    CELL.get_or_init(|| {
+        Regex::new(r"(?i)\Astate\s+(\S.*)\z").expect("state detect pattern")
+    })
+}
+
+fn state_arms() -> &'static Regex {
+    static CELL: OnceLock<Regex> = OnceLock::new();
+    CELL.get_or_init(|| {
+        Regex::new(concat!(
+            r"(?i)\A(?:",
+            r"\[\*\][ \t]*-+(?:[a-z]+-+)?>",
+            r"|<-+[ \t]*\[\*\]",
+            r"|\S+[ \t]+-+(?:[a-z]+-+)?>[ \t]*\[\*\]",
+            r")",
+        ))
+        .expect("state detect pattern")
+    })
+}
+
+/// Ruby's `(?!.*(?:-+>|<-+))`: no arrow anywhere in the rest of the line.
+fn no_arrow_tail(text: &str) -> bool {
+    static CELL: OnceLock<Regex> = OnceLock::new();
+    let re = CELL.get_or_init(|| Regex::new(r"(?i)-+>|<-+").expect("arrow pattern"));
+    !re.is_match(text)
+}
+
+/// Whether the line's first word is one of `words` (Ruby's `\b`).
+fn first_word_is(text: &str, words: &[&str]) -> bool {
+    let first_word = text
+        .split(|c: char| !c.is_ascii_alphanumeric())
+        .find(|word| !word.is_empty())
+        .unwrap_or("");
+    let word_boundary = text[first_word.len()..]
+        .chars()
+        .next()
+        .map(|c| !c.is_alphanumeric())
+        .unwrap_or(true);
+    words.contains(&first_word.to_ascii_lowercase().as_str()) && word_boundary
+}
+
 /// The use case lane, tried before component (the Ruby families run
 /// Further, State, Usecase, Component in that order): no foreign keyword,
 /// and at least one use case marker. Ruby `Usecase.usecase?`.

@@ -1,0 +1,165 @@
+<svg
+ width="1271.286"
+ height="480.93999999999994"
+ viewBox="0 0 1271.286 480.93999999999994"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="#FFFFFF" x="0.0" y="0.0" width="1271.286" height="480.93999999999994"/>
+<g id="state-module">
+  <path fill="#F1F1F1" d="M44.5,32.0 L1238.786,32.0 A12.5,12.5 0 0 1 1251.286,44.5 L1251.286,54.0 L32.0,54.0 L32.0,44.5 A12.5,12.5 0 0 1 44.5,32.0"/>
+  <rect fill="none" stroke="#181818" stroke-width="0.5" x="32.0" y="32.0" width="1219.286" height="428.93999999999994" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="32.0" y1="54.0" x2="1251.286" y2="54.0"/>
+  <text fill="#000000" x="641.643" y="47.9" text-anchor="middle" font-family="sans-serif" font-size="14">module</text>
+  <g id="state-Somp">
+    <path fill="#F1F1F1" d="M636.72,342.96 L1015.0999999999999,342.96 A12.5,12.5 0 0 1 1027.6,355.46 L1027.6,364.96 L624.22,364.96 L624.22,355.46 A12.5,12.5 0 0 1 636.72,342.96"/>
+    <rect fill="none" stroke="#181818" stroke-width="0.5" x="624.22" y="342.96" width="403.38" height="102.0" rx="12.5" ry="12.5"/>
+    <line stroke="#181818" stroke-width="0.5" x1="624.22" y1="364.96" x2="1027.6" y2="364.96"/>
+    <text fill="#000000" x="825.9100000000001" y="358.86" text-anchor="middle" font-family="sans-serif" font-size="14">Somp</text>
+    <g id="state-entry1">
+      <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="640.22" y="378.96" width="58.906" height="50.0" rx="12.5" ry="12.5"/>
+      <line stroke="#181818" stroke-width="0.5" x1="640.22" y1="405.45" x2="699.126" y2="405.45"/>
+      <text fill="#000000" x="669.673" y="397.105" text-anchor="middle" font-family="sans-serif" font-size="14">entry1</text>
+    </g>
+    <g id="state-entry2">
+      <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="759.126" y="378.96" width="58.906" height="50.0" rx="12.5" ry="12.5"/>
+      <line stroke="#181818" stroke-width="0.5" x1="759.126" y1="405.45" x2="818.0319999999999" y2="405.45"/>
+      <text fill="#000000" x="788.579" y="397.105" text-anchor="middle" font-family="sans-serif" font-size="14">entry2</text>
+    </g>
+    <g id="state-sin">
+      <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="878.032" y="378.96" width="37.891999999999996" height="50.0" rx="12.5" ry="12.5"/>
+      <line stroke="#181818" stroke-width="0.5" x1="878.032" y1="405.45" x2="915.924" y2="405.45"/>
+      <text fill="#000000" x="896.9780000000001" y="397.105" text-anchor="middle" font-family="sans-serif" font-size="14">sin</text>
+    </g>
+    <g id="state-sin2">
+      <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="965.924" y="378.96" width="45.676" height="50.0" rx="12.5" ry="12.5"/>
+      <line stroke="#181818" stroke-width="0.5" x1="965.924" y1="405.45" x2="1011.6" y2="405.45"/>
+      <text fill="#000000" x="988.762" y="397.105" text-anchor="middle" font-family="sans-serif" font-size="14">sin2</text>
+    </g>
+  </g>
+  <g id="state-flop">
+    <path fill="#F1F1F1" d="M68.5,342.96 L587.72,342.96 A12.5,12.5 0 0 1 600.22,355.46 L600.22,364.96 L56.0,364.96 L56.0,355.46 A12.5,12.5 0 0 1 68.5,342.96"/>
+    <rect fill="none" stroke="#181818" stroke-width="0.5" x="56.0" y="342.96" width="544.22" height="104.97999999999999" rx="12.5" ry="12.5"/>
+    <line stroke="#181818" stroke-width="0.5" x1="56.0" y1="364.96" x2="600.22" y2="364.96"/>
+    <text fill="#000000" x="328.11" y="358.86" text-anchor="middle" font-family="sans-serif" font-size="14">flop</text>
+    <g id="state-sig_in">
+      <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="72.0" y="378.96" width="56.568" height="50.0" rx="12.5" ry="12.5"/>
+      <line stroke="#181818" stroke-width="0.5" x1="72.0" y1="405.45" x2="128.56799999999998" y2="405.45"/>
+      <text fill="#000000" x="100.28399999999999" y="397.105" text-anchor="middle" font-family="sans-serif" font-size="14">sig_in</text>
+    </g>
+    <g id="state-sig_ff">
+      <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="188.56799999999998" y="378.96" width="53.46" height="50.0" rx="12.5" ry="12.5"/>
+      <line stroke="#181818" stroke-width="0.5" x1="188.56799999999998" y1="405.45" x2="242.028" y2="405.45"/>
+      <text fill="#000000" x="215.29799999999997" y="397.105" text-anchor="middle" font-family="sans-serif" font-size="14">sig_ff</text>
+    </g>
+    <g id="state-flop_0">
+      <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="372.028" y="378.96" width="81.096" height="52.98" rx="12.5" ry="12.5"/>
+      <line stroke="#181818" stroke-width="0.5" x1="372.028" y1="405.45" x2="453.124" y2="405.45"/>
+      <text fill="#000000" x="412.576" y="397.105" text-anchor="middle" font-family="sans-serif" font-size="14">flop_0</text>
+      <text fill="#000000" x="378.028" y="423.35" text-anchor="start" font-family="sans-serif" font-size="14">sig_ff := 0</text>
+    </g>
+    <g id="state-flop_1">
+      <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="503.124" y="378.96" width="81.096" height="52.98" rx="12.5" ry="12.5"/>
+      <line stroke="#181818" stroke-width="0.5" x1="503.124" y1="405.45" x2="584.22" y2="405.45"/>
+      <text fill="#000000" x="543.672" y="397.105" text-anchor="middle" font-family="sans-serif" font-size="14">flop_1</text>
+      <text fill="#000000" x="509.124" y="423.35" text-anchor="start" font-family="sans-serif" font-size="14">sig_ff := 1</text>
+    </g>
+    <g id="state-flop_start">
+      <circle fill="#222222" stroke="none" cx="312.028" cy="405.45" r="10.0"/>
+    </g>
+  </g>
+  <g id="state-counter">
+    <path fill="#F1F1F1" d="M403.358,68.0 L1156.002,68.0 A12.5,12.5 0 0 1 1168.502,80.5 L1168.502,90.0 L390.858,90.0 L390.858,80.5 A12.5,12.5 0 0 1 403.358,68.0"/>
+    <rect fill="none" stroke="#181818" stroke-width="0.5" x="390.858" y="68.0" width="777.6439999999999" height="214.95999999999998" rx="12.5" ry="12.5"/>
+    <line stroke="#181818" stroke-width="0.5" x1="390.858" y1="90.0" x2="1168.502" y2="90.0"/>
+    <text fill="#000000" x="779.68" y="83.9" text-anchor="middle" font-family="sans-serif" font-size="14">counter</text>
+    <g id="state-count_start">
+      <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="414.858" y="104.0" width="89.258" height="50.0" rx="12.5" ry="12.5"/>
+      <line stroke="#181818" stroke-width="0.5" x1="414.858" y1="130.49" x2="504.116" y2="130.49"/>
+      <text fill="#000000" x="459.487" y="122.145" text-anchor="middle" font-family="sans-serif" font-size="14">count_start</text>
+    </g>
+    <g id="state-count_done">
+      <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="564.116" y="104.0" width="93.164" height="50.0" rx="12.5" ry="12.5"/>
+      <line stroke="#181818" stroke-width="0.5" x1="564.116" y1="130.49" x2="657.28" y2="130.49"/>
+      <text fill="#000000" x="610.698" y="122.145" text-anchor="middle" font-family="sans-serif" font-size="14">count_done</text>
+    </g>
+    <g id="state-state_15">
+      <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="717.28" y="104.0" width="107.164" height="50.0" rx="12.5" ry="12.5"/>
+      <line stroke="#181818" stroke-width="0.5" x1="717.28" y1="130.49" x2="824.444" y2="130.49"/>
+      <text fill="#000000" x="770.862" y="122.145" text-anchor="middle" font-family="sans-serif" font-size="14">count_val[3:0]</text>
+    </g>
+    <g id="state-counter_start">
+      <circle fill="#222222" stroke="none" cx="894.444" cy="130.49" r="10.0"/>
+    </g>
+    <g id="state-count_idle">
+      <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="954.444" y="104.0" width="107.556" height="52.98" rx="12.5" ry="12.5"/>
+      <line stroke="#181818" stroke-width="0.5" x1="954.444" y1="130.49" x2="1062.0" y2="130.49"/>
+      <text fill="#000000" x="1008.222" y="122.145" text-anchor="middle" font-family="sans-serif" font-size="14">count_idle</text>
+      <text fill="#000000" x="960.444" y="148.39" text-anchor="start" font-family="sans-serif" font-size="14">count_val := 0</text>
+    </g>
+    <g id="state-count_ongoing">
+      <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="801.942" y="216.98" width="179.544" height="52.98" rx="12.5" ry="12.5"/>
+      <line stroke="#181818" stroke-width="0.5" x1="801.942" y1="243.47" x2="981.486" y2="243.47"/>
+      <text fill="#000000" x="891.714" y="235.125" text-anchor="middle" font-family="sans-serif" font-size="14">count_ongoing</text>
+      <text fill="#000000" x="807.942" y="261.37" text-anchor="start" font-family="sans-serif" font-size="14">count_val := count_val +1</text>
+    </g>
+    <g id="state-count_finish">
+      <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="1031.4859999999999" y="216.98" width="113.016" height="52.98" rx="12.5" ry="12.5"/>
+      <line stroke="#181818" stroke-width="0.5" x1="1031.4859999999999" y1="243.47" x2="1144.502" y2="243.47"/>
+      <text fill="#000000" x="1087.994" y="235.125" text-anchor="middle" font-family="sans-serif" font-size="14">count_finish</text>
+      <text fill="#000000" x="1037.4859999999999" y="261.37" text-anchor="start" font-family="sans-serif" font-size="14">count_done:=1</text>
+    </g>
+  </g>
+  <g id="state-ex">
+    <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="1192.502" y="68.0" width="34.784" height="50.0" rx="12.5" ry="12.5"/>
+    <line stroke="#181818" stroke-width="0.5" x1="1192.502" y1="94.49" x2="1227.286" y2="94.49"/>
+    <text fill="#000000" x="1209.894" y="86.145" text-anchor="middle" font-family="sans-serif" font-size="14">ex</text>
+  </g>
+  <g id="state-exitAx">
+    <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="308.736" y="68.0" width="58.122" height="50.0" rx="12.5" ry="12.5"/>
+    <line stroke="#181818" stroke-width="0.5" x1="308.736" y1="94.49" x2="366.858" y2="94.49"/>
+    <text fill="#000000" x="337.79699999999997" y="86.145" text-anchor="middle" font-family="sans-serif" font-size="14">exitAx</text>
+  </g>
+</g>
+<g id="transition-sin_to_sin2">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 915.92 403.96 L 965.92 403.96"/>
+  <polygon fill="#181818" points="965.92,403.96 961.92,405.96 961.92,401.96"/>
+</g>
+<g id="transition-flop_start_to_flop_0">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 322.03 405.45 L 372.03 405.45"/>
+  <polygon fill="#181818" points="372.03,405.45 368.03,407.45 368.03,403.45"/>
+</g>
+<g id="transition-flop_0_to_flop_1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 453.12 405.45 L 503.12 405.45"/>
+  <polygon fill="#181818" points="503.12,405.45 499.12,407.45 499.12,403.45"/>
+  <text fill="#000000" x="478.124" y="393.45" text-anchor="middle" font-family="sans-serif" font-size="12">sig_in</text>
+</g>
+<g id="transition-counter_start_to_count_idle">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 904.44 130.49 L 954.44 130.49"/>
+  <polygon fill="#181818" points="954.44,130.49 950.44,132.49 950.44,128.49"/>
+</g>
+<g id="transition-count_idle_to_count_ongoing">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 980.9 156.98 L 919.03 216.98"/>
+  <polygon fill="#181818" points="919.03,216.98 920.5091,212.7596 923.2938,215.631"/>
+  <text fill="#000000" x="949.9680000000001" y="174.98000000000002" text-anchor="middle" font-family="sans-serif" font-size="12">count_start</text>
+</g>
+<g id="transition-count_ongoing_to_count_finish">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 981.49 243.47 L 1031.49 243.47"/>
+  <polygon fill="#181818" points="1031.49,243.47 1027.49,245.47 1027.49,241.47"/>
+  <text fill="#000000" x="1006.486" y="231.47" text-anchor="middle" font-family="sans-serif" font-size="12">count_val != MAX_VAL</text>
+</g>
+<g id="transition-count_finish_to_count_idle">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 1069.29 216.98 L 1026.93 156.98"/>
+  <polygon fill="#181818" points="1026.93,156.98 1030.8708,159.0942 1027.6031,161.4012"/>
+</g>
+<g id="transition-exitAx_to_entry1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 364.48 118.0 C 364.88 149.49 323.57 273.47 366.86 306.96 C 410.15 340.45 578.2 306.96 624.22 318.96 C 670.24 330.96 639.86 368.96 642.99 378.96"/>
+  <polygon fill="#181818" points="642.99,378.96 639.8865,375.74 643.7038,374.5452"/>
+</g>
+<g id="transition-sig_ff_to_entry2">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 242.03 403.96 C 259.36 398.54 306.85 379.62 346.03 371.45 C 385.21 363.28 433.43 357.71 477.12 354.96 C 520.82 352.21 567.22 354.96 608.22 354.96 C 649.22 354.96 697.98 346.79 723.13 354.96 C 748.28 363.13 753.13 395.79 759.13 403.96"/>
+  <polygon fill="#181818" points="759.13,403.96 755.1503,401.9199 758.3743,399.5522"/>
+  <text fill="#000000" x="346.6397078868621" y="383.3730559051813" text-anchor="middle" font-family="sans-serif" font-size="12">"!"</text>
+</g>
+</svg>
