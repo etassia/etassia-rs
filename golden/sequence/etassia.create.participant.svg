@@ -1,0 +1,51 @@
+<svg
+ width="145.55712890625"
+ height="221.08810000000003"
+ viewBox="0 0 145.55712890625 221.08810000000003"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<line stroke="#181818" stroke-width="0.5" x1="31.78857421875" y1="50.488299999999995" x2="31.78857421875" y2="170.59980000000002" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="79.9794921875" y1="50.488299999999995" x2="79.9794921875" y2="170.59980000000002" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="113.66943359375" y1="121.5376" x2="113.66943359375" y2="170.59980000000002" stroke-dasharray="5,5"/>
+<g id="message-1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 31.78857421875 82.7988 L 79.9794921875 82.7988"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="69.9794921875,78.7988 79.9794921875,82.7988 69.9794921875,86.7988 73.9794921875,82.7988"/>
+  <text fill="#000000" x="55.884033203125" y="76.7988" text-anchor="middle" font-family="sans-serif" font-size="13">one</text>
+</g>
+<g id="message-2">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 31.78857421875 112.1093 L 101.78173828125 112.1093"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="91.78173828125,108.1093 101.78173828125,112.1093 91.78173828125,116.1093 95.78173828125,112.1093"/>
+  <text fill="#000000" x="66.78515625" y="106.1093" text-anchor="middle" font-family="sans-serif" font-size="13">new</text>
+</g>
+<g id="message-3">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 113.66943359375 153.59980000000002 L 31.78857421875 153.59980000000002" stroke-dasharray="2,2"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="41.78857421875,149.59980000000002 31.78857421875,153.59980000000002 41.78857421875,157.59980000000002 37.78857421875,153.59980000000002"/>
+  <text fill="#000000" x="72.72900390625" y="147.59980000000002" text-anchor="middle" font-family="sans-serif" font-size="13">ok</text>
+</g>
+<g id="participant-A-20.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="20.0" y="20.0" width="23.5771484375" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="31.78857421875" y="38.488299999999995" text-anchor="middle" font-family="sans-serif" font-size="14.0">A</text>
+</g>
+<g id="participant-B-20.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="68.17724609375" y="20.0" width="23.6044921875" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="79.9794921875" y="38.488299999999995" text-anchor="middle" font-family="sans-serif" font-size="14.0">B</text>
+</g>
+<g id="participant-C-90.7993">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="101.78173828125" y="90.7993" width="23.775390625" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="113.66943359375" y="109.2876" text-anchor="middle" font-family="sans-serif" font-size="14.0">C</text>
+</g>
+<g id="participant-A-170.59980000000002">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="20.0" y="170.59980000000002" width="23.5771484375" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="31.78857421875" y="189.08810000000003" text-anchor="middle" font-family="sans-serif" font-size="14.0">A</text>
+</g>
+<g id="participant-B-170.59980000000002">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="68.17724609375" y="170.59980000000002" width="23.6044921875" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="79.9794921875" y="189.08810000000003" text-anchor="middle" font-family="sans-serif" font-size="14.0">B</text>
+</g>
+<g id="participant-C-170.59980000000002">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="101.78173828125" y="170.59980000000002" width="23.775390625" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="113.66943359375" y="189.08810000000003" text-anchor="middle" font-family="sans-serif" font-size="14.0">C</text>
+</g>
+</svg>

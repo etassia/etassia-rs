@@ -1,0 +1,61 @@
+<svg
+ width="141.61474609375"
+ height="175.9082"
+ viewBox="0 0 141.61474609375 175.9082"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<line stroke="#181818" stroke-width="0.5" x1="26.255126953125" y1="40.488299999999995" x2="26.255126953125" y2="135.41989999999998" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="81.669677734375" y1="40.488299999999995" x2="81.669677734375" y2="135.41989999999998" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="115.359619140625" y1="40.488299999999995" x2="115.359619140625" y2="135.41989999999998" stroke-dasharray="5,5"/>
+<g id="message-1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 26.255126953125 70.7988 L 79.669677734375 70.7988"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="69.669677734375,66.7988 79.669677734375,70.7988 69.669677734375,74.7988 73.669677734375,70.7988"/>
+  <text fill="#000000" x="33.255126953125" y="65.7329" text-anchor="start" font-family="sans-serif" font-size="13.0">hello</text>
+</g>
+<g id="note-3161990768">
+  <path fill="#FEFFDD" stroke="#181818" stroke-width="0.5" d="M 10.0 83.7988 L 32.51025390625 83.7988 L 42.51025390625 93.7988 L 42.51025390625 108.7988 L 10.0 108.7988 Z"/>
+  <path fill="#FEFFDD" stroke="#181818" stroke-width="0.5" d="M 32.51025390625 83.7988 L 32.51025390625 93.7988 L 42.51025390625 93.7988"/>
+  <text fill="#000000" x="18.0" y="101.3668" text-anchor="start" font-family="sans-serif" font-size="13">n1</text>
+</g>
+<g id="note-3585964124">
+  <path fill="#FEFFDD" stroke="#181818" stroke-width="0.5" d="M 65.41455078125 83.7988 L 87.9248046875 83.7988 L 97.9248046875 93.7988 L 97.9248046875 108.7988 L 65.41455078125 108.7988 Z"/>
+  <path fill="#FEFFDD" stroke="#181818" stroke-width="0.5" d="M 87.9248046875 83.7988 L 87.9248046875 93.7988 L 97.9248046875 93.7988"/>
+  <text fill="#000000" x="73.41455078125" y="101.3668" text-anchor="start" font-family="sans-serif" font-size="13">n2</text>
+</g>
+<g id="note-3161990768">
+  <path fill="#FEFFDD" stroke="#181818" stroke-width="0.5" d="M 10.0 83.7988 L 32.51025390625 83.7988 L 42.51025390625 93.7988 L 42.51025390625 108.7988 L 10.0 108.7988 Z"/>
+  <path fill="#FEFFDD" stroke="#181818" stroke-width="0.5" d="M 32.51025390625 83.7988 L 32.51025390625 93.7988 L 42.51025390625 93.7988"/>
+  <text fill="#000000" x="18.0" y="101.3668" text-anchor="start" font-family="sans-serif" font-size="13">n3</text>
+</g>
+<g id="note-798087188">
+  <path fill="#FEFFDD" stroke="#181818" stroke-width="0.5" d="M 99.1044921875 83.7988 L 121.61474609375 83.7988 L 131.61474609375 93.7988 L 131.61474609375 108.7988 L 99.1044921875 108.7988 Z"/>
+  <path fill="#FEFFDD" stroke="#181818" stroke-width="0.5" d="M 121.61474609375 83.7988 L 121.61474609375 93.7988 L 131.61474609375 93.7988"/>
+  <text fill="#000000" x="107.1044921875" y="101.3668" text-anchor="start" font-family="sans-serif" font-size="13">n4</text>
+</g>
+<g id="participant-A-10.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="14.466552734375" y="10.0" width="23.5771484375" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="26.255126953125" y="30.535199999999996" text-anchor="middle" font-family="sans-serif" font-size="14.0">A</text>
+</g>
+<g id="participant-B-10.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="69.867431640625" y="10.0" width="23.6044921875" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="81.669677734375" y="30.535199999999996" text-anchor="middle" font-family="sans-serif" font-size="14.0">B</text>
+</g>
+<g id="participant-C-10.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="103.471923828125" y="10.0" width="23.775390625" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="115.359619140625" y="30.535199999999996" text-anchor="middle" font-family="sans-serif" font-size="14.0">C</text>
+</g>
+<g id="participant-A-135.41989999999998">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="14.466552734375" y="135.41989999999998" width="23.5771484375" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="26.255126953125" y="155.9551" text-anchor="middle" font-family="sans-serif" font-size="14.0">A</text>
+</g>
+<g id="participant-B-135.41989999999998">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="69.867431640625" y="135.41989999999998" width="23.6044921875" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="81.669677734375" y="155.9551" text-anchor="middle" font-family="sans-serif" font-size="14.0">B</text>
+</g>
+<g id="participant-C-135.41989999999998">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="103.471923828125" y="135.41989999999998" width="23.775390625" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="115.359619140625" y="155.9551" text-anchor="middle" font-family="sans-serif" font-size="14.0">C</text>
+</g>
+</svg>

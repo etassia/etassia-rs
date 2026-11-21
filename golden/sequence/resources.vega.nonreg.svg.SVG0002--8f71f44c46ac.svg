@@ -1,0 +1,105 @@
+<svg
+ width="904.896484375"
+ height="271.5976"
+ viewBox="0 0 904.896484375 271.5976"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<line stroke="#181818" stroke-width="0.5" x1="59.5048828125" y1="96.4883" x2="59.5048828125" y2="175.1093" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="163.82373046875" y1="96.4883" x2="163.82373046875" y2="175.1093" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="287.3310546875" y1="96.4883" x2="287.3310546875" y2="175.1093" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="401.90380859375" y1="96.4883" x2="401.90380859375" y2="175.1093" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="511.6982421875" y1="96.4883" x2="511.6982421875" y2="175.1093" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="617.39453125" y1="96.4883" x2="617.39453125" y2="175.1093" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="728.64501953125" y1="96.4883" x2="728.64501953125" y2="175.1093" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="841.50537109375" y1="96.4883" x2="841.50537109375" y2="175.1093" stroke-dasharray="5,5"/>
+<g id="message-1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 59.5048828125 128.7988 L 511.6982421875 128.7988"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="501.6982421875,124.7988 511.6982421875,128.7988 501.6982421875,132.7988 505.6982421875,128.7988"/>
+  <text fill="#000000" x="285.6015625" y="122.7988" text-anchor="middle" font-family="sans-serif" font-size="13">Do something</text>
+</g>
+<g id="message-2">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 511.6982421875 158.1093 L 59.5048828125 158.1093" stroke-dasharray="2,2"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="69.5048828125,154.1093 59.5048828125,158.1093 69.5048828125,162.1093 65.5048828125,158.1093"/>
+  <text fill="#000000" x="285.6015625" y="152.1093" text-anchor="middle" font-family="sans-serif" font-size="13">Acknowledge it</text>
+</g>
+<g id="participant-my_actor-20.0">
+  <ellipse fill="#E2E2F0" stroke="#181818" stroke-width="0.5" cx="59.5048828125" cy="28.5" rx="8.0" ry="8.0"/>
+  <path fill="none" stroke="#181818" stroke-width="0.5" d="M 59.5048828125 36.5 L 59.5048828125 63.5 M 46.5048828125 44.5 L 72.5048828125 44.5 M 59.5048828125 63.5 L 46.5048828125 78.5 M 59.5048828125 63.5 L 72.5048828125 78.5"/>
+  <text fill="#000000" x="59.5048828125" y="93.53519999999999" text-anchor="middle" font-family="sans-serif" font-size="14.0">my_actor</text>
+</g>
+<g id="participant-my_boundary-20.0">
+  <ellipse fill="#E2E2F0" stroke="#181818" stroke-width="0.5" cx="163.82373046875" cy="64.0" rx="12.0" ry="12.0"/>
+  <path fill="none" stroke="#181818" stroke-width="0.5" d="M 134.82373046875 52.0 L 134.82373046875 76.0 M 134.82373046875 64.0 L 151.82373046875 64.0"/>
+  <text fill="#000000" x="163.82373046875" y="93.53519999999999" text-anchor="middle" font-family="sans-serif" font-size="14.0">my_boundary</text>
+</g>
+<g id="participant-my_collections-20.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="232.6376953125" y="61.0" width="113.38671875" height="30.4883" rx="2.5" ry="2.5"/>
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="228.6376953125" y="65.0" width="113.38671875" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="287.3310546875" y="85.5352" text-anchor="middle" font-family="sans-serif" font-size="14.0">my_collections</text>
+</g>
+<g id="participant-my_control-20.0">
+  <ellipse fill="#E2E2F0" stroke="#181818" stroke-width="0.5" cx="401.90380859375" cy="64.0" rx="12.0" ry="12.0"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="0.5" points="397.90380859375,52.0 403.90380859375,47.0 401.90380859375,52.0 403.90380859375,57.0 397.90380859375,52.0"/>
+  <text fill="#000000" x="401.90380859375" y="93.53519999999999" text-anchor="middle" font-family="sans-serif" font-size="14.0">my_control</text>
+</g>
+<g id="participant-my_database-20.0">
+  <path fill="#E2E2F0" stroke="#181818" stroke-width="0.5" d="M 493.6982421875 44.0 C 493.6982421875 34.0 511.6982421875 34.0 511.6982421875 34.0 C 511.6982421875 34.0 529.6982421875 34.0 529.6982421875 44.0 L 529.6982421875 70.0 C 529.6982421875 80.0 511.6982421875 80.0 511.6982421875 80.0 C 511.6982421875 80.0 493.6982421875 80.0 493.6982421875 70.0 L 493.6982421875 44.0"/>
+  <path fill="none" stroke="#181818" stroke-width="0.5" d="M 493.6982421875 44.0 C 493.6982421875 54.0 511.6982421875 54.0 511.6982421875 54.0 C 511.6982421875 54.0 529.6982421875 54.0 529.6982421875 44.0"/>
+  <text fill="#000000" x="511.6982421875" y="93.53519999999999" text-anchor="middle" font-family="sans-serif" font-size="14.0">my_database</text>
+</g>
+<g id="participant-my_entity-20.0">
+  <ellipse fill="#E2E2F0" stroke="#181818" stroke-width="0.5" cx="617.39453125" cy="64.0" rx="12.0" ry="12.0"/>
+  <line stroke="#181818" stroke-width="0.5" x1="605.39453125" y1="78.0" x2="629.39453125" y2="78.0"/>
+  <text fill="#000000" x="617.39453125" y="93.53519999999999" text-anchor="middle" font-family="sans-serif" font-size="14.0">my_entity</text>
+</g>
+<g id="participant-my_participant-20.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="669.17578125" y="65.0" width="118.9384765625" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="728.64501953125" y="84.4883" text-anchor="middle" font-family="sans-serif" font-size="14.0">my_participant</text>
+</g>
+<g id="participant-my_queue-20.0">
+  <path fill="#E2E2F0" stroke="#181818" stroke-width="0.5" d="M 803.1142578125 70.0 L 879.896484375 70.0 C 884.896484375 70.0 884.896484375 83.24415 884.896484375 83.24415 C 884.896484375 83.24415 884.896484375 96.4883 879.896484375 96.4883 L 803.1142578125 96.4883 C 798.1142578125 96.4883 798.1142578125 83.24415 798.1142578125 83.24415 C 798.1142578125 83.24415 798.1142578125 70.0 803.1142578125 70.0"/>
+  <path fill="none" stroke="#181818" stroke-width="0.5" d="M 879.896484375 70.0 C 874.896484375 70.0 874.896484375 83.24415 874.896484375 83.24415 C 874.896484375 96.4883 879.896484375 96.4883 879.896484375 96.4883"/>
+  <text fill="#000000" x="841.50537109375" y="88.53519999999999" text-anchor="middle" font-family="sans-serif" font-size="14.0">my_queue</text>
+</g>
+<g id="participant-my_actor-175.1093">
+  <ellipse fill="#E2E2F0" stroke="#181818" stroke-width="0.5" cx="59.5048828125" cy="200.0976" rx="8.0" ry="8.0"/>
+  <path fill="none" stroke="#181818" stroke-width="0.5" d="M 59.5048828125 208.0976 L 59.5048828125 235.0976 M 46.5048828125 216.0976 L 72.5048828125 216.0976 M 59.5048828125 235.0976 L 46.5048828125 250.0976 M 59.5048828125 235.0976 L 72.5048828125 250.0976"/>
+  <text fill="#000000" x="59.5048828125" y="188.6445" text-anchor="middle" font-family="sans-serif" font-size="14.0">my_actor</text>
+</g>
+<g id="participant-my_boundary-175.1093">
+  <ellipse fill="#E2E2F0" stroke="#181818" stroke-width="0.5" cx="163.82373046875" cy="207.5976" rx="12.0" ry="12.0"/>
+  <path fill="none" stroke="#181818" stroke-width="0.5" d="M 134.82373046875 195.5976 L 134.82373046875 219.5976 M 134.82373046875 207.5976 L 151.82373046875 207.5976"/>
+  <text fill="#000000" x="163.82373046875" y="188.6445" text-anchor="middle" font-family="sans-serif" font-size="14.0">my_boundary</text>
+</g>
+<g id="participant-my_collections-175.1093">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="232.6376953125" y="171.1093" width="113.38671875" height="30.4883" rx="2.5" ry="2.5"/>
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="228.6376953125" y="175.1093" width="113.38671875" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="287.3310546875" y="195.6445" text-anchor="middle" font-family="sans-serif" font-size="14.0">my_collections</text>
+</g>
+<g id="participant-my_control-175.1093">
+  <ellipse fill="#E2E2F0" stroke="#181818" stroke-width="0.5" cx="401.90380859375" cy="207.5976" rx="12.0" ry="12.0"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="0.5" points="397.90380859375,195.5976 403.90380859375,190.5976 401.90380859375,195.5976 403.90380859375,200.5976 397.90380859375,195.5976"/>
+  <text fill="#000000" x="401.90380859375" y="188.6445" text-anchor="middle" font-family="sans-serif" font-size="14.0">my_control</text>
+</g>
+<g id="participant-my_database-175.1093">
+  <path fill="#E2E2F0" stroke="#181818" stroke-width="0.5" d="M 493.6982421875 201.5976 C 493.6982421875 191.5976 511.6982421875 191.5976 511.6982421875 191.5976 C 511.6982421875 191.5976 529.6982421875 191.5976 529.6982421875 201.5976 L 529.6982421875 227.5976 C 529.6982421875 237.5976 511.6982421875 237.5976 511.6982421875 237.5976 C 511.6982421875 237.5976 493.6982421875 237.5976 493.6982421875 227.5976 L 493.6982421875 201.5976"/>
+  <path fill="none" stroke="#181818" stroke-width="0.5" d="M 493.6982421875 201.5976 C 493.6982421875 211.5976 511.6982421875 211.5976 511.6982421875 211.5976 C 511.6982421875 211.5976 529.6982421875 211.5976 529.6982421875 201.5976"/>
+  <text fill="#000000" x="511.6982421875" y="188.6445" text-anchor="middle" font-family="sans-serif" font-size="14.0">my_database</text>
+</g>
+<g id="participant-my_entity-175.1093">
+  <ellipse fill="#E2E2F0" stroke="#181818" stroke-width="0.5" cx="617.39453125" cy="207.5976" rx="12.0" ry="12.0"/>
+  <line stroke="#181818" stroke-width="0.5" x1="605.39453125" y1="221.5976" x2="629.39453125" y2="221.5976"/>
+  <text fill="#000000" x="617.39453125" y="188.6445" text-anchor="middle" font-family="sans-serif" font-size="14.0">my_entity</text>
+</g>
+<g id="participant-my_participant-175.1093">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="669.17578125" y="175.1093" width="118.9384765625" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="728.64501953125" y="239.5976" text-anchor="middle" font-family="sans-serif" font-size="14.0">my_participant</text>
+</g>
+<g id="participant-my_queue-175.1093">
+  <path fill="#E2E2F0" stroke="#181818" stroke-width="0.5" d="M 803.1142578125 175.1093 L 879.896484375 175.1093 C 884.896484375 175.1093 884.896484375 188.35344999999998 884.896484375 188.35344999999998 C 884.896484375 188.35344999999998 884.896484375 201.5976 879.896484375 201.5976 L 803.1142578125 201.5976 C 798.1142578125 201.5976 798.1142578125 188.35344999999998 798.1142578125 188.35344999999998 C 798.1142578125 188.35344999999998 798.1142578125 175.1093 803.1142578125 175.1093"/>
+  <path fill="none" stroke="#181818" stroke-width="0.5" d="M 879.896484375 175.1093 C 874.896484375 175.1093 874.896484375 188.35344999999998 874.896484375 188.35344999999998 C 874.896484375 201.5976 879.896484375 201.5976 879.896484375 201.5976"/>
+  <text fill="#000000" x="841.50537109375" y="193.6445" text-anchor="middle" font-family="sans-serif" font-size="14.0">my_queue</text>
+</g>
+</svg>

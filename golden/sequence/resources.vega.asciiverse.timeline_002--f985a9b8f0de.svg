@@ -1,0 +1,205 @@
+<svg
+ width="242.32421875"
+ height="882.4606000000001"
+ viewBox="0 0 242.32421875 882.4606000000001"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<line stroke="#181818" stroke-width="0.5" x1="63.07421875" y1="40.488299999999995" x2="63.07421875" y2="841.9723000000001" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="179.236328125" y1="40.488299999999995" x2="179.236328125" y2="841.9723000000001" stroke-dasharray="5,5"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="58.07421875" y="86.7988" width="10.0" height="14.0"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="174.236328125" y="160.1093" width="10.0" height="14.0"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="174.236328125" y="233.41979999999998" width="10.0" height="14.0"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="58.07421875" y="233.41979999999998" width="10.0" height="14.0"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="189.236328125" y="348.7303" width="10.0" height="14.0"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="184.236328125" y="334.7303" width="10.0" height="42.0"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="179.236328125" y="320.7303" width="10.0" height="70.0"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="174.236328125" y="306.7303" width="10.0" height="98.0"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="58.07421875" y="306.7303" width="10.0" height="98.0"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="174.236328125" y="464.0408" width="10.0" height="28.0"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="58.07421875" y="464.0408" width="10.0" height="28.0"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="58.07421875" y="551.3513" width="10.0" height="14.0"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="174.236328125" y="551.3513" width="10.0" height="14.0"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="73.07421875" y="666.6618000000001" width="10.0" height="14.0"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="68.07421875" y="652.6618000000001" width="10.0" height="42.0"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="63.07421875" y="638.6618000000001" width="10.0" height="70.0"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="174.236328125" y="624.6618000000001" width="10.0" height="98.0"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="58.07421875" y="624.6618000000001" width="10.0" height="98.0"/>
+<line stroke="#181818" stroke-width="1" x1="170.236328125" y1="501.0408" x2="188.236328125" y2="483.0408"/>
+<line stroke="#181818" stroke-width="1" x1="170.236328125" y1="483.0408" x2="188.236328125" y2="501.0408"/>
+<line stroke="#181818" stroke-width="1" x1="54.07421875" y1="574.3513" x2="72.07421875" y2="556.3513"/>
+<line stroke="#181818" stroke-width="1" x1="54.07421875" y1="556.3513" x2="72.07421875" y2="574.3513"/>
+<g id="fragment-58.07421875-53.488299999999995">
+  <rect fill="none" stroke="#000000" stroke-width="1.5" x="58.07421875" y="53.488299999999995" width="131.162109375" height="41.310500000000005"/>
+  <path fill="#EEEEEE" stroke="#000000" stroke-width="1.5" d="M 58.07421875 53.488299999999995 L 124.65621875 53.488299999999995 L 124.65621875 67.4883 L 118.65621875 73.4883 L 58.07421875 73.4883 Z"/>
+  <text fill="#000000" x="66.07421875" y="67.4883" text-anchor="start" font-family="sans-serif" font-size="13" font-weight="bold">Group 1</text>
+</g>
+<g id="fragment-53.07421875-126.7988">
+  <rect fill="none" stroke="#000000" stroke-width="1.5" x="53.07421875" y="126.7988" width="131.162109375" height="41.31049999999999"/>
+  <path fill="#EEEEEE" stroke="#000000" stroke-width="1.5" d="M 53.07421875 126.7988 L 119.65621875 126.7988 L 119.65621875 140.7988 L 113.65621875 146.7988 L 53.07421875 146.7988 Z"/>
+  <text fill="#000000" x="61.07421875" y="140.7988" text-anchor="start" font-family="sans-serif" font-size="13" font-weight="bold">Group 2</text>
+</g>
+<g id="fragment-58.07421875-200.1093">
+  <rect fill="none" stroke="#000000" stroke-width="1.5" x="58.07421875" y="200.1093" width="126.162109375" height="41.31050000000002"/>
+  <path fill="#EEEEEE" stroke="#000000" stroke-width="1.5" d="M 58.07421875 200.1093 L 124.65621875 200.1093 L 124.65621875 214.1093 L 118.65621875 220.1093 L 58.07421875 220.1093 Z"/>
+  <text fill="#000000" x="66.07421875" y="214.1093" text-anchor="start" font-family="sans-serif" font-size="13" font-weight="bold">Group 3</text>
+</g>
+<g id="fragment-58.07421875-273.4198">
+  <rect fill="none" stroke="#000000" stroke-width="1.5" x="58.07421875" y="273.4198" width="141.162109375" height="125.31049999999999"/>
+  <path fill="#EEEEEE" stroke="#000000" stroke-width="1.5" d="M 58.07421875 273.4198 L 132.44021874999999 273.4198 L 132.44021874999999 287.4198 L 126.44021874999999 293.4198 L 58.07421875 293.4198 Z"/>
+  <text fill="#000000" x="66.07421875" y="287.4198" text-anchor="start" font-family="sans-serif" font-size="13" font-weight="bold">Group 3b</text>
+</g>
+<g id="fragment-58.07421875-430.7303">
+  <rect fill="none" stroke="#000000" stroke-width="1.5" x="58.07421875" y="430.7303" width="140.162109375" height="55.31049999999999"/>
+  <path fill="#EEEEEE" stroke="#000000" stroke-width="1.5" d="M 58.07421875 430.7303 L 140.22421875 430.7303 L 140.22421875 444.7303 L 134.22421875 450.7303 L 58.07421875 450.7303 Z"/>
+  <text fill="#000000" x="66.07421875" y="444.7303" text-anchor="start" font-family="sans-serif" font-size="13" font-weight="bold">Group 3b2</text>
+</g>
+<g id="fragment-44.07421875-518.0408">
+  <rect fill="none" stroke="#000000" stroke-width="1.5" x="44.07421875" y="518.0408" width="140.162109375" height="41.31050000000005"/>
+  <path fill="#EEEEEE" stroke="#000000" stroke-width="1.5" d="M 44.07421875 518.0408 L 126.22421875 518.0408 L 126.22421875 532.0408 L 120.22421875 538.0408 L 44.07421875 538.0408 Z"/>
+  <text fill="#000000" x="52.07421875" y="532.0408" text-anchor="start" font-family="sans-serif" font-size="13" font-weight="bold">Group 3b3</text>
+</g>
+<g id="fragment-58.07421875-591.3513">
+  <rect fill="none" stroke="#000000" stroke-width="1.5" x="58.07421875" y="591.3513" width="126.162109375" height="125.31050000000005"/>
+  <path fill="#EEEEEE" stroke="#000000" stroke-width="1.5" d="M 58.07421875 591.3513 L 131.65621875 591.3513 L 131.65621875 605.3513 L 125.65621875 611.3513 L 58.07421875 611.3513 Z"/>
+  <text fill="#000000" x="66.07421875" y="605.3513" text-anchor="start" font-family="sans-serif" font-size="13" font-weight="bold">Group 3c</text>
+</g>
+<g id="fragment-53.07421875-748.6618000000001">
+  <rect fill="none" stroke="#000000" stroke-width="1.5" x="53.07421875" y="748.6618000000001" width="136.162109375" height="41.31050000000005"/>
+  <path fill="#EEEEEE" stroke="#000000" stroke-width="1.5" d="M 53.07421875 748.6618000000001 L 119.65621875 748.6618000000001 L 119.65621875 762.6618000000001 L 113.65621875 768.6618000000001 L 53.07421875 768.6618000000001 Z"/>
+  <text fill="#000000" x="61.07421875" y="762.6618000000001" text-anchor="start" font-family="sans-serif" font-size="13" font-weight="bold">Group 4</text>
+</g>
+<g id="message-1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 68.07421875 86.7988 L 177.236328125 86.7988"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="167.236328125,82.7988 177.236328125,86.7988 167.236328125,90.7988 171.236328125,86.7988"/>
+</g>
+<g id="message-2">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 179.236328125 100.7988 L 70.07421875 100.7988"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="80.07421875,96.7988 70.07421875,100.7988 80.07421875,104.7988 76.07421875,100.7988"/>
+</g>
+<g id="message-3">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 63.07421875 160.1093 L 172.236328125 160.1093"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="162.236328125,156.1093 172.236328125,160.1093 162.236328125,164.1093 166.236328125,160.1093"/>
+</g>
+<g id="message-4">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 174.236328125 174.1093 L 65.07421875 174.1093"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="75.07421875,170.1093 65.07421875,174.1093 75.07421875,178.1093 71.07421875,174.1093"/>
+</g>
+<g id="message-5">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 68.07421875 233.41979999999998 L 172.236328125 233.41979999999998"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="162.236328125,229.41979999999998 172.236328125,233.41979999999998 162.236328125,237.41979999999998 166.236328125,233.41979999999998"/>
+</g>
+<g id="message-6">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 174.236328125 247.41979999999998 L 70.07421875 247.41979999999998"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="80.07421875,243.41979999999998 70.07421875,247.41979999999998 80.07421875,251.41979999999998 76.07421875,247.41979999999998"/>
+</g>
+<g id="message-7">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 68.07421875 306.7303 L 172.236328125 306.7303"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="162.236328125,302.7303 172.236328125,306.7303 162.236328125,310.7303 166.236328125,306.7303"/>
+</g>
+<g id="message-8">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 68.07421875 320.7303 L 177.236328125 320.7303"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="167.236328125,316.7303 177.236328125,320.7303 167.236328125,324.7303 171.236328125,320.7303"/>
+</g>
+<g id="message-9">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 68.07421875 334.7303 L 182.236328125 334.7303"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="172.236328125,330.7303 182.236328125,334.7303 172.236328125,338.7303 176.236328125,334.7303"/>
+</g>
+<g id="message-10">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 68.07421875 348.7303 L 187.236328125 348.7303"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="177.236328125,344.7303 187.236328125,348.7303 177.236328125,352.7303 181.236328125,348.7303"/>
+</g>
+<g id="message-11">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 189.236328125 362.7303 L 70.07421875 362.7303"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="80.07421875,358.7303 70.07421875,362.7303 80.07421875,366.7303 76.07421875,362.7303"/>
+</g>
+<g id="message-12">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 184.236328125 376.7303 L 70.07421875 376.7303"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="80.07421875,372.7303 70.07421875,376.7303 80.07421875,380.7303 76.07421875,376.7303"/>
+</g>
+<g id="message-13">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 179.236328125 390.7303 L 70.07421875 390.7303"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="80.07421875,386.7303 70.07421875,390.7303 80.07421875,394.7303 76.07421875,390.7303"/>
+</g>
+<g id="message-14">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 174.236328125 404.7303 L 70.07421875 404.7303"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="80.07421875,400.7303 70.07421875,404.7303 80.07421875,408.7303 76.07421875,404.7303"/>
+</g>
+<g id="message-15">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 68.07421875 464.0408 L 172.236328125 464.0408"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="162.236328125,460.0408 172.236328125,464.0408 162.236328125,468.0408 166.236328125,464.0408"/>
+</g>
+<g id="message-16">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 174.236328125 478.0408 L 70.07421875 478.0408"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="80.07421875,474.0408 70.07421875,478.0408 80.07421875,482.0408 76.07421875,478.0408"/>
+</g>
+<g id="message-17">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 68.07421875 492.0408 L 172.236328125 492.0408"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="162.236328125,488.0408 172.236328125,492.0408 162.236328125,496.0408 166.236328125,492.0408"/>
+</g>
+<g id="message-18">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 68.07421875 551.3513 L 172.236328125 551.3513"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="162.236328125,547.3513 172.236328125,551.3513 162.236328125,555.3513 166.236328125,551.3513"/>
+</g>
+<g id="message-19">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 174.236328125 565.3513 L 70.07421875 565.3513"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="80.07421875,561.3513 70.07421875,565.3513 80.07421875,569.3513 76.07421875,565.3513"/>
+</g>
+<g id="message-20">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 68.07421875 624.6618000000001 L 172.236328125 624.6618000000001"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="162.236328125,620.6618000000001 172.236328125,624.6618000000001 162.236328125,628.6618000000001 166.236328125,624.6618000000001"/>
+</g>
+<g id="message-21">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 174.236328125 638.6618000000001 L 75.07421875 638.6618000000001"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="85.07421875,634.6618000000001 75.07421875,638.6618000000001 85.07421875,642.6618000000001 81.07421875,638.6618000000001"/>
+</g>
+<g id="message-22">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 174.236328125 652.6618000000001 L 80.07421875 652.6618000000001"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="90.07421875,648.6618000000001 80.07421875,652.6618000000001 90.07421875,656.6618000000001 86.07421875,652.6618000000001"/>
+</g>
+<g id="message-23">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 174.236328125 666.6618000000001 L 85.07421875 666.6618000000001"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="95.07421875,662.6618000000001 85.07421875,666.6618000000001 95.07421875,670.6618000000001 91.07421875,666.6618000000001"/>
+</g>
+<g id="message-24">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 83.07421875 680.6618000000001 L 172.236328125 680.6618000000001"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="162.236328125,676.6618000000001 172.236328125,680.6618000000001 162.236328125,684.6618000000001 166.236328125,680.6618000000001"/>
+</g>
+<g id="message-25">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 78.07421875 694.6618000000001 L 172.236328125 694.6618000000001"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="162.236328125,690.6618000000001 172.236328125,694.6618000000001 162.236328125,698.6618000000001 166.236328125,694.6618000000001"/>
+</g>
+<g id="message-26">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 73.07421875 708.6618000000001 L 172.236328125 708.6618000000001"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="162.236328125,704.6618000000001 172.236328125,708.6618000000001 162.236328125,712.6618000000001 166.236328125,708.6618000000001"/>
+</g>
+<g id="message-27">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 174.236328125 722.6618000000001 L 70.07421875 722.6618000000001"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="80.07421875,718.6618000000001 70.07421875,722.6618000000001 80.07421875,726.6618000000001 76.07421875,722.6618000000001"/>
+</g>
+<g id="message-28">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 63.07421875 781.9723000000001 L 177.236328125 781.9723000000001"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="167.236328125,777.9723000000001 177.236328125,781.9723000000001 167.236328125,785.9723000000001 171.236328125,781.9723000000001"/>
+</g>
+<g id="message-29">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 179.236328125 795.9723000000001 L 65.07421875 795.9723000000001"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="75.07421875,791.9723000000001 65.07421875,795.9723000000001 75.07421875,799.9723000000001 71.07421875,795.9723000000001"/>
+</g>
+<g id="participant-Participant_A-10.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="10.0" y="10.0" width="106.1484375" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="63.07421875" y="30.535199999999996" text-anchor="middle" font-family="sans-serif" font-size="14.0">Participant_A</text>
+</g>
+<g id="participant-Participant_B-10.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="126.1484375" y="10.0" width="106.17578125" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="179.236328125" y="30.535199999999996" text-anchor="middle" font-family="sans-serif" font-size="14.0">Participant_B</text>
+</g>
+<g id="participant-Participant_A-841.9723000000001">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="10.0" y="841.9723000000001" width="106.1484375" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="63.07421875" y="862.5075000000002" text-anchor="middle" font-family="sans-serif" font-size="14.0">Participant_A</text>
+</g>
+<g id="participant-Participant_B-841.9723000000001">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="126.1484375" y="841.9723000000001" width="106.17578125" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="179.236328125" y="862.5075000000002" text-anchor="middle" font-family="sans-serif" font-size="14.0">Participant_B</text>
+</g>
+</svg>

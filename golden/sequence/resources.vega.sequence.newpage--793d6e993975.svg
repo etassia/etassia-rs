@@ -1,0 +1,33 @@
+<svg
+ width="148.04736328125"
+ height="162.5976"
+ viewBox="0 0 148.04736328125 162.5976"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<line stroke="#181818" stroke-width="0.5" x1="43.83349609375" y1="50.488299999999995" x2="43.83349609375" y2="112.1093" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="107.51904296875" y1="50.488299999999995" x2="107.51904296875" y2="112.1093" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="0.0" y1="92.1093" x2="142.04736328125" y2="92.1093" stroke-dasharray="2,2"/>
+<g id="message-1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 43.83349609375 82.7988 L 107.51904296875 82.7988"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="97.51904296875,78.7988 107.51904296875,82.7988 97.51904296875,86.7988 101.51904296875,82.7988"/>
+  <text fill="#000000" x="75.67626953125" y="76.7988" text-anchor="middle" font-family="sans-serif" font-size="13">hello1</text>
+</g>
+<g id="participant-Alice-20.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="20.0" y="20.0" width="47.6669921875" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="43.83349609375" y="38.488299999999995" text-anchor="middle" font-family="sans-serif" font-size="14.0">Alice</text>
+</g>
+<g id="participant-Bob-20.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="86.99072265625" y="20.0" width="41.056640625" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="107.51904296875" y="38.488299999999995" text-anchor="middle" font-family="sans-serif" font-size="14.0">Bob</text>
+</g>
+<g id="participant-Alice-112.1093">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="20.0" y="112.1093" width="47.6669921875" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="43.83349609375" y="130.5976" text-anchor="middle" font-family="sans-serif" font-size="14.0">Alice</text>
+</g>
+<g id="participant-Bob-112.1093">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="86.99072265625" y="112.1093" width="41.056640625" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="107.51904296875" y="130.5976" text-anchor="middle" font-family="sans-serif" font-size="14.0">Bob</text>
+</g>
+</svg>

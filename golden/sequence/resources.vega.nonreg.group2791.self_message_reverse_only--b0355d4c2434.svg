@@ -1,0 +1,27 @@
+<svg
+ width="246.9228515625"
+ height="189.2871"
+ viewBox="0 0 246.9228515625 189.2871"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<g id="box-191.727294921875">
+  <rect fill="#DDDDDD" stroke="#181818" stroke-width="0.5" x="191.727294921875" y="20.0" width="47.81201171875" height="153.2871"/>
+  <text fill="#000000" x="215.63330078125" y="37.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold">Box A</text>
+</g>
+<line stroke="#181818" stroke-width="0.5" x1="215.63330078125" y1="76.4883" x2="215.63330078125" y2="138.7988" stroke-dasharray="5,5"/>
+<g id="message-1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 215.63330078125 108.7988 L 173.63330078125 108.7988 L 173.63330078125 121.7988 L 215.63330078125 121.7988"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="205.63330078125,117.7988 215.63330078125,121.7988 205.63330078125,125.7988 209.63330078125,121.7988"/>
+  <text fill="#000000" x="208.63330078125" y="104.0588" text-anchor="end" font-family="sans-serif" font-size="13">long long long long long msg</text>
+</g>
+<g id="participant-a-46.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="204.34375" y="46.0" width="22.5791015625" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="215.63330078125" y="64.4883" text-anchor="middle" font-family="sans-serif" font-size="14.0">a</text>
+</g>
+<g id="participant-a-138.7988">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="204.34375" y="138.7988" width="22.5791015625" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="215.63330078125" y="157.2871" text-anchor="middle" font-family="sans-serif" font-size="14.0">a</text>
+</g>
+</svg>

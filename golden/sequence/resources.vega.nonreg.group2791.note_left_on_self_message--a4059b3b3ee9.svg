@@ -1,0 +1,32 @@
+<svg
+ width="472.50634765625"
+ height="201.5976"
+ viewBox="0 0 472.50634765625 201.5976"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<g id="box-417.310791015625">
+  <rect fill="#DDDDDD" stroke="#181818" stroke-width="0.5" x="417.310791015625" y="20.0" width="47.81201171875" height="165.5976"/>
+  <text fill="#000000" x="441.216796875" y="37.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold">Box A</text>
+</g>
+<line stroke="#181818" stroke-width="0.5" x1="441.216796875" y1="76.4883" x2="441.216796875" y2="151.1093" stroke-dasharray="5,5"/>
+<g id="message-1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 441.216796875 108.7988 L 399.216796875 108.7988 L 399.216796875 121.7988 L 441.216796875 121.7988"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="431.216796875,117.7988 441.216796875,121.7988 431.216796875,125.7988 435.216796875,121.7988"/>
+  <text fill="#000000" x="434.216796875" y="104.0588" text-anchor="end" font-family="sans-serif" font-size="13">msg</text>
+</g>
+<g id="note-60549294">
+  <path fill="#FEFFDD" stroke="#181818" stroke-width="0.5" d="M 20.0 89.4883 L 425.216796875 89.4883 L 435.216796875 99.4883 L 435.216796875 114.4883 L 20.0 114.4883 Z"/>
+  <path fill="#FEFFDD" stroke="#181818" stroke-width="0.5" d="M 425.216796875 89.4883 L 425.216796875 99.4883 L 435.216796875 99.4883"/>
+  <text fill="#000000" x="28.0" y="107.0563" text-anchor="start" font-family="sans-serif" font-size="13">a very very very very long note attached to the self message</text>
+</g>
+<g id="participant-a-46.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="429.92724609375" y="46.0" width="22.5791015625" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="441.216796875" y="64.4883" text-anchor="middle" font-family="sans-serif" font-size="14.0">a</text>
+</g>
+<g id="participant-a-151.1093">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="429.92724609375" y="151.1093" width="22.5791015625" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="441.216796875" y="169.5976" text-anchor="middle" font-family="sans-serif" font-size="14.0">a</text>
+</g>
+</svg>

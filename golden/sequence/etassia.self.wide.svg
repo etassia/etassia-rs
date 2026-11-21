@@ -1,0 +1,42 @@
+<svg
+ width="547.67578125"
+ height="234.9081"
+ viewBox="0 0 547.67578125 234.9081"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<line stroke="#181818" stroke-width="0.5" x1="31.78857421875" y1="50.488299999999995" x2="31.78857421875" y2="184.41979999999998" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="309.99072265625" y1="50.488299999999995" x2="309.99072265625" y2="184.41979999999998" stroke-dasharray="5,5"/>
+<g id="message-1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 31.78857421875 82.7988 L 73.78857421875 82.7988 L 73.78857421875 95.7988 L 31.78857421875 95.7988"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="41.78857421875,91.7988 31.78857421875,95.7988 41.78857421875,99.7988 37.78857421875,95.7988"/>
+  <text fill="#000000" x="38.78857421875" y="78.0588" text-anchor="start" font-family="sans-serif" font-size="13">a self message label wider than the loop</text>
+</g>
+<g id="message-2">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 31.78857421875 125.10929999999999 L 309.99072265625 125.10929999999999"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="299.99072265625,121.10929999999999 309.99072265625,125.10929999999999 299.99072265625,129.1093 303.99072265625,125.10929999999999"/>
+  <text fill="#000000" x="170.8896484375" y="119.10929999999999" text-anchor="middle" font-family="sans-serif" font-size="13">x</text>
+</g>
+<g id="message-3">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 309.99072265625 154.41979999999998 L 351.99072265625 154.41979999999998 L 351.99072265625 167.41979999999998 L 309.99072265625 167.41979999999998"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="319.99072265625,163.41979999999998 309.99072265625,167.41979999999998 319.99072265625,171.41979999999998 315.99072265625,167.41979999999998"/>
+  <text fill="#000000" x="316.99072265625" y="149.67979999999997" text-anchor="start" font-family="sans-serif" font-size="13">another wide self message label</text>
+</g>
+<g id="participant-A-20.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="20.0" y="20.0" width="23.5771484375" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="31.78857421875" y="38.488299999999995" text-anchor="middle" font-family="sans-serif" font-size="14.0">A</text>
+</g>
+<g id="participant-B-20.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="298.1884765625" y="20.0" width="23.6044921875" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="309.99072265625" y="38.488299999999995" text-anchor="middle" font-family="sans-serif" font-size="14.0">B</text>
+</g>
+<g id="participant-A-184.41979999999998">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="20.0" y="184.41979999999998" width="23.5771484375" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="31.78857421875" y="202.9081" text-anchor="middle" font-family="sans-serif" font-size="14.0">A</text>
+</g>
+<g id="participant-B-184.41979999999998">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="298.1884765625" y="184.41979999999998" width="23.6044921875" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="309.99072265625" y="202.9081" text-anchor="middle" font-family="sans-serif" font-size="14.0">B</text>
+</g>
+</svg>
