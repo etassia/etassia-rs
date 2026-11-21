@@ -35,13 +35,14 @@ const REF_TEXT_PAD: f64 = 9.0;
 const REF_LABEL_SIZE: f64 = 12.0;
 const REF_MIN_WIDTH: f64 = 63.916;
 const REF_TAB_WIDTH: f64 = 63.0;
-const REF_HEIGHT: f64 = 39.4434;
+pub const REF_HEIGHT: f64 = 39.4434;
 pub const REF_TAIL: f64 = 5.0;
 const REF_LABEL_BASELINE: f64 = 32.6;
 const REF_TAB_BASELINE: f64 = 14.6;
 pub const TAB_PAD: f64 = 8.0;
 pub const TAB_HEIGHT: f64 = 20.0;
 pub const BASE_PAD: f64 = 10.0;
+pub const FRAGMENT_BASE_PAD: f64 = 10.0;
 const NEST_PAD: f64 = 8.0;
 const BRANCH_BASELINE: f64 = 10.7;
 pub const NUMBER_GAP: f64 = 4.0;
@@ -532,7 +533,7 @@ pub fn arrow_marks(
     if let Some(glyph) = glyph {
         if glyph == "cross" {
             let centre = x + inward * CROSS_CENTRE;
-            for slant in [-CROSS_HALF, CROSS_HALF] {
+            for slant in [CROSS_HALF, -CROSS_HALF] {
                 marks.push(stroke(
                     [centre - CROSS_HALF, y - slant],
                     [centre + CROSS_HALF, y + slant],
