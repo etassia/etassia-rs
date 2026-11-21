@@ -22,6 +22,21 @@ pub struct Style {
 }
 
 impl Style {
+    /// The `<size:N>` a run carries, as written.
+    pub fn size(&self) -> Option<&str> {
+        self.size.as_deref()
+    }
+
+    /// Whether the run is monospace.
+    pub fn is_mono(&self) -> bool {
+        self.mono
+    }
+
+    /// Whether the run is bold.
+    pub fn is_bold(&self) -> bool {
+        self.bold
+    }
+
     /// `Creole.monospace?`: the `""` toggle or a font the name of which
     /// says mono.
     pub(crate) fn monospace(&self) -> bool {
@@ -30,6 +45,7 @@ impl Style {
                 .font
                 .as_deref()
                 .is_some_and(|font| font.to_lowercase().contains("mono"))
+    }
     }
 }
 

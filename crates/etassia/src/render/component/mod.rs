@@ -5,7 +5,7 @@
 
 mod archimate;
 mod archimate_sprites;
-pub(crate) mod creole;
+pub mod creole;
 mod detour;
 mod frame_ports;
 mod heads;

@@ -90,6 +90,10 @@ pub fn detect(source: &str) -> Option<String> {
         // families order (Further, State, Usecase, Component, Activity):
         // the markers the earlier families claim never reach it.
         .or_else(|| detect::detect_activity(source).then(|| "activity".to_string()))
+        // The sequence family runs after component in the Ruby families
+        // order (Further, State, Usecase, Component, Activity, Entity,
+        // Sequence, Objects); the kinds ahead of it are not ported yet.
+        .or_else(|| detect::detect_sequence(source).then(|| "sequence".to_string()))
         // The class lane is what is left: any PlantUML opener no earlier
         // family claimed (Ruby runs the class reader as its fallback).
         .or_else(|| detect::detect_class(source).then(|| "class".to_string()))
@@ -113,6 +117,12 @@ pub fn detect_mindmap(source: &str) -> bool {
     detect::detect_mindmap(source)
 }
 
+/// Whether the source reads as the PlantUML sequence family; the render
+/// dispatch uses it to split the shared sequence type name.
+pub fn detect_sequence(source: &str) -> bool {
+    detect::detect_sequence(source)
+}
+
 /// Parses `source` with the grammar entry for `diagram_type`. The
 /// PlantUML entries parse the raw source (their grammar carries the
 /// wrapper); the Mermaid entries parse the preamble-stripped body.
@@ -133,6 +143,12 @@ pub fn parse(source: &str, diagram_type: &str) -> Result<Tree, Error> {
     // source claims the plantuml artifact's state_diagram entry directly.
     if diagram_type == "state" {
         return parse_with(plantuml(), "state_diagram", source);
+    }
+    // The sequence type names Mermaid's sequenceDiagram and the PlantUML
+    // family; a source the family claims parses with the plantuml
+    // artifact's sequence_diagram entry over the raw source.
+    if diagram_type == "sequence" && detect::detect_sequence(source) {
+        return parse_with(plantuml(), "sequence_diagram", source);
     }
     // The class lane's own type name: the plantuml artifact carries the
     // class_diagram entry over the raw source. The mermaid classDiagram
