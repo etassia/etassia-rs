@@ -128,6 +128,33 @@ pub fn detect_gantt(source: &str) -> bool {
     gantt_re().is_match(source)
 }
 
+/// The PlantUML class lane: the family no other family's query claims.
+/// Ruby's `PlantUML::OPENER` — after a BOM and blank or quote-comment
+/// lines, a `@start` tag of the kinds PlantUML itself opens (uml, ebnf,
+/// nwdiag, mindmap, wbs, gantt, git, ditaa), never followed by a name
+/// character. The tagged kinds run first (git, ditaa, gantt, mindmap),
+/// so what reaches this lane is a class diagram, or a kind this port
+/// declines at the renderer (ebnf, nwdiag, wbs). Ruby `claims?` order:
+/// the class diagram is what is left after the families.
+fn class_re() -> &'static Regex {
+    static CELL: OnceLock<Regex> = OnceLock::new();
+    CELL.get_or_init(|| {
+        Regex::new(concat!(
+            r"\A(?:\x{FEFF})?",
+            r"(?:[ \t\x0B\x0C\x00]*(?:'[^\r\n]*)?(?:\r\n|\r|\n))*",
+            r"[ \t\x0B\x0C\x00]*@start(?:uml|ebnf|nwdiag|mindmap|wbs|gantt|git|ditaa)",
+            r"(?![A-Za-z0-9_])",
+        ))
+        .expect("class detect pattern")
+    })
+}
+
+/// Whether the raw source opens a PlantUML diagram at all (the class
+/// lane's claim, tried last).
+pub fn detect_class(source: &str) -> bool {
+    class_re().is_match(source)
+}
+
 /// The timing lane, first of the plain-picture families (the Ruby
 /// Further group runs network, timing and ebnf ahead of State, Usecase
 /// and Component): a participant declaration. Ruby `Timing.timing?`.

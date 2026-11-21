@@ -25,6 +25,7 @@ pub mod sankey;
 pub mod sequence;
 pub mod state_diagram;
 pub mod state_puml;
+pub mod class_puml;
 pub mod timeline;
 pub mod timing_puml;
 pub mod treemap;
@@ -86,6 +87,9 @@ pub fn render(source: &str) -> Result<String, Error> {
         "state" => state_puml::render(source),
         "state_diagram" => state_diagram::render(source),
         "class_diagram" => class_diagram::render(source),
+        // The PlantUML class lane: any PlantUML opener no earlier family
+        // claimed (Ruby reads the class reader as its fallback).
+        "class" => class_puml::render(source),
         "flowchart" => flowchart::render(source),
         other => Err(Error::Unported(other.to_string())),
     }
