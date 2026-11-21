@@ -265,7 +265,7 @@ fn first_word_is(text: &str, words: &[&str]) -> bool {
 /// Further, State, Usecase, Component, Activity, Entity, Sequence,
 /// Objects): no class-declaration line, and a line only a sequence
 /// diagram reads. Ruby `Sequence.sequence?`.
-fn class_re() -> &'static Regex {
+fn sequence_class_re() -> &'static Regex {
     static CELL: OnceLock<Regex> = OnceLock::new();
     CELL.get_or_init(|| {
         Regex::new(r"(?i)\A(?:abstract[ \t]+class|class|interface)[ \t]")
@@ -296,7 +296,7 @@ pub fn detect_sequence(source: &str) -> bool {
     for line in source.split('\n') {
         let text = line.trim_matches(|c: char|
             matches!(c, ' ' | '\t' | '\n' | '\u{b}' | '\u{c}' | '\r' | '\0'));
-        if class_re().is_match(text) {
+        if sequence_class_re().is_match(text) {
             return false;
         }
         any_marker |= sequence_marker_re().is_match(text);
