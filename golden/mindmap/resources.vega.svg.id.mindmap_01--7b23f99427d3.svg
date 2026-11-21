@@ -1,0 +1,38 @@
+<svg
+ width="247.474"
+ height="189.46339999999998"
+ viewBox="0 0 247.474 189.46339999999998"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M64.122,94.732 L74.122,94.732 C89.122,94.732 89.122,66.488 104.122,66.488 L114.122,66.488"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M141.906,66.488 L151.906,66.488 C166.906,66.488 166.906,38.244 181.906,38.244 L191.906,38.244"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M141.906,66.488 L151.906,66.488 C166.906,66.488 166.906,94.732 181.906,94.732 L191.906,94.732"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M64.122,94.732 L74.122,94.732 C89.122,94.732 89.122,151.219 104.122,151.219 L114.122,151.219"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M141.906,151.219 L151.906,151.219 C166.906,151.219 166.906,151.219 181.906,151.219 L191.906,151.219"/>
+<g>
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="1.5" x="20.0" y="76.4878" width="44.122" height="36.4878" rx="12.5" ry="12.5"/>
+  <text fill="#000000" x="30.0" y="100.022" font-family="sans-serif" font-size="14.0">root</text>
+</g>
+<g>
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="1.5" x="114.122" y="48.2439" width="27.784" height="36.4878" rx="12.5" ry="12.5"/>
+  <text fill="#000000" x="124.122" y="71.778" font-family="sans-serif" font-size="14.0">a</text>
+</g>
+<g>
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="1.5" x="191.906" y="19.999999999999996" width="35.568" height="36.4878" rx="12.5" ry="12.5"/>
+  <text fill="#000000" x="201.906" y="43.534" font-family="sans-serif" font-size="14.0">a1</text>
+</g>
+<g>
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="1.5" x="191.906" y="76.4878" width="35.568" height="36.4878" rx="12.5" ry="12.5"/>
+  <text fill="#000000" x="201.906" y="100.022" font-family="sans-serif" font-size="14.0">a2</text>
+</g>
+<g>
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="1.5" x="114.122" y="132.9756" width="27.784" height="36.4878" rx="12.5" ry="12.5"/>
+  <text fill="#000000" x="124.122" y="156.509" font-family="sans-serif" font-size="14.0">b</text>
+</g>
+<g>
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="1.5" x="191.906" y="132.9756" width="35.568" height="36.4878" rx="12.5" ry="12.5"/>
+  <text fill="#000000" x="201.906" y="156.509" font-family="sans-serif" font-size="14.0">b1</text>
+</g>
+</svg>

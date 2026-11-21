@@ -80,6 +80,23 @@ pub fn detect_ditaa(source: &str) -> bool {
     ditaa_re().is_match(source)
 }
 
+/// The PlantUML wrapper lane for the Tree notation's mindmap: a source
+/// opening (after a BOM and blank or quote-comment lines) with @startmindmap
+/// claims the mindmap type. Run after the Mermaid body patterns, the same
+/// order the Ruby resolution runs - the Mermaid sources claim themselves
+/// first, the tagged PlantUML kinds before the families.
+fn mindmap_re() -> &'static Regex {
+    static CELL: OnceLock<Regex> = OnceLock::new();
+    CELL.get_or_init(|| {
+        Regex::new(r"\A(?:\x{FEFF})?(?:[ \t\x0b\x0c\x00]*(?:'[^\r]*)?(?:\r\n|\r|\n))*[ \t\x0b\x0c\x00]*@startmindmap").expect("mindmap detect pattern")
+    })
+}
+
+/// Whether the raw source opens with the mindmap wrapper.
+pub fn detect_mindmap(source: &str) -> bool {
+    mindmap_re().is_match(source)
+}
+
 /// The PlantUML wrapper lane for gantt: a source opening (after a BOM and
 /// blank or quote-comment lines) with @startgantt claims the gantt type.
 /// The Mermaid body patterns run first (a mermaid gantt is a mermaid

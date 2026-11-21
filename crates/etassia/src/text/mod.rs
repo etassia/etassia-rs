@@ -209,6 +209,31 @@ pub fn measure_monospace(text: &str, font_size: f64) -> Measure {
     }
 }
 
+/// `TextMeasurement.measure_mono`: the `monospace` family PlantUML's JAR
+/// resolves to, DejaVu Sans Mono - every non-zero-width cluster advances
+/// 1233/2048 em, a combining mark or control character advances nothing.
+pub fn measure_mono(text: &str, font_size: f64) -> Measure {
+    let chars: Vec<char> = text.chars().collect();
+    let mut cells = 0.0f64;
+    let mut i = 0;
+    while i < chars.len() {
+        if is_emoji(chars[i]) && chars.get(i + 1) == Some(&'\u{FE0F}') {
+            // pictograph + U+FE0F is one cluster.
+            cells += 1.0;
+            i += 2;
+        } else {
+            if !in_ranges(tables::ZERO_WIDTH, chars[i] as u32) {
+                cells += 1.0;
+            }
+            i += 1;
+        }
+    }
+    Measure {
+        width: cells * (1233.0 * 1000.0 / UNITS_PER_EM) * font_size / 1000.0,
+        height: font_size * HEIGHT_RATIO,
+    }
+}
+
 /// `TextMeasurement.measure` with optional overrides and monospace flag.
 pub fn measure_with(
     text: &str,

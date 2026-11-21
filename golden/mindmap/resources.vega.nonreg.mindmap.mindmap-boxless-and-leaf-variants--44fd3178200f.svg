@@ -1,0 +1,45 @@
+<svg
+ width="399.962"
+ height="274.19509999999997"
+ viewBox="0 0 399.962 274.19509999999997"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M93.676,137.098 L103.676,137.098 C118.676,137.098 118.676,66.488 133.676,66.488 L143.676,66.488"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M218.15,66.488 L228.15,66.488 C243.15,66.488 243.15,38.244 258.15,38.244 L268.15,38.244"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M218.15,66.488 L228.15,66.488 C243.15,66.488 243.15,94.732 258.15,94.732 L268.15,94.732"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M93.676,137.098 L103.676,137.098 C118.676,137.098 118.676,179.463 133.676,179.463 L143.676,179.463"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M225.15,179.463 L235.15,179.463 C250.15,179.463 250.15,151.219 265.15,151.219 L275.15,151.219"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M225.15,179.463 L235.15,179.463 C250.15,179.463 250.15,207.707 265.15,207.707 L275.15,207.707"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M93.676,137.098 L103.676,137.098 C118.676,137.098 118.676,235.951 133.676,235.951 L143.676,235.951"/>
+<g>
+  <text fill="#FF0000" x="30.0" y="142.387" font-family="sans-serif" font-size="14.0">Program</text>
+</g>
+<g>
+  <rect fill="#D3D3D3" stroke="#000000" stroke-width="1.5" x="143.676" y="48.2439" width="74.47399999999999" height="36.4878" rx="12.5" ry="12.5"/>
+  <text fill="#000000" x="153.676" y="71.778" font-family="sans-serif" font-size="14.0">Planning</text>
+</g>
+<g>
+  <rect fill="#D3D3D3" stroke="#000000" stroke-width="1.5" x="268.15" y="19.999999999999996" width="101.704" height="36.4878" rx="12.5" ry="12.5"/>
+  <text fill="#000000" x="278.15" y="43.534" font-family="sans-serif" font-size="14.0">Define scope</text>
+</g>
+<g>
+  <rect fill="#D3D3D3" stroke="#000000" stroke-width="1.5" x="268.15" y="76.4878" width="111.812" height="36.4878" rx="12.5" ry="12.5"/>
+  <text fill="#000000" x="278.15" y="100.022" font-family="sans-serif" font-size="14.0">Set milestones</text>
+</g>
+<g>
+  <text fill="#FF0000" x="153.676" y="184.753" font-family="sans-serif" font-size="14.0">Execution</text>
+</g>
+<g>
+  <rect fill="#D3D3D3" stroke="#000000" stroke-width="1.5" x="275.15" y="132.9756" width="51.122" height="36.4878" rx="12.5" ry="12.5"/>
+  <text fill="#000000" x="285.15" y="156.509" font-family="sans-serif" font-size="14.0">Build</text>
+</g>
+<g>
+  <text fill="#FF0000" x="285.15" y="212.997" font-family="sans-serif" font-size="14.0">Ship</text>
+</g>
+<g>
+  <rect fill="#D3D3D3" stroke="#000000" stroke-width="1.5" x="143.676" y="217.70729999999998" width="68.22999999999999" height="36.4878" rx="12.5" ry="12.5"/>
+  <text fill="#000000" x="153.676" y="241.241" font-family="sans-serif" font-size="14.0">Closure</text>
+</g>
+</svg>

@@ -12,6 +12,7 @@ pub mod xychart;
 pub mod user_journey;
 pub mod kanban;
 pub mod mindmap;
+pub mod mindmap_puml;
 pub mod gantt;
 pub mod gantt_puml;
 pub mod component;
@@ -53,7 +54,15 @@ pub fn render(source: &str) -> Result<String, Error> {
         "xychart" => xychart::render(source),
         "user_journey" => user_journey::render(source),
         "kanban" => kanban::render(source),
-        "mindmap" => mindmap::render(source),
+        "mindmap" => {
+            // The Mermaid mindmap and PlantUML's Tree mindmap share the
+            // type name; the wrapper picks the PlantUML lane.
+            if crate::parse::detect_mindmap(source) {
+                mindmap_puml::render(source)
+            } else {
+                mindmap::render(source)
+            }
+        }
         // The gantt type names both mermaid's gantt DSL and the PlantUML
         // @startgantt wrapper; the wrapper picks the PlantUML lane.
         "gantt" => {
