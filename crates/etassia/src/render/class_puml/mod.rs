@@ -1,14 +1,30 @@
 //! PlantUML class renderer: port of Ruby `Notation::PlantUML::{Parser,
 //! DiagramBuilder, Layout, Renderer}` (`etassia/etassia` lib/etassia/
-//! notation/plantuml). Every path declines until it is byte-identical to
-//! the Ruby output, so the caller falls back to Ruby.
+//! notation/plantuml). The pipeline runs the grammar's reader-faithful
+//! gate, the line reader, the placement and the SVG drawing; anything
+//! not reproduced declines so the caller falls back to Ruby.
 mod arrow;
+mod captions;
+mod class_header;
+mod chrome;
+mod draw;
+mod edges;
+mod frames;
+mod layout;
+mod measures;
 mod model;
+mod notes;
 mod portion;
+mod qualified;
+mod rank_chain;
+mod rank_hierarchy;
 mod reader;
 mod reader_support;
+mod scene;
 mod sheet;
 mod style;
+
+use crate::Error;
 
 pub(crate) fn render(source: &str) -> Result<String, Error> {
     // The grammar gate: the artifact's reader-faithful language. The
@@ -16,25 +32,13 @@ pub(crate) fn render(source: &str) -> Result<String, Error> {
     // what the Ruby reader refuses (etassia-grammar class_diagram).
     crate::parse::parse(source, "class")?;
     let diagram = reader::read(source)?;
-    let _ = diagram;
-    Err(Error::Unported("class".into()))
+    let sheet = style::Sheet::read(source);
+    let scene = layout::scene(&diagram);
+    draw::render(&scene, &sheet)
 }
 
-use crate::Error;
-
-/// Scratch hook for the reader parity check (tests/scratch_class.rs).
+/// Scratch hook.
 #[doc(hidden)]
-pub fn class_puml_reader_read(source: &str) -> Result<crate::render::class_puml::model::Diagram, crate::Error> {
-    reader::read(source)
-}
-
-/// Scratch probes.
-#[doc(hidden)]
-pub mod probe {
-    pub fn directive_matches_probe(text: &str) -> bool {
-        crate::render::class_puml::reader_support::directive_matches(text)
-    }
-    pub fn relation_matches_probe(text: &str) -> bool {
-        crate::render::class_puml::reader::relation_matches(text)
-    }
+pub fn format_g_pub(value: f64) -> String {
+    layout::format_g(value)
 }
