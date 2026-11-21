@@ -302,8 +302,10 @@ fn quoted_declaration(builder: &mut Builder, text: &str) -> Option<Phase> {
         stereotypes: vec![],
         tags: vec![],
     };
-    builder.declare(entry, text).ok()?;
-    Some(Phase::Statements)
+    match builder.declare(entry, text) {
+        Ok(()) => Some(Phase::Statements),
+        Err(_) => None,
+    }
 }
 
 fn declaration_or_relation(builder: &mut Builder, text: &str) -> Result<Phase, Error> {
@@ -1079,7 +1081,7 @@ impl Builder {
                 generics: entry.generics,
                 stereotypes: entry.stereotypes,
                 tags: entry.tags,
-                package: self.scope_id(),
+                package: home,
             },
         );
         if entry.body {

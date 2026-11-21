@@ -406,10 +406,6 @@ impl RankChain {
         let tops = self.rank_tops(&spans, origin[self.along()]);
         let mut places: HashMap<String, [f64; 2]> = HashMap::new();
         let mut junctions: HashMap<usize, [f64; 4]> = HashMap::new();
-        if std::env::var_os("ETASSIA_CLASS_DEBUG").is_some() {
-            eprintln!("chain items: {:?}", items);
-            eprintln!("spans={:?} tops={:?}", spans, tops);
-        }
         for (chain, slot, rank) in items {
             let frame = ChainFrame {
                 middle: frames[chain].0,

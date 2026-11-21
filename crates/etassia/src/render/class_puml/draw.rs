@@ -816,7 +816,7 @@ fn translate_outline(outline: &str, cx: f64, cy: f64) -> String {
 
 /// Ruby `Float#round(4)`.
 fn round4(value: f64) -> f64 {
-    (value * 10000.0).round() / 10000.0
+    super::layout::round4_half(value)
 }
 
 /// Ruby `format('%g', x)`.
