@@ -1,0 +1,92 @@
+<svg
+ width="385.7451171875"
+ height="450.0815999999999"
+ viewBox="0 0 385.7451171875 450.0815999999999"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<line stroke="#181818" stroke-width="0.5" x1="74.0" y1="50.488299999999995" x2="74.0" y2="399.59329999999994" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="258.34814453125" y1="50.488299999999995" x2="258.34814453125" y2="399.59329999999994" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="321.7451171875" y1="50.488299999999995" x2="321.7451171875" y2="399.59329999999994" stroke-dasharray="5,5"/>
+<g id="fragment-64.0-249.35129999999998">
+  <rect fill="none" stroke="#000000" stroke-width="1.5" x="64.0" y="249.35129999999998" width="204.34814453125" height="46.62099999999998"/>
+  <path fill="#EEEEEE" stroke="#000000" stroke-width="1.5" d="M 64.0 249.35129999999998 L 106.46000000000001 249.35129999999998 L 106.46000000000001 263.3513 L 100.46000000000001 269.3513 L 64.0 269.3513 Z"/>
+  <text fill="#000000" x="72.0" y="263.3513" text-anchor="start" font-family="sans-serif" font-size="13" font-weight="bold">loop</text>
+  <text fill="#000000" x="114.46000000000001" y="263.3513" text-anchor="start" font-family="sans-serif" font-size="11" font-weight="bold">[1000 times]</text>
+</g>
+<g id="fragment-46.0-195.7303">
+  <rect fill="none" stroke="#000000" stroke-width="1.5" x="46.0" y="195.7303" width="293.7451171875" height="136.55249999999995"/>
+  <path fill="#EEEEEE" stroke="#000000" stroke-width="1.5" d="M 46.0 195.7303 L 143.69 195.7303 L 143.69 209.7303 L 137.69 215.7303 L 46.0 215.7303 Z"/>
+  <text fill="#000000" x="54.0" y="209.7303" text-anchor="start" font-family="sans-serif" font-size="13" font-weight="bold">My own label</text>
+</g>
+<g id="fragment-20.0-97.7988">
+  <rect fill="none" stroke="#000000" stroke-width="1.5" x="20.0" y="97.7988" width="345.7451171875" height="285.79449999999997"/>
+  <path fill="#EEEEEE" stroke="#000000" stroke-width="1.5" d="M 20.0 97.7988 L 50.784 97.7988 L 50.784 111.7988 L 44.784 117.7988 L 20.0 117.7988 Z"/>
+  <line stroke="#000000" stroke-width="1" x1="20.0" y1="145.4198" x2="365.7451171875" y2="145.4198" stroke-dasharray="2,2"/>
+  <line stroke="#000000" stroke-width="1" x1="20.0" y1="340.28279999999995" x2="365.7451171875" y2="340.28279999999995" stroke-dasharray="2,2"/>
+  <text fill="#000000" x="28.0" y="111.7988" text-anchor="start" font-family="sans-serif" font-size="13" font-weight="bold">alt</text>
+  <text fill="#000000" x="58.784" y="111.7988" text-anchor="start" font-family="sans-serif" font-size="11" font-weight="bold">[successful case]</text>
+  <text fill="#000000" x="28.0" y="156.1198" text-anchor="start" font-family="sans-serif" font-size="11" font-weight="bold">[some kind of failure]</text>
+  <text fill="#000000" x="28.0" y="350.98279999999994" text-anchor="start" font-family="sans-serif" font-size="11" font-weight="bold">[Another type of failure]</text>
+</g>
+<g id="message-1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 74.0 82.7988 L 258.34814453125 82.7988"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="248.34814453125,78.7988 258.34814453125,82.7988 248.34814453125,86.7988 252.34814453125,82.7988"/>
+  <text fill="#000000" x="166.174072265625" y="76.7988" text-anchor="middle" font-family="sans-serif" font-size="13">Authentication Request</text>
+</g>
+<g id="message-2">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 258.34814453125 136.4198 L 74.0 136.4198"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="84.0,132.4198 74.0,136.4198 84.0,140.4198 80.0,136.4198"/>
+  <text fill="#000000" x="166.174072265625" y="130.4198" text-anchor="middle" font-family="sans-serif" font-size="13">Authentication Accepted</text>
+</g>
+<g id="message-3">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 258.34814453125 180.7303 L 74.0 180.7303"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="84.0,176.7303 74.0,180.7303 84.0,184.7303 80.0,180.7303"/>
+  <text fill="#000000" x="166.174072265625" y="174.7303" text-anchor="middle" font-family="sans-serif" font-size="13">Authentication Failure</text>
+</g>
+<g id="message-4">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 74.0 234.35129999999998 L 321.7451171875 234.35129999999998"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="311.7451171875,230.35129999999998 321.7451171875,234.35129999999998 311.7451171875,238.35129999999998 315.7451171875,234.35129999999998"/>
+  <text fill="#000000" x="197.87255859375" y="228.35129999999998" text-anchor="middle" font-family="sans-serif" font-size="13">Log attack start</text>
+</g>
+<g id="message-5">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 74.0 287.97229999999996 L 258.34814453125 287.97229999999996"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="248.34814453125,283.97229999999996 258.34814453125,287.97229999999996 248.34814453125,291.97229999999996 252.34814453125,287.97229999999996"/>
+  <text fill="#000000" x="166.174072265625" y="281.97229999999996" text-anchor="middle" font-family="sans-serif" font-size="13">DNS Attack</text>
+</g>
+<g id="message-6">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 74.0 324.28279999999995 L 321.7451171875 324.28279999999995"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="311.7451171875,320.28279999999995 321.7451171875,324.28279999999995 311.7451171875,328.28279999999995 315.7451171875,324.28279999999995"/>
+  <text fill="#000000" x="197.87255859375" y="318.28279999999995" text-anchor="middle" font-family="sans-serif" font-size="13">Log attack end</text>
+</g>
+<g id="message-7">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 258.34814453125 375.59329999999994 L 74.0 375.59329999999994"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="84.0,371.59329999999994 74.0,375.59329999999994 84.0,379.59329999999994 80.0,375.59329999999994"/>
+  <text fill="#000000" x="166.174072265625" y="369.59329999999994" text-anchor="middle" font-family="sans-serif" font-size="13">Please repeat</text>
+</g>
+<g id="participant-Alice-20.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="50.16650390625" y="20.0" width="47.6669921875" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="74.0" y="38.488299999999995" text-anchor="middle" font-family="sans-serif" font-size="14.0">Alice</text>
+</g>
+<g id="participant-Bob-20.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="237.81982421875" y="20.0" width="41.056640625" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="258.34814453125" y="38.488299999999995" text-anchor="middle" font-family="sans-serif" font-size="14.0">Bob</text>
+</g>
+<g id="participant-Log-20.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="302.119140625" y="20.0" width="39.251953125" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="321.7451171875" y="38.488299999999995" text-anchor="middle" font-family="sans-serif" font-size="14.0">Log</text>
+</g>
+<g id="participant-Alice-399.59329999999994">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="50.16650390625" y="399.59329999999994" width="47.6669921875" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="74.0" y="418.0815999999999" text-anchor="middle" font-family="sans-serif" font-size="14.0">Alice</text>
+</g>
+<g id="participant-Bob-399.59329999999994">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="237.81982421875" y="399.59329999999994" width="41.056640625" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="258.34814453125" y="418.0815999999999" text-anchor="middle" font-family="sans-serif" font-size="14.0">Bob</text>
+</g>
+<g id="participant-Log-399.59329999999994">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="302.119140625" y="399.59329999999994" width="39.251953125" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="321.7451171875" y="418.0815999999999" text-anchor="middle" font-family="sans-serif" font-size="14.0">Log</text>
+</g>
+</svg>

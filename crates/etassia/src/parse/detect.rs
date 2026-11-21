@@ -304,6 +304,13 @@ pub fn detect_sequence(source: &str) -> bool {
     any_marker
 }
 
+/// The Mermaid body lane for the shared sequence name: a source whose
+/// body opens with a Mermaid `sequenceDiagram` pattern. Checked before
+/// the PlantUML sequence family - a Mermaid source claims itself first.
+pub fn detect_sequence_body(source: &str) -> bool {
+    detect_body(&super::source::body(source)) == Some("sequence")
+}
+
 /// The use case lane, tried before component (the Ruby families run
 /// Further, State, Usecase, Component in that order): no foreign keyword,
 /// and at least one use case marker. Ruby `Usecase.usecase?`.

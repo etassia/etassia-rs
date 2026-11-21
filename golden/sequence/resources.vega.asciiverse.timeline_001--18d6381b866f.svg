@@ -1,0 +1,71 @@
+<svg
+ width="269.787109375"
+ height="291.2186"
+ viewBox="0 0 269.787109375 291.2186"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<line stroke="#181818" stroke-width="0.5" x1="42.52197265625" y1="86.4883" x2="42.52197265625" y2="204.73029999999997" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="141.73779296875" y1="86.4883" x2="141.73779296875" y2="204.73029999999997" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="235.95361328125" y1="86.4883" x2="235.95361328125" y2="204.73029999999997" stroke-dasharray="5,5"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="136.73779296875" y="96.7988" width="10.0" height="20.0"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="230.95361328125" y="116.7988" width="10.0" height="29.31049999999999"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="136.73779296875" y="146.1093" width="10.0" height="29.31049999999999"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="230.95361328125" y="175.41979999999998" width="10.0" height="0.0"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="37.52197265625" y="175.41979999999998" width="10.0" height="0.0"/>
+<g id="message-1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 146.73779296875 116.7988 L 230.95361328125 116.7988"/>
+  <line stroke="#181818" stroke-width="1" x1="230.95361328125" y1="116.7988" x2="220.95361328125" y2="112.7988"/>
+  <line stroke="#181818" stroke-width="1" x1="230.95361328125" y1="116.7988" x2="220.95361328125" y2="120.7988"/>
+  <text fill="#000000" x="153.73779296875" y="111.7329" text-anchor="start" font-family="sans-serif" font-size="13.0">Hi Alice!</text>
+</g>
+<g id="message-2">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 230.95361328125 146.1093 L 146.73779296875 146.1093"/>
+  <line stroke="#181818" stroke-width="1" x1="146.73779296875" y1="146.1093" x2="156.73779296875" y2="142.1093"/>
+  <line stroke="#181818" stroke-width="1" x1="146.73779296875" y1="146.1093" x2="156.73779296875" y2="150.1093"/>
+  <text fill="#000000" x="153.73779296875" y="141.0434" text-anchor="start" font-family="sans-serif" font-size="13.0">Bye Bob!</text>
+</g>
+<g id="message-3">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 146.73779296875 175.41979999999998 L 230.95361328125 175.41979999999998"/>
+  <line stroke="#181818" stroke-width="1" x1="230.95361328125" y1="175.41979999999998" x2="220.95361328125" y2="171.41979999999998"/>
+  <line stroke="#181818" stroke-width="1" x1="230.95361328125" y1="175.41979999999998" x2="220.95361328125" y2="179.41979999999998"/>
+  <text fill="#000000" x="153.73779296875" y="170.35389999999998" text-anchor="start" font-family="sans-serif" font-size="13.0">Bye Alice!</text>
+</g>
+<g id="message-4">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 136.73779296875 175.41979999999998 L 47.52197265625 175.41979999999998"/>
+  <line stroke="#181818" stroke-width="1" x1="47.52197265625" y1="175.41979999999998" x2="57.52197265625" y2="171.41979999999998"/>
+  <line stroke="#181818" stroke-width="1" x1="47.52197265625" y1="175.41979999999998" x2="57.52197265625" y2="179.41979999999998"/>
+  <text fill="#000000" x="54.52197265625" y="170.35389999999998" text-anchor="start" font-family="sans-serif" font-size="13.0">Bye Alice!</text>
+</g>
+<g id="participant-m-10.0">
+  <ellipse fill="#E2E2F0" stroke="#181818" stroke-width="0.5" cx="42.52197265625" cy="18.5" rx="8.0" ry="8.0"/>
+  <path fill="none" stroke="#181818" stroke-width="0.5" d="M 42.52197265625 26.5 L 42.52197265625 53.5 M 29.52197265625 34.5 L 55.52197265625 34.5 M 42.52197265625 53.5 L 29.52197265625 68.5 M 42.52197265625 53.5 L 55.52197265625 68.5"/>
+  <text fill="#000000" x="42.52197265625" y="83.53519999999999" text-anchor="middle" font-family="sans-serif" font-size="14.0">Mallory</text>
+</g>
+<g id="participant-b-10.0">
+  <ellipse fill="#E2E2F0" stroke="#181818" stroke-width="0.5" cx="141.73779296875" cy="18.5" rx="8.0" ry="8.0"/>
+  <path fill="none" stroke="#181818" stroke-width="0.5" d="M 141.73779296875 26.5 L 141.73779296875 53.5 M 128.73779296875 34.5 L 154.73779296875 34.5 M 141.73779296875 53.5 L 128.73779296875 68.5 M 141.73779296875 53.5 L 154.73779296875 68.5"/>
+  <text fill="#000000" x="141.73779296875" y="83.53519999999999" text-anchor="middle" font-family="sans-serif" font-size="14.0">Bob</text>
+</g>
+<g id="participant-a-10.0">
+  <ellipse fill="#E2E2F0" stroke="#181818" stroke-width="0.5" cx="235.95361328125" cy="18.5" rx="8.0" ry="8.0"/>
+  <path fill="none" stroke="#181818" stroke-width="0.5" d="M 235.95361328125 26.5 L 235.95361328125 53.5 M 222.95361328125 34.5 L 248.95361328125 34.5 M 235.95361328125 53.5 L 222.95361328125 68.5 M 235.95361328125 53.5 L 248.95361328125 68.5"/>
+  <text fill="#000000" x="235.95361328125" y="83.53519999999999" text-anchor="middle" font-family="sans-serif" font-size="14.0">Alice</text>
+</g>
+<g id="participant-m-204.73029999999997">
+  <ellipse fill="#E2E2F0" stroke="#181818" stroke-width="0.5" cx="42.52197265625" cy="229.71859999999998" rx="8.0" ry="8.0"/>
+  <path fill="none" stroke="#181818" stroke-width="0.5" d="M 42.52197265625 237.71859999999998 L 42.52197265625 264.7186 M 29.52197265625 245.71859999999998 L 55.52197265625 245.71859999999998 M 42.52197265625 264.7186 L 29.52197265625 279.7186 M 42.52197265625 264.7186 L 55.52197265625 279.7186"/>
+  <text fill="#000000" x="42.52197265625" y="218.26549999999997" text-anchor="middle" font-family="sans-serif" font-size="14.0">Mallory</text>
+</g>
+<g id="participant-b-204.73029999999997">
+  <ellipse fill="#E2E2F0" stroke="#181818" stroke-width="0.5" cx="141.73779296875" cy="229.71859999999998" rx="8.0" ry="8.0"/>
+  <path fill="none" stroke="#181818" stroke-width="0.5" d="M 141.73779296875 237.71859999999998 L 141.73779296875 264.7186 M 128.73779296875 245.71859999999998 L 154.73779296875 245.71859999999998 M 141.73779296875 264.7186 L 128.73779296875 279.7186 M 141.73779296875 264.7186 L 154.73779296875 279.7186"/>
+  <text fill="#000000" x="141.73779296875" y="218.26549999999997" text-anchor="middle" font-family="sans-serif" font-size="14.0">Bob</text>
+</g>
+<g id="participant-a-204.73029999999997">
+  <ellipse fill="#E2E2F0" stroke="#181818" stroke-width="0.5" cx="235.95361328125" cy="229.71859999999998" rx="8.0" ry="8.0"/>
+  <path fill="none" stroke="#181818" stroke-width="0.5" d="M 235.95361328125 237.71859999999998 L 235.95361328125 264.7186 M 222.95361328125 245.71859999999998 L 248.95361328125 245.71859999999998 M 235.95361328125 264.7186 L 222.95361328125 279.7186 M 235.95361328125 264.7186 L 248.95361328125 279.7186"/>
+  <text fill="#000000" x="235.95361328125" y="218.26549999999997" text-anchor="middle" font-family="sans-serif" font-size="14.0">Alice</text>
+</g>
+</svg>

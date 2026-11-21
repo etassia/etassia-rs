@@ -1,0 +1,53 @@
+<svg
+ width="224.22216796875"
+ height="399.52909999999997"
+ viewBox="0 0 224.22216796875 399.52909999999997"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<line stroke="#181818" stroke-width="0.5" x1="40.67529296875" y1="96.4883" x2="40.67529296875" y2="303.0408" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="181.25" y1="96.4883" x2="181.25" y2="303.0408" stroke-dasharray="5,5"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="176.25" y="171.1093" width="10.0" height="0.0"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="176.25" y="273.7303" width="10.0" height="0.0"/>
+<g id="divider-118.7988">
+  <line stroke="#000000" stroke-width="1" x1="20.0" y1="126.7988" x2="204.22216796875" y2="126.7988"/>
+  <line stroke="#000000" stroke-width="1" x1="20.0" y1="130.7988" x2="204.22216796875" y2="130.7988"/>
+  <rect fill="#ffffff" stroke="#000000" stroke-width="1" x="70.212083984375" y="118.7988" width="83.798" height="20.0"/>
+  <text fill="#000000" x="112.111083984375" y="133.7988" text-anchor="middle" font-family="sans-serif" font-size="13">Process A</text>
+</g>
+<g id="divider-221.41979999999998">
+  <line stroke="#000000" stroke-width="1" x1="20.0" y1="229.41979999999998" x2="204.22216796875" y2="229.41979999999998"/>
+  <line stroke="#000000" stroke-width="1" x1="20.0" y1="233.41979999999998" x2="204.22216796875" y2="233.41979999999998"/>
+  <rect fill="#ffffff" stroke="#000000" stroke-width="1" x="70.212083984375" y="221.41979999999998" width="83.798" height="20.0"/>
+  <text fill="#000000" x="112.111083984375" y="236.41979999999998" text-anchor="middle" font-family="sans-serif" font-size="13">Process B</text>
+</g>
+<g id="message-1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 40.67529296875 171.1093 L 174.25 171.1093"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="164.25,167.1093 174.25,171.1093 164.25,175.1093 168.25,171.1093"/>
+  <text fill="#000000" x="107.462646484375" y="165.1093" text-anchor="middle" font-family="sans-serif" font-size="13">Inform OEM</text>
+</g>
+<g id="message-2">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 40.67529296875 273.7303 L 174.25 273.7303"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="164.25,269.7303 174.25,273.7303 164.25,277.7303 168.25,273.7303"/>
+  <text fill="#000000" x="107.462646484375" y="267.7303" text-anchor="middle" font-family="sans-serif" font-size="13">Inform OEM again</text>
+</g>
+<g id="participant-App-20.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="20.0" y="65.0" width="41.3505859375" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="40.67529296875" y="84.4883" text-anchor="middle" font-family="sans-serif" font-size="14.0">App</text>
+</g>
+<g id="participant-OEM-20.0">
+  <ellipse fill="#E2E2F0" stroke="#181818" stroke-width="0.5" cx="181.25" cy="28.5" rx="8.0" ry="8.0"/>
+  <path fill="none" stroke="#181818" stroke-width="0.5" d="M 181.25 36.5 L 181.25 63.5 M 168.25 44.5 L 194.25 44.5 M 181.25 63.5 L 168.25 78.5 M 181.25 63.5 L 194.25 78.5"/>
+  <text fill="#000000" x="181.25" y="93.53519999999999" text-anchor="middle" font-family="sans-serif" font-size="14.0">OEM</text>
+</g>
+<g id="participant-App-303.0408">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="20.0" y="303.0408" width="41.3505859375" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="40.67529296875" y="367.52909999999997" text-anchor="middle" font-family="sans-serif" font-size="14.0">App</text>
+</g>
+<g id="participant-OEM-303.0408">
+  <ellipse fill="#E2E2F0" stroke="#181818" stroke-width="0.5" cx="181.25" cy="328.02909999999997" rx="8.0" ry="8.0"/>
+  <path fill="none" stroke="#181818" stroke-width="0.5" d="M 181.25 336.02909999999997 L 181.25 363.02909999999997 M 168.25 344.02909999999997 L 194.25 344.02909999999997 M 181.25 363.02909999999997 L 168.25 378.02909999999997 M 181.25 363.02909999999997 L 194.25 378.02909999999997"/>
+  <text fill="#000000" x="181.25" y="316.57599999999996" text-anchor="middle" font-family="sans-serif" font-size="14.0">OEM</text>
+</g>
+</svg>

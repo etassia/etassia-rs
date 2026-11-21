@@ -123,6 +123,13 @@ pub fn detect_sequence(source: &str) -> bool {
     detect::detect_sequence(source)
 }
 
+/// Whether the source's body opens with a Mermaid `sequenceDiagram`
+/// pattern; the render dispatch and parse routing use it to give Mermaid
+/// sources the shared sequence name first.
+pub fn detect_sequence_body(source: &str) -> bool {
+    detect::detect_sequence_body(source)
+}
+
 /// Parses `source` with the grammar entry for `diagram_type`. The
 /// PlantUML entries parse the raw source (their grammar carries the
 /// wrapper); the Mermaid entries parse the preamble-stripped body.
@@ -145,9 +152,13 @@ pub fn parse(source: &str, diagram_type: &str) -> Result<Tree, Error> {
         return parse_with(plantuml(), "state_diagram", source);
     }
     // The sequence type names Mermaid's sequenceDiagram and the PlantUML
-    // family; a source the family claims parses with the plantuml
-    // artifact's sequence_diagram entry over the raw source.
-    if diagram_type == "sequence" && detect::detect_sequence(source) {
+    // family; a Mermaid body claims itself first, a source the family
+    // claims parses with the plantuml artifact's sequence_diagram entry
+    // over the raw source.
+    if diagram_type == "sequence"
+        && !detect::detect_sequence_body(source)
+        && detect::detect_sequence(source)
+    {
         return parse_with(plantuml(), "sequence_diagram", source);
     }
     // The class lane's own type name: the plantuml artifact carries the

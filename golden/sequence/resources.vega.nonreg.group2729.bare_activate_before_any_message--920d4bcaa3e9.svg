@@ -1,0 +1,48 @@
+<svg
+ width="184.05419921875"
+ height="340.2186"
+ viewBox="0 0 184.05419921875 340.2186"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<line stroke="#181818" stroke-width="0.5" x1="40.67529296875" y1="96.4883" x2="40.67529296875" y2="243.73029999999997" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="141.08203125" y1="96.4883" x2="141.08203125" y2="243.73029999999997" stroke-dasharray="5,5"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="136.08203125" y="151.1093" width="10.0" height="0.0"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="136.08203125" y="214.41979999999998" width="10.0" height="0.0"/>
+<g id="divider-118.7988">
+  <line stroke="#000000" stroke-width="1" x1="20.0" y1="126.7988" x2="164.05419921875" y2="126.7988"/>
+  <line stroke="#000000" stroke-width="1" x1="20.0" y1="130.7988" x2="164.05419921875" y2="130.7988"/>
+  <rect fill="#ffffff" stroke="#000000" stroke-width="1" x="50.128099609375" y="118.7988" width="83.798" height="20.0"/>
+  <text fill="#000000" x="92.027099609375" y="133.7988" text-anchor="middle" font-family="sans-serif" font-size="13">Process A</text>
+</g>
+<g id="divider-162.1093">
+  <line stroke="#000000" stroke-width="1" x1="20.0" y1="170.1093" x2="164.05419921875" y2="170.1093"/>
+  <line stroke="#000000" stroke-width="1" x1="20.0" y1="174.1093" x2="164.05419921875" y2="174.1093"/>
+  <rect fill="#ffffff" stroke="#000000" stroke-width="1" x="50.128099609375" y="162.1093" width="83.798" height="20.0"/>
+  <text fill="#000000" x="92.027099609375" y="177.1093" text-anchor="middle" font-family="sans-serif" font-size="13">Process B</text>
+</g>
+<g id="message-1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 40.67529296875 214.41979999999998 L 134.08203125 214.41979999999998"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="124.08203125,210.41979999999998 134.08203125,214.41979999999998 124.08203125,218.41979999999998 128.08203125,214.41979999999998"/>
+  <text fill="#000000" x="87.378662109375" y="208.41979999999998" text-anchor="middle" font-family="sans-serif" font-size="13">Inform OEM</text>
+</g>
+<g id="participant-App-20.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="20.0" y="65.0" width="41.3505859375" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="40.67529296875" y="84.4883" text-anchor="middle" font-family="sans-serif" font-size="14.0">App</text>
+</g>
+<g id="participant-OEM-20.0">
+  <ellipse fill="#E2E2F0" stroke="#181818" stroke-width="0.5" cx="141.08203125" cy="28.5" rx="8.0" ry="8.0"/>
+  <path fill="none" stroke="#181818" stroke-width="0.5" d="M 141.08203125 36.5 L 141.08203125 63.5 M 128.08203125 44.5 L 154.08203125 44.5 M 141.08203125 63.5 L 128.08203125 78.5 M 141.08203125 63.5 L 154.08203125 78.5"/>
+  <text fill="#000000" x="141.08203125" y="93.53519999999999" text-anchor="middle" font-family="sans-serif" font-size="14.0">OEM</text>
+</g>
+<g id="participant-App-243.73029999999997">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="20.0" y="243.73029999999997" width="41.3505859375" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="40.67529296875" y="308.2186" text-anchor="middle" font-family="sans-serif" font-size="14.0">App</text>
+</g>
+<g id="participant-OEM-243.73029999999997">
+  <ellipse fill="#E2E2F0" stroke="#181818" stroke-width="0.5" cx="141.08203125" cy="268.7186" rx="8.0" ry="8.0"/>
+  <path fill="none" stroke="#181818" stroke-width="0.5" d="M 141.08203125 276.7186 L 141.08203125 303.7186 M 128.08203125 284.7186 L 154.08203125 284.7186 M 141.08203125 303.7186 L 128.08203125 318.7186 M 141.08203125 303.7186 L 154.08203125 318.7186"/>
+  <text fill="#000000" x="141.08203125" y="257.2655" text-anchor="middle" font-family="sans-serif" font-size="14.0">OEM</text>
+</g>
+</svg>

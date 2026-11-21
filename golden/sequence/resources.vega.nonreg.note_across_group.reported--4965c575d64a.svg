@@ -1,0 +1,51 @@
+<svg
+ width="179.9267578125"
+ height="216.9082"
+ viewBox="0 0 179.9267578125 216.9082"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<line stroke="#181818" stroke-width="0.5" x1="42.955078125" y1="50.488299999999995" x2="42.955078125" y2="166.41989999999998" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="102.91455078125" y1="50.488299999999995" x2="102.91455078125" y2="166.41989999999998" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="139.9267578125" y1="50.488299999999995" x2="139.9267578125" y2="166.41989999999998" stroke-dasharray="5,5"/>
+<g id="fragment-22.955078125-68.4883">
+  <rect fill="none" stroke="#000000" stroke-width="1.5" x="22.955078125" y="68.4883" width="136.9716796875" height="81.93159999999999"/>
+  <path fill="#EEEEEE" stroke="#000000" stroke-width="1.5" d="M 22.955078125 68.4883 L 53.739078125 68.4883 L 53.739078125 82.4883 L 47.739078125 88.4883 L 22.955078125 88.4883 Z"/>
+  <text fill="#000000" x="30.955078125" y="82.4883" text-anchor="start" font-family="sans-serif" font-size="13" font-weight="bold">alt</text>
+</g>
+<g id="message-1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 102.91455078125 142.41989999999998 L 42.955078125 142.41989999999998"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="52.955078125,138.41989999999998 42.955078125,142.41989999999998 52.955078125,146.41989999999998 48.955078125,142.41989999999998"/>
+  <text fill="#000000" x="72.934814453125" y="136.41989999999998" text-anchor="middle" font-family="sans-serif" font-size="13">msg1</text>
+</g>
+<g id="note-870505364">
+  <path fill="#FEFFDD" stroke="#181818" stroke-width="0.5" d="M 32.955078125 90.7988 L 139.9267578125 90.7988 L 149.9267578125 100.7988 L 149.9267578125 115.7988 L 32.955078125 115.7988 Z"/>
+  <path fill="#FEFFDD" stroke="#181818" stroke-width="0.5" d="M 139.9267578125 90.7988 L 139.9267578125 100.7988 L 149.9267578125 100.7988"/>
+  <text fill="#000000" x="40.955078125" y="108.3668" text-anchor="start" font-family="sans-serif" font-size="13">note1</text>
+</g>
+<g id="participant-user-20.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="20.0" y="20.0" width="45.91015625" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="42.955078125" y="38.488299999999995" text-anchor="middle" font-family="sans-serif" font-size="14.0">User</text>
+</g>
+<g id="participant-wf-20.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="84.966796875" y="20.0" width="35.8955078125" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="102.91455078125" y="38.488299999999995" text-anchor="middle" font-family="sans-serif" font-size="14.0">WF</text>
+</g>
+<g id="participant-i-20.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="130.8623046875" y="20.0" width="18.12890625" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="139.9267578125" y="38.488299999999995" text-anchor="middle" font-family="sans-serif" font-size="14.0">I</text>
+</g>
+<g id="participant-user-166.41989999999998">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="20.0" y="166.41989999999998" width="45.91015625" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="42.955078125" y="184.9082" text-anchor="middle" font-family="sans-serif" font-size="14.0">User</text>
+</g>
+<g id="participant-wf-166.41989999999998">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="84.966796875" y="166.41989999999998" width="35.8955078125" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="102.91455078125" y="184.9082" text-anchor="middle" font-family="sans-serif" font-size="14.0">WF</text>
+</g>
+<g id="participant-i-166.41989999999998">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="130.8623046875" y="166.41989999999998" width="18.12890625" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="139.9267578125" y="184.9082" text-anchor="middle" font-family="sans-serif" font-size="14.0">I</text>
+</g>
+</svg>

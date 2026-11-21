@@ -1,0 +1,32 @@
+<svg
+ width="167.482421875"
+ height="150.2871"
+ viewBox="0 0 167.482421875 150.2871"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<line stroke="#181818" stroke-width="0.5" x1="66.93896484375" y1="50.488299999999995" x2="66.93896484375" y2="99.7988" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="135.68017578125" y1="50.488299999999995" x2="135.68017578125" y2="99.7988" stroke-dasharray="5,5"/>
+<g id="message-1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 66.93896484375 82.7988 L 135.68017578125 82.7988"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="125.68017578125,78.7988 135.68017578125,82.7988 125.68017578125,86.7988 129.68017578125,82.7988"/>
+  <text fill="#000000" x="101.3095703125" y="76.7988" text-anchor="middle" font-family="sans-serif" font-size="13">hi</text>
+</g>
+<g id="participant-L-20.0">
+  <rect fill="#FFC0CB" stroke="#181818" stroke-width="0.5" x="20.0" y="20.0" width="93.8779296875" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="66.93896484375" y="38.488299999999995" text-anchor="middle" font-family="sans-serif" font-size="14.0">Long Name</text>
+</g>
+<g id="participant-B-20.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="123.8779296875" y="20.0" width="23.6044921875" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="135.68017578125" y="38.488299999999995" text-anchor="middle" font-family="sans-serif" font-size="14.0">B</text>
+</g>
+<g id="participant-L-99.7988">
+  <rect fill="#FFC0CB" stroke="#181818" stroke-width="0.5" x="20.0" y="99.7988" width="93.8779296875" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="66.93896484375" y="118.28710000000001" text-anchor="middle" font-family="sans-serif" font-size="14.0">Long Name</text>
+</g>
+<g id="participant-B-99.7988">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="123.8779296875" y="99.7988" width="23.6044921875" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="135.68017578125" y="118.28710000000001" text-anchor="middle" font-family="sans-serif" font-size="14.0">B</text>
+</g>
+</svg>

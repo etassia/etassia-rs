@@ -1,0 +1,38 @@
+<svg
+ width="433.59765625"
+ height="220.5976"
+ viewBox="0 0 433.59765625 220.5976"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<g id="box-378.402099609375">
+  <rect fill="#DDDDDD" stroke="#181818" stroke-width="0.5" x="378.402099609375" y="20.0" width="47.81201171875" height="184.5976"/>
+  <text fill="#000000" x="402.30810546875" y="37.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold">Box A</text>
+</g>
+<line stroke="#181818" stroke-width="0.5" x1="402.30810546875" y1="76.4883" x2="402.30810546875" y2="170.1093" stroke-dasharray="5,5"/>
+<g id="fragment-20.0-94.4883">
+  <rect fill="none" stroke="#000000" stroke-width="1.5" x="20.0" y="94.4883" width="392.30810546875" height="59.620999999999995"/>
+  <path fill="#EEEEEE" stroke="#000000" stroke-width="1.5" d="M 20.0 94.4883 L 50.784 94.4883 L 50.784 108.4883 L 44.784 114.4883 L 20.0 114.4883 Z"/>
+  <text fill="#000000" x="28.0" y="108.4883" text-anchor="start" font-family="sans-serif" font-size="13" font-weight="bold">alt</text>
+  <text fill="#000000" x="58.784" y="108.4883" text-anchor="start" font-family="sans-serif" font-size="11" font-weight="bold">[condition]</text>
+</g>
+<g id="message-1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 402.30810546875 133.1093 L 360.30810546875 133.1093 L 360.30810546875 146.1093 L 402.30810546875 146.1093"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="392.30810546875,142.1093 402.30810546875,146.1093 392.30810546875,150.1093 396.30810546875,146.1093"/>
+  <text fill="#000000" x="395.30810546875" y="128.36929999999998" text-anchor="end" font-family="sans-serif" font-size="13">msg</text>
+</g>
+<g id="note-3395114863">
+  <path fill="#FEFFDD" stroke="#181818" stroke-width="0.5" d="M 30.0 113.79879999999999 L 386.30810546875 113.79879999999999 L 396.30810546875 123.79879999999999 L 396.30810546875 138.79879999999997 L 30.0 138.79879999999997 Z"/>
+  <path fill="#FEFFDD" stroke="#181818" stroke-width="0.5" d="M 386.30810546875 113.79879999999999 L 386.30810546875 123.79879999999999 L 396.30810546875 123.79879999999999"/>
+  <text fill="#000000" x="38.0" y="131.36679999999998" text-anchor="start" font-family="sans-serif" font-size="13">a very very very very long note inside alt at box edge</text>
+</g>
+<g id="participant-a-46.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="391.0185546875" y="46.0" width="22.5791015625" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="402.30810546875" y="64.4883" text-anchor="middle" font-family="sans-serif" font-size="14.0">a</text>
+</g>
+<g id="participant-a-170.1093">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="391.0185546875" y="170.1093" width="22.5791015625" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="402.30810546875" y="188.5976" text-anchor="middle" font-family="sans-serif" font-size="14.0">a</text>
+</g>
+</svg>

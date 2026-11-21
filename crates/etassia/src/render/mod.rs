@@ -88,7 +88,9 @@ pub fn render(source: &str) -> Result<String, Error> {
         // PlantUML family; a source the family claims picks the PlantUML
         // lane.
         "sequence" => {
-            if crate::parse::detect_sequence(source) {
+            if !crate::parse::detect_sequence_body(source)
+                && crate::parse::detect_sequence(source)
+            {
                 sequence_puml::render(source)
             } else {
                 sequence::render(source)

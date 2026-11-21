@@ -1,0 +1,44 @@
+<svg
+ width="268.6015625"
+ height="404.61199999999997"
+ viewBox="0 0 268.6015625 404.61199999999997"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<line stroke="#181818" stroke-width="0.5" x1="226.62744140625" y1="50.488299999999995" x2="226.62744140625" y2="354.1237" stroke-dasharray="5,5"/>
+<rect fill="#FFFFFF" stroke="#181818" stroke-width="1" x="221.62744140625" y="62.7988" width="10.0" height="267.32489999999996"/>
+<g id="message-1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 226.62744140625 174.6516 L 184.62744140625 174.6516 L 184.62744140625 187.6516 L 226.62744140625 187.6516" stroke-dasharray="2,2"/>
+  <line stroke="#181818" stroke-width="1" x1="226.62744140625" y1="187.6516" x2="216.62744140625" y2="183.6516"/>
+  <line stroke="#181818" stroke-width="1" x1="226.62744140625" y1="187.6516" x2="216.62744140625" y2="191.6516"/>
+  <text fill="#000000" x="219.62744140625" y="78.05879999999999" text-anchor="end" font-family="sans-serif" font-size="13">the arrow and text are located</text>
+  <text fill="#000000" x="219.62744140625" y="93.3676" text-anchor="end" font-family="sans-serif" font-size="13">inside the Lifeline because</text>
+  <text fill="#000000" x="219.62744140625" y="108.6764" text-anchor="end" font-family="sans-serif" font-size="13">they are counted from the</text>
+  <text fill="#000000" x="219.62744140625" y="123.98519999999999" text-anchor="end" font-family="sans-serif" font-size="13">right side of the active</text>
+  <text fill="#000000" x="219.62744140625" y="139.29399999999998" text-anchor="end" font-family="sans-serif" font-size="13">member's column bar</text>
+  <text fill="#000000" x="219.62744140625" y="154.6028" text-anchor="end" font-family="sans-serif" font-size="13">(Lifeline). Which is an</text>
+  <text fill="#000000" x="219.62744140625" y="169.9116" text-anchor="end" font-family="sans-serif" font-size="13">incorrect display, right?</text>
+</g>
+<g id="message-2">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 226.62744140625 329.1237 L 184.62744140625 329.1237 L 184.62744140625 342.1237 L 226.62744140625 342.1237" stroke-dasharray="2,2"/>
+  <line stroke="#181818" stroke-width="1" x1="226.62744140625" y1="342.1237" x2="216.62744140625" y2="338.1237"/>
+  <line stroke="#181818" stroke-width="1" x1="226.62744140625" y1="342.1237" x2="216.62744140625" y2="346.1237"/>
+  <text fill="#000000" x="219.62744140625" y="217.22209999999998" text-anchor="end" font-family="sans-serif" font-size="13">also the arrow is not displayed</text>
+  <text fill="#000000" x="219.62744140625" y="232.53089999999997" text-anchor="end" font-family="sans-serif" font-size="13">correctly (issue: #1678). (I</text>
+  <text fill="#000000" x="219.62744140625" y="247.8397" text-anchor="end" font-family="sans-serif" font-size="13">wonder if the closing of the</text>
+  <text fill="#000000" x="219.62744140625" y="263.14849999999996" text-anchor="end" font-family="sans-serif" font-size="13">Lifeline is displayed correctly?</text>
+  <text fill="#000000" x="219.62744140625" y="278.4573" text-anchor="end" font-family="sans-serif" font-size="13">Should it also include the</text>
+  <text fill="#000000" x="219.62744140625" y="293.7661" text-anchor="end" font-family="sans-serif" font-size="13">arrow before it, i.e. close after</text>
+  <text fill="#000000" x="219.62744140625" y="309.07489999999996" text-anchor="end" font-family="sans-serif" font-size="13">it? If not, how do I close the</text>
+  <text fill="#000000" x="219.62744140625" y="324.3837" text-anchor="end" font-family="sans-serif" font-size="13">Life Line after the last arrow?)</text>
+</g>
+<g id="participant-Test-20.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="204.6533203125" y="20.0" width="43.9482421875" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="226.62744140625" y="38.488299999999995" text-anchor="middle" font-family="sans-serif" font-size="14.0">Test</text>
+</g>
+<g id="participant-Test-354.1237">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="204.6533203125" y="354.1237" width="43.9482421875" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="226.62744140625" y="372.61199999999997" text-anchor="middle" font-family="sans-serif" font-size="14.0">Test</text>
+</g>
+</svg>

@@ -1,0 +1,54 @@
+<svg
+ width="458.9990234375"
+ height="211.2871"
+ viewBox="0 0 458.9990234375 211.2871"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<line stroke="#181818" stroke-width="0.5" x1="62.0" y1="81.4883" x2="62.0" y2="129.7988" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="211.49951171875" y1="81.4883" x2="211.49951171875" y2="129.7988" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="316.9990234375" y1="81.4883" x2="316.9990234375" y2="129.7988" stroke-dasharray="5,5"/>
+<line stroke="#181818" stroke-width="0.5" x1="396.9990234375" y1="81.4883" x2="396.9990234375" y2="129.7988" stroke-dasharray="5,5"/>
+<g id="message-1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 62.0 112.7988 L 211.49951171875 112.7988"/>
+  <polygon fill="#181818" stroke="#181818" stroke-width="1" points="201.49951171875,108.7988 211.49951171875,112.7988 201.49951171875,116.7988 205.49951171875,112.7988"/>
+  <text fill="#000000" x="136.749755859375" y="106.7988" text-anchor="middle" font-family="sans-serif" font-size="13">Message</text>
+</g>
+<g id="participant-A-5.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="5.0" y="50.0" width="114.0" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="62.0" y="69.4883" text-anchor="middle" font-family="sans-serif" font-size="14.0">A</text>
+</g>
+<g id="participant-B-5.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="129.0" y="50.0" width="164.9990234375" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="211.49951171875" y="69.4883" text-anchor="middle" font-family="sans-serif" font-size="14.0">LongNameParticipant</text>
+</g>
+<g id="participant-X-5.0">
+  <ellipse fill="#E2E2F0" stroke="#181818" stroke-width="0.5" cx="316.9990234375" cy="13.5" rx="8.0" ry="8.0"/>
+  <path fill="none" stroke="#181818" stroke-width="0.5" d="M 316.9990234375 21.5 L 316.9990234375 48.5 M 303.9990234375 29.5 L 329.9990234375 29.5 M 316.9990234375 48.5 L 303.9990234375 63.5 M 316.9990234375 48.5 L 329.9990234375 63.5"/>
+  <text fill="#000000" x="316.9990234375" y="78.53519999999999" text-anchor="middle" font-family="sans-serif" font-size="14.0">X</text>
+</g>
+<g id="participant-C-5.0">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="339.9990234375" y="33.5117" width="114.0" height="46.9766" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="408.2445234375" y="19.0" text-anchor="end" font-family="sans-serif" font-size="11.9" font-style="italic">«st»</text>
+  <text fill="#000000" x="408.2445234375" y="69.4883" text-anchor="end" font-family="sans-serif" font-size="14.0">C</text>
+</g>
+<g id="participant-A-129.7988">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="5.0" y="129.7988" width="114.0" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="62.0" y="194.2871" text-anchor="middle" font-family="sans-serif" font-size="14.0">A</text>
+</g>
+<g id="participant-B-129.7988">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="129.0" y="129.7988" width="164.9990234375" height="30.4883" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="211.49951171875" y="194.2871" text-anchor="middle" font-family="sans-serif" font-size="14.0">LongNameParticipant</text>
+</g>
+<g id="participant-X-129.7988">
+  <ellipse fill="#E2E2F0" stroke="#181818" stroke-width="0.5" cx="316.9990234375" cy="154.7871" rx="8.0" ry="8.0"/>
+  <path fill="none" stroke="#181818" stroke-width="0.5" d="M 316.9990234375 162.7871 L 316.9990234375 189.7871 M 303.9990234375 170.7871 L 329.9990234375 170.7871 M 316.9990234375 189.7871 L 303.9990234375 204.7871 M 316.9990234375 189.7871 L 329.9990234375 204.7871"/>
+  <text fill="#000000" x="316.9990234375" y="143.334" text-anchor="middle" font-family="sans-serif" font-size="14.0">X</text>
+</g>
+<g id="participant-C-129.7988">
+  <rect fill="#E2E2F0" stroke="#181818" stroke-width="0.5" x="339.9990234375" y="129.7988" width="114.0" height="46.9766" rx="2.5" ry="2.5"/>
+  <text fill="#000000" x="408.2445234375" y="143.7988" text-anchor="end" font-family="sans-serif" font-size="11.9" font-style="italic">«st»</text>
+  <text fill="#000000" x="408.2445234375" y="194.2871" text-anchor="end" font-family="sans-serif" font-size="14.0">C</text>
+</g>
+</svg>
