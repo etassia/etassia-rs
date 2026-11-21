@@ -1,0 +1,21 @@
+<svg
+ width="105.136"
+ height="189.46339999999998"
+ viewBox="0 0 105.136 189.46339999999998"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<g>
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="1.5" x="20.0" y="19.999999999999996" width="49.568" height="36.4878" rx="12.5" ry="12.5"/>
+  <text fill="#000000" x="30.0" y="43.534" font-family="sans-serif" font-size="14.0">Root</text>
+</g>
+<g>
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="1.5" x="20.0" y="76.4878" width="65.136" height="36.4878" rx="12.5" ry="12.5"/>
+  <text fill="#000000" x="30.0" y="100.022" font-family="sans-serif" font-size="14.0">Node 1</text>
+</g>
+<g>
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="1.5" x="20.0" y="132.9756" width="65.136" height="36.4878" rx="12.5" ry="12.5"/>
+  <text fill="#000000" x="30.0" y="156.509" font-family="sans-serif" font-size="14.0">Node 2</text>
+</g>
+</svg>

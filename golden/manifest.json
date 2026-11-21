@@ -7130,6 +7130,30 @@
       "svg_sha256": "a8fe1981df8d51efd56f89bb289b47dfbd52d1fd7942e0c107cf0ea25f7c9c08"
     },
     {
+      "case": "mindmap/resources.vega.nonreg.mindmap.mindmap-boxless-and-leaf-variants--44fd3178200f.mmd",
+      "type": "mindmap",
+      "source_sha256": "17e89b77e22dc40641a3f1f16824fbf0864c4dd69a999d2cbb45874b53ab57b2",
+      "svg_sha256": "7c68e90b5f119b9f5fa90d1b5d01b812d3ae5b2af901c5e0562c3cf1e31db7c6"
+    },
+    {
+      "case": "mindmap/resources.vega.nonreg.mindmap.mindmap-deep-ancestor-cascade-with-stereotype--699c990a2c5f.mmd",
+      "type": "mindmap",
+      "source_sha256": "bb2f12825358b656c0fe81580874714b8672613709e16969852e12febffbf758",
+      "svg_sha256": "225482d1740ca82f98c6d0b98b46da9b4c0e512d15e40b3aab200c1469036b66"
+    },
+    {
+      "case": "mindmap/resources.vega.svg.id.mindmap_01--7b23f99427d3.mmd",
+      "type": "mindmap",
+      "source_sha256": "b2a57a64fbe072424ddf4b1ffb46643048e5c3bab3e96fcc0a60fda180d733df",
+      "svg_sha256": "986ce80ea620922c8b2f8eb57e799c86337a48fb8d5d3345d72a8a5d975520fc"
+    },
+    {
+      "case": "mindmap/resources.vega.svg.id.mindmap_02_horizontal_alignment--a08f458ee954.mmd",
+      "type": "mindmap",
+      "source_sha256": "d920917f97f0271845ba4cd682177b28e67283a8a14afd1e9722c05e9061faae",
+      "svg_sha256": "678840f77d4bcf812ce4418c6f91a9e7e8c0370f6a1e0dacfc5b149bc0bde905"
+    },
+    {
       "case": "packet/mermaidapi_spec-a11cf9f6.mmd",
       "type": "packet",
       "source_sha256": "c4580507c7ce0c1cd70c74b51dc2f5a426b081f986e8f761277f1c2d4c85bbc7",

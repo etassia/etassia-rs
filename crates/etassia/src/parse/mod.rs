@@ -68,12 +68,16 @@ pub fn detect(source: &str) -> Option<String> {
         return Some("git".to_string());
     }
     // The mermaid body patterns claim their own types first (a mermaid
-    // gantt is a mermaid kind); the PlantUML @startgantt wrapper runs
-    // next, before the component family lanes, whose `[Task]` markers
-    // would otherwise steal a gantt source.
+    // gantt is a mermaid kind); the PlantUML @startgantt and @startmindmap
+    // wrappers run next, before the component family lanes, whose markers
+    // would otherwise steal their sources - a Mermaid source claims itself
+    // first, then the tagged PlantUML kinds before the families.
     detect::detect_body(&source::body(source))
         .map(str::to_string)
         .or_else(|| detect::detect_gantt(source).then(|| "gantt".to_string()))
+        .or_else(|| {
+            detect::detect_mindmap(source).then(|| "mindmap".to_string())
+        })
         .or_else(|| {
             detect::detect_timing(source).then(|| "timing".to_string())
         })
@@ -97,6 +101,12 @@ pub fn body(source: &str) -> String {
     source::body(source)
 }
 
+/// Whether the raw source opens with the PlantUML mindmap wrapper; the
+/// render dispatch uses it to split the shared mindmap type name.
+pub fn detect_mindmap(source: &str) -> bool {
+    detect::detect_mindmap(source)
+}
+
 /// Parses `source` with the grammar entry for `diagram_type`. The
 /// PlantUML entries parse the raw source (their grammar carries the
 /// wrapper); the Mermaid entries parse the preamble-stripped body.
@@ -106,6 +116,11 @@ pub fn parse(source: &str, diagram_type: &str) -> Result<Tree, Error> {
     // gantt_diagram entry over the raw source.
     if diagram_type == "gantt" && detect::detect_gantt(source) {
         return parse_with(plantuml(), "gantt_diagram", source);
+    }
+    // The PlantUML mindmap shares the Mermaid type name; the wrapper
+    // claims the plantuml artifact's mindmap_diagram entry the same way.
+    if diagram_type == "mindmap" && detect::detect_mindmap(source) {
+        return parse_with(plantuml(), "mindmap_diagram", source);
     }
     let entry = entry_for(diagram_type);
     let Some(artifact) = artifact_for(&entry) else {
