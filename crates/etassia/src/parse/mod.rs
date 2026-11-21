@@ -90,6 +90,9 @@ pub fn detect(source: &str) -> Option<String> {
         // families order (Further, State, Usecase, Component, Activity):
         // the markers the earlier families claim never reach it.
         .or_else(|| detect::detect_activity(source).then(|| "activity".to_string()))
+        // The class lane is what is left: any PlantUML opener no earlier
+        // family claimed (Ruby runs the class reader as its fallback).
+        .or_else(|| detect::detect_class(source).then(|| "class".to_string()))
 }
 
 /// Whether the raw source opens with the PlantUML gantt wrapper: the
@@ -130,6 +133,12 @@ pub fn parse(source: &str, diagram_type: &str) -> Result<Tree, Error> {
     // source claims the plantuml artifact's state_diagram entry directly.
     if diagram_type == "state" {
         return parse_with(plantuml(), "state_diagram", source);
+    }
+    // The class lane's own type name: the plantuml artifact carries the
+    // class_diagram entry over the raw source. The mermaid classDiagram
+    // keeps its own "class_diagram" type, so the two never meet.
+    if diagram_type == "class" {
+        return parse_with(plantuml(), "class_diagram", source);
     }
     let entry = entry_for(diagram_type);
     let Some(artifact) = artifact_for(&entry) else {
