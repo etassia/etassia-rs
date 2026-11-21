@@ -790,13 +790,34 @@ impl<'m> Walker<'m> {
         if depth == 0 {
             return at;
         }
-        let other = if *place == message.to {
-            message.from.id()
-        } else {
-            message.to.id()
-        };
-        let toward = if self.centre(other) < at { -1.0 } else { 1.0 };
+        let toward = self.activation_direction(place, message, at);
         at + ((depth as f64 - 1.0) * (BAR_WIDTH / 2.0)) + (toward * (BAR_WIDTH / 2.0))
+    }
+
+    /// Ruby `activation_direction`: an Edge end points inward by its side;
+    /// a participant end points toward the other end's centre.
+    fn activation_direction(&self, place: &Place, message: &Message, at: f64) -> f64 {
+        let other = if *place == message.to {
+            message.from.clone()
+        } else {
+            message.to.clone()
+        };
+        match other {
+            Place::Edge(edge) => {
+                if edge.left() {
+                    -1.0
+                } else {
+                    1.0
+                }
+            }
+            Place::Id(id) => {
+                if self.centre(&id) < at {
+                    -1.0
+                } else {
+                    1.0
+                }
+            }
+        }
     }
 
     fn compact_activation_depth(&self, place: &Place) -> i64 {

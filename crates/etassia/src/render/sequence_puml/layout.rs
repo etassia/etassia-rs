@@ -1368,6 +1368,9 @@ impl Layout {
             for centre in &mut self.centers {
                 *centre += shift;
             }
+            // Ruby recentre re-runs walk(), which recomputes right_edge
+            // from the shifted centres.
+            self.edge_right = self.right_edge();
             let lifelines: Vec<(String, f64)> = self
                 .ids()
                 .iter()

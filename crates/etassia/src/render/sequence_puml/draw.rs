@@ -44,27 +44,36 @@ struct Painter {
 }
 
 pub fn draw(scene: &Scene) -> String {
-    let mut painter = Painter {
-        painted: scene
-            .paint
-            .iter()
-            .filter_map(|pair| {
-                let (role, value) = pair.split_once('=')?;
-                Some((role.to_string(), value.to_string()))
-            })
-            .collect(),
-        doc: crate::svg::Document::new(scene.width, scene.height),
-    };
-    painter.paint(scene);
+    let mut painter = Painter::for_scene(scene);
+    for element in painter.scene_elements(scene) {
+        painter.doc.add(element);
+    }
     painter.doc.to_xml()
 }
 
 impl Painter {
+    /// A painter seeded with the scene's paint roles.
+    fn for_scene(scene: &Scene) -> Painter {
+        Painter {
+            painted: scene
+                .paint
+                .iter()
+                .filter_map(|pair| {
+                    let (role, value) = pair.split_once('=')?;
+                    Some((role.to_string(), value.to_string()))
+                })
+                .collect(),
+            doc: crate::svg::Document::new(scene.width, scene.height),
+        }
+    }
     fn painted(&self, role: &str) -> Option<&String> {
         self.painted.get(role)
     }
 
-    fn paint(&mut self, scene: &Scene) {
+    /// The scene's top-level elements, in paint order. Nested pictures reuse
+    /// this list directly (Ruby splices the inner document's children).
+    fn scene_elements(&mut self, scene: &Scene) -> Vec<Elem> {
+        let mut body: Vec<Elem> = vec![];
         if let Some(background) = self.painted("background") {
             let rect = Elem::new("rect")
                 .attr("fill", background.clone())
@@ -72,14 +81,17 @@ impl Painter {
                 .num("y", 0.0)
                 .num("width", scene.width)
                 .num("height", scene.height);
-            self.doc.add(rect);
+            body.push(rect);
         }
         if let Some(title) = &scene.title {
-            self.doc.add(group("title", vec![], self.texts(title.texts.clone())));
+            body.push(group("title", vec![], self.texts(title.texts.clone())));
         }
         for block in &scene.text_blocks {
-            self.doc
-                .add(group(&format!("{}", block.id), vec![], self.texts(block.texts.clone())));
+            body.push(group(
+                &format!("{}", block.id),
+                vec![],
+                self.texts(block.texts.clone()),
+            ));
         }
         if let Some(legend) = &scene.legend {
             let frame = Elem::new("rect")
@@ -92,7 +104,7 @@ impl Painter {
                 .attr("fill", LEGEND_FILL)
                 .attr("stroke", "#000000")
                 .attr("stroke-width", "1");
-            self.doc.add(group("legend", vec![frame], self.texts(legend.texts.clone())));
+            body.push(group("legend", vec![frame], self.texts(legend.texts.clone())));
         }
         let layers: Vec<Vec<Elem>> = vec![
             scene
@@ -126,9 +138,10 @@ impl Painter {
         ];
         for layer in layers {
             for element in layer {
-                self.doc.add(element);
+                body.push(element);
             }
         }
+        body
     }
 
     fn banner_group(&self, banner: &super::layout::Banner) -> Elem {
@@ -692,50 +705,11 @@ fn group(id: &str, children: Vec<Elem>, texts: Vec<Elem>) -> Elem {
     element
 }
 
-/// Draws an embedded picture scene into its own element list.
+/// Draws an embedded picture scene into its own element list (the inner
+/// document's children, spliced under a transformed group).
 fn draw_picture(scene: &Scene) -> Vec<Elem> {
-    let xml = draw(scene);
-    // The inner document's children are spliced under a transformed group.
-    parse_children(&xml)
-}
-
-/// A minimal reader for the inner scene's element list.
-fn parse_children(xml: &str) -> Vec<Elem> {
-    let mut out = vec![];
-    for line in xml.lines() {
-        let trimmed = line.trim_start();
-        if trimmed.starts_with("<svg") || trimmed.starts_with("</svg") {
-            continue;
-        }
-        out.push(element_from_xml(trimmed));
-    }
-    out
-}
-
-/// Rebuilds one element line as an Elem (attributes and tag only; nested
-/// groups arrive as their own lines).
-fn element_from_xml(line: &str) -> Elem {
-    let (tag, rest) = if let Some(rest) = line.strip_prefix('<') {
-        match rest.find(' ') {
-            Some(space) => (rest[..space].to_string(), &rest[space + 1..]),
-            None => (
-                rest.trim_end_matches(['>', '/']).to_string(),
-                "",
-            ),
-        }
-    } else {
-        (String::new(), line)
-    };
-    let mut element = Elem::new(&tag);
-    let mut rest = rest;
-    while let Some(eq) = rest.find("=\"") {
-        let name = rest[..eq].rsplit(' ').next().unwrap_or("").to_string();
-        let after = &rest[eq + 2..];
-        let Some(close) = after.find('"') else { break };
-        element = element.attr(&name, after[..close].to_string());
-        rest = &after[close + 1..];
-    }
-    element
+    let mut painter = Painter::for_scene(scene);
+    painter.scene_elements(scene)
 }
 
 /// Ruby `Zlib.crc32`.
@@ -750,4 +724,3 @@ fn crc32(data: &str) -> u32 {
     }
     !crc
 }
-// dash check

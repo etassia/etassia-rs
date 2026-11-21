@@ -95,7 +95,7 @@ pub fn line_height(font_size: f64) -> f64 {
 /// `NoteGeometry.natural_width`: the width the text needs.
 pub fn natural_width(note: &Note, font_size: f64) -> f64 {
     if let Some(picture) = &note.picture {
-        return picture.width() + 2.0 * PAD;
+        return picture.width() - 2.0 * picture_inset(picture) + 2.0 * PAD;
     }
     let widest = note
         .lines()
@@ -108,7 +108,7 @@ pub fn natural_width(note: &Note, font_size: f64) -> f64 {
 /// `NoteGeometry.height`.
 pub fn height(note: &Note) -> f64 {
     if let Some(picture) = &note.picture {
-        return picture.height() + 14.0;
+        return picture.height() - 2.0 * picture_inset(picture) + 14.0;
     }
     (note.lines().len() as f64 * LINE_PITCH) + CHROME
 }
@@ -533,7 +533,7 @@ pub fn arrow_marks(
     if let Some(glyph) = glyph {
         if glyph == "cross" {
             let centre = x + inward * CROSS_CENTRE;
-            for slant in [CROSS_HALF, -CROSS_HALF] {
+            for slant in [-CROSS_HALF, CROSS_HALF] {
                 marks.push(stroke(
                     [centre - CROSS_HALF, y - slant],
                     [centre + CROSS_HALF, y + slant],
