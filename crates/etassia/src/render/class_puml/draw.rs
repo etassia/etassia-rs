@@ -2,7 +2,7 @@
 //! `MemberIconElements` and `NoteOutline`: draws the Scene without
 //! changing its geometry.
 use super::model::Kind;
-use super::scene::{Box, Icon, Marker, Relation as SceneRelation, Scene, Spot};
+use super::scene::{Box, Icon, Relation as SceneRelation, Scene};
 use super::style::{Prop, Sheet, Value};
 use crate::svg::{self, Document, Elem};
 use std::sync::OnceLock;

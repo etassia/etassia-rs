@@ -276,5 +276,3 @@ pub mod stereotype_head {
     }
 }
 
-/// Ruby `ClassHeader::RADIUS`.
-pub const CLASS_HEADER_RADIUS: f64 = 11.0;

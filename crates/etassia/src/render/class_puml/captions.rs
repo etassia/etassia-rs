@@ -94,13 +94,12 @@ pub struct CaptionRows {
     top: Vec<Panel>,
     bottom: Vec<Panel>,
     content_y: f64,
-    below: f64,
     bottom_edge: f64,
 }
 
 impl CaptionRows {
     pub fn new(mut panels: Vec<Panel>, width: f64, content_height: f64) -> CaptionRows {
-        let mut top = stack(&mut panels, &[CaptionKind::Header, CaptionKind::Title], GAP, width);
+        let top = stack(&mut panels, &[CaptionKind::Header, CaptionKind::Title], GAP, width);
         let content_y = if top.is_empty() {
             0.0
         } else {
@@ -120,11 +119,7 @@ impl CaptionRows {
             let last = bottom.last().unwrap();
             last.y + last.height + GAP
         };
-        CaptionRows { top, bottom, content_y, below, bottom_edge }
-    }
-
-    pub fn content_y(&self) -> f64 {
-        self.content_y
+        CaptionRows { top, bottom, content_y, bottom_edge }
     }
 
     pub fn panels(&self) -> Vec<Panel> {
@@ -146,7 +141,7 @@ fn stack(panels: &mut [Panel], order: &[CaptionKind], start: f64, width: f64) ->
             continue;
         };
         let panel = panels[position].clone();
-        let mut panel = at(&panel, cursor, width);
+        let panel = at(&panel, cursor, width);
         cursor += panel.height + GAP;
         panels[position] = panel.clone();
         out.push(panel);

@@ -7,7 +7,6 @@ use std::collections::HashMap;
 const GAP: f64 = 30.0;
 const STACK_GAP: f64 = 10.0;
 const FREE_GAP: f64 = 20.0;
-const TEXT_SCALE: f64 = 1.15;
 const LINE_HEIGHT: f64 = 15.310546875;
 const PADDING: f64 = 10.0;
 const SIDE: f64 = 21.0;
@@ -205,12 +204,6 @@ impl<'a> NoteLayout<'a> {
             spot: None,
         }
     }
-}
-
-/// Ruby's free-note stack walks `@free_top`; the placed list only feeds
-/// `blocked?`, so the walk lives here.
-fn placed_free_top(others: &mut Vec<Rect>, rect: &Rect) {
-    others.push(*rect);
 }
 
 #[derive(Clone, Debug)]

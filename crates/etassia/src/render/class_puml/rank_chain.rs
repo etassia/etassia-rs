@@ -223,13 +223,6 @@ fn chain_for(diagram: &Diagram) -> Option<RankChain> {
     })
 }
 
-fn halved_any(chains: &[Vec<usize>], diagram: &Diagram) -> bool {
-    chains
-        .iter()
-        .flatten()
-        .any(|index| diagram.relations[*index].label.is_some())
-}
-
 impl Placer {
     /// Ruby `RankChain.for`: `None` keeps the grid.
     pub fn for_diagram(diagram: &Diagram) -> Option<Placer> {
@@ -350,13 +343,13 @@ impl Fork {
 enum Slot {
     Class(String),
     Junction(usize, String),
-    Virtual(usize),
+    Virtual,
     Label(usize),
 }
 
 impl Slot {
     fn rendered(&self) -> bool {
-        !matches!(self, Slot::Virtual(_) | Slot::Label(_))
+        !matches!(self, Slot::Virtual | Slot::Label(_))
     }
 }
 
@@ -489,7 +482,7 @@ impl RankChain {
                         {
                             Slot::Label(relation_index)
                         } else {
-                            Slot::Virtual(relation_index)
+                            Slot::Virtual
                         };
                         items.push((number, node, (rank as i64 + step) as usize));
                     }
@@ -515,7 +508,7 @@ impl RankChain {
         let mut spans: Vec<f64> = vec![];
         for (_, slot, rank) in items {
             let span = match slot {
-                Slot::Virtual(_) => VIRTUAL_NODE,
+                Slot::Virtual => VIRTUAL_NODE,
                 Slot::Label(index) => self.label_span(label_widths[index]),
                 _ => self.along_span(slot, sizes),
             };

@@ -10,7 +10,6 @@ pub const SIDE: f64 = 16.0;
 const NESTING_STEP: f64 = 8.0;
 const NESTED_OPEN: f64 = 35.0;
 const RELATION_INSET: f64 = 8.0;
-const TAB_HEIGHT: f64 = 22.0;
 const ICON_WIDTH: f64 = 14.0;
 
 /// Ruby `relation_layout?`: exactly one relation touches a package.

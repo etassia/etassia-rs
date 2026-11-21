@@ -37,9 +37,6 @@ fn details(glyph_text: &str, left: Option<&str>, body: &str, right: Option<&str>
     let markers = markers_of(left, right, dashed);
     let (color, width, dotted) = stroke_of(&style_text);
     Arrow {
-        kind: single_kind(&markers, dashed),
-        head_is_left: head_of(&markers),
-        both: markers.size() == 2,
         markers,
         dashed,
         plain: matches!(glyph_text, "-->" | "<--" | "->" | "<-"),
@@ -157,21 +154,6 @@ fn direction_of(body: &str) -> Option<Direction> {
         return Some(Direction::Right);
     }
     None
-}
-
-fn single_kind(markers: &Markers, dashed: bool) -> Option<ArrowKind> {
-    match markers.size() {
-        0 => Some(line_kind(dashed)),
-        1 => Some(markers.left.or(markers.right).unwrap()),
-        _ => None,
-    }
-}
-
-fn head_of(markers: &Markers) -> Option<bool> {
-    if markers.size() == 2 {
-        return None;
-    }
-    Some(markers.left.is_some())
 }
 
 #[derive(Clone, Debug)]

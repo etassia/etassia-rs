@@ -12,7 +12,6 @@ use std::sync::OnceLock;
 
 const NAME: &str = r"[A-Za-z_][A-Za-z0-9_$]*";
 const STEREOTYPE: &str = r"<<[^<>]+>>";
-const END_TEXT: &str = r#"(?:"([^"]+)"(?:/"([^"]+)")?|/"([^"]+)"|\[[^\]]+\])"#;
 
 struct Patterns {
     class_declaration: Regex,
@@ -525,9 +524,6 @@ fn relation(builder: &mut Builder, text: &str) -> Result<Phase, Error> {
     let relation = Relation {
         left: unquote(&found.left),
         right: unquote(&found.right),
-        kind: parsed.kind,
-        head_is_left: parsed.head_is_left,
-        both: parsed.both,
         markers: parsed.markers,
         left_multiplicity: found.left_text,
         right_multiplicity: found.right_text,
@@ -1266,7 +1262,7 @@ impl Builder {
             .collect()
     }
 
-    fn visible(mut self, classes: Vec<Klass>) -> Result<Diagram, Error> {
+    fn visible(self, classes: Vec<Klass>) -> Result<Diagram, Error> {
         let hidden: Vec<String> = classes
             .iter()
             .filter(|klass| {
