@@ -406,6 +406,10 @@ impl RankChain {
         let tops = self.rank_tops(&spans, origin[self.along()]);
         let mut places: HashMap<String, [f64; 2]> = HashMap::new();
         let mut junctions: HashMap<usize, [f64; 4]> = HashMap::new();
+        if std::env::var_os("ETASSIA_CLASS_DEBUG").is_some() {
+            eprintln!("chain items: {:?}", items);
+            eprintln!("spans={:?} tops={:?}", spans, tops);
+        }
         for (chain, slot, rank) in items {
             let frame = ChainFrame {
                 middle: frames[chain].0,
@@ -470,26 +474,31 @@ impl RankChain {
             for chain_index in chain {
                 index += 1;
                 let relation_index = *chain_index;
+                let relation = &diagram.relations[relation_index];
+                let steps =
+                    ((relation.length as i64) - 1) * if self.halved { 2 } else { 1 };
                 if let Some(owner) = self.owner_by_relation(relation_index) {
+                    // A junction's legs step one rank each; the owner
+                    // rides the junction slot.
                     items.push((
                         number,
                         Slot::Junction(relation_index, owner.clone()),
                         rank + 1,
                     ));
                     rank += 2;
+                } else {
+                    for step in 1..steps {
+                        let node = if relation.label.is_some()
+                            && step == steps / 2
+                        {
+                            Slot::Label(relation_index)
+                        } else {
+                            Slot::Virtual(relation_index)
+                        };
+                        items.push((number, node, (rank as i64 + step) as usize));
+                    }
+                    rank += steps as usize;
                 }
-                let relation = &diagram.relations[relation_index];
-                let steps =
-                    ((relation.length as i64) - 1) * if self.halved { 2 } else { 1 };
-                for step in 1..steps {
-                    let node = if relation.label.is_some() && step == steps / 2 {
-                        Slot::Label(relation_index)
-                    } else {
-                        Slot::Virtual(relation_index)
-                    };
-                    items.push((number, node, (rank as i64 + step) as usize));
-                }
-                rank = (rank as i64 + steps) as usize;
                 items.push((
                     number,
                     Slot::Class(relation.right.clone()),

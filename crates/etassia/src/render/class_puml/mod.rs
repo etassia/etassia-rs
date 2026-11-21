@@ -42,3 +42,24 @@ pub(crate) fn render(source: &str) -> Result<String, Error> {
 pub fn format_g_pub(value: f64) -> String {
     layout::format_g(value)
 }
+
+
+/// Scratch hook for the shared-note fill.
+#[doc(hidden)]
+pub fn stereo_fill_probe(stereotype: Option<String>, directives: Vec<String>) -> Option<String> {
+    let diagram_directives = directives;
+    // mirror layout::stereotype_note_fill
+    let stereotype = stereotype.as_deref()?;
+    let name = stereotype
+        .strip_prefix("<<")
+        .and_then(|s| s.strip_suffix(">>"))
+        .unwrap_or(stereotype);
+    let prefix = format!("skinparam\\s+noteBackgroundColor<<{}>>", regex::escape(name));
+    let pattern = regex::Regex::new(&format!(r"(?i)\A{}\s+(\S+)\z", prefix)).unwrap();
+    diagram_directives
+        .iter()
+        .rev()
+        .find(|line| pattern.is_match(line))
+        .and_then(|line| pattern.captures(line))
+        .map(|m| m[1].to_string())
+}

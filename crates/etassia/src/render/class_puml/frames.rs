@@ -1,6 +1,7 @@
 //! Port of Ruby `Notation::PlantUML::PackageFrames` (`package_frames.rb`):
 //! the Scene frame around each package's positioned boxes.
 use super::model::{Diagram, PackageShape};
+use std::collections::HashMap;
 use super::scene::{Frame, Text};
 
 pub const OPEN: f64 = 40.0;
@@ -55,9 +56,9 @@ impl<'a> PackageFrames<'a> {
     }
 
     /// Ruby `call`: outer packages before the ones inside them.
-    pub fn call(&self, boxes: &[super::scene::Box]) -> Vec<Frame> {
+    pub fn call<'b>(&self, boxes: &'b [super::scene::Box]) -> Vec<Frame> {
         let nested = relation_layout(self.diagram);
-        let mut bounds: Vec<(String, [f64; 4])> = vec![];
+        let mut cache: HashMap<String, [f64; 4]> = HashMap::new();
         let mut frames = vec![];
         for package in &self.diagram.packages {
             let own: Vec<[f64; 4]> = {
@@ -74,15 +75,12 @@ impl<'a> PackageFrames<'a> {
                     .map(|box_| [box_.x, box_.y, box_.x + box_.width, box_.y + box_.height])
                     .collect()
             };
-            let inner: Vec<[f64; 4]> = bounds
+            let inner: Vec<[f64; 4]> = self
+                .diagram
+                .packages
                 .iter()
-                .filter(|(id, _)| {
-                    self.diagram
-                        .packages
-                        .iter()
-                        .any(|p| &p.id == id && p.parent.as_ref() == Some(&package.id))
-                })
-                .map(|(_, rect)| *rect)
+                .filter(|p| p.parent.as_ref() == Some(&package.id))
+                .map(|p| self.bounds_of(p, boxes, &mut cache))
                 .collect();
             let mut rectangles = own;
             rectangles.extend(inner);
@@ -153,9 +151,87 @@ impl<'a> PackageFrames<'a> {
                 },
                 fill: package.color.clone(),
             });
-            bounds.push((package.id.clone(), [left, top, right, bottom]));
+            cache.insert(package.id.clone(), [left, top, right, bottom]);
         }
         frames
+    }
+
+    /// Ruby `bounds_of`: memoized, recursing into the inner packages.
+    fn bounds_of(
+        &self,
+        package: &super::model::Package,
+        boxes: &[super::scene::Box],
+        cache: &mut HashMap<String, [f64; 4]>,
+    ) -> [f64; 4] {
+        if let Some(found) = cache.get(&package.id) {
+            return *found;
+        }
+        let own: Vec<[f64; 4]> = {
+            let names: Vec<&String> = self
+                .diagram
+                .classes
+                .iter()
+                .filter(|klass| klass.package.as_ref() == Some(&package.id))
+                .map(|klass| &klass.name)
+                .collect();
+            boxes
+                .iter()
+                .filter(|box_| names.iter().any(|name| *name == &box_.id))
+                .map(|box_| [box_.x, box_.y, box_.x + box_.width, box_.y + box_.height])
+                .collect()
+        };
+        let inner: Vec<[f64; 4]> = self
+            .diagram
+            .packages
+            .iter()
+            .filter(|p| p.parent.as_ref() == Some(&package.id))
+            .map(|p| self.bounds_of(p, boxes, cache))
+            .collect();
+        let mut rectangles = own;
+        rectangles.extend(inner);
+        let (side, above, below) = if relation_layout(self.diagram) {
+            let increment = self.descendant_depth(&package.id) as f64 * NESTING_STEP;
+            (SIDE + increment, NESTED_OPEN + increment, CLOSE + increment)
+        } else {
+            (SIDE, OPEN - 6.0, CLOSE - 4.0)
+        };
+        let mut left = f64::INFINITY;
+        let mut top = f64::INFINITY;
+        let mut right = f64::NEG_INFINITY;
+        let mut bottom = f64::NEG_INFINITY;
+        for rect in &rectangles {
+            left = left.min(rect[0]);
+            top = top.min(rect[1]);
+            right = right.max(rect[2]);
+            bottom = bottom.max(rect[3]);
+        }
+        let mut left = left - side;
+        let mut right = right + side;
+        let top = top - above;
+        let bottom = bottom + below;
+        let mut targets = vec![];
+        for relation in &self.diagram.relations {
+            let name = if relation.left == package.id {
+                Some(&relation.right)
+            } else if relation.right == package.id {
+                Some(&relation.left)
+            } else {
+                None
+            };
+            if let Some(name) = name {
+                if let Some(box_) = boxes.iter().find(|box_| &box_.id == name) {
+                    targets.push(box_);
+                }
+            }
+        }
+        for target in &targets {
+            let centre = target.x + target.width / 2.0;
+            left = left.min(centre - RELATION_INSET);
+            right = right.max(centre + RELATION_INSET);
+        }
+        let bounds = [left, top, right, bottom];
+        cache.insert(package.id.clone(), bounds);
+        bounds
     }
 
     fn descendant_depth(&self, package_id: &str) -> usize {
