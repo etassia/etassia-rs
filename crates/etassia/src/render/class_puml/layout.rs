@@ -6,12 +6,11 @@ use super::captions::CaptionLayout;
 use super::chrome::{member_icon, member_pitch, member_rule, stereotype_head};
 use super::edges::{
     end_texts::{EndTexts, EntryKind},
-    label_clearance, label_separator, qualifier_box, relation_path_points,
-    styled_relation_curve,
+    label_clearance, label_separator, qualifier_box, styled_relation_curve,
 };
 use super::frames::PackageFrames;
 use super::measures;
-use super::model::{Diagram, Direction, Kind, Member, MemberKind, Note, NoteSide, Package, Relation};
+use super::model::{Diagram, Direction, Kind, Member, MemberKind, Note, NoteSide, Relation};
 use super::notes::NoteLayout;
 use super::qualified::{qualifier, QualifiedAssociationLayout};
 use super::rank_chain::{self, Engine, Placer};
@@ -121,34 +120,6 @@ struct Spec {
     icons_enabled: bool,
     empty_gaps: bool,
     chain: Vec<String>,
-    compact_bottom: f64,
-}
-
-impl Spec {
-    fn from_class(klass: &super::model::Klass, diagram: &Diagram) -> Spec {
-        Spec {
-            id: klass.name.clone(),
-            note: None,
-            width: 0.0,
-            height: 0.0,
-            title_rows: vec![],
-            member_rows: vec![],
-            member_rows_count: 0,
-            name_rows: 0,
-            floating_generic: None,
-            compact_members: false,
-            compact_title_rows: false,
-            stereotype_head: None,
-            member_modifiers: vec![],
-            package: klass.package.clone(),
-            member_kinds: vec![],
-            member_visibilities: vec![],
-            icons_enabled: false,
-            empty_gaps: true,
-            chain: diagram.package_chain(&klass.package),
-            compact_bottom: 0.0,
-        }
-    }
 }
 
 pub fn scene(diagram: &Diagram) -> Scene {
@@ -182,10 +153,6 @@ struct Layout {
 }
 
 impl Layout {
-    fn font_size(&self) -> f64 {
-        FONT_SIZE
-    }
-
     /// Ruby `measure_text(..)[:width]` (the Arial measurement).
     fn measure(&self, text: &str, font_size: f64) -> f64 {
         measures::measured(text, font_size)
@@ -808,7 +775,7 @@ impl Layout {
         let header = header_rows(klass, self.kind_in_spot);
         let mut title_rows = header.clone();
         title_rows.extend(names.clone());
-        let record = self.box_record(&klass.name, &names, &member_rows, title_rows);
+        let record = self.box_record(&klass.name, &member_rows, title_rows);
         let mut spec = record;
         spec.member_rows_count = member_rows.len();
         spec.member_kinds = klass.body.iter().map(|member| member.kind).collect();
@@ -843,7 +810,7 @@ impl Layout {
         (names, generic)
     }
 
-    fn box_record(&self, name: &str, names: &[String], member_rows: &[String], title_rows: Vec<String>) -> Spec {
+    fn box_record(&self, name: &str, member_rows: &[String], title_rows: Vec<String>) -> Spec {
         let mut rows: Vec<&str> = title_rows.iter().map(String::as_str).collect();
         rows.extend(member_rows.iter().map(String::as_str));
         let widest = rows
@@ -874,7 +841,6 @@ impl Layout {
             icons_enabled: false,
             empty_gaps: true,
             chain: vec![],
-            compact_bottom: 0.0,
         }
     }
 
@@ -1053,7 +1019,7 @@ impl Layout {
         generic: Option<String>,
     ) {
         self.isolated_standard_box(record, klass, diagram, names, member_rows);
-        self.isolated_class_kind_box(record, klass, diagram, names, member_rows);
+        self.isolated_class_kind_box(record, diagram, names, member_rows);
         self.hide_members_grid_box(record, diagram, names, member_rows);
         self.qualified_association_box(record, klass, diagram, names, member_rows, generic);
     }
@@ -1151,7 +1117,6 @@ impl Layout {
     fn isolated_class_kind_box(
         &mut self,
         record: &mut Spec,
-        klass: &super::model::Klass,
         diagram: &Diagram,
         names: &[String],
         member_rows: &[String],
@@ -2187,7 +2152,7 @@ impl Layout {
         }
         let direction = unit_vector(other, tip);
         let shape = marker_shape(kind);
-        let mut points: Vec<[f64; 2]> = match shape {
+        let points: Vec<[f64; 2]> = match shape {
             MarkerShape::Arrow => {
                 let base = shift(tip, direction, -ARROW_LENGTH);
                 let half = half_width.unwrap_or(ARROW_HALF_WIDTH);
@@ -2554,7 +2519,6 @@ impl Layout {
         if endpoints.contains_key("control") {
             return None;
         }
-        let descending = (left[0] * left[1] - right[0] * right[1]) > 0.0;
         let descending = descending_product(left, right);
         Some(if descending {
             Text::new(content, point[0] + LABEL_GAP, point[1] - LABEL_OFFSET - clearance, "relation_label", "start")
@@ -2809,7 +2773,6 @@ fn note_specifications(notes: &[Note], measure: &dyn Fn(&str) -> f64) -> Vec<Spe
                 icons_enabled: false,
                 empty_gaps: true,
                 chain: vec![],
-                compact_bottom: 0.0,
             }
         })
         .collect()
@@ -3233,12 +3196,6 @@ fn hide_members_row_width(row: &[&Spec]) -> f64 {
     ))
 }
 
-fn hide_members_grid_row(row: &[&Spec], left: f64, top: f64) -> Vec<Box> {
-    // The caller re-builds through the layout; this free form is unused.
-    let _ = (row, left, top);
-    vec![]
-}
-
 fn isolated_class_kind_row_tops<'a>(rows: &[Vec<&'a Spec>]) -> Vec<f64> {
     let heights: Vec<f64> = rows
         .iter()
@@ -3526,7 +3483,7 @@ fn digits_of(value: f64) -> String {
                         // at or above the midpoint decimal keeps the
                         // window's zeros; below it, they strip.
                         let point = (scientific + 1).max(1) as usize;
-                        let above = value_at_or_above(value, &keep, scientific, point);
+                        let above = value_at_or_above(value, &keep, point);
                         keep_zeros = above;
                         false
                     }
@@ -3599,12 +3556,7 @@ fn digits_of(value: f64) -> String {
 /// Whether `value` sits at or above the exact decimal
 /// `<keep-digits>5` at `scientific` — the rounding tie's midpoint —
 /// by comparing the double's exact decimal expansion digit by digit.
-fn value_at_or_above(
-    value: f64,
-    keep: &str,
-    scientific: i32,
-    point: usize,
-) -> bool {
+fn value_at_or_above(value: f64, keep: &str, point: usize) -> bool {
     let exact = format!("{:.70}", value);
     let negative = exact.starts_with('-');
     let exact = exact.trim_start_matches('-');
@@ -3620,7 +3572,6 @@ fn value_at_or_above(
     mid_fraction.push('5');
     // Align: the midpoint's integer part is keep[..point].
     let mid_whole = &keep[..point.min(keep.len())];
-    let _ = negative;
     let value_side = whole_cmp(whole, fraction, mid_whole, &mid_fraction);
     if negative {
         // A negative below the midpoint strips: reverse the order.
@@ -3702,32 +3653,6 @@ pub(super) fn round4_half(value: f64) -> f64 {
         magnitude
     }
 }
-
-/// The shortest decimal form as sign, digits without the point, and the
-/// decimal exponent of the last digit (so "132.8955" is ("", "1328955", -4)
-/// and "1.23457e+06" keeps its own shape handled by the caller's parse).
-fn split_decimal(text: &str) -> (String, String, i32) {
-    let (sign, rest) = match text.strip_prefix('-') {
-        Some(rest) => ("-".to_string(), rest),
-        None => (String::new(), text),
-    };
-    let Some((mantissa, tail)) = rest.split_once('e') else {
-        let (whole, fraction) = mantissa_parts(rest);
-        let digits: String = format!("{whole}{fraction}");
-        let digits = digits.trim_start_matches('0').to_string();
-        // The exponent of the last kept digit.
-        let exponent = -(fraction.len() as i32);
-        return (sign, digits, exponent);
-    };
-    // Exponent form: the exponent of the last digit.
-    let exponent: i32 = tail.parse().unwrap_or(0);
-    let (whole, fraction) = mantissa_parts(mantissa);
-    let digits: String = format!("{whole}{fraction}");
-    let digits = digits.trim_start_matches('0').to_string();
-    (sign, digits, exponent - fraction.len() as i32)
-}
-
-
 fn trim_zeros(text: &str) -> String {
     let mut out = text.trim_end_matches('0').to_string();
     if out.ends_with('.') {

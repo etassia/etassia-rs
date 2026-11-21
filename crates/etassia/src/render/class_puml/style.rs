@@ -72,11 +72,6 @@ impl Sheet {
         Reader::new().read(source)
     }
 
-    /// Ruby `styled?`.
-    pub fn styled(&self) -> bool {
-        !self.skin.is_empty() || !self.style.is_empty() || !self.elements.is_empty()
-    }
-
     /// Ruby `resolve`: the winning value, with the defaults under it.
     pub fn resolve(
         &self,

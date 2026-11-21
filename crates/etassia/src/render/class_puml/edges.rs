@@ -3,7 +3,7 @@
 //! `SegmentBox` and `RelationLabelSeparator`.
 use super::model::{Direction, Relation};
 use super::rank_chain::Engine;
-use super::scene::{Box, Marker, Relation as SceneRelation, Segment, Text};
+use super::scene::{Box, Text};
 
 // ---- EndTexts ----
 

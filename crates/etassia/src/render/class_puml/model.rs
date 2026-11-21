@@ -148,19 +148,6 @@ pub enum ArrowKind {
     Nesting,
 }
 
-impl ArrowKind {
-    pub fn as_str(&self) -> &'static str {
-        match self {
-            ArrowKind::Extension => "extension",
-            ArrowKind::Implementation => "implementation",
-            ArrowKind::Association => "association",
-            ArrowKind::Dependency => "dependency",
-            ArrowKind::Aggregation => "aggregation",
-            ArrowKind::Composition => "composition",
-            ArrowKind::Nesting => "nesting",
-        }
-    }
-}
 
 #[derive(Clone, Copy, PartialEq, Eq, Debug)]
 pub enum Direction {
@@ -196,17 +183,11 @@ impl Markers {
         self.left == Some(kind) || self.right == Some(kind)
     }
 
-    pub fn size(&self) -> usize {
-        self.left.iter().chain(self.right.iter()).count()
-    }
 }
 
 /// Ruby `Arrow.parse`'s result.
 #[derive(Clone, Debug)]
 pub struct Arrow {
-    pub kind: Option<ArrowKind>,
-    pub head_is_left: Option<bool>,
-    pub both: bool,
     pub markers: Markers,
     pub dashed: bool,
     pub plain: bool,
@@ -222,9 +203,6 @@ pub struct Arrow {
 pub struct Relation {
     pub left: String,
     pub right: String,
-    pub kind: Option<ArrowKind>,
-    pub head_is_left: Option<bool>,
-    pub both: bool,
     pub markers: Markers,
     pub left_multiplicity: Option<String>,
     pub right_multiplicity: Option<String>,
@@ -239,14 +217,6 @@ pub struct Relation {
     pub plain: bool,
     pub dotted: bool,
     pub layout_only: bool,
-}
-
-impl Relation {
-    pub fn plain_relation(base: &Relation) -> Relation {
-        let mut rel = base.clone();
-        rel.layout_only = true;
-        rel
-    }
 }
 
 #[derive(Clone, Copy, PartialEq, Eq, Debug)]

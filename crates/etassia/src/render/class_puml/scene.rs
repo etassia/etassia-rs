@@ -1,7 +1,6 @@
 //! The typed, final-canvas Scene: port of Ruby `Notation::PlantUML::Scene`
 //! (`scene.rb`). Coordinates and drawable roles only; the renderer picks
 //! colours, fonts and strokes from the theme and the style sheet.
-use super::model::{Note, NoteSide};
 
 #[derive(Clone, Debug)]
 pub struct Icon {
@@ -142,52 +141,3 @@ pub struct Scene {
     pub relations: Vec<Relation>,
 }
 
-/// Ruby `Scene::Box` built for a class or note; the note keeps its source
-/// `Note` for the note-outline drawing.
-#[derive(Clone, Debug)]
-pub struct PlacedNote {
-    pub note: Note,
-}
-
-/// Ruby `LabelClearance` input rect.
-#[derive(Clone, Copy, Debug)]
-pub struct Rect {
-    pub x: f64,
-    pub y: f64,
-    pub width: f64,
-    pub height: f64,
-}
-
-impl Rect {
-    pub fn right(&self) -> f64 {
-        self.x + self.width
-    }
-
-    pub fn bottom(&self) -> f64 {
-        self.y + self.height
-    }
-
-    pub fn mid_x(&self) -> f64 {
-        self.x + self.width / 2.0
-    }
-
-    pub fn mid_y(&self) -> f64 {
-        self.y + self.height / 2.0
-    }
-
-    pub fn overlaps(&self, other: &Rect) -> bool {
-        self.x < other.x + other.width
-            && other.x < self.right()
-            && self.y < other.y + other.height
-            && other.y < self.bottom()
-    }
-
-    pub fn moved(&self, across: f64, down: f64) -> Rect {
-        Rect { x: self.x + across, y: self.y + down, width: self.width, height: self.height }
-    }
-}
-
-/// Ruby `NoteSide` as the layout asks it.
-pub fn side_is_horizontal(side: NoteSide) -> bool {
-    matches!(side, NoteSide::Left | NoteSide::Right)
-}
