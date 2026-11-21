@@ -24,6 +24,7 @@ pub mod requirement;
 pub mod sankey;
 pub mod sequence;
 pub mod state_diagram;
+pub mod state_puml;
 pub mod timeline;
 pub mod timing_puml;
 pub mod treemap;
@@ -81,6 +82,8 @@ pub fn render(source: &str) -> Result<String, Error> {
         "block" => block::render(source),
         "architecture" => architecture::render(source),
         "sequence" => sequence::render(source),
+        // PlantUML's own state diagram (@startuml with state statements).
+        "state" => state_puml::render(source),
         "state_diagram" => state_diagram::render(source),
         "class_diagram" => class_diagram::render(source),
         "flowchart" => flowchart::render(source),

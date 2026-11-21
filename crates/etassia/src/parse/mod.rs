@@ -42,6 +42,8 @@ fn entry_for(diagram_type: &str) -> String {
         // The NodeGraph family shares one grammar entry: any @start opens
         // the first diagram, any @end closes it.
         "component_diagram".to_string()
+    } else if diagram_type == "state" {
+        "state_diagram".to_string()
     } else {
         diagram_type.to_string()
     }
@@ -78,6 +80,10 @@ pub fn detect(source: &str) -> Option<String> {
         .or_else(|| detect::detect_gantt(source).then(|| "gantt".to_string()))
         .or_else(|| detect::detect_mindmap(source).then(|| "mindmap".to_string()))
         .or_else(|| detect::detect_timing(source).then(|| "timing".to_string()))
+        // The state lane sits between the Further group and Usecase: the
+        // Ruby families order (Further, State, Usecase, Component, then
+        // Activity).
+        .or_else(|| detect::detect_state(source).then(|| "state".to_string()))
         .or_else(|| detect::detect_usecase(source).then(|| "usecase".to_string()))
         .or_else(|| detect::detect_component(source).then(|| "component".to_string()))
         // The activity lane runs after the component family, the Ruby
@@ -118,6 +124,12 @@ pub fn parse(source: &str, diagram_type: &str) -> Result<Tree, Error> {
     // claims the plantuml artifact's mindmap_diagram entry the same way.
     if diagram_type == "mindmap" && detect::detect_mindmap(source) {
         return parse_with(plantuml(), "mindmap_diagram", source);
+    }
+    // The state type is PlantUML's own (@startuml with state statements);
+    // the shared state_diagram name also belongs to Mermaid, so the raw
+    // source claims the plantuml artifact's state_diagram entry directly.
+    if diagram_type == "state" {
+        return parse_with(plantuml(), "state_diagram", source);
     }
     let entry = entry_for(diagram_type);
     let Some(artifact) = artifact_for(&entry) else {

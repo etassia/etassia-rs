@@ -1,0 +1,66 @@
+<svg
+ width="728.718"
+ height="184.0"
+ viewBox="0 0 728.718 184.0"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="#FFFFFF" x="0.0" y="0.0" width="728.718" height="184.0"/>
+<g id="state-A.x">
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="32.0" y="32.0" width="40.230000000000004" height="50.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="32.0" y1="58.489999999999995" x2="72.23" y2="58.489999999999995"/>
+  <text fill="#000000" x="52.115" y="50.145" text-anchor="middle" font-family="sans-serif" font-size="14">A.x</text>
+</g>
+<g id="state-A.y.foo">
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="132.23000000000002" y="32.0" width="63.582" height="50.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="132.23000000000002" y1="58.489999999999995" x2="195.812" y2="58.489999999999995"/>
+  <text fill="#000000" x="164.02100000000002" y="50.145" text-anchor="middle" font-family="sans-serif" font-size="14">A.y.foo</text>
+</g>
+<g id="state-B.z">
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="255.81199999999995" y="32.0" width="40.230000000000004" height="50.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="255.81199999999995" y1="58.489999999999995" x2="296.042" y2="58.489999999999995"/>
+  <text fill="#000000" x="275.92699999999996" y="50.145" text-anchor="middle" font-family="sans-serif" font-size="14">B.z</text>
+</g>
+<g id="state-root_start">
+  <circle fill="#222222" stroke="none" cx="366.042" cy="57.0" r="10.0"/>
+</g>
+<g id="state-x">
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="426.042" y="32.0" width="27.0" height="50.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="426.042" y1="58.489999999999995" x2="453.042" y2="58.489999999999995"/>
+  <text fill="#000000" x="439.542" y="50.145" text-anchor="middle" font-family="sans-serif" font-size="14">x</text>
+</g>
+<g id="state-A">
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="513.0419999999999" y="32.0" width="29.338" height="50.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="513.0419999999999" y1="58.489999999999995" x2="542.3799999999999" y2="58.489999999999995"/>
+  <text fill="#000000" x="527.7109999999999" y="50.145" text-anchor="middle" font-family="sans-serif" font-size="14">A</text>
+</g>
+<g id="state-B">
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="592.38" y="32.0" width="29.338" height="50.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="592.38" y1="58.489999999999995" x2="621.718" y2="58.489999999999995"/>
+  <text fill="#000000" x="607.049" y="50.145" text-anchor="middle" font-family="sans-serif" font-size="14">B</text>
+</g>
+<g id="state-y">
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="681.718" y="32.0" width="27.0" height="50.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="681.718" y1="58.489999999999995" x2="708.718" y2="58.489999999999995"/>
+  <text fill="#000000" x="695.218" y="50.145" text-anchor="middle" font-family="sans-serif" font-size="14">y</text>
+</g>
+<g id="state-root_end">
+  <g>
+    <circle fill="none" stroke="#222222" stroke-width="2" cx="695.218" cy="153.0" r="11.0"/>
+    <circle fill="#222222" stroke="none" cx="695.218" cy="153.0" r="6.0"/>
+  </g>
+</g>
+<g id="transition-root_start_to_x">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 376.04 57.0 L 426.04 57.0"/>
+  <polygon fill="#181818" points="426.04,57.0 422.04,59.0 422.04,55.0"/>
+</g>
+<g id="transition-A_to_B">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 542.38 57.0 L 592.38 57.0"/>
+  <polygon fill="#181818" points="592.38,57.0 588.38,59.0 588.38,55.0"/>
+</g>
+<g id="transition-y_to_root_end">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 695.22 82.0 L 695.22 142.0"/>
+  <polygon fill="#181818" points="695.22,142.0 693.22,138.0 697.22,138.0"/>
+</g>
+</svg>

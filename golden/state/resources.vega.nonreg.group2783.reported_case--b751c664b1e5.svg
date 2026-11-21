@@ -1,0 +1,60 @@
+<svg
+ width="401.82000000000005"
+ height="264.0"
+ viewBox="0 0 401.82000000000005 264.0"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="#FFFFFF" x="0.0" y="0.0" width="401.82000000000005" height="264.0"/>
+<g id="state-Target1">
+  <rect fill="#F5DEB3" stroke="#181818" stroke-width="0.5" x="55.385000000000005" y="194.0" width="68.244" height="50.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="55.385000000000005" y1="220.49" x2="123.629" y2="220.49"/>
+  <text fill="#000000" x="89.507" y="212.145" text-anchor="middle" font-family="sans-serif" font-size="14">Target1</text>
+</g>
+<g id="state-Target2">
+  <rect fill="#F5DEB3" stroke="#181818" stroke-width="0.5" x="234.291" y="194.0" width="68.244" height="50.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="234.291" y1="220.49" x2="302.53499999999997" y2="220.49"/>
+  <text fill="#000000" x="268.413" y="212.145" text-anchor="middle" font-family="sans-serif" font-size="14">Target2</text>
+</g>
+<g id="state-Plain">
+  <rect fill="#F5DEB3" stroke="#181818" stroke-width="0.5" x="32.0" y="32.0" width="115.01400000000001" height="102.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="32.0" y1="54.0" x2="147.014" y2="54.0"/>
+  <text fill="#000000" x="89.507" y="47.9" text-anchor="middle" font-family="sans-serif" font-size="14">Composite</text>
+  <g id="state-PlainChild">
+    <rect fill="#F5DEB3" stroke="#181818" stroke-width="0.5" x="48.0" y="68.0" width="83.01400000000001" height="50.0" rx="12.5" ry="12.5"/>
+    <line stroke="#181818" stroke-width="0.5" x1="48.0" y1="94.49" x2="131.014" y2="94.49"/>
+    <text fill="#000000" x="89.507" y="86.145" text-anchor="middle" font-family="sans-serif" font-size="14">PlainChild</text>
+  </g>
+</g>
+<g id="state-Styled">
+  <rect fill="#F5DEB3" stroke="#181818" stroke-width="0.5" x="207.014" y="32.0" width="122.798" height="102.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="207.014" y1="54.0" x2="329.812" y2="54.0"/>
+  <text fill="#000000" x="268.413" y="47.9" text-anchor="middle" font-family="sans-serif" font-size="14">Composite</text>
+  <g id="state-StyledChild">
+    <rect fill="#F5DEB3" stroke="#181818" stroke-width="0.5" x="223.014" y="68.0" width="90.798" height="50.0" rx="12.5" ry="12.5"/>
+    <line stroke="#181818" stroke-width="0.5" x1="223.014" y1="94.49" x2="313.812" y2="94.49"/>
+    <text fill="#000000" x="268.413" y="86.145" text-anchor="middle" font-family="sans-serif" font-size="14">StyledChild</text>
+  </g>
+</g>
+<g id="transition-PlainChild_to_PlainChild">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 131.01 85.5 C 135.68 85.5 154.35 83.0 159.01 85.5 C 163.68 88.0 163.68 98.0 159.01 100.5 C 154.35 103.0 135.68 100.5 131.01 100.5"/>
+  <polygon fill="#181818" points="131.01,100.5 135.01,98.5 135.01,102.5"/>
+  <text fill="#000000" x="182.018" y="85.9" text-anchor="middle" font-family="sans-serif" font-size="12">Check</text>
+</g>
+<g id="transition-PlainChild_to_Target1">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 89.51 118.0 L 89.51 194.0"/>
+  <polygon fill="#181818" points="89.51,194.0 87.51,190.0 91.51,190.0"/>
+  <text fill="#000000" x="105.509" y="164.55" text-anchor="middle" font-family="sans-serif" font-size="12">Exit</text>
+</g>
+<g id="transition-StyledChild_to_StyledChild">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 313.81 85.5 C 318.48 85.5 337.15 83.0 341.81 85.5 C 346.48 88.0 346.48 98.0 341.81 100.5 C 337.15 103.0 318.48 100.5 313.81 100.5"/>
+  <polygon fill="#181818" points="313.81,100.5 317.81,98.5 317.81,102.5"/>
+  <text fill="#000000" x="364.81600000000003" y="85.9" text-anchor="middle" font-family="sans-serif" font-size="12">Check</text>
+</g>
+<g id="transition-StyledChild_to_Target2">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 268.41 118.0 L 268.41 194.0"/>
+  <polygon fill="#181818" points="268.41,194.0 266.41,190.0 270.41,190.0"/>
+  <text fill="#000000" x="284.415" y="164.55" text-anchor="middle" font-family="sans-serif" font-size="12">Exit</text>
+</g>
+</svg>

@@ -1,0 +1,35 @@
+<svg
+ width="338.056"
+ height="102.0"
+ viewBox="0 0 338.056 102.0"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="#FFFFFF" x="0.0" y="0.0" width="338.056" height="102.0"/>
+<g id="state-Idle">
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="32.0" y="32.0" width="42.568" height="50.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="32.0" y1="58.489999999999995" x2="74.568" y2="58.489999999999995"/>
+  <text fill="#000000" x="53.284" y="50.145" text-anchor="middle" font-family="sans-serif" font-size="14">Idle</text>
+</g>
+<g id="state-Charging">
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="124.568" y="32.0" width="76.798" height="50.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="124.568" y1="58.489999999999995" x2="201.36599999999999" y2="58.489999999999995"/>
+  <text fill="#000000" x="162.96699999999998" y="50.145" text-anchor="middle" font-family="sans-serif" font-size="14">Charging</text>
+</g>
+<g id="state-Faulted">
+  <rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="251.36599999999999" y="32.0" width="66.69" height="50.0" rx="12.5" ry="12.5"/>
+  <line stroke="#181818" stroke-width="0.5" x1="251.36599999999999" y1="58.489999999999995" x2="318.056" y2="58.489999999999995"/>
+  <text fill="#000000" x="284.711" y="50.145" text-anchor="middle" font-family="sans-serif" font-size="14">Faulted</text>
+</g>
+<g id="transition-Idle_to_Charging">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 74.57 57.0 L 124.57 57.0"/>
+  <polygon fill="#181818" points="124.57,57.0 120.57,59.0 120.57,55.0"/>
+  <text fill="#000000" x="99.56799999999998" y="45.0" text-anchor="middle" font-family="sans-serif" font-size="12">start / begin()</text>
+</g>
+<g id="transition-Charging_to_Faulted">
+  <path fill="none" stroke="#181818" stroke-width="1" d="M 201.37 57.0 L 251.37 57.0"/>
+  <polygon fill="#181818" points="251.37,57.0 247.37,59.0 247.37,55.0"/>
+  <text fill="#000000" x="226.36599999999999" y="45.0" text-anchor="middle" font-family="sans-serif" font-size="12">fault(5 s)</text>
+</g>
+</svg>

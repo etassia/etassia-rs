@@ -13,6 +13,7 @@ const REQUIRED: &[&str] = &[
     "git",
     "info",
     "pie",
+    "state",
     "timing",
     "usecase",
     "activity",
