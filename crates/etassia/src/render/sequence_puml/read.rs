@@ -10,7 +10,10 @@ use regex::Regex;
 use std::collections::HashMap;
 
 fn re(pattern: &str) -> Regex {
-    Regex::new(pattern).expect("sequence reader pattern")
+    match Regex::new(pattern) {
+        Ok(regex) => regex,
+        Err(error) => panic!("sequence reader pattern {pattern:?}: {error}"),
+    }
 }
 
 fn cell(init: fn() -> Regex, name: &'static str) -> Regex {
@@ -46,52 +49,52 @@ const QUOTED: &str = r#""[^"\n]+""#;
 const NAME: &str = r"[A-Za-z_][A-Za-z0-9_]*";
 const TARGET: &str = "(?:(?:\"[^\"\\n]+\")|(?:[A-Za-z_][A-Za-z0-9_]*))";
 /// COLOUR: the token after a message arrow or an activation.
-const COLOUR: &str = "(?i:(?:\\h{6})|(?:\\h{3})|red|green|blue|yellow|orange|purple|gray|grey|cyan|magenta|lime|navy|teal|olive|maroon|silver|aqua|fuchsia|pink|brown|black|white)";
+const COLOUR: &str = "(?i:(?:[0-9A-Fa-f]{6})|(?:[0-9A-Fa-f]{3})|red|green|blue|yellow|orange|purple|gray|grey|cyan|magenta|lime|navy|teal|olive|maroon|silver|aqua|fuchsia|pink|brown|black|white)";
 const WORD: &str = "[0-9A-Za-z_]";
 
 pattern!(declaration, &format!(
-    r"\A({KINDS})[ \t]+({QUOTED}|{NAME})(?:[ \t]+[ \t]*as[ \t]+({NAME}))?(?:[ \t]+<<[ \t]*([^<>\n]+?)[ \t]*>>)?(?:[ \t]+order[ \t]+(-?\d+))?(?:[ \t]+(\#{WORD}+))?\z"));
-pattern!(box_re, &format!(r"\Abox(?:[ \t]+({QUOTED}))?(?:[ \t]+(\#{WORD}+))?\z"));
+    r"(?i)\A({KINDS})[ \t]+({QUOTED}|{NAME})(?:[ \t]+as[ \t]+({NAME}))?(?:[ \t]+<<[ \t]*([^<>\n]+?)[ \t]*>>)?(?:[ \t]+order[ \t]+(-?\d+))?(?:[ \t]+(\#{WORD}+))?\z"));
+pattern!(box_re, &format!(r"(?i)\Abox(?:[ \t]+({QUOTED}))?(?:[ \t]+(\#{WORD}+))?\z"));
 pattern!(end_box, r"\A(?:endbox|end[ \t]+box)\z");
-pattern!(skinparam_width, r"\Askinparam[ \t]+[ \t]*MinClassWidth[ \t]+(\d+)\z");
-pattern!(skinparam_max_message, r"\Askinparam[ \t]+[ \t]*maxmessagesize[ \t]+(\d+)\z");
-pattern!(skinparam_paint, r"\Askinparam[ \t]+(\w+)[ \t]+(\S+)\z");
-pattern!(skinparam_open, r"\Askinparam[ \t]*\{\z");
-pattern!(skinparam_line, r"\Amaxmessagesize[ \t]+(\d+)\z");
+pattern!(skinparam_width, r"(?i)\Askinparam[ \t]+[ \t]*MinClassWidth[ \t]+(\d+)\z");
+pattern!(skinparam_max_message, r"(?i)\Askinparam[ \t]+[ \t]*maxmessagesize[ \t]+(\d+)\z");
+pattern!(skinparam_paint, r"(?i)\Askinparam[ \t]+(\w+)[ \t]+(\S+)\z");
+pattern!(skinparam_open, r"(?i)\Askinparam[ \t]*\{\z");
+pattern!(skinparam_line, r"(?i)\Amaxmessagesize[ \t]+(\d+)\z");
 pattern!(skinparam_paint_line, r"\A(\w+)[ \t]+(\S+)\z");
-pattern!(hide_footbox, r"\Ahide[ \t]+footbox\z");
-pattern!(autoactivate, r"\Aautoactivate[ \t]+(on|off)\z");
-pattern!(chrome_open, r"\A(?:(title|header|footer|caption)|legend(?:[ \t]+(top|bottom))?(?:[ \t]+(left|center|right))?)\z");
-pattern!(chrome_close, r"\Aend[ \t]*(title|header|footer|caption|legend)\z");
-pattern!(style_open, r"\A<style>\z");
-pattern!(style_close, r"\A</style>\z");
+pattern!(hide_footbox, r"(?i)\Ahide[ \t]+footbox\z");
+pattern!(autoactivate, r"(?i)\Aautoactivate[ \t]+(on|off)\z");
+pattern!(chrome_open, r"(?i)\A(?:(title|header|footer|caption)|legend(?:[ \t]+(top|bottom))?(?:[ \t]+(left|center|right))?)\z");
+pattern!(chrome_close, r"(?i)\Aend[ \t]*(title|header|footer|caption|legend)\z");
+pattern!(style_open, r"(?i)\A<style>\z");
+pattern!(style_close, r"(?i)\A</style>\z");
 pattern!(note, &format!(
-    r"\A(note|hnote|rnote)[ \t]+(left|right|over|across|top|bottom)(?:[ \t]+of)?(?:[ \t]+({TARGET}(?:[ \t]*,[ \t]*{TARGET})*))?(?:[ \t]+(\#{WORD}+))?[ \t]*(?::[ \t]*(.*))?\z"));
+    r"(?i)\A(note|hnote|rnote)[ \t]+(left|right|over|across|top|bottom)(?:[ \t]+of)?(?:[ \t]+({TARGET}(?:[ \t]*,[ \t]*{TARGET})*))?(?:[ \t]+(\#{WORD}+))?[ \t]*(?::[ \t]*(.*))?\z"));
 pattern!(ref_re, &format!(
-    r"\Aref[ \t]+over[ \t]+({TARGET}(?:[ \t]*,[ \t]*{TARGET})*)(?:[ \t]*:[ \t]*(\S.*))\z"));
-pattern!(end_note, r"\Aend[ \t]*[hr]?note\z");
+    r"(?i)\Aref[ \t]+over[ \t]+({TARGET}(?:[ \t]*,[ \t]*{TARGET})*)(?:[ \t]*:[ \t]*(\S.*))\z"));
+pattern!(end_note, r"(?i)\Aend[ \t]*[hr]?note\z");
 pattern!(block, &format!(
-    r"\A(alt|opt|loop|par|critical|break|group)(?:[ \t]+(?:\#{WORD}+[ \t]*)?(.*))?\z"));
-pattern!(branch, r"\Aelse(?:[ \t]+(.*))?\z");
-pattern!(reply, r"\Areturn(?:[ \t]+(.*))?\z");
+    r"(?i)\A(alt|opt|loop|par|critical|break|group)(?:[ \t]+(?:\#{WORD}+[ \t]*)?(.*))?\z"));
+pattern!(branch, r"(?i)\Aelse(?:[ \t]+(.*))?\z");
+pattern!(reply, r"(?i)\Areturn(?:[ \t]+(.*))?\z");
 pattern!(divider, r"\A==[ \t]*(.*?)[ \t]*==\z");
 pattern!(spacing, r"\A\|\|(?:(\d+)\|\||\|\|?)\z");
 pattern!(delay, r"\A\.\.\.(?:[ \t]*(\S.*?)[ \t]*\.\.\.)?\z");
-pattern!(destroy, &format!(r"\Adestroy[ \t]+({TARGET})\z"));
-pattern!(create, r"\Acreate[ \t]+(.+)\z");
-pattern!(pragma, r"\A!pragma[ \t]+(teoz|svginteractive)[ \t]+true\z");
+pattern!(destroy, &format!(r"(?i)\Adestroy[ \t]+({TARGET})\z"));
+pattern!(create, r"(?i)\Acreate[ \t]+(.+)\z");
+pattern!(pragma, r"(?i)\A!pragma[ \t]+(teoz|svginteractive)[ \t]+true\z");
 pattern!(activation, &format!(
-    r"\A(activate|deactivate)[ \t]+({QUOTED}|{NAME})(?:[ \t]+(\#({COLOUR}))(?![0-9A-Za-z_]))?\z"));
-pattern!(startuml, r"\A@startuml(?![0-9A-Za-z_])\z");
+    r"(?i)\A(activate|deactivate)[ \t]+({QUOTED}|{NAME})(?:[ \t]+(\#({COLOUR}))([^0-9A-Za-z_]|$))?\z"));
+pattern!(startuml, r"\A@startuml(?:[^0-9A-Za-z_]|$)");
 pattern!(title_gate, r"(?i)\A(?:title|header|footer|caption|legend)[ \t]+\S");
 pattern!(target_only, &format!(r"\A(?:{QUOTED}|{NAME})\z"));
 pattern!(arrow_token, r"\A([oOxX])?(<<|<|//|/|\\\\|\\)?(--?)(>>|>|\\\\|\\|//|/)?([oOxX])?\z");
-pattern!(bracket_colour, r"(?i)(\#(?:\h{6}|\h{3}|[a-z]+))");
+pattern!(bracket_colour, r"(?i)(\#((?:[0-9A-Fa-f]{6})|(?:[0-9A-Fa-f]{3})|[a-z]+))");
 pattern!(bracket_hidden, r"(?i)\bhidden\b");
 pattern!(bracket_dashed, r"(?i)\b(?:dashed|dotted)\b");
-pattern!(autonumber_line, r#"\Aautonumber(?:[ \t]+(\d+)(?:[ \t]+(\d+))?)?(?:[ \t]+"([^"]*)")?\z"#);
-pattern!(autonumber_pause, r"\Aautonumber[ \t]+(stop|resume)\z");
-pattern!(newpage_line, r"\Anewpage\z");
+pattern!(autonumber_line, r#"(?i)\Aautonumber(?:[ \t]+(\d+)(?:[ \t]+(\d+))?)?(?:[ \t]+"([^"]*)")?\z"#);
+pattern!(autonumber_pause, r"(?i)\Aautonumber[ \t]+(stop|resume)\z");
+pattern!(newpage_line, r"(?i)\Anewpage\z");
 
 /// `ArrowSyntax.read`: the style and whether the arrow is written
 /// pointing at the sender's name.
@@ -514,7 +517,7 @@ fn parse_error(message: &str, line: usize) -> Error {
 fn refusal_error(text: &str, line: usize) -> Error {
     Error::Parse {
         class: "UnsupportedConstructError".into(),
-        message: format!("Unsupported construct: {text}"),
+        message: format!("Unsupported construct at line {line}: {text}"),
         line,
         col: 0,
     }
@@ -596,41 +599,73 @@ fn message_match(
     // The arrow: an optional o/x lead, an optional left head, one dash,
     // an optional [...] style, an optional second dash, an optional right
     // head, an optional o/x trail before a blank, `]`, `?` or the end.
+    // The Ruby regex backtracks, so each head group is tried in its
+    // alternation order with the innermost groups varying first.
     let b = rest.as_bytes();
-    let mut p = 0;
-    if matches!(b.first(), Some(b'o') | Some(b'x') | Some(b'O') | Some(b'X')) {
+    let heads_l_candidates: Vec<&str> = ["<<", "<", "//", "/", "\\\\", "\\"]
+        .into_iter()
+        .filter(|token| rest.starts_with(token))
+        .chain(std::iter::once(""))
+        .collect();
+    let trail_ok = |at: usize| -> bool {
+        matches!(b.get(at), Some(b'o') | Some(b'x') | Some(b'O') | Some(b'X'))
+            && matches!(
+                b.get(at + 1),
+                None | Some(b' ') | Some(b'\t') | Some(b']') | Some(b'?')
+            )
+    };
+    let mut arrow_token_found: Option<(usize, String)> = None;
+    'outer: for left_head in &heads_l_candidates {
+        let mut p = left_head.len();
+        if b.get(p) != Some(&b'-') {
+            continue;
+        }
         p += 1;
-    }
-    for head in ["<<", "<", "//", "/", "\\\\", "\\"] {
-        if rest[p..].starts_with(head) {
-            p += head.len();
-            break;
+        let mut extras = String::new();
+        if b.get(p) == Some(&b'[') {
+            let Some(close) = rest[p..].find(']') else { continue };
+            extras = rest[p + 1..p + close].to_string();
+            p += close + 1;
+        }
+        let double_dash = b.get(p) == Some(&b'-');
+        if double_dash {
+            p += 1;
+        }
+        let heads_r_candidates: Vec<&str> = [">>", ">", "\\\\", "//", "/"]
+            .into_iter()
+            .filter(|token| rest[p..].starts_with(token))
+            .chain(std::iter::once(""))
+            .collect();
+        for right_head in &heads_r_candidates {
+            let mut p = p + right_head.len();
+            let base = p;
+            for trail in [true, false] {
+                let mut p = base;
+                if trail && trail_ok(p) {
+                    p += 1;
+                } else if trail {
+                    continue;
+                }
+                arrow_token_found = Some((p, rest[..p].to_string()));
+                break 'outer;
+            }
         }
     }
-    if b.get(p) != Some(&b'-') {
+    let Some((arrow_len, _arrow_text)) = arrow_token_found else {
         return None;
-    }
-    p += 1;
-    let mut extras = String::new();
-    if b.get(p) == Some(&b'[') {
-        let close = rest[p..].find(']')?;
-        extras = rest[p + 1..p + close].to_string();
-        p += close + 1;
-    }
-    if b.get(p) == Some(&b'-') {
-        p += 1;
-    }
-    for head in [">>", ">", "\\\\", "//", "/"] {
-        if rest[p..].starts_with(head) {
-            p += head.len();
-            break;
+    };
+    let extras = {
+        // Recover the [...] extras of the chosen token for ArrowSyntax.
+        let token = &rest[..arrow_len];
+        match (token.find('['), token.find(']')) {
+            (Some(open), Some(close)) if open < close => {
+                token[open + 1..close].to_string()
+            }
+            _ => String::new(),
         }
-    }
-    if matches!(b.get(p), Some(b'o') | Some(b'x') | Some(b'O') | Some(b'X'))
-        && matches!(b.get(p + 1), None | Some(b' ') | Some(b'\t') | Some(b']') | Some(b'?'))
-    {
-        p += 1;
-    }
+    };
+    let _ = extras;
+    let p = arrow_len;
 
     // TO: QUOTED | NAME | a glued ] / ?.
     let mut after = &rest[p..];
@@ -671,8 +706,9 @@ fn message_match(
     let mut rest_tail = rest_tail.trim_start_matches([' ', '\t']);
     let mut colour = None;
     if rest_tail.starts_with('#') {
-        let end = rest_tail
+        let end = rest_tail[1..]
             .find(|c: char| !(c.is_ascii_hexdigit() || c.is_ascii_alphabetic()))
+            .map(|stop| stop + 1)
             .unwrap_or(rest_tail.len());
         let body = &rest_tail[1..end];
         let boundary = rest_tail[end..]

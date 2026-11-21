@@ -56,7 +56,9 @@ fn fill_from_hex(digits: &str) -> Fill {
 }
 
 /// `Fill.read`: `#RGB`, `#RRGGBB`, `#RRGGBBAA`, `#transparent` or a
-/// colour name; None when the token is not one of the forms.
+/// colour name; None when the token is not one of the forms. The match
+/// is the Ruby PATTERN's: the longest hex run first, a 3-hex run only at
+/// a word boundary, then a name.
 pub fn fill_read(token: Option<&str>) -> Option<Fill> {
     let token = token?;
     let digits = token.strip_prefix('#')?;
@@ -67,13 +69,24 @@ pub fn fill_read(token: Option<&str>) -> Option<Fill> {
         return Some(none_fill());
     }
     let bytes = digits.as_bytes();
-    if bytes.len() == 3 || bytes.len() == 6 || bytes.len() == 8 {
-        if hex_digits_ok(bytes) {
-            return Some(fill_from_hex(digits));
-        }
-        return None;
+    let word_byte =
+        |b: u8| b.is_ascii_alphanumeric() || b == b'_';
+    let boundary_at = |at: usize| {
+        bytes.get(at).is_none_or(|b| !word_byte(*b))
+    };
+    if bytes.len() >= 8 && hex_digits_ok(&bytes[..8]) && boundary_at(8) {
+        return Some(fill_from_hex(&digits[..8]));
     }
-    named_fill(digits)
+    if bytes.len() >= 6 && hex_digits_ok(&bytes[..6]) && boundary_at(6) {
+        return Some(fill_from_hex(&digits[..6]));
+    }
+    if bytes.len() >= 3 && hex_digits_ok(&bytes[..3]) && boundary_at(3) {
+        return Some(fill_from_hex(&digits[..3]));
+    }
+    if !bytes.is_empty() && bytes.iter().all(|b| b.is_ascii_alphabetic()) {
+        return named_fill(digits);
+    }
+    None
 }
 
 /// `Fill.named`: a bare colour name.
