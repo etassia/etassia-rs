@@ -291,7 +291,7 @@ impl Painter {
                 .attr("stroke-width", self.stroke_width()),
             _ => {
                 let width = if mark.heavy {
-                    format!("{}", stroke_width_value() * 2.0)
+                    ruby_float(stroke_width_value() * 2.0)
                 } else {
                     self.stroke_width()
                 };
@@ -487,10 +487,10 @@ impl Painter {
             (Some(rx), Some(ry)) => (Some(rx), Some(ry)),
             _ => (None, None),
         };
-        if rx.is_some() {
+        if rx.is_some() || matches!(shape.rx, None) {
             element = element.attr("rx", HEAD_CORNER);
         }
-        if ry.is_some() {
+        if ry.is_some() || matches!(shape.ry, None) {
             element = element.attr("ry", HEAD_CORNER);
         }
         if let Some(opacity) = head.fill_opacity {

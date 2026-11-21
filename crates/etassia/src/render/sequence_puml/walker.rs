@@ -88,12 +88,19 @@ pub fn following_activations<'a>(items: &'a [Item], parallel_notes: bool) -> Vec
 struct BarTracker<'m> {
     bars: Vec<Bar>,
     open: HashMap<String, Vec<(f64, Option<String>)>>,
+    /// Ruby's `@open` Hash keeps insertion order; finish emits in it.
+    order: Vec<String>,
     centre: &'m dyn Fn(&str) -> f64,
 }
 
 impl<'m> BarTracker<'m> {
     fn new(centre: &'m dyn Fn(&str) -> f64) -> Self {
-        BarTracker { bars: vec![], open: HashMap::new(), centre }
+        BarTracker {
+            bars: vec![],
+            open: HashMap::new(),
+            order: vec![],
+            centre,
+        }
     }
 
     fn depth(&self, id: &str) -> i64 {
@@ -103,10 +110,11 @@ impl<'m> BarTracker<'m> {
     fn apply(&mut self, activation: &Activation, at: f64) {
         let id = activation.participant.clone();
         if activation.on() {
-            self.open
-                .entry(id)
-                .or_default()
-                .push((at, activation.color.clone()));
+            let entry = self.open.entry(id.clone()).or_default();
+            if entry.is_empty() && !self.order.contains(&id) {
+                self.order.push(id.clone());
+            }
+            entry.push((at, activation.color.clone()));
         } else {
             let popped = self.open.entry(id.clone()).or_default().pop();
             if let Some((top, color)) = popped {
@@ -127,7 +135,7 @@ impl<'m> BarTracker<'m> {
     }
 
     fn finish(&mut self, bottom: f64) {
-        let ids: Vec<String> = self.open.keys().cloned().collect();
+        let ids: Vec<String> = self.order.clone();
         for id in ids {
             loop {
                 let popped = self.open.get_mut(&id).and_then(|tops| tops.pop());
@@ -258,7 +266,7 @@ struct Walker<'m> {
 #[allow(clippy::too_many_arguments)]
 pub fn walk<'m>(
     items: &[Item],
-    lifelines: HashMap<String, f64>,
+    lifelines: Vec<(String, f64)>,
     edge_right: Option<f64>,
     appearance: &Appearance,
     font_size: f64,
@@ -267,25 +275,8 @@ pub fn walk<'m>(
     measure: &'m dyn Fn(&str) -> f64,
     message_measure: &'m dyn Fn(&str) -> f64,
 ) -> Flow {
-    let mut ids: Vec<String> = lifelines.keys().cloned().collect();
-    let mut centers: Vec<f64> = vec![];
-    for id in &ids {
-        centers.push(lifelines[id]);
-    }
-    // Ruby keeps `ids` in participant order; the HashMap iteration order
-    // is unspecified, so restore it from the item participants.
-    for item in items {
-        if let Item::Message(message) = item {
-            for place in [&message.from, &message.to] {
-                if let Place::Id(id) = place {
-                    if !ids.contains(id) {
-                        ids.push(id.clone());
-                        centers.push(0.0);
-                    }
-                }
-            }
-        }
-    }
+    let ids: Vec<String> = lifelines.iter().map(|(id, _)| id.clone()).collect();
+    let centers: Vec<f64> = lifelines.iter().map(|(_, centre)| *centre).collect();
     let config_message_measure: Option<&'m dyn Fn(&str) -> f64> = Some(message_measure);
     let message_font_size = config.message_font_size;
     let centre_ids = ids.clone();
@@ -437,6 +428,9 @@ impl<'m> Walker<'m> {
     }
 
     fn message_measure_width(&self, text: &str) -> f64 {
+        if self.label_inset.is_some() && self.message_family != Some("monospace") {
+            return geometry::widest_line(text, self.message_font_size, false);
+        }
         match self.config_message_measure {
             Some(measure) => measure(text),
             None => (self.measure)(text),
@@ -572,6 +566,11 @@ impl<'m> Walker<'m> {
     }
 
     fn message(&mut self, item: &Item, message: &Message) {
+        // apply_message_font: a compact (teoz) diagram measures each
+        // label in its own family.
+        if self.label_inset.is_some() {
+            self.message_family = message.label_family.or(Some("sans-serif"));
+        }
         self.start_row(message);
         self.message_activations = self
             .following_activations
@@ -1214,7 +1213,7 @@ impl<'m> Walker<'m> {
         self.flow.fragments.push(shape.scene());
         self.touch(shape.x, shape.x + shape.width);
         let _ = &measure;
-        self.flow.y += geometry::REF_TAIL + geometry::REF_TAIL;
+        self.flow.y += geometry::REF_HEIGHT + geometry::REF_TAIL;
     }
 
     fn fragment(&mut self, fragment: &Fragment) {
@@ -1238,7 +1237,7 @@ impl<'m> Walker<'m> {
             branches: vec![],
             depth: 0,
             resume: self.resume,
-            tab: geometry::TabSize::new(None, 1.0),
+            tab: geometry::TabSize::new(self.appearance_tab_size, self.font_size),
             text_height: 0.0,
         });
         let tab = geometry::TabSize::new(self.appearance_tab_size, self.font_size);

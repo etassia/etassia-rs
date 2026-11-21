@@ -1341,7 +1341,11 @@ impl Parser {
             }
         }
 
-        let colour_value = colour.as_deref().map(colour_value);
+        // Ruby match[6] is the token after the `#`.
+        let colour_value = colour
+            .as_deref()
+            .map(|token| token.strip_prefix('#').unwrap_or(token))
+            .map(colour_value);
         let resolved: Marks = if self.autoactivate && marks.is_none() && colour.is_none() {
             // automatic_marks: a call activates its receiver, a dashed
             // answer deactivates its sender when active; a lost message
@@ -1459,10 +1463,14 @@ impl Parser {
     }
 
     fn targets_of(&mut self, list: Option<&str>) -> Vec<String> {
-        list.unwrap_or("")
-            .split(',')
-            .map(|target| self.mention(target.trim()))
-            .collect()
+        // Ruby `list.to_s.split(",")`: an absent list splits to nothing.
+        let Some(list) = list else {
+            return vec![];
+        };
+        if list.is_empty() {
+            return vec![];
+        }
+        list.split(',').map(|target| self.mention(target.trim())).collect()
     }
 
     fn note(&mut self, caps: regex::Captures) -> bool {

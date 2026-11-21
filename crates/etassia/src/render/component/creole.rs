@@ -46,7 +46,6 @@ impl Style {
                 .as_deref()
                 .is_some_and(|font| font.to_lowercase().contains("mono"))
     }
-    }
 }
 
 #[derive(Clone, Debug)]

@@ -379,8 +379,8 @@ pub fn scene(diagram: &Diagram) -> Result<Scene, Error> {
     Layout::new(diagram)?.run()
 }
 
-struct Layout<'a> {
-    diagram: &'a Diagram,
+struct Layout {
+    diagram: Diagram,
     origin: f64,
     top: f64,
     widths: Vec<f64>,
@@ -392,10 +392,10 @@ struct Layout<'a> {
     activation_depths: HashMap<usize, HashMap<String, i64>>,
 }
 
-impl<'a> Layout<'a> {
-    fn new(diagram: &'a Diagram) -> Result<Self, Error> {
+impl Layout {
+    fn new(diagram: &Diagram) -> Result<Self, Error> {
         let mut layout = Layout {
-            diagram,
+            diagram: diagram.clone(),
             origin: 0.0,
             top: 0.0,
             widths: vec![],
@@ -732,14 +732,40 @@ impl<'a> Layout<'a> {
         };
         let between: Vec<usize> = (low..high).collect();
         let need = super::geometry::ref_width_for(&ref_.label);
+        let side_pad = if self.ref_nested_in_fragment(ref_) {
+            super::geometry::FRAGMENT_BASE_PAD
+        } else {
+            super::geometry::ref_side_pad()
+        };
         if between.is_empty() {
             self.widen_over(gaps, &between, low, need);
             return;
         }
-        let share = (need - 2.0 * super::geometry::ref_side_pad()) / between.len() as f64;
+        let share = (need - 2.0 * side_pad) / between.len() as f64;
         for index in between {
             raise_gap(gaps, index, share);
         }
+    }
+
+    /// `nested_in_fragment?` for a Ref: whether an open fragment precedes
+    /// it without its close.
+    fn ref_nested_in_fragment(&self, ref_: &Ref) -> bool {
+        let mut depth = 0;
+        for candidate in &self.diagram.items {
+            if let Item::Ref(candidate) = candidate {
+                if candidate.targets == ref_.targets && candidate.label == ref_.label {
+                    return depth > 0;
+                }
+            }
+            if let Item::Fragment(fragment) = candidate {
+                match fragment.phase {
+                    FragPhase::Open => depth += 1,
+                    FragPhase::Close => depth -= 1,
+                    FragPhase::Else => {}
+                }
+            }
+        }
+        false
     }
 
     fn widen_over(&self, gaps: &mut [f64], between: &[usize], index: usize, need: f64) {
@@ -1027,7 +1053,11 @@ impl<'a> Layout<'a> {
         } else {
             CLASSIC_ROW
         };
-        let self_row = CLASSIC_SELF_ROW;
+        let self_row = if self.compact() {
+            COMPACT_SELF_ROW
+        } else {
+            CLASSIC_SELF_ROW
+        };
         let branch_gap = if self.teoz_fragment_cadence() {
             TEOZ_FRAGMENT_BRANCH_GAP
         } else if self.compact() {
@@ -1150,10 +1180,57 @@ impl<'a> Layout<'a> {
         matches!(following, Some(Item::Note(note)) if note.attached() && note.picture.is_some())
     }
 
+    /// An explicit box declaration moves a participant that an earlier
+    /// message created implicitly behind the unboxed peer created with it.
+    fn order_boxed_member(&self, diagram: Diagram) -> Diagram {
+        // Indexes of the sole boxed member and of the unboxed peer it
+        // follows, when the member was declared before that peer.
+        let move_: Option<(usize, usize)> = (|| {
+            if diagram.boxes.len() != 1 {
+                return None;
+            }
+            let box_ = &diagram.boxes[0];
+            if box_.members.len() != 1 {
+                return None;
+            }
+            let member = &box_.members[0];
+            let ids: Vec<&str> =
+                diagram.participants.iter().map(|p| p.id.as_str()).collect();
+            let from = ids.iter().position(|id| *id == member.as_str())?;
+            // First message peer of the member.
+            let peer = diagram.items.iter().find_map(|item| {
+                let message = item.as_message()?;
+                if message.from.id() == member.as_str() {
+                    Some(message.to.id().to_string())
+                } else if message.to.id() == member.as_str() {
+                    Some(message.from.id().to_string())
+                } else {
+                    None
+                }
+            })?;
+            let peer = if peer == *member { None } else { Some(peer) }?;
+            let to = ids.iter().position(|id| *id == peer.as_str())?;
+            if from < to {
+                Some((from, to))
+            } else {
+                None
+            }
+        })();
+        let Some((from, to)) = move_ else {
+            return diagram;
+        };
+        let mut participants = diagram.participants.clone();
+        let moved = participants.remove(from);
+        participants.insert(to, moved);
+        Diagram { participants, ..diagram }
+    }
+
     fn prepare(&mut self) -> Result<(), Error> {
         // pictured(): notes with embedded diagrams are laid out first.
         let diagram = self.diagram.clone();
         let diagram = pictured(diagram)?;
+        let diagram = self.order_boxed_member(diagram);
+        self.diagram = diagram.clone();
         self.creations = walker::creation_messages(&diagram.items);
         self.activation_depths = activation_depths(&diagram.items);
         self.widths = diagram.participants.iter().map(|p| self.head_width(p)).collect();
@@ -1173,7 +1250,7 @@ impl<'a> Layout<'a> {
             + if diagram.boxes.is_empty() { 0.0 } else { BOX_TITLE_HEIGHT };
         self.edge_right = self.right_edge();
         let start_y = self.top + self.head_height + self.first_row_gap();
-        let lifelines: HashMap<String, f64> = self
+        let lifelines: Vec<(String, f64)> = self
             .ids()
             .iter()
             .enumerate()
@@ -1250,7 +1327,7 @@ fn pictured(diagram: Diagram) -> Result<Diagram, Error> {
     Ok(Diagram { items, ..diagram })
 }
 
-impl<'a> Layout<'a> {
+impl Layout {
     fn left_edge_room(&self, widths: &[f64], gaps: &[f64]) -> f64 {
         let start = self.margin() + widths[0] / 2.0;
         let ids = self.ids();
@@ -1280,7 +1357,7 @@ impl<'a> Layout<'a> {
     }
 
     fn chrome_rows_top_room(&self) -> f64 {
-        let rows = ChromeRows::new(self.diagram);
+        let rows = ChromeRows::new(&self.diagram);
         rows.top_room()
     }
 
@@ -1291,7 +1368,7 @@ impl<'a> Layout<'a> {
             for centre in &mut self.centers {
                 *centre += shift;
             }
-            let lifelines: HashMap<String, f64> = self
+            let lifelines: Vec<(String, f64)> = self
                 .ids()
                 .iter()
                 .enumerate()
@@ -1339,7 +1416,7 @@ impl<'a> Layout<'a> {
                 .fold(f64::MIN, f64::max);
             BANNER_LEFT + widest + BANNER_LEFT
         };
-        let rows = ChromeRows::new(self.diagram);
+        let rows = ChromeRows::new(&self.diagram);
         padded
             .max(edge_extent)
             .max(banner_extent)
@@ -1375,7 +1452,7 @@ impl<'a> Layout<'a> {
     }
 
     fn build(&self) -> Scene {
-        let rows = ChromeRows::new(self.diagram);
+        let rows = ChromeRows::new(&self.diagram);
         let width = self.canvas_width();
         let height = self.flow.y + self.foot_height() + self.margin() + rows.bottom_room();
         let chrome_top = self.margin() + self.banner_room();
@@ -1766,9 +1843,10 @@ impl<'a> Layout<'a> {
         let left = centre - 18.0;
         let right = centre + 18.0;
         let outline = format!(
-            "M {} {} C {} {} {} {} {} {} L {} {} C {} {} {} {} {} {} C {} {} {} {} {} {} L {} {}",
+            "M {} {} C {} {} {} {} {} {} C {} {} {} {} {} {} L {} {} C {} {} {} {} {} {} C {} {} {} {} {} {} L {} {}",
             fmt(left), fmt(y + 10.0),
             fmt(left), fmt(y), fmt(centre), fmt(y), fmt(centre), fmt(y),
+            fmt(centre), fmt(y), fmt(right), fmt(y), fmt(right), fmt(y + 10.0),
             fmt(right), fmt(y + 36.0),
             fmt(right), fmt(y + 46.0), fmt(centre), fmt(y + 46.0), fmt(centre), fmt(y + 46.0),
             fmt(centre), fmt(y + 46.0), fmt(left), fmt(y + 46.0), fmt(left), fmt(y + 36.0),
