@@ -26,7 +26,6 @@ pub mod sankey;
 pub mod sequence;
 pub mod sequence_puml;
 pub mod state_diagram;
-pub mod state_puml;
 pub mod class_puml;
 pub mod timeline;
 pub mod timing_puml;
