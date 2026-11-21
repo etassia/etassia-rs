@@ -261,6 +261,49 @@ fn first_word_is(text: &str, words: &[&str]) -> bool {
     words.contains(&first_word.to_ascii_lowercase().as_str()) && word_boundary
 }
 
+/// The sequence lane, last of the ported families (the Ruby families run
+/// Further, State, Usecase, Component, Activity, Entity, Sequence,
+/// Objects): no class-declaration line, and a line only a sequence
+/// diagram reads. Ruby `Sequence.sequence?`.
+fn class_re() -> &'static Regex {
+    static CELL: OnceLock<Regex> = OnceLock::new();
+    CELL.get_or_init(|| {
+        Regex::new(r"(?i)\A(?:abstract[ \t]+class|class|interface)[ \t]")
+            .expect("sequence class pattern")
+    })
+}
+
+fn sequence_marker_re() -> &'static Regex {
+    static CELL: OnceLock<Regex> = OnceLock::new();
+    CELL.get_or_init(|| {
+        Regex::new(concat!(
+            r"(?i)\A(?:participant|actor|boundary|control|entity|database|",
+            r"collections|queue|activate|deactivate|autonumber|newpage|",
+            r"alt|loop|opt|par|critical|break|ref)\b",
+            r"|\A==",
+            // Ruby's `<<?-(?!-)` without look-around: a `-` that is not
+            // followed by another one.
+            r#"|\A(?:"[^"]*"|\w+)[ \t]*(?:->|<<?-(?:[^-]|$)|-\[[\w\#,]+\]>)"#,
+        ))
+        .expect("sequence marker pattern")
+    })
+}
+
+/// Whether the source reads as a sequence diagram: none of its stripped
+/// lines declares a class and at least one is a sequence marker.
+pub fn detect_sequence(source: &str) -> bool {
+    let mut any_marker = false;
+    for line in source.split('\n') {
+        let text = line.trim_matches(|c: char|
+            matches!(c, ' ' | '\t' | '\n' | '\u{b}' | '\u{c}' | '\r' | '\0'));
+        if class_re().is_match(text) {
+            return false;
+        }
+        any_marker |= sequence_marker_re().is_match(text);
+    }
+    any_marker
+}
+
 /// The use case lane, tried before component (the Ruby families run
 /// Further, State, Usecase, Component in that order): no foreign keyword,
 /// and at least one use case marker. Ruby `Usecase.usecase?`.

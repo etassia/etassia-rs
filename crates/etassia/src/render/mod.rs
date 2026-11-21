@@ -20,9 +20,11 @@ pub mod packet;
 pub mod pie;
 pub mod quadrant;
 pub mod radar;
+pub mod state_puml;
 pub mod requirement;
 pub mod sankey;
 pub mod sequence;
+pub mod sequence_puml;
 pub mod state_diagram;
 pub mod state_puml;
 pub mod class_puml;
@@ -82,7 +84,16 @@ pub fn render(source: &str) -> Result<String, Error> {
         "c4" => c4::render(source),
         "block" => block::render(source),
         "architecture" => architecture::render(source),
-        "sequence" => sequence::render(source),
+        // The sequence type names both mermaid's sequenceDiagram and the
+        // PlantUML family; a source the family claims picks the PlantUML
+        // lane.
+        "sequence" => {
+            if crate::parse::detect_sequence(source) {
+                sequence_puml::render(source)
+            } else {
+                sequence::render(source)
+            }
+        }
         // PlantUML's own state diagram (@startuml with state statements).
         "state" => state_puml::render(source),
         "state_diagram" => state_diagram::render(source),
