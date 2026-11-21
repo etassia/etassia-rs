@@ -158,8 +158,14 @@ pub fn scene(diagram: &Diagram) -> Scene {
         qualified_route_middle: 0.0,
     };
     let body = if member_note_family(diagram) {
+        if std::env::var_os("ETASSIA_CLASS_DEBUG").is_some() {
+            eprintln!("member_note_family");
+        }
         layout.member_note_scene(diagram)
     } else if class_note_pair_family(diagram) {
+        if std::env::var_os("ETASSIA_CLASS_DEBUG").is_some() {
+            eprintln!("class_note_pair_family");
+        }
         layout.class_note_pair_scene(diagram)
     } else {
         layout.standard_scene(diagram)
@@ -560,6 +566,15 @@ impl Layout {
     // ---- member-note and class-note-pair families ----
 
     fn member_note_scene(&mut self, diagram: &Diagram) -> Scene {
+        if std::env::var_os("ETASSIA_CLASS_DEBUG").is_some() {
+            eprintln!(
+                "member_note_scene: shared={:?} last_color={:?} last_stereo={:?} directives={:?}",
+                self.shared_member_note_fill(diagram),
+                diagram.notes.last().and_then(|n| n.color.clone()),
+                diagram.notes.last().and_then(|n| n.stereotype.clone()),
+                diagram.directives,
+            );
+        }
         let klass = &diagram.classes[0];
         let class_box = self.member_note_class_box(klass);
         let notes = self.member_note_boxes(diagram, klass, &class_box);
@@ -2853,9 +2868,11 @@ fn member_note_height(note: &Note) -> f64 {
 
 fn stereotype_note_fill(stereotype: &Option<String>, directives: &[String]) -> Option<String> {
     let stereotype = stereotype.as_deref()?;
+    // The reader stores the stereotype's text; either form here names it.
     let name = stereotype
         .strip_prefix("<<")
-        .and_then(|s| s.strip_suffix(">>"))?;
+        .and_then(|s| s.strip_suffix(">>"))
+        .unwrap_or(stereotype);
     let prefix = format!("skinparam\\s+noteBackgroundColor<<{}>>", regex::escape(name));
     let pattern = regex::Regex::new(&format!(r"(?i)\A{}\s+(\S+)\z", prefix)).unwrap();
     directives
@@ -3472,64 +3489,122 @@ fn ruby_round3(value: f64) -> String {
 /// digits.
 pub fn format_g(value: f64) -> String {
     let value = round4_half(value);
-    if value == 0.0 {
-        return "0".to_string();
+    let mut text = if value == 0.0 {
+        "0".to_string()
+    } else {
+        digits_of(value.abs())
+    };
+    if value < 0.0 {
+        text.insert(0, '-');
     }
-    let shortest = format!("{}", value);
-    let (sign, digits_text, last_exponent) = split_decimal(&shortest);
-    let original_len = digits_text.len() as i32;
-    let mut digits: Vec<u8> = digits_text.chars().map(|c| c as u8 - b'0').collect();
-    // Round the digit string to six significant digits, half-even (the
-    // digits beyond the kept run decide; an exact tie rounds to even).
+    text
+}
+
+/// Ruby `format('%g', v)`: the shortest decimal digits rounded half-even
+/// at six significant digits, trailing zeros stripped, the exponent form
+/// outside the fixed window.
+fn digits_of(value: f64) -> String {
+    let negative = value < 0.0;
+    let shortest = format!("{}", value.abs());
+    let (mantissa, exponent) = match shortest.split_once('e') {
+        Some((m, e)) => (m.to_string(), e.parse::<i32>().unwrap_or(0)),
+        None => (shortest.clone(), 0),
+    };
+    let (whole, fraction) = mantissa_parts(&mantissa);
+    // The digits and the position of the decimal point before rounding.
+    let mut digits: String = format!("{whole}{fraction}")
+        .trim_start_matches('0')
+        .to_string();
+    let mut scientific = if whole.is_empty() || whole == "0" {
+        // 0.0ddd: the exponent is one past the leading zero run.
+        let lead = fraction
+            .find(|c: char| c != '0')
+            .unwrap_or(fraction.len());
+        -(lead as i32 + 1)
+    } else {
+        whole.len() as i32 - 1 + exponent
+    };
+    if digits.is_empty() {
+        digits = "0".to_string();
+        scientific = 0;
+    }
+    // Round to six significant digits. A dropped digit below 5 rounds
+    // down and strips the kept zeros; a dropped digit above 5 rounds up;
+    // an exact decimal tie (a lone 5 with zeros after) splits by the
+    // parity of the last kept digit — odd rounds up, even rounds down,
+    // and where the double itself sits above the down decimal the zeros
+    // stay (Ruby's dtoa window holds them).
     const SIG: usize = 6;
-    let mut round_up = false;
-    let mut carried = false;
+    let mut keep_zeros = false;
     if digits.len() > SIG {
         let keep = &digits[..SIG];
         let rest = &digits[SIG..];
-        let rest_nonzero = rest[1..].iter().any(|d| *d != 0);
-        round_up = match rest[0].cmp(&5) {
+        let mut up = match rest.as_bytes()[0].cmp(&b'5') {
             std::cmp::Ordering::Greater => true,
             std::cmp::Ordering::Less => false,
-            std::cmp::Ordering::Equal => rest_nonzero || keep[SIG - 1] % 2 == 1,
+            std::cmp::Ordering::Equal => {
+                if rest[1..].bytes().any(|b| b != b'0') {
+                    true
+                } else {
+                    let last = keep.as_bytes()[SIG - 1] - b'0';
+                    if last % 2 == 1 {
+                        true
+                    } else {
+                        // The double's own decimal side decides: a value
+                        // at or above the midpoint decimal keeps the
+                        // window's zeros; below it, they strip.
+                        let point = (scientific + 1).max(1) as usize;
+                        let above = value_at_or_above(value, &keep, scientific, point);
+                        keep_zeros = above;
+                        false
+                    }
+                }
+            }
         };
-        if round_up {
-            let mut rounded = keep.to_vec();
+        if !up && !keep_zeros && rest.as_bytes()[0] != b'5' {
+            // a strict down: the strip happens below
+        }
+        let _ = &mut up;
+        if up {
+            let mut carried: Vec<u8> = keep.bytes().collect();
             let mut index = SIG;
             loop {
                 if index == 0 {
-                    rounded.insert(0, 1);
-                    carried = true;
+                    carried.insert(0, b'1');
+                    scientific += 1;
                     break;
                 }
                 index -= 1;
-                if rounded[index] == 9 {
-                    rounded[index] = 0;
+                if carried[index] == b'9' {
+                    carried[index] = b'0';
                 } else {
-                    rounded[index] += 1;
+                    carried[index] += 1;
                     break;
                 }
             }
-            digits = rounded;
+            digits = String::from_utf8(carried).unwrap();
         } else {
-            digits = keep.to_vec();
+            digits = keep.to_string();
         }
     }
-    // The scientific exponent: the decimal point sits after the first
-    // significant digit, over the original digit count.
-    let scientific = last_exponent + original_len - 1 + carried as i32;
-    // Strip trailing zeros.
-    while digits.len() > 1 && *digits.last().unwrap() == 0 {
-        digits.pop();
+    if !keep_zeros {
+        digits = digits.trim_end_matches('0').to_string();
     }
-    let digits_text: String = digits.iter().map(|d| (b'0' + d) as char).collect();
+    if digits.is_empty() {
+        digits = "0".to_string();
+    }
+    let sign = if negative { "-" } else { "" };
     if scientific < -4 || scientific >= 6 {
         let mantissa = if digits.len() == 1 {
-            digits_text.clone()
+            digits.clone()
         } else {
-            format!("{}.{}", &digits_text[..1], &digits_text[1..])
+            format!("{}.{}", &digits[..1], &digits[1..])
         };
-        let mantissa = trim_zeros(&mantissa);
+        let mantissa = if keep_zeros {
+            mantissa
+        } else {
+            trim_zeros(&mantissa)
+        };
         if scientific < 0 {
             return format!("{sign}{mantissa}e-{:02}", -scientific);
         }
@@ -3537,17 +3612,72 @@ pub fn format_g(value: f64) -> String {
     }
     if scientific < 0 {
         let zeros = "0".repeat((-scientific - 1) as usize);
-        let body = format!("0.{zeros}{digits_text}");
-        return format!("{}{}", sign, trim_zeros(&body));
+        let body = format!("0.{zeros}{digits}");
+        return format!("{sign}{}", trim_zeros(&body));
     }
     let point = (scientific + 1) as usize;
-    if digits_text.len() <= point {
-        let zeros = "0".repeat(point - digits_text.len());
-        let body = format!("{digits_text}{zeros}");
-        return format!("{sign}{body}");
+    if digits.len() <= point {
+        let zeros = "0".repeat(point - digits.len());
+        return format!("{sign}{digits}{zeros}");
     }
-    let body = format!("{}.{}", &digits_text[..point], &digits_text[point..]);
-    format!("{}{}", sign, trim_zeros(&body))
+    let body = format!("{}.{}", &digits[..point], &digits[point..]);
+    format!("{sign}{}", if keep_zeros { body } else { trim_zeros(&body) })
+}
+
+/// Whether `value` sits at or above the exact decimal
+/// `<keep-digits>5` at `scientific` — the rounding tie's midpoint —
+/// by comparing the double's exact decimal expansion digit by digit.
+fn value_at_or_above(
+    value: f64,
+    keep: &str,
+    scientific: i32,
+    point: usize,
+) -> bool {
+    let exact = format!("{:.70}", value);
+    let negative = exact.starts_with('-');
+    let exact = exact.trim_start_matches('-');
+    let (whole, fraction) = exact.split_once('.').unwrap_or((exact, ""));
+    // The midpoint: keep's digits with a 5 appended at the 7th place.
+    let mut mid_fraction = String::new();
+    if point > keep.len() {
+        mid_fraction.push_str(&"0".repeat(point - keep.len()));
+        mid_fraction.push_str(keep);
+    } else {
+        mid_fraction.push_str(&keep[point.min(keep.len())..]);
+    }
+    mid_fraction.push('5');
+    // Align: the midpoint's integer part is keep[..point].
+    let mid_whole = &keep[..point.min(keep.len())];
+    let _ = negative;
+    let value_side = whole_cmp(whole, fraction, mid_whole, &mid_fraction);
+    if negative {
+        // A negative below the midpoint strips: reverse the order.
+        !value_side
+    } else {
+        value_side
+    }
+}
+
+/// Lexicographic comparison of two same-sign decimal expansions:
+/// `true` when the first is at or above the second.
+fn whole_cmp(whole_a: &str, frac_a: &str, whole_b: &str, frac_b: &str) -> bool {
+    let width = whole_a.len().max(whole_b.len());
+    let a_int = format!("{}{}", "0".repeat(width - whole_a.len()), whole_a);
+    let b_int = format!("{}{}", "0".repeat(width - whole_b.len()), whole_b);
+    if a_int != b_int {
+        return a_int >= b_int;
+    }
+    let width = frac_a.len().max(frac_b.len());
+    let a = format!("{frac_a}{}", "0".repeat(width - frac_a.len()));
+    let b = format!("{frac_b}{}", "0".repeat(width - frac_b.len()));
+    a >= b
+}
+
+fn mantissa_parts(text: &str) -> (String, String) {
+    match text.split_once('.') {
+        Some((whole, fraction)) => (whole.to_string(), fraction.to_string()),
+        None => (text.to_string(), String::new()),
+    }
 }
 
 fn round4_half(value: f64) -> f64 {
@@ -3578,12 +3708,6 @@ fn split_decimal(text: &str) -> (String, String, i32) {
     (sign, digits, exponent - fraction.len() as i32)
 }
 
-fn mantissa_parts(text: &str) -> (String, String) {
-    match text.split_once('.') {
-        Some((whole, fraction)) => (whole.to_string(), fraction.to_string()),
-        None => (text.to_string(), String::new()),
-    }
-}
 
 fn trim_zeros(text: &str) -> String {
     let mut out = text.trim_end_matches('0').to_string();

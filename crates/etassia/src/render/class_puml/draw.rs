@@ -241,7 +241,12 @@ impl<'a> Renderer<'a> {
         elements.into_iter().map(|(element, _)| element).collect()
     }
 
-    fn render_box(&self, box_: &Box) -> Elem {
+    fn render_box(&self, box_: &'a Box) -> Elem {
+        let renderer = &Renderer {
+            sheet: self.sheet,
+            current_box: Some(box_),
+            current_spot_kind: box_.spot.as_ref().map(|spot| spot.kind.clone()),
+        };
         let mut group = Elem::new("g");
         group = group.attr(
             "id",
@@ -251,18 +256,18 @@ impl<'a> Renderer<'a> {
                 format!("class-{}", box_.id)
             },
         );
-        group = group.child(self.box_rectangle(box_));
-        for element in self.spot_elements(box_) {
+        group = group.child(renderer.box_rectangle(box_));
+        for element in renderer.spot_elements(box_) {
             group = group.child(element);
         }
-        for line in self.rule_lines(box_) {
+        for line in renderer.rule_lines(box_) {
             group = group.child(line);
         }
         for text in &box_.texts {
             if let Some(icon) = &text.icon {
                 group = group.child(member_icon_group(icon));
             }
-            group = group.child(self.text_element(text));
+            group = group.child(renderer.text_element(text));
         }
         group
     }
@@ -311,21 +316,21 @@ impl<'a> Renderer<'a> {
         let middle = top + box_.height / 2.0;
         let pointer = box_.separators.first();
         let mut outline = vec![
-            format!("M {} {}", g(left), g(top)),
-            format!("L {} {}", g(left), g(middle - 4.0)),
+            format!("M {} {}", svg::ruby_float(left), svg::ruby_float(top)),
+            format!("L {} {}", svg::ruby_float(left), svg::ruby_float(middle - 4.0)),
         ];
         if let Some(pointer) = pointer {
-            outline.push(format!("L {} {}", g(pointer.x1), g(pointer.y1)));
+            outline.push(format!("L {} {}", svg::ruby_float(pointer.x1), svg::ruby_float(pointer.y1)));
         } else {
-            outline.push(format!("L {} {}", g(left), g(middle - 4.0)));
+            outline.push(format!("L {} {}", svg::ruby_float(left), svg::ruby_float(middle - 4.0)));
         }
-        outline.push(format!("L {} {}", g(left), g(middle + 4.0)));
-        outline.push(format!("L {} {}", g(left), g(top + box_.height)));
+        outline.push(format!("L {} {}", svg::ruby_float(left), svg::ruby_float(middle + 4.0)));
+        outline.push(format!("L {} {}", svg::ruby_float(left), svg::ruby_float(top + box_.height)));
         let right = box_.x + box_.width;
         let fold = 10.0;
-        outline.push(format!("L {} {}", g(right), g(box_.y + box_.height)));
-        outline.push(format!("L {} {}", g(right), g(box_.y + fold)));
-        outline.push(format!("L {} {}", g(right - fold), g(box_.y)));
+        outline.push(format!("L {} {}", svg::ruby_float(right), svg::ruby_float(box_.y + box_.height)));
+        outline.push(format!("L {} {}", svg::ruby_float(right), svg::ruby_float(box_.y + fold)));
+        outline.push(format!("L {} {}", svg::ruby_float(right - fold), svg::ruby_float(box_.y)));
         outline.push("Z".to_string());
         let mut path = Elem::new("path");
         path = path.attr("d", outline.join(" "));
