@@ -265,6 +265,7 @@ pub fn walk<'m>(
     config: &LayoutConfig,
     start_y: f64,
     measure: &'m dyn Fn(&str) -> f64,
+    message_measure: &'m dyn Fn(&str) -> f64,
 ) -> Flow {
     let mut ids: Vec<String> = lifelines.keys().cloned().collect();
     let mut centers: Vec<f64> = vec![];
@@ -285,7 +286,7 @@ pub fn walk<'m>(
             }
         }
     }
-    let config_message_measure: Option<&'m dyn Fn(&str) -> f64> = None;
+    let config_message_measure: Option<&'m dyn Fn(&str) -> f64> = Some(message_measure);
     let message_font_size = config.message_font_size;
     let centre_ids = ids.clone();
     let centre_centers = centers.clone();

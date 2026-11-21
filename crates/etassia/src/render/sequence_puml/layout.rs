@@ -1187,6 +1187,7 @@ impl<'a> Layout<'a> {
             self.font_size(),
             &self.walker_config(),
             start_y,
+            &|text| measure_width(text, self.font_size()),
             &|text| self.label_text_width(text),
         );
         Ok(())
@@ -1304,6 +1305,7 @@ impl<'a> Layout<'a> {
                 self.font_size(),
                 &self.walker_config(),
                 self.top + self.head_height + self.first_row_gap(),
+                &|text| measure_width(text, self.font_size()),
                 &|text| self.label_text_width(text),
             );
         }
@@ -2035,22 +2037,13 @@ impl<'a> ChromeRows<'a> {
     }
 
     fn lines(&self, kind: &str) -> Vec<String> {
-        if kind == "title" {
-            return self
-                .diagram
-                .title
-                .as_deref()
-                .unwrap_or("")
-                .split('\n')
-                .map(str::to_string)
-                .collect();
-        }
-        self.diagram
-            .chrome
-            .lines(kind)
-            .into_iter()
-            .map(str::to_string)
-            .collect()
+        // Ruby String#split("\n"): a trailing empty line is dropped.
+        let text = if kind == "title" {
+            self.diagram.title.clone().unwrap_or_default()
+        } else {
+            self.diagram.chrome.lines(kind).join("\n")
+        };
+        ruby_split_lines(&text)
     }
 
     fn room(&self, kind: &str) -> f64 {
@@ -2225,6 +2218,16 @@ impl<'a> ChromeRows<'a> {
                 .collect(),
         })
     }
+}
+
+/// Ruby `text.split("\n")`: a trailing empty line is dropped.
+fn ruby_split_lines(text: &str) -> Vec<String> {
+    let mut lines: Vec<String> =
+        text.split('\n').map(str::to_string).collect();
+    while lines.last().is_some_and(|last| last.is_empty()) {
+        lines.pop();
+    }
+    lines
 }
 
 fn box_role(kind: &str) -> &'static str {

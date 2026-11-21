@@ -75,11 +75,11 @@ impl Painter {
             self.doc.add(rect);
         }
         if let Some(title) = &scene.title {
-            self.doc.add(group("title", vec![], texts(title.texts.clone())));
+            self.doc.add(group("title", vec![], self.texts(title.texts.clone())));
         }
         for block in &scene.text_blocks {
             self.doc
-                .add(group(&format!("{}", block.id), vec![], texts(block.texts.clone())));
+                .add(group(&format!("{}", block.id), vec![], self.texts(block.texts.clone())));
         }
         if let Some(legend) = &scene.legend {
             let frame = Elem::new("rect")
@@ -92,7 +92,7 @@ impl Painter {
                 .attr("fill", LEGEND_FILL)
                 .attr("stroke", "#000000")
                 .attr("stroke-width", "1");
-            self.doc.add(group("legend", vec![frame], texts(legend.texts.clone())));
+            self.doc.add(group("legend", vec![frame], self.texts(legend.texts.clone())));
         }
         let layers: Vec<Vec<Elem>> = vec![
             scene
@@ -145,7 +145,7 @@ impl Painter {
         group(
             &format!("banner-{}", num(banner.y)),
             vec![rect],
-            texts(banner.texts.clone()),
+            self.texts(banner.texts.clone()),
         )
     }
 
@@ -179,7 +179,7 @@ impl Painter {
         group(
             &format!("box-{}", num(frame.x)),
             vec![rect],
-            texts(frame.texts.clone()),
+            self.texts(frame.texts.clone()),
         )
     }
 
@@ -222,18 +222,26 @@ impl Painter {
         element
     }
 
+    /// `solid`: a lifeline drawn with no dash attribute at all.
     fn solid(&self, segment: &super::layout::Segment) -> Elem {
-        self.lifeline(segment)
+        Elem::new("line")
+            .num("x1", segment.x1)
+            .num("y1", segment.y1)
+            .num("x2", segment.x2)
+            .num("y2", segment.y2)
             .attr("stroke", SKIN_PAINT_FRAME_STROKE)
             .attr("stroke-width", WIDTH_SEPARATOR)
-            .attr("stroke-dasharray", "none")
     }
 
     fn dashed(&self, segment: &super::layout::Segment) -> Elem {
-        self.lifeline(segment)
+        Elem::new("line")
+            .num("x1", segment.x1)
+            .num("y1", segment.y1)
+            .num("x2", segment.x2)
+            .num("y2", segment.y2)
             .attr("stroke", stroke_of(self.painted("group_line"), Some(SKIN_PAINT_FRAME_STROKE), NODE_STROKE))
             .attr("stroke-width", WIDTH_SEPARATOR)
-            .attr("stroke-dasharray", "5,3")
+            .attr("stroke-dasharray", "2,2")
     }
 
     fn arrow_group(&self, arrow: &super::layout::Arrow) -> Elem {
@@ -245,7 +253,7 @@ impl Painter {
         for mark in &arrow.marks {
             children.push(self.arrow_mark(mark, &colour));
         }
-        group(&arrow.id, children, texts(arrow.texts.clone()))
+        group(&arrow.id, children, self.texts(arrow.texts.clone()))
     }
 
     fn arrow_path(&self, arrow: &super::layout::Arrow, colour: &str) -> Elem {
@@ -255,7 +263,7 @@ impl Painter {
             .attr("stroke", colour.to_string())
             .attr("stroke-width", self.stroke_width());
         if arrow.dashed {
-            element = element.attr("stroke-dasharray", "6,4");
+            element = element.attr("stroke-dasharray", "2,2");
         }
         element
     }
@@ -314,7 +322,7 @@ impl Painter {
         group(
             &format!("fragment-{}-{}", num(fragment.x), num(fragment.y)),
             children,
-            texts(fragment.texts.clone()),
+            self.texts(fragment.texts.clone()),
         )
     }
 
@@ -347,7 +355,7 @@ impl Painter {
             }
             children.push(group);
         }
-        group(&id, children, texts(note.texts.clone()))
+        group(&id, children, self.texts(note.texts.clone()))
     }
 
     fn note_path(&self, data: Option<&str>, note: &super::layout::NoteScene) -> Elem {
@@ -392,14 +400,17 @@ impl Painter {
                         "fill",
                         self.painted("divider_fill").cloned().unwrap_or_else(|| NODE_FILL.to_string()),
                     )
-                    .attr("stroke", NODE_STROKE)
+                    .attr(
+                        "stroke",
+                        self.painted("divider_line").cloned().unwrap_or_else(|| NODE_STROKE.to_string()),
+                    )
                     .attr("stroke-width", "1"),
             );
         }
         group(
             &format!("divider-{}", num(divider.y)),
             children,
-            texts(divider.texts.clone()),
+            self.texts(divider.texts.clone()),
         )
     }
 
@@ -409,7 +420,7 @@ impl Painter {
             .first()
             .map(|text| num(text.y))
             .unwrap_or_else(|| num(delay.y1));
-        group(&format!("delay-{key}"), vec![], texts(delay.texts.clone()))
+        group(&format!("delay-{key}"), vec![], self.texts(delay.texts.clone()))
     }
 
     fn head_group(&self, head: &super::layout::Head) -> Elem {
@@ -417,7 +428,7 @@ impl Painter {
         group(
             &format!("participant-{}-{}", head.id, num(head.y)),
             shapes,
-            texts(head.texts.clone()),
+            self.texts(head.texts.clone()),
         )
     }
 
@@ -476,11 +487,11 @@ impl Painter {
             (Some(rx), Some(ry)) => (Some(rx), Some(ry)),
             _ => (None, None),
         };
-        if let Some(rx) = rx {
-            element = element.attr("rx", num(rx));
+        if rx.is_some() {
+            element = element.attr("rx", HEAD_CORNER);
         }
-        if let Some(ry) = ry {
-            element = element.attr("ry", num(ry));
+        if ry.is_some() {
+            element = element.attr("ry", HEAD_CORNER);
         }
         if let Some(opacity) = head.fill_opacity {
             element = element.attr("fill-opacity", num(opacity));
@@ -622,7 +633,7 @@ impl Painter {
             "message_label" | "note" | "box" | "fragment_tab" | "divider" => "13".to_string(),
             "fragment_guard" | "delay" => "11".to_string(),
             "kind" => "11.9".to_string(),
-            _ => "14".to_string(),
+            _ => "14.0".to_string(),
         }
     }
 
@@ -664,12 +675,10 @@ fn text_weight(role: &str) -> Option<String> {
     }
 }
 
-fn texts(items: Vec<Text>) -> Vec<Elem> {
-    let painter = Painter {
-        painted: Default::default(),
-        doc: crate::svg::Document::new(1.0, 1.0),
-    };
-    items.iter().map(|text| painter.text_element(text)).collect()
+impl Painter {
+    fn texts(&self, items: Vec<Text>) -> Vec<Elem> {
+        items.iter().map(|text| self.text_element(text)).collect()
+    }
 }
 
 fn group(id: &str, children: Vec<Elem>, texts: Vec<Elem>) -> Elem {
@@ -741,3 +750,4 @@ fn crc32(data: &str) -> u32 {
     }
     !crc
 }
+// dash check
