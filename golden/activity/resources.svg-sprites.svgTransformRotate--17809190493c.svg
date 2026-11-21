@@ -1,0 +1,25 @@
+<svg
+ width="466.763671875"
+ height="272.1702"
+ viewBox="0 0 466.763671875 272.1702"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<text fill="#000000" x="14.0" y="28.0" text-anchor="start" font-family="sans-serif" font-size="14" font-weight="bold">Transform Rotate Test</text>
+<rect fill="#FFFFCC" stroke="#FFDD88" stroke-width="3" x="14.0" y="40.0" width="184.0" height="16.6406" rx="2.5"/>
+<text fill="#000000" x="21.0" y="50.6406" text-anchor="start" font-family="monospace" font-size="10">sprite dropped from the label</text>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M233.38,95.77 L233.38,115.77"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="233.38,115.77 229.88,106.77 236.88,106.77"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M233.38,149.91 L233.38,169.91"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="233.38,169.91 229.88,160.91 236.88,160.91"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M233.38,204.04 L233.38,224.04"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="233.38,224.04 229.88,215.04 236.88,215.04"/>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="14.0" y="61.6406" width="438.763671875" height="34.132400000000004" rx="12.5"/>
+<text fill="#000000" x="233.3818359375" y="83.24220000000001" text-anchor="middle" font-family="sans-serif" font-size="12">The blue rectangle should be rotated 45° around center point (50,50)</text>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="93.611328125" y="115.773" width="279.541015625" height="34.132400000000004" rx="12.5"/>
+<text fill="#000000" x="233.3818359375" y="137.37460000000002" text-anchor="middle" font-family="sans-serif" font-size="12">The red rectangle should remain unrotated</text>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="116.380859375" y="169.90540000000001" width="234.001953125" height="34.132400000000004" rx="12.5"/>
+<text fill="#000000" x="233.3818359375" y="191.507" text-anchor="middle" font-family="sans-serif" font-size="12">Black dot marks the rotation center</text>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="223.3818359375" y="224.0378" width="20.0" height="34.132400000000004" rx="12.5"/>
+</svg>

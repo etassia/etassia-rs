@@ -1,0 +1,13 @@
+<svg
+ width="76.2549609375"
+ height="106.1783765625"
+ viewBox="0 0 76.2549609375 106.1783765625"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="none" stroke="#181818" stroke-width="1.5" x="14.0" y="24.045976562499987" width="48.2549609375" height="68.13240000000002"/>
+<text fill="#000000" x="22.0" y="41.04597656249999" text-anchor="start" font-family="sans-serif" font-size="14">G</text>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="24.0459765625" y="48.045976562499995" width="28.208984375" height="34.132400000000004" rx="12.5"/>
+<text fill="#000000" x="38.15046875" y="69.64757656249999" text-anchor="middle" font-family="sans-serif" font-size="12">A</text>
+</svg>

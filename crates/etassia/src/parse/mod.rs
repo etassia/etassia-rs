@@ -24,7 +24,9 @@ fn mermaid() -> &'static PargArtifact {
 
 fn plantuml() -> &'static PargArtifact {
     static CELL: OnceLock<PargArtifact> = OnceLock::new();
-    CELL.get_or_init(|| PargArtifact::from_json(PLANTUML).expect("embedded plantuml artifact loads"))
+    CELL.get_or_init(|| {
+        PargArtifact::from_json(PLANTUML).expect("embedded plantuml artifact loads")
+    })
 }
 
 /// The artifact entry for a detected type: the mermaid entries share the
@@ -34,10 +36,9 @@ fn entry_for(diagram_type: &str) -> String {
         "git_diagram".to_string()
     } else if diagram_type == "ditaa" {
         "ditaa_diagram".to_string()
-    } else if diagram_type == "component"
-        || diagram_type == "usecase"
-        || diagram_type == "timing"
-    {
+    } else if diagram_type == "activity" {
+        "activity_diagram".to_string()
+    } else if diagram_type == "component" || diagram_type == "usecase" || diagram_type == "timing" {
         // The NodeGraph family shares one grammar entry: any @start opens
         // the first diagram, any @end closes it.
         "component_diagram".to_string()
@@ -75,18 +76,14 @@ pub fn detect(source: &str) -> Option<String> {
     detect::detect_body(&source::body(source))
         .map(str::to_string)
         .or_else(|| detect::detect_gantt(source).then(|| "gantt".to_string()))
-        .or_else(|| {
-            detect::detect_mindmap(source).then(|| "mindmap".to_string())
-        })
-        .or_else(|| {
-            detect::detect_timing(source).then(|| "timing".to_string())
-        })
-        .or_else(|| {
-            detect::detect_usecase(source).then(|| "usecase".to_string())
-        })
-        .or_else(|| {
-            detect::detect_component(source).then(|| "component".to_string())
-        })
+        .or_else(|| detect::detect_mindmap(source).then(|| "mindmap".to_string()))
+        .or_else(|| detect::detect_timing(source).then(|| "timing".to_string()))
+        .or_else(|| detect::detect_usecase(source).then(|| "usecase".to_string()))
+        .or_else(|| detect::detect_component(source).then(|| "component".to_string()))
+        // The activity lane runs after the component family, the Ruby
+        // families order (Further, State, Usecase, Component, Activity):
+        // the markers the earlier families claim never reach it.
+        .or_else(|| detect::detect_activity(source).then(|| "activity".to_string()))
 }
 
 /// Whether the raw source opens with the PlantUML gantt wrapper: the
@@ -134,11 +131,7 @@ pub fn parse(source: &str, diagram_type: &str) -> Result<Tree, Error> {
     parse_with(artifact, &entry, &body)
 }
 
-fn parse_with(
-    artifact: &'static PargArtifact,
-    entry: &str,
-    body: &str,
-) -> Result<Tree, Error> {
+fn parse_with(artifact: &'static PargArtifact, entry: &str, body: &str) -> Result<Tree, Error> {
     artifact.parse_shape(entry, body).map_err(|e| match e {
         parsanol::PargError::ParseWire { line, column, .. } => Error::Parse {
             class: "ParseError".into(),

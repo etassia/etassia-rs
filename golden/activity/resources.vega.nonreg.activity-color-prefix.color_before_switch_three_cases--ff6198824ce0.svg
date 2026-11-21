@@ -1,0 +1,46 @@
+<svg
+ width="572.0"
+ height="325.7601"
+ viewBox="0 0 572.0 325.7601"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="#FFFFCC" stroke="#FFDD88" stroke-width="3" x="14.0" y="14.0" width="544.0" height="16.6406" rx="2.5"/>
+<text fill="#000000" x="21.0" y="24.6406" text-anchor="start" font-family="monospace" font-size="10">This syntax is deprecated, you must add &lt;&lt;#E2EFDA&gt;&gt; at the end of the line, after the ';'</text>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M78.16,55.64 L78.16,75.64"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="78.16,75.64 74.66,66.64 81.66,66.64"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M78.16,109.77 L78.16,129.77"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="78.16,129.77 74.66,120.77 81.66,120.77"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M47.64,141.77 L28.1,141.77 L28.1,189.63"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="28.1,189.63 24.6,180.63 31.6,180.63"/>
+<text fill="#000000" x="33.1044921875" y="153.773" text-anchor="start" font-family="sans-serif" font-size="11">a</text>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M78.16,153.77 L78.16,165.74 L76.33,165.74 L76.33,189.63"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="76.33,189.63 72.83,180.63 79.83,180.63"/>
+<text fill="#000000" x="81.3251953125" y="177.743" text-anchor="start" font-family="sans-serif" font-size="11">b</text>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M108.68,141.77 L124.63,141.77 L124.63,189.63"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="124.63,189.63 121.13,180.63 128.13,180.63"/>
+<text fill="#000000" x="129.630859375" y="153.773" text-anchor="start" font-family="sans-serif" font-size="11">c</text>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M28.1,223.76 L28.1,255.76 L66.16,255.76"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="66.16,255.76 57.16,259.26 57.16,252.26"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M76.33,223.76 L76.33,233.76 L78.16,233.76 L78.16,243.76"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="78.16,243.76 74.66,234.76 81.66,234.76"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M124.63,223.76 L124.63,255.76 L90.16,255.76"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="90.16,255.76 99.16,252.26 99.16,259.26"/>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M78.16,267.76 L78.16,287.76"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="78.16,287.76 74.66,278.76 81.66,278.76"/>
+<circle fill="#222222" stroke="#222222" stroke-width="1" cx="78.16015625" cy="45.6406" r="10.0"/>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="58.568359375" y="75.6406" width="39.18359375" height="34.132400000000004" rx="12.5"/>
+<text fill="#000000" x="78.16015625" y="97.24220000000003" text-anchor="middle" font-family="sans-serif" font-size="12">Init</text>
+<polygon fill="#F1F1F1" stroke="#181818" stroke-width="0.5" points="59.64,129.77 96.68,129.77 108.68,141.77 96.68,153.77 59.64,153.77 47.64,141.77"/>
+<text fill="#000000" x="78.16015625" y="145.93045" text-anchor="middle" font-family="sans-serif" font-size="11">mode?</text>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="14.0" y="189.6277" width="28.208984375" height="34.132400000000004" rx="12.5"/>
+<text fill="#000000" x="28.1044921875" y="211.2293" text-anchor="middle" font-family="sans-serif" font-size="12">A</text>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="62.208984375" y="189.6277" width="28.232421875" height="34.132400000000004" rx="12.5"/>
+<text fill="#000000" x="76.3251953125" y="211.2293" text-anchor="middle" font-family="sans-serif" font-size="12">B</text>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="110.44140625" y="189.6277" width="28.37890625" height="34.132400000000004" rx="12.5"/>
+<text fill="#000000" x="124.630859375" y="211.2293" text-anchor="middle" font-family="sans-serif" font-size="12">C</text>
+<polygon fill="#F1F1F1" stroke="#181818" stroke-width="0.5" points="78.16,243.76 90.16,255.76 78.16,267.76 66.16,255.76"/>
+<circle fill="none" stroke="#222222" stroke-width="1" cx="78.16015625" cy="299.7601" r="11.0"/>
+<circle fill="#222222" stroke="#222222" stroke-width="1" cx="78.16015625" cy="299.7601" r="6.0"/>
+</svg>

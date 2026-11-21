@@ -1,0 +1,17 @@
+<svg
+ width="572.0"
+ height="137.90540000000001"
+ viewBox="0 0 572.0 137.90540000000001"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<rect fill="#FFFFCC" stroke="#FFDD88" stroke-width="3" x="14.0" y="14.0" width="544.0" height="16.6406" rx="2.5"/>
+<text fill="#000000" x="21.0" y="24.6406" text-anchor="start" font-family="monospace" font-size="10">This syntax is deprecated, you must add &lt;&lt;#F2F2F2&gt;&gt; at the end of the line, after the ';'</text>
+<path fill="none" stroke="#181818" stroke-width="1.0" d="M28.11,69.77 L28.11,89.77"/>
+<polygon fill="#181818" stroke="#181818" stroke-width="1" points="28.11,89.77 24.61,80.77 31.61,80.77"/>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="14.0" y="35.6406" width="28.220703125" height="34.132400000000004" rx="12.5"/>
+<text fill="#000000" x="28.1103515625" y="57.2422" text-anchor="middle" font-family="sans-serif" font-size="12">X</text>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="14.4453125" y="89.773" width="27.330078125" height="34.132400000000004" rx="12.5"/>
+<text fill="#000000" x="28.1103515625" y="111.37460000000002" text-anchor="middle" font-family="sans-serif" font-size="12">Y</text>
+</svg>

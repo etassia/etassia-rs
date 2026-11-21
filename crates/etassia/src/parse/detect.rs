@@ -5,7 +5,10 @@ use regex::Regex;
 use std::sync::OnceLock;
 
 const TYPES: &[(&str, &str)] = &[
-    ("flowchart", r"\A(?-u:\s)*(?:flowchart-elk|(?i:graph|flowchart))(?:[ \t\n\r\x0b\x0c<>^]|\z)"),
+    (
+        "flowchart",
+        r"\A(?-u:\s)*(?:flowchart-elk|(?i:graph|flowchart))(?:[ \t\n\r\x0b\x0c<>^]|\z)",
+    ),
     ("sequence", r"(?i)\A(?-u:\s)*sequenceDiagram"),
     ("class_diagram", r"(?i)\A(?-u:\s)*classDiagram"),
     ("state_diagram", r"(?i)\A(?-u:\s)*stateDiagram"),
@@ -49,11 +52,14 @@ fn table() -> &'static Vec<(&'static str, Regex)> {
 fn git_re() -> &'static Regex {
     static CELL: OnceLock<Regex> = OnceLock::new();
     CELL.get_or_init(|| {
-        Regex::new(r"\A(?:ï»¿)?(?:[ 	]*(?:'[^
+        Regex::new(
+            r"\A(?:ï»¿)?(?:[ 	]*(?:'[^
 ]*)?(?:
 |
 |
-))*[ 	]*@startgit").expect("git detect pattern")
+))*[ 	]*@startgit",
+        )
+        .expect("git detect pattern")
     })
 }
 
@@ -67,11 +73,14 @@ pub fn detect_git(source: &str) -> bool {
 fn ditaa_re() -> &'static Regex {
     static CELL: OnceLock<Regex> = OnceLock::new();
     CELL.get_or_init(|| {
-        Regex::new(r"\A(?:ï»¿)?(?:[ 	]*(?:'[^
+        Regex::new(
+            r"\A(?:ï»¿)?(?:[ 	]*(?:'[^
 ]*)?(?:
 |
 |
-))*[ 	]*@startditaa").expect("ditaa detect pattern")
+))*[ 	]*@startditaa",
+        )
+        .expect("ditaa detect pattern")
     })
 }
 
@@ -140,9 +149,13 @@ pub fn detect_timing(source: &str) -> bool {
 fn starts_declaration(text: &str) -> bool {
     let mut rest = text.trim_start_matches([' ', '\t']);
     if let Some(after) = rest.strip_prefix('"') {
-        let Some(close) = after.find('"') else { return false };
+        let Some(close) = after.find('"') else {
+            return false;
+        };
         rest = after[close + 1..].trim_start_matches([' ', '\t']);
-        let Some(tail) = rest.strip_prefix("as") else { return false };
+        let Some(tail) = rest.strip_prefix("as") else {
+            return false;
+        };
         rest = tail.strip_prefix([' ', '\t']).unwrap_or(tail);
     }
     rest.chars()
@@ -156,10 +169,29 @@ fn starts_declaration(text: &str) -> bool {
 pub fn detect_usecase(source: &str) -> bool {
     let entries = significant_lines(source);
     let foreign = [
-        "participant", "class", "abstract", "enum", "boundary", "control",
-        "entity", "collections", "queue", "autonumber", "newpage", "alt",
-        "loop", "opt", "par", "critical", "break", "ref", "fork",
-        "partition", "repeat", "while", "switch",
+        "participant",
+        "class",
+        "abstract",
+        "enum",
+        "boundary",
+        "control",
+        "entity",
+        "collections",
+        "queue",
+        "autonumber",
+        "newpage",
+        "alt",
+        "loop",
+        "opt",
+        "par",
+        "critical",
+        "break",
+        "ref",
+        "fork",
+        "partition",
+        "repeat",
+        "while",
+        "switch",
     ];
     let plain_foreign = ["state", "start", "stop"];
     for text in &entries {
@@ -177,8 +209,7 @@ pub fn detect_usecase(source: &str) -> bool {
             .map(|c| !c.is_alphanumeric())
             .unwrap_or(true);
         let is_foreign = foreign.contains(&lowered.as_str())
-            || (plain_foreign.contains(&lowered.as_str())
-                && text.len() == first_word.len());
+            || (plain_foreign.contains(&lowered.as_str()) && text.len() == first_word.len());
         if is_foreign && word_boundary {
             return false;
         }
@@ -189,9 +220,7 @@ pub fn detect_usecase(source: &str) -> bool {
 /// `(A, B)` is a class diagram's association class, never a use case.
 fn usecase_marker(text: &str) -> bool {
     let lowered = text.to_lowercase();
-    if lowered.starts_with("usecase")
-        && text.as_bytes().get("usecase".len()) == Some(&b' ')
-    {
+    if lowered.starts_with("usecase") && text.as_bytes().get("usecase".len()) == Some(&b' ') {
         return true;
     }
     if lowered.starts_with(':') {
@@ -213,12 +242,10 @@ fn usecase_marker(text: &str) -> bool {
         if let Some(close) = text.find(')') {
             let inner = &text[1..close];
             if !inner.contains('(') && !inner.contains('*') {
-                let words: Vec<&str> =
-                    inner.split(',').map(str::trim).collect();
+                let words: Vec<&str> = inner.split(',').map(str::trim).collect();
                 let is_pair = words.len() == 2
                     && words.iter().all(|w| {
-                        !w.is_empty()
-                            && w.chars().all(|c| c.is_alphanumeric() || c == '_')
+                        !w.is_empty() && w.chars().all(|c| c.is_alphanumeric() || c == '_')
                     });
                 if is_pair {
                     return false;
@@ -239,10 +266,29 @@ fn usecase_marker(text: &str) -> bool {
 pub fn detect_component(source: &str) -> bool {
     let entries = significant_lines(source);
     let foreign = [
-        "participant", "class", "abstract", "enum", "boundary", "control",
-        "entity", "collections", "queue", "autonumber", "newpage", "alt",
-        "loop", "opt", "par", "critical", "break", "ref", "fork",
-        "partition", "repeat", "while", "switch",
+        "participant",
+        "class",
+        "abstract",
+        "enum",
+        "boundary",
+        "control",
+        "entity",
+        "collections",
+        "queue",
+        "autonumber",
+        "newpage",
+        "alt",
+        "loop",
+        "opt",
+        "par",
+        "critical",
+        "break",
+        "ref",
+        "fork",
+        "partition",
+        "repeat",
+        "while",
+        "switch",
     ];
     let plain_foreign = ["state", "start", "stop"];
     for text in &entries {
@@ -260,8 +306,7 @@ pub fn detect_component(source: &str) -> bool {
             .map(|c| !c.is_alphanumeric())
             .unwrap_or(true);
         let is_foreign = foreign.contains(&lowered.as_str())
-            || (plain_foreign.contains(&lowered.as_str())
-                && text.len() == first_word.len());
+            || (plain_foreign.contains(&lowered.as_str()) && text.len() == first_word.len());
         if is_foreign && word_boundary {
             return false;
         }
@@ -281,24 +326,154 @@ fn component_marker(text: &str) -> bool {
     {
         return true;
     }
-    ["node", "cloud", "file", "folder", "frame", "storage", "artifact", "card", "rectangle", "archimate"]
-        .iter()
-        .any(|keyword| {
-            lowered.starts_with(keyword)
-                && lowered.as_bytes().get(keyword.len()) == Some(&b' ')
-        })
+    [
+        "node",
+        "cloud",
+        "file",
+        "folder",
+        "frame",
+        "storage",
+        "artifact",
+        "card",
+        "rectangle",
+        "archimate",
+    ]
+    .iter()
+    .any(|keyword| {
+        lowered.starts_with(keyword) && lowered.as_bytes().get(keyword.len()) == Some(&b' ')
+    })
+}
+
+// ---- the activity lane (Ruby `Activity.activity?`, the family after
+// Component in the Ruby families order) ------------------------------------
+
+/// The foreign declarations that claim the source for another family, in
+/// the Ruby `OTHER` alternation order.
+const ACTIVITY_OTHER: &[&str] = &[
+    "abstract class",
+    "class",
+    "interface",
+    "participant",
+    "actor",
+    "boundary",
+    "control",
+    "entity",
+    "database",
+    "collections",
+    "queue",
+    "autonumber",
+    "newpage",
+    "alt",
+    "loop",
+    "opt",
+    "par",
+    "critical",
+    "break",
+    "ref",
+];
+
+/// Ruby `\s`, the whitespace set `\b` and `partition\s` read.
+fn ruby_space(byte: u8) -> bool {
+    matches!(byte, b' ' | b'\t' | b'\n' | b'\r' | 0x0B | 0x0C)
+}
+
+/// Ruby `\w` at ASCII, the word set the `\b` checks read here.
+fn ruby_word(byte: u8) -> bool {
+    byte.is_ascii_alphanumeric() || byte == b'_'
+}
+
+/// One `ACTIVITY_OTHER` word starts the line, at a word boundary.
+fn activity_other(text: &str) -> bool {
+    let lowered = text.to_lowercase();
+    ACTIVITY_OTHER.iter().any(|word| {
+        lowered.starts_with(word)
+            && text
+                .as_bytes()
+                .get(word.len())
+                .is_none_or(|&b| !ruby_word(b))
+    })
+}
+
+/// Ruby `\A(?:\#\w+)?:`: an optional `#word` fill before a colon.
+fn activity_hash_colon(text: &str) -> bool {
+    if let Some(rest) = text.strip_prefix('#') {
+        let word = rest
+            .find(|c: char| !(c.is_alphanumeric() || c == '_'))
+            .unwrap_or(rest.len());
+        // `\w+` needs at least one word character.
+        return word > 0 && rest.as_bytes().get(word) == Some(&b':');
+    }
+    text.starts_with(':')
+}
+
+/// One `ACTIVITY_MARKER` form matches the line, case-insensitively. Ruby
+/// `MARKER`: `\A(start|stop|kill)\z | \A\#word+: | \A\(\* | \Aif\s*[("] |
+/// \Awhile\s*\(|\Arepeat\b|\Aswitch\s*\(|\Afork\z|\Apartition\s`
+fn activity_marker(text: &str) -> bool {
+    let lowered = text.to_lowercase();
+    if lowered == "start" || lowered == "stop" || lowered == "kill" {
+        return true;
+    }
+    if activity_hash_colon(text) || text.starts_with("(*") {
+        return true;
+    }
+    for (keyword, body) in [
+        // `if\s*[("]`, `while\s*\(`, `switch\s*\(`: blanks then the bracket.
+        ("if", true),
+        ("while", true),
+        ("switch", true),
+        // `repeat\b`, `fork\z`, `partition\s`: fixed right-hand sides.
+        ("repeat", false),
+        ("fork", false),
+        ("partition", false),
+    ] {
+        let Some(rest) = lowered.strip_prefix(keyword) else {
+            continue;
+        };
+        if body {
+            let blanks = rest
+                .char_indices()
+                .find(|(_, c)| !matches!(c, ' ' | '\t' | '\n' | '\r' | '\u{0B}' | '\u{0C}'));
+            let at = blanks.map_or(rest.len(), |(at, _)| at);
+            return match rest.get(at..).and_then(|tail| tail.chars().next()) {
+                Some('[') | Some('(') | Some('"') => true,
+                _ => false,
+            };
+        }
+        let after = text.as_bytes().get(keyword.len());
+        match keyword {
+            // `\b`: any non-word character (or the end) closes the word.
+            "repeat" => return after.is_none_or(|&b| !ruby_word(b)),
+            // `\z`: the line ends at the keyword.
+            "fork" => return after.is_none(),
+            // `\s`: at least one whitespace character.
+            _ => return after.is_some_and(|&b| ruby_space(b)),
+        }
+    }
+    false
+}
+
+/// The activity lane, tried after the component family (the Ruby families
+/// run Further, State, Usecase, Component, Activity in that order): no
+/// foreign declaration line, and at least one activity marker. Unlike the
+/// other lanes this reads every stripped line of the source, comments
+/// included - Ruby `Activity.activity?`.
+pub fn detect_activity(source: &str) -> bool {
+    let lines: Vec<String> = source.lines().map(|line| line.trim().to_string()).collect();
+    lines.iter().all(|text| !activity_other(text)) && lines.iter().any(|text| activity_marker(text))
 }
 
 /// Ruby `Reader.entries`: the first diagram's stripped significant lines.
 fn significant_lines(source: &str) -> Vec<String> {
     let lines: Vec<&str> = source.lines().collect();
-    let first = lines.iter().position(|line| line.trim().starts_with("@start"));
+    let first = lines
+        .iter()
+        .position(|line| line.trim().starts_with("@start"));
     let body: Vec<&str> = match first {
         Some(at) => lines[at + 1..].iter().copied().collect(),
         None => lines.clone(),
     };
-    body
-        .iter()
+    body.iter()
         .map(|line| line.trim())
         .take_while(|line| !line.starts_with("@end"))
         .filter(|line| !line.is_empty() && !line.starts_with('\''))
@@ -308,5 +483,8 @@ fn significant_lines(source: &str) -> Vec<String> {
 
 /// First type whose pattern matches the (preamble-free) body.
 pub fn detect_body(body: &str) -> Option<&'static str> {
-    table().iter().find(|(_, re)| re.is_match(body)).map(|(name, _)| *name)
+    table()
+        .iter()
+        .find(|(_, re)| re.is_match(body))
+        .map(|(name, _)| *name)
 }

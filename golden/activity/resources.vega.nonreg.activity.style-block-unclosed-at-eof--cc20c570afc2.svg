@@ -1,0 +1,37 @@
+<svg
+ width="197.52099609375"
+ height="299.20599999999996"
+ viewBox="0 0 197.52099609375 299.20599999999996"
+ version="1.2"
+ baseProfile="tiny"
+ xmlns="http://www.w3.org/2000/svg"
+>
+<path fill="none" stroke="#008000" stroke-width="1.0" d="M52.54,48.13 L52.54,89.42"/>
+<polygon fill="#008000" stroke="#008000" stroke-width="1" points="52.54,89.42 49.04,80.42 56.04,80.42"/>
+<text fill="#0000FF" x="57.5419921875" y="60.132400000000004" text-anchor="start" font-family="sans-serif" font-size="11">normal arrow with text</text>
+<path fill="none" stroke="#008000" stroke-width="1.0" d="M52.54,95.42 L52.54,136.7"/>
+<polygon fill="#008000" stroke="#008000" stroke-width="1" points="52.54,136.7 49.04,127.7 56.04,127.7"/>
+<path fill="none" stroke="#008000" stroke-width="1.0" d="M123.63,95.42 L123.63,136.7"/>
+<polygon fill="#008000" stroke="#008000" stroke-width="1" points="123.63,136.7 120.13,127.7 127.13,127.7"/>
+<text fill="#0000FF" x="128.6259765625" y="107.4171" text-anchor="start" font-family="sans-serif" font-size="11">txt label</text>
+<path fill="none" stroke="#008000" stroke-width="1.0" d="M52.54,170.83 L52.54,190.83"/>
+<polygon fill="#008000" stroke="#008000" stroke-width="1" points="52.54,190.83 49.04,181.83 56.04,181.83"/>
+<path fill="none" stroke="#008000" stroke-width="1.0" d="M123.63,170.83 L123.63,190.83"/>
+<polygon fill="#008000" stroke="#008000" stroke-width="1" points="123.63,190.83 120.13,181.83 127.13,181.83"/>
+<path fill="none" stroke="#008000" stroke-width="1.0" d="M88.08,95.42 L88.08,190.83"/>
+<polygon fill="#008000" stroke="#008000" stroke-width="1" points="88.08,190.83 84.58,181.83 91.58,181.83"/>
+<path fill="none" stroke="#008000" stroke-width="1.0" d="M52.54,196.83 L52.54,251.07"/>
+<polygon fill="#008000" stroke="#008000" stroke-width="1" points="52.54,251.07 49.04,242.07 56.04,242.07"/>
+<text fill="#0000FF" x="57.5419921875" y="208.8342" text-anchor="start" font-family="sans-serif" font-size="11">fork arrow with text</text>
+<text fill="#0000FF" x="57.5419921875" y="221.7889" text-anchor="start" font-family="sans-serif" font-size="11">missing arrow label</text>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="29.2705078125" y="14.0" width="46.54296875" height="34.132400000000004" rx="12.5"/>
+<text fill="#000000" x="52.5419921875" y="35.6016" text-anchor="middle" font-family="sans-serif" font-size="12">foo1</text>
+<rect fill="#555555" stroke="#555555" stroke-width="1" x="14.0" y="89.4171" width="148.16796875" height="6.0" rx="2.5"/>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="27.0" y="136.7018" width="51.083984375" height="34.132400000000004" rx="12.5"/>
+<text fill="#000000" x="52.5419921875" y="158.30339999999998" text-anchor="middle" font-family="sans-serif" font-size="12">fork1</text>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="98.083984375" y="136.7018" width="51.083984375" height="34.132400000000004" rx="12.5"/>
+<text fill="#000000" x="123.6259765625" y="158.30339999999998" text-anchor="middle" font-family="sans-serif" font-size="12">fork2</text>
+<rect fill="#555555" stroke="#555555" stroke-width="1" x="14.0" y="190.8342" width="148.16796875" height="6.0" rx="2.5"/>
+<rect fill="#F1F1F1" stroke="#181818" stroke-width="0.5" x="29.2705078125" y="251.07359999999997" width="46.54296875" height="34.132400000000004" rx="12.5"/>
+<text fill="#000000" x="52.5419921875" y="272.6752" text-anchor="middle" font-family="sans-serif" font-size="12">foo5</text>
+</svg>

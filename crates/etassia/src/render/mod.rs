@@ -1,33 +1,34 @@
 //! Stage 4 dispatch. Owner: integration. Each type module is owned by its builder.
+pub mod activity_puml;
+pub mod architecture;
+pub mod block;
+pub mod c4;
+pub mod class_diagram;
+pub mod component;
+pub mod ditaa;
+pub mod er_diagram;
+pub mod flowchart;
+pub mod gantt;
+pub mod gantt_puml;
+pub mod git_log;
+pub mod gitgraph;
 pub mod info;
-pub mod pie;
-pub mod packet;
-pub mod sankey;
-pub mod timeline;
-pub mod timing_puml;
-pub mod treemap;
-pub mod quadrant;
-pub mod radar;
-pub mod xychart;
-pub mod user_journey;
 pub mod kanban;
 pub mod mindmap;
 pub mod mindmap_puml;
-pub mod gantt;
-pub mod gantt_puml;
-pub mod component;
-pub mod ditaa;
-pub mod git_log;
-pub mod gitgraph;
-pub mod er_diagram;
+pub mod packet;
+pub mod pie;
+pub mod quadrant;
+pub mod radar;
 pub mod requirement;
-pub mod c4;
-pub mod block;
-pub mod architecture;
+pub mod sankey;
 pub mod sequence;
 pub mod state_diagram;
-pub mod class_diagram;
-pub mod flowchart;
+pub mod timeline;
+pub mod timing_puml;
+pub mod treemap;
+pub mod user_journey;
+pub mod xychart;
 use crate::Error;
 /// Render `source` to SVG, or Err(Unported) when the type has no Rust renderer.
 ///
@@ -65,6 +66,7 @@ pub fn render(source: &str) -> Result<String, Error> {
         }
         // The gantt type names both mermaid's gantt DSL and the PlantUML
         // @startgantt wrapper; the wrapper picks the PlantUML lane.
+        "activity" => activity_puml::render(source),
         "gantt" => {
             if crate::parse::is_puml_gantt(source) {
                 gantt_puml::render(source)

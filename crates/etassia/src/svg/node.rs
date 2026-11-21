@@ -7,9 +7,28 @@ use super::number::{read_num, round4, ruby_float, write_num};
 /// emitted: it is folded into `fill-opacity` / `stroke-opacity`.
 const BASE: [&str; 8] =
     ["id", "class", "transform", "fill", "fill-opacity", "stroke", "stroke-width", "stroke-opacity"];
-const TEXT_ATTRS: [&str; 7] =
-    ["x", "y", "text-anchor", "font-family", "font-size", "font-weight", "font-style"];
-const TSPAN_ATTRS: [&str; 4] = ["x", "y", "font-weight", "font-style"];
+const TEXT_ATTRS: [&str; 11] = [
+    "x",
+    "y",
+    "text-anchor",
+    "font-family",
+    "font-size",
+    "font-weight",
+    "font-style",
+    "text-decoration",
+    "textLength",
+    "lengthAdjust",
+    "xml:space",
+];
+const TSPAN_ATTRS: [&str; 7] = [
+    "x",
+    "y",
+    "font-weight",
+    "font-style",
+    "font-family",
+    "font-size",
+    "text-decoration",
+];
 
 /// One SVG element (`rect`, `g`, `text`, ...). Build with [`Elem::new`] and
 /// chain [`attr`](Elem::attr) / [`num`](Elem::num) / [`child`](Elem::child).
