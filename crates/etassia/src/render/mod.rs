@@ -13,6 +13,7 @@ pub mod user_journey;
 pub mod kanban;
 pub mod mindmap;
 pub mod gantt;
+pub mod gantt_puml;
 pub mod component;
 pub mod ditaa;
 pub mod git_log;
@@ -53,7 +54,15 @@ pub fn render(source: &str) -> Result<String, Error> {
         "user_journey" => user_journey::render(source),
         "kanban" => kanban::render(source),
         "mindmap" => mindmap::render(source),
-        "gantt" => gantt::render(source),
+        // The gantt type names both mermaid's gantt DSL and the PlantUML
+        // @startgantt wrapper; the wrapper picks the PlantUML lane.
+        "gantt" => {
+            if crate::parse::is_puml_gantt(source) {
+                gantt_puml::render(source)
+            } else {
+                gantt::render(source)
+            }
+        }
         "gitgraph" => gitgraph::render(source),
         "er_diagram" => er_diagram::render(source),
         "requirement" => requirement::render(source),

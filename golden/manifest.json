@@ -10374,6 +10374,102 @@
       "type": "xychart",
       "source_sha256": "860e3557180957f70a29e697627d091421a47d9475747f1045a5dfde837c09d8",
       "svg_sha256": "e94c0f67264f273276cc76a836cbe7310636e5cff89f1120937e5c60e680ac76"
+    },
+    {
+      "case": "gantt/resources.vega.nonreg.warnings.gantt_labels--dd411cf687b9.mmd",
+      "type": "gantt",
+      "source_sha256": "bb91953ed5fab11a41f17d5722aaa11e42bb0ab3c2b6d332f67a32e3e61fd9ea",
+      "svg_sha256": "c2175e7bba5a92ea1d69fd36e4c5362aaddca8467afc82876063caf07f000f03"
+    },
+    {
+      "case": "gantt/resources.vega.xgantt.gantt0--2ba578c56243.mmd",
+      "type": "gantt",
+      "source_sha256": "871ce927747eeec5e3eb13741805c670b4800eabbc089fdc0a1b57659e1a8b92",
+      "svg_sha256": "8a136e7b2c1a3d3f6ccdb51b9f9502d8e93abfe575cb8563fd8059fa7b215184"
+    },
+    {
+      "case": "gantt/resources.vega.xgantt.gantt1--cc3de958a95c.mmd",
+      "type": "gantt",
+      "source_sha256": "28dcf9f9d04dfae855ba11cf77b00fd1d75975905ddbb7dcd27ba675456d4616",
+      "svg_sha256": "c3badaf57cf8ff9d288c3de3118a7403fb55fcc8e7ff2d326a78728fc6f6dba6"
+    },
+    {
+      "case": "gantt/resources.vega.xgantt.gantt10--1abd88ba4293.mmd",
+      "type": "gantt",
+      "source_sha256": "6c09d372a63b0940093a9909279e85ef5d9bd2888a60ffb1fb59c2f4dea8a4cc",
+      "svg_sha256": "405f079eecf69c7e099c55c6bdc391de28ead62ea2b612bccd9f1ded18bbd833"
+    },
+    {
+      "case": "gantt/resources.vega.xgantt.gantt11--d732b74d07a9.mmd",
+      "type": "gantt",
+      "source_sha256": "95c019bf801f2ad8ada23ae516403d3dd2b0ef04fdf8ea9a27dc0894efe268ed",
+      "svg_sha256": "e5ccdfb4583d14ebc9a13bbc284caf0e0fd1ccdfa8f9b6b744f9cbed50d40b5b"
+    },
+    {
+      "case": "gantt/resources.vega.xgantt.gantt3--2cc7a7abc6c9.mmd",
+      "type": "gantt",
+      "source_sha256": "bbd8e8834ca6b0ee2b8c699401e4dd1d50c7d7639a686ee9e45949336bc98343",
+      "svg_sha256": "ba71aa5e8396f5512ecacbe57995bfec0e1cf8db548fa604cd16f8e4165d7f80"
+    },
+    {
+      "case": "gantt/resources.vega.xgantt.gantt4--6a88ff47a430.mmd",
+      "type": "gantt",
+      "source_sha256": "773c7f26561cb4fa319f7164e6e73a36dd11cbe3eb232aeea23d8b9c69196028",
+      "svg_sha256": "214bcc34cc0996cd930bb78a94488fd3b0c001330939a72d355adaa1954db6a8"
+    },
+    {
+      "case": "gantt/resources.vega.xgantt.gantt5--ae2f10a10012.mmd",
+      "type": "gantt",
+      "source_sha256": "3a883d7e4fe602ad9ff428c35ea4ba777181e93e7c2ed0a104ed8788b0492b36",
+      "svg_sha256": "4fab66cbbef39d0a3d7810a9292a80984b04d878c3c8a9902488c2263bf534d5"
+    },
+    {
+      "case": "gantt/resources.vega.xgantt.gantt6--77251fc4d16c.mmd",
+      "type": "gantt",
+      "source_sha256": "175ff34e6f58ed42ac587e55d42c2c1597a25bcd6fbedc20c540520e3c3ba8d9",
+      "svg_sha256": "0bec1767d564148b7f1c262eadc2319d672fc952b7508dfdf10aeb686ebde433"
+    },
+    {
+      "case": "gantt/resources.vega.xgantt.gantt7--78f19d7a639b.mmd",
+      "type": "gantt",
+      "source_sha256": "541c60124b3e2b6b1f4a96a9f695d20990c4cc4ecbf1caeb5b1c1a3cd7fc46ba",
+      "svg_sha256": "04ff46bbdc3d967b4f22832d5a843caf97279f95143559efcc2b0d712b5392c1"
+    },
+    {
+      "case": "gantt/resources.vega.xgantt.gantt8--b4b0c8cc4efe.mmd",
+      "type": "gantt",
+      "source_sha256": "05aac251107c70f3844891fe4204bb6f5fe8a39b36802e587a0bc5db8b51691e",
+      "svg_sha256": "b57296ea442e8a18604769e7c841cec8ca9dd6e7c2f2586ab5cd9be42c89cfcf"
+    },
+    {
+      "case": "gantt/resources.vega.xgantt.gantt9--15a304ea0dfd.mmd",
+      "type": "gantt",
+      "source_sha256": "d6d1b998a0ce275dad71b1133ebc6f3221fc3f0778c5636d280b7b8319dab49a",
+      "svg_sha256": "3e2296f1b1e01932d60a6654623f835f7032a040a00d9f1fcfe96550d6552b69"
+    },
+    {
+      "case": "gantt/resources.vega.xgantt.hms0--57ffa010e3e4.mmd",
+      "type": "gantt",
+      "source_sha256": "c9e9ac0950187b9e2f89ad756852f95c3fd9c7c542feed93041c3b3e51cfb2ab",
+      "svg_sha256": "d754f593d1a18e87f7962a72d9ec11f00a76bcbed32219fb0d6ffb8c2012831a"
+    },
+    {
+      "case": "gantt/resources.vega.xgantt.hms1--35b7cd3f66fe.mmd",
+      "type": "gantt",
+      "source_sha256": "345fcfe3f76ff66baac3e3fb253b59ffd0e82cc65c9686aa5008163a7cdd7a56",
+      "svg_sha256": "a1a959e04ae8914252ec624562d6d4f163c1e84f8ed7d9e303cfe9af0456ac67"
+    },
+    {
+      "case": "gantt/resources.vega.xgantt.hms2--a9b68becd921.mmd",
+      "type": "gantt",
+      "source_sha256": "162400ca2f016c8e44c0ca010f5d7e428650edb03c305a6b2fd8114ecbffcd68",
+      "svg_sha256": "a1a959e04ae8914252ec624562d6d4f163c1e84f8ed7d9e303cfe9af0456ac67"
+    },
+    {
+      "case": "gantt/resources.vega.xgantt.hms3--462e83f3c37a.mmd",
+      "type": "gantt",
+      "source_sha256": "7c6598a7f78f3939cb8e3bf09405c78d81441811d97012107691eefdbdfd6fc3",
+      "svg_sha256": "9d0912e9d6e7414b78f928ad3dafbe284556d747c52a1ae658642ce582ac15fa"
     }
   ],
   "errors": [
@@ -11604,6 +11700,10 @@
     {
       "case": "user_journey/journeydb_spec-f7bc5c73.mmd",
       "error": "Etassia::Parser::ParseError"
+    },
+    {
+      "case": "gantt/resources.vega.xgantt.gantt2--e5ccf8ad316d.puml",
+      "error": "Etassia::Notation::PlantUML::UnsupportedConstructError"
     }
   ]
 }

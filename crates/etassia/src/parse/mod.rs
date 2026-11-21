@@ -67,11 +67,13 @@ pub fn detect(source: &str) -> Option<String> {
     if detect::detect_git(source) {
         return Some("git".to_string());
     }
-    // The component family lanes run last: a Mermaid body claims its own
-    // type first, exactly as the Ruby notation resolution does; within the
-    // family the use case query runs before the component one.
+    // The mermaid body patterns claim their own types first (a mermaid
+    // gantt is a mermaid kind); the PlantUML @startgantt wrapper runs
+    // next, before the component family lanes, whose `[Task]` markers
+    // would otherwise steal a gantt source.
     detect::detect_body(&source::body(source))
         .map(str::to_string)
+        .or_else(|| detect::detect_gantt(source).then(|| "gantt".to_string()))
         .or_else(|| {
             detect::detect_timing(source).then(|| "timing".to_string())
         })
@@ -83,6 +85,13 @@ pub fn detect(source: &str) -> Option<String> {
         })
 }
 
+/// Whether the raw source opens with the PlantUML gantt wrapper: the
+/// gantt type names both mermaid's gantt DSL and this wrapper, and the
+/// artifact, entry and renderer pick on it.
+pub fn is_puml_gantt(source: &str) -> bool {
+    detect::detect_gantt(source)
+}
+
 /// The diagram body of `source`: preamble (frontmatter, directives, comments) removed.
 pub fn body(source: &str) -> String {
     source::body(source)
@@ -92,6 +101,12 @@ pub fn body(source: &str) -> String {
 /// PlantUML entries parse the raw source (their grammar carries the
 /// wrapper); the Mermaid entries parse the preamble-stripped body.
 pub fn parse(source: &str, diagram_type: &str) -> Result<Tree, Error> {
+    // The gantt type names both mermaid's gantt DSL and the PlantUML
+    // @startgantt wrapper; the wrapper claims the plantuml artifact's
+    // gantt_diagram entry over the raw source.
+    if diagram_type == "gantt" && detect::detect_gantt(source) {
+        return parse_with(plantuml(), "gantt_diagram", source);
+    }
     let entry = entry_for(diagram_type);
     let Some(artifact) = artifact_for(&entry) else {
         return Err(Error::Unported(diagram_type.to_string()));
@@ -101,7 +116,15 @@ pub fn parse(source: &str, diagram_type: &str) -> Result<Tree, Error> {
     } else {
         source::body(source)
     };
-    artifact.parse_shape(&entry, &body).map_err(|e| match e {
+    parse_with(artifact, &entry, &body)
+}
+
+fn parse_with(
+    artifact: &'static PargArtifact,
+    entry: &str,
+    body: &str,
+) -> Result<Tree, Error> {
+    artifact.parse_shape(entry, body).map_err(|e| match e {
         parsanol::PargError::ParseWire { line, column, .. } => Error::Parse {
             class: "ParseError".into(),
             message: e.to_string(),

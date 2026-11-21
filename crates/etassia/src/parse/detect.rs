@@ -80,6 +80,28 @@ pub fn detect_ditaa(source: &str) -> bool {
     ditaa_re().is_match(source)
 }
 
+/// The PlantUML wrapper lane for gantt: a source opening (after a BOM and
+/// blank or quote-comment lines) with @startgantt claims the gantt type.
+/// The Mermaid body patterns run first (a mermaid gantt is a mermaid
+/// kind); this checks the raw source, before the component family lanes,
+/// whose `[Task]` markers would otherwise steal a gantt source.
+fn gantt_re() -> &'static Regex {
+    static CELL: OnceLock<Regex> = OnceLock::new();
+    CELL.get_or_init(|| {
+        Regex::new(concat!(
+            r"\A(?:\x{FEFF})?",
+            r"(?:[ \t\x0B\x0C\x00]*(?:'[^\r\n]*)?(?:\r\n|\r|\n))*",
+            r"[ \t\x0B\x0C\x00]*@startgantt",
+        ))
+        .expect("gantt detect pattern")
+    })
+}
+
+/// Whether the raw source opens with the gantt wrapper.
+pub fn detect_gantt(source: &str) -> bool {
+    gantt_re().is_match(source)
+}
+
 /// The timing lane, first of the plain-picture families (the Ruby
 /// Further group runs network, timing and ebnf ahead of State, Usecase
 /// and Component): a participant declaration. Ruby `Timing.timing?`.
