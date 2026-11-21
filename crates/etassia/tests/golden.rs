@@ -37,6 +37,7 @@ const REQUIRED: &[&str] = &[
     "state_diagram",
     "flowchart",
     "class_diagram",
+    "class",
 ];
 
 fn golden_dir() -> PathBuf {

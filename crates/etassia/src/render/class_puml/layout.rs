@@ -158,14 +158,8 @@ pub fn scene(diagram: &Diagram) -> Scene {
         qualified_route_middle: 0.0,
     };
     let body = if member_note_family(diagram) {
-        if std::env::var_os("ETASSIA_CLASS_DEBUG").is_some() {
-            eprintln!("member_note_family");
-        }
         layout.member_note_scene(diagram)
     } else if class_note_pair_family(diagram) {
-        if std::env::var_os("ETASSIA_CLASS_DEBUG").is_some() {
-            eprintln!("class_note_pair_family");
-        }
         layout.class_note_pair_scene(diagram)
     } else {
         layout.standard_scene(diagram)
@@ -566,15 +560,6 @@ impl Layout {
     // ---- member-note and class-note-pair families ----
 
     fn member_note_scene(&mut self, diagram: &Diagram) -> Scene {
-        if std::env::var_os("ETASSIA_CLASS_DEBUG").is_some() {
-            eprintln!(
-                "member_note_scene: shared={:?} last_color={:?} last_stereo={:?} directives={:?}",
-                self.shared_member_note_fill(diagram),
-                diagram.notes.last().and_then(|n| n.color.clone()),
-                diagram.notes.last().and_then(|n| n.stereotype.clone()),
-                diagram.directives,
-            );
-        }
         let klass = &diagram.classes[0];
         let class_box = self.member_note_class_box(klass);
         let notes = self.member_note_boxes(diagram, klass, &class_box);
@@ -837,7 +822,6 @@ impl Layout {
             .collect();
         spec.package = klass.package.clone();
         spec.chain = diagram.package_chain(&klass.package);
-        spec.title_rows = names.clone();
         spec.name_rows = names.len();
         spec.floating_generic = generic.clone();
         let complete = self.complete_box_specification(spec, klass, diagram, &names, &member_rows, generic);
@@ -1864,31 +1848,20 @@ impl Layout {
         owners
     }
 
-    fn junction_markers(
+        fn junction_markers(
         &self,
         markers: &super::model::Markers,
         swap: bool,
         side: bool,
     ) -> super::model::Markers {
         let opposite = if side { markers.right } else { markers.left };
-        let own = markers.get(side);
+        let own = if swap { opposite } else { markers.get(side) };
         let mut out = super::model::Markers::default();
-        if swap {
-            if side {
-                out.left = own;
-                out.right = None;
-            } else {
-                out.right = own;
-                out.left = None;
-            }
-        } else if side {
-            out.left = None;
-            out.right = own;
-        } else {
+        if side {
             out.left = own;
-            out.right = None;
+        } else {
+            out.right = own;
         }
-        let _ = opposite;
         out
     }
 
@@ -2205,20 +2178,20 @@ impl Layout {
                 r: NESTING_RADIUS,
                 cross: format!(
                     "M {} {} L {} {} M {} {} L {} {}",
-                    format_g(x - reach), format_g(y),
-                    format_g(x + reach), format_g(y),
-                    format_g(x), format_g(y - reach),
-                    format_g(x), format_g(y + reach),
+                    crate::svg::ruby_float(x - reach), crate::svg::ruby_float(y),
+                    crate::svg::ruby_float(x + reach), crate::svg::ruby_float(y),
+                    crate::svg::ruby_float(x), crate::svg::ruby_float(y - reach),
+                    crate::svg::ruby_float(x), crate::svg::ruby_float(y + reach),
                 ),
             };
         }
         let direction = unit_vector(other, tip);
         let shape = marker_shape(kind);
-        let points: [[f64; 2]; 4] = match shape {
+        let mut points: Vec<[f64; 2]> = match shape {
             MarkerShape::Arrow => {
                 let base = shift(tip, direction, -ARROW_LENGTH);
                 let half = half_width.unwrap_or(ARROW_HALF_WIDTH);
-                [
+                vec![
                     tip,
                     marker_side(base, direction, half),
                     shift(tip, direction, -ARROW_NOTCH),
@@ -2228,7 +2201,7 @@ impl Layout {
             MarkerShape::Diamond => {
                 let middle = shift(tip, direction, -(DIAMOND_LENGTH / 2.0));
                 let half = half_width.unwrap_or(DIAMOND_HALF_WIDTH);
-                [
+                vec![
                     tip,
                     marker_side(middle, direction, half),
                     shift(tip, direction, -DIAMOND_LENGTH),
@@ -2238,10 +2211,9 @@ impl Layout {
             MarkerShape::Triangle => {
                 let base = shift(tip, direction, -MARKER_LENGTH);
                 let half = half_width.unwrap_or(MARKER_HALF_WIDTH);
-                [
+                vec![
                     tip,
                     marker_side(base, direction, half),
-                    shift(tip, direction, 0.0),
                     marker_side(base, direction, -half),
                 ]
             }
@@ -3680,8 +3652,55 @@ fn mantissa_parts(text: &str) -> (String, String) {
     }
 }
 
-fn round4_half(value: f64) -> f64 {
-    (value * 10000.0).round() / 10000.0
+pub(super) fn round4_half(value: f64) -> f64 {
+    // Ruby Float#round(4): half-up over the shortest decimal
+    // representation, not over the binary value.
+    let negative = value < 0.0;
+    let shortest = format!("{}", value.abs());
+    let (integer, fraction) = mantissa_parts(&shortest);
+    if fraction.len() <= 4 {
+        return value;
+    }
+    let mut digits: Vec<u8> = format!("{}{}", integer, fraction)
+        .bytes()
+        .take(integer.len() + 4)
+        .collect();
+    if fraction.as_bytes()[4] >= b'5' {
+        let mut index = digits.len();
+        loop {
+            if index == 0 {
+                digits.insert(0, b'1');
+                break;
+            }
+            index -= 1;
+            if digits[index] == b'9' {
+                digits[index] = b'0';
+            } else {
+                digits[index] += 1;
+                break;
+            }
+        }
+    }
+    let text: String = digits.iter().map(|d| *d as char).collect();
+    let point = text.len() as i32 - 4;
+    let magnitude: f64 = if point <= 0 {
+        format!("0.{}{}", "0".repeat((-point) as usize), text)
+            .parse()
+            .unwrap_or(0.0)
+    } else if point >= text.len() as i32 {
+        format!("{}{}", text, "0".repeat((point - text.len() as i32) as usize))
+            .parse()
+            .unwrap_or(0.0)
+    } else {
+        format!("{}.{}", &text[..point as usize], &text[point as usize..])
+            .parse()
+            .unwrap_or(0.0)
+    };
+    if negative {
+        -magnitude
+    } else {
+        magnitude
+    }
 }
 
 /// The shortest decimal form as sign, digits without the point, and the

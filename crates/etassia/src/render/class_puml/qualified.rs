@@ -107,7 +107,8 @@ impl QualifiedAssociationLayout {
         let mut edge = origin[0];
         let mut corners = HashMap::new();
         for component in self.components() {
-            let logical = self.spread_collisions(self.logical_positions(&component));
+            let (logical, order) = self.logical_positions(&component);
+            let logical = self.spread_collisions(logical, &order);
             let (placed, width) = self.place_component(&component, &logical, sizes, [edge, origin[1]]);
             corners.extend(placed);
             edge += width + COMPONENT_GAP;
@@ -162,8 +163,11 @@ impl QualifiedAssociationLayout {
         out
     }
 
-    fn logical_positions(&self, component: &[String]) -> HashMap<String, [f64; 2]> {
+    /// Ruby's Hash preserves insertion order; Rust's HashMap does not, so
+    /// the visit order travels alongside the map for the collision spread.
+    fn logical_positions(&self, component: &[String]) -> (HashMap<String, [f64; 2]>, Vec<String>) {
         let mut positions = HashMap::new();
+        let mut order = vec![component[0].clone()];
         positions.insert(component[0].clone(), [0.0, 0.0]);
         let mut queue = vec![component[0].clone()];
         while let Some(name) = queue.first().cloned() {
@@ -174,10 +178,11 @@ impl QualifiedAssociationLayout {
                 }
                 let here = positions[&name];
                 positions.insert(other.clone(), [here[0] + delta[0], here[1] + delta[1]]);
+                order.push(other.clone());
                 queue.push(other);
             }
         }
-        positions
+        (positions, order)
     }
 
     fn connected(&self, name: &str) -> Vec<(String, [f64; 2])> {
@@ -208,12 +213,15 @@ impl QualifiedAssociationLayout {
         }
     }
 
-    fn spread_collisions(&self, mut positions: HashMap<String, [f64; 2]>) -> HashMap<String, [f64; 2]> {
-        // Ruby groups by the point arrays themselves.
-        let keys: Vec<String> = positions.keys().cloned().collect();
+    fn spread_collisions(
+        &self,
+        mut positions: HashMap<String, [f64; 2]>,
+        order: &[String],
+    ) -> HashMap<String, [f64; 2]> {
+        // Ruby groups by the point arrays themselves, in insertion order.
         let mut groups: Vec<Vec<String>> = vec![];
-        for key in keys {
-            let point = positions[&key];
+        for key in order {
+            let point = positions[key];
             let mut found = false;
             for group in groups.iter_mut() {
                 if positions[&group[0]] == point {

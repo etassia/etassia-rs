@@ -38,6 +38,8 @@ impl PortionVisibility {
             if first != "hide" && first != "show" {
                 continue;
             }
+            // The target keeps its written case; the words read lowercased.
+            let written: Vec<&str> = line.split_whitespace().collect();
             let mut words: Vec<&str> =
                 lowered.split_whitespace().skip(1).collect();
             if words.first() == Some(&"empty") {
@@ -60,8 +62,10 @@ impl PortionVisibility {
             let target = match words.len() {
                 0 => None,
                 1 => {
-                    let word = words[0];
-                    if word.starts_with("<<") && word.ends_with(">>") {
+                    // Ruby RULE keeps the target's written case.
+                    let word_lower = words[0];
+                    let Some(word) = written.get(1) else { continue };
+                    if word_lower.starts_with("<<") && word_lower.ends_with(">>") {
                         Some(word.to_string())
                     } else if word.chars().next().is_some_and(|c| c.is_ascii_alphabetic() || c == '_')
                         && word.chars().all(|c| c.is_ascii_alphanumeric() || c == '_')
