@@ -52,6 +52,8 @@ impl Prop {
 pub enum Value {
     Colour(String),
     Number(f64),
+    /// A Ruby Integer (its `to_s` has no fractional part).
+    Int(i64),
     Name(String),
     Style(&'static str),
 }
@@ -173,7 +175,7 @@ pub fn from_defaults(element: &str, property: Prop) -> Option<Value> {
         ("note", Prop::LineThickness) => Some(Value::Number(0.5)),
         ("arrow", Prop::Border) => Some(Value::Colour("#181818".into())),
         ("arrow", Prop::FontColour) => Some(Value::Colour("#000000".into())),
-        ("arrow", Prop::LineThickness) => Some(Value::Number(1.0)),
+        ("arrow", Prop::LineThickness) => Some(Value::Int(1)),
         ("start", Prop::Background) => Some(Value::Colour("#222222".into())),
         ("start", Prop::Border) => Some(Value::Colour("#222222".into())),
         _ => None,

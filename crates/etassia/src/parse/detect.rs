@@ -143,7 +143,7 @@ fn class_re() -> &'static Regex {
             r"\A(?:\x{FEFF})?",
             r"(?:[ \t\x0B\x0C\x00]*(?:'[^\r\n]*)?(?:\r\n|\r|\n))*",
             r"[ \t\x0B\x0C\x00]*@start(?:uml|ebnf|nwdiag|mindmap|wbs|gantt|git|ditaa)",
-            r"(?![A-Za-z0-9_])",
+            r"(?:[^A-Za-z0-9_]|\z)",
         ))
         .expect("class detect pattern")
     })
